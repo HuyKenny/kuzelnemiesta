@@ -16,3 +16,5 @@ UPDATE stores SET name = 'Zľavomat.sk' WHERE slug = 'zlavomat-sk';
 -- the old WordPress category "Wellness s večerou" is a node again (best GSC page of the old site, 3. 11. 2026)
 INSERT OR REPLACE INTO cat_alias (feed_key, cat_id) SELECT 'krása, zdravie a relaxácia|wellness s večerou', id FROM categories WHERE slug = 'wellness-s-vecerou';
 DELETE FROM redirects WHERE from_path = '/wellness-s-vecerou/';
+-- 404s found by Cloudflare after the cutover with a short slug (< 15 chars, so dispatch does not guess) → category, 3. 11. 2026
+INSERT OR REPLACE INTO redirects (from_path, to_path, status) VALUES ('/nocny-let/', '/vyhliadkove-lety/', 301);

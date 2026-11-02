@@ -6,6 +6,7 @@ import Blog from '../components/stranky/Blog.astro';
 import Hledani from '../components/stranky/Hledani.astro';
 import Nenalezeno from '../components/stranky/Nenalezeno.astro';
 import { dispatch } from '../lib/dispatch';
+import { matchTarget } from '../lib/kd';
 import { blogView, categoryView, cityView, giftView, postView, productView, searchView, storeView } from '../lib/views';
 import { getEnv } from '../lib/server/env';
 
@@ -13,6 +14,13 @@ export const prerender = false;
 
 const db = getEnv().DB;
 const url = Astro.url;
+// old WordPress photos (Google Images, hotlinks): the offer's current photo instead of a 404 (upload_map, 3. 11. 2026)
+if (url.pathname.startsWith('/wp-content/uploads/')) {
+  const stem = url.pathname.slice('/wp-content/uploads/'.length).toLowerCase().replace(/\.(jpe?g|png|webp|gif|avif)(\.webp)?$/, '').replace(/-\d+x\d+$/, '').replace(/-scaled$/, '');
+  const hit = await db.prepare('SELECT p.image FROM upload_map u JOIN products p ON p.id = u.product_id WHERE u.stem = ?').bind(stem).first<{ image: string }>().catch(() => null);
+  if (hit?.image && /^https:\/\//.test(hit.image) && !hit.image.includes('/wp-content/uploads/')) return Astro.redirect(hit.image, 301);
+  return new Response('Not found', { status: 404, headers: { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'public, max-age=86400' } });
+}
 const r = await dispatch(db, url.pathname);
 if (r.kind === 'redirect') return Astro.redirect(r.to + url.search, 301);
 // /page/N/ without a search term is an empty search page → the home page
@@ -24,7 +32,11 @@ if (r.kind === 'product') { view = await productView(db, r.id); tpl = 'product';
 else if (r.kind === 'category') { view = await categoryView(db, r.id, r.page, url.searchParams); tpl = 'list'; }
 else if (r.kind === 'combo') { view = await categoryView(db, r.cat, r.page, url.searchParams, r.city); tpl = 'list'; }
 else if (r.kind === 'gift') { view = await giftView(db, r.id, r.page, url.searchParams); tpl = 'list'; }
-else if (r.kind === 'city') { view = await cityView(db, r.city, r.page, url.searchParams); tpl = 'list'; }
+else if (r.kind === 'city') {
+  view = await cityView(db, r.city, r.page, url.searchParams); tpl = 'list';
+  // a place the catalogue no longer has (raw feed names, "polske-tatry") → its region/country category, else Slovak holidays
+  if (!view) return Astro.redirect(matchTarget(r.city) ?? '/dovolenka-na-slovensku/', 301);
+}
 else if (r.kind === 'store') { view = await storeView(db, r.store, r.page, url.searchParams); tpl = 'list'; if (!view) return Astro.redirect('/zazitky/', 301); }
 else if (r.kind === 'post' || r.kind === 'page') { view = r.page > 1 ? null : await postView(db, r.id); tpl = 'post'; }
 else if (r.kind === 'blog') { view = await blogView(db, r.page); tpl = 'blog'; }

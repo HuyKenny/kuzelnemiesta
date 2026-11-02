@@ -13,6 +13,10 @@ export const GET: APIRoute = async ({ params }) => {
   if (!xml && /\d$/.test(name) && (await siteCache(getEnv().DB, `sitemap:${name.replace(/\d+$/, '')}`))) {
     return new Response(null, { status: 301, headers: { location: `/${name.replace(/\d+$/, '')}.xml` } });
   }
+  // an unnumbered name of a type that is now split (product_cat-sitemap → product_cat-sitemap1) → 301
+  if (!xml && !/\d$/.test(name) && (await siteCache(getEnv().DB, `sitemap:${name}1`))) {
+    return new Response(null, { status: 301, headers: { location: `/${name}1.xml` } });
+  }
   // numbered files the catalogue no longer needs are gone for good → 410, so GSC drops them
   if (!xml) return new Response('Gone', { status: NAME.test(name) && /\d$/.test(name) ? 410 : 404, headers: { 'content-type': 'text/plain; charset=utf-8' } });
   return new Response(xml, { headers: { 'content-type': 'application/xml; charset=UTF-8', 'x-robots-tag': 'noindex, follow' } });

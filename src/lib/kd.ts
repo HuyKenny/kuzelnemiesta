@@ -138,6 +138,7 @@ const THEME: Array<[RegExp, string]> = [
   [/tapas|rebierk|koleno|pub\b|gulicky|bomballs|bistro|steak/, 'otvorene-vouchery-do-restauracii'],
   [/uvolnenie-od-hlavy|telove-ritualy|kralovsky-oddych|andulacn/, 'masaze'],
   [/villa-|vila-|izby-a-studia|apartman/, 'pobyty'],
+  [/polsk\w*-tatr|zakopan/, 'dovolenka-v-polsku'], [/liptov/, 'pobyty-na-liptove'], [/nocny-let/, 'vyhliadkove-lety'],
   [/botulotox|lipolyz|vrask/, 'kozmeticke-sluzby'], [/breathwork|dychani|fyzioterap/, 'starostlivost-o-zdravie'],
   [/cokolad|coffee|kava|wine-bar/, 'kaviarne-a-torty'], [/kacka|pecen|kapust|lokse/, 'otvorene-vouchery-do-restauracii'],
   [/keramick|keramik/, 'kreativne-kurzy'], [/tiesnav|vyprava|vylet/, 'kultura-a-vylety'], [/tabor|happyland/, 'pobyty-s-detmi'],
