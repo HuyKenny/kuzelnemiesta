@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { getEnv } from '../lib/server/env';
+import { BASE } from '../lib/site';
 
 export const prerender = false;
 // Production robots.txt (30. 10. 2026, Astro): no Crawl-delay (pages come from the edge cache, not the shared WEDOS
@@ -15,7 +16,7 @@ Disallow: /*?*partner=
 Disallow: /*?*add-to-cart=
 
 ${['Baiduspider', 'DotBot', 'PetalBot', 'BLEXBot'].map((b) => `User-agent: ${b}\nDisallow: /\n`).join('\n')}
-Sitemap: https://kouzelnydeda.cz/sitemap_index.xml
+Sitemap: ${BASE}/sitemap_index.xml
 `;
 export const GET: APIRoute = () => {
   const prod = getEnv().ENVIRONMENT === 'production';

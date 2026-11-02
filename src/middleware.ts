@@ -1,6 +1,6 @@
 /**
  * Every on-demand request:
- *  1. production workers.dev host → 301 to kouzelnydeda.cz (only /api/health stays,
+ *  1. production workers.dev host → 301 to the production domain (BASE; only /api/health stays,
  *     the uptime monitor cannot pass Bot Fight Mode on the zone); host allow-list; staging whole host behind Access
  *  2. canonical URL in ONE 301: www → apex, duplicate slashes, lowercase, legacy WordPress paths, trailing slash and the
  *     Rank Math `redirects` table (kept in isolate memory)
@@ -18,6 +18,10 @@ import { dataVersion } from './lib/server/versions';
 import { htmlCsp, securityHeaders } from './lib/security';
 import { parseFilters, toQuery } from './lib/filters';
 import { tree } from './lib/db';
+import { BASE, HOST } from './lib/site';
+
+/** own absolute links (apex or www) in article HTML */
+const OWN_HREF = new RegExp(`^(?:https?://(?:www\\.)?${HOST.replace(/\./g, '\\.')})?(/(?!go/|api/|wp-content/|a/|_astro/)[^?#]*)(.*)$`, 'i');
 
 /** Listing views are counted for the ranking (impressions = views of the page × the cards on it): humans only, page 1–5. */
 async function countListView(request: Request, url: URL, db: D1Database): Promise<void> {
@@ -118,7 +122,7 @@ function finalInternal(path: string): string | null {
 
 function internalLinks(e: Element) {
   const href = e.getAttribute('href') ?? '';
-  const own = /^(?:https?:\/\/(?:www\.)?kouzelnydeda\.cz)?(\/(?!go\/|api\/|wp-content\/|a\/|_astro\/)[^?#]*)(.*)$/i.exec(href);
+  const own = OWN_HREF.exec(href);
   if (own && (href.startsWith('/') || /^https?:/i.test(href))) {
     const to = finalInternal(own[1]!);
     if (to) e.setAttribute('href', to + own[2]!);
@@ -149,8 +153,8 @@ export const onRequest = defineMiddleware(async (ctx, next) => {
 
   const host = url.hostname.toLowerCase();
   const prod = env.ENVIRONMENT === 'production';
-  // the production workers.dev mirror must not duplicate kouzelnydeda.cz nor bypass the zone WAF
-  if (prod && host.endsWith('.workers.dev') && url.pathname !== '/api/health') return redirect('https://kouzelnydeda.cz' + url.pathname + url.search, 301);
+  // the production workers.dev mirror must not duplicate the production domain nor bypass the zone WAF
+  if (prod && host.endsWith('.workers.dev') && url.pathname !== '/api/health') return redirect(BASE + url.pathname + url.search, 301);
 
   const hosts = allowedHosts(env);
   if (!isLocal(env) && hosts.length && !hosts.includes(host)) {
@@ -159,15 +163,15 @@ export const onRequest = defineMiddleware(async (ctx, next) => {
 
   if (env.REQUIRE_ACCESS_EVERYWHERE === '1') {
     const auth = await authenticateAdmin(ctx.request, env);
-    if (!auth.ok) return finish(new Response('Přístup jen pro přihlášené.', { status: auth.status, headers: { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'no-store' } }), url);
+    if (!auth.ok) return finish(new Response('Prístup len pre prihlásených.', { status: auth.status, headers: { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'no-store' } }), url);
   }
 
   const isGet = ctx.request.method === 'GET' || ctx.request.method === 'HEAD';
   if (isGet) {
-    const www = prod && host === 'www.kouzelnydeda.cz';
+    const www = prod && host === 'www.' + HOST;
     const c = await canonicalPath(url.pathname, env.DB);
     if (c?.status === 410) return finish(new Response('Gone', { status: 410, headers: { 'cache-control': 'public, max-age=3600' } }), url);
-    if (c || www) return finish(redirect((www ? 'https://kouzelnydeda.cz' : '') + (c?.to ?? url.pathname) + url.search, c?.status ?? 301), url);
+    if (c || www) return finish(redirect((www ? BASE : '') + (c?.to ?? url.pathname) + url.search, c?.status ?? 301), url);
   }
 
   // the redirect map also rewrites internal links in finish() (finalInternal) — make sure it is loaded (memoised 10 min)
@@ -186,7 +190,7 @@ export const onRequest = defineMiddleware(async (ctx, next) => {
 
   // anything rendered from parameters (search, filters, sort) costs D1 queries → rate limit per IP on a cache miss
   if (key?.includes('__q/') && env.RL_SEARCH && !(await env.RL_SEARCH.limit({ key: clientIp(ctx.request) })).success) {
-    return finish(tooMany('Příliš mnoho požadavků, zkuste to za chvíli.'), url);
+    return finish(tooMany('Príliš veľa požiadaviek, skúste to o chvíľu.'), url);
   }
 
   const res = await next();

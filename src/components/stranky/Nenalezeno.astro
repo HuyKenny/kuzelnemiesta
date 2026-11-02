@@ -3,12 +3,13 @@ import Base from '../../layouts/Base.astro';
 import Mrizka from '../Mrizka.astro';
 import { popular, tree } from '../../lib/db';
 import { getEnv } from '../../lib/server/env';
+import { SITE_NAME } from '../../lib/site';
 const db = getEnv().DB;
 const [t, top] = await Promise.all([tree(db), popular(db, 8)]);
 ---
-<Base meta={{ title: 'Stránka nenalezena | Kouzelný děda', description: '', robots: ['noindex', 'follow'], graph: [], jsonLd: [] }} pageType="404">
+<Base meta={{ title: `Stránka sa nenašla | ${SITE_NAME}`, description: '', robots: ['noindex', 'follow'], graph: [], jsonLd: [] }} pageType="404">
 	<div class="w">
-		<header class="vh"><div class="vh__ik vh__ik--il"><img src="/a/kouzelnik-256.webp" alt="" width="120" height="120" /></div><div><h1>Tahle stránka tu není</h1><p class="lead">Nabídka mohla skončit nebo se změnila adresa. Zkuste vyhledávání nahoře, nebo vyberte z toho, co se teď nejvíc líbí.</p></div></header>
+		<header class="vh"><div class="vh__ik vh__ik--il"><img src="/a/kouzelnik-256.webp" alt="" width="120" height="120" /></div><div><h1>Táto stránka tu nie je</h1><p class="lead">Ponuka mohla skončiť alebo sa zmenila adresa. Skúste vyhľadávanie hore alebo si vyberte z toho, čo sa teraz páči najviac.</p></div></header>
 		<Mrizka items={top} t={t} eager={false} />
 	</div>
 </Base>

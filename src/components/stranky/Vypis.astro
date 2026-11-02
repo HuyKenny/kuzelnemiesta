@@ -2,7 +2,7 @@
 // Listing (section, category, category × city, city, partner, gift landing). Offers come first: on desktop the section
 // tree and filters sit in a sticky left column, the right one has a compact header (H1, trust line, intro clamped to
 // two lines), the sort bar with active filters and the grid. On phones one scrollable row of subcategories and a
-// "Filtry" bottom sheet. Below the grid the texts for search engines (intro, related, FAQ) and gift ideas.
+// "Filtre" bottom sheet. Below the grid the texts for search engines (intro, related, FAQ) and gift ideas.
 import Base from '../../layouts/Base.astro';
 import Drobky from '../Drobky.astro';
 import Mrizka from '../Mrizka.astro';
@@ -13,6 +13,7 @@ import Ik from '../Ik.astro';
 import { SORTS, toQuery } from '../../lib/filters';
 import { card } from '../../lib/img';
 import type { ListingView } from '../../lib/views';
+import { cena, cislo, ponuk } from '../../lib/format';
 
 interface Props { v: ListingView }
 const { v } = Astro.props;
@@ -24,9 +25,10 @@ const activeTop = sideItems.find((x) => x.active || x.kids?.some((k) => k.active
 const row = v.subcats.length ? v.subcats : activeTop?.kids?.length ? activeTop.kids : sideItems;
 const store = v.f.partner ? [...v.tree.stores.values()].find((s) => s.slug === v.f.partner) : undefined;
 const active: Array<{ l: string; url: string }> = [];
-if (v.f.max !== undefined || v.f.min !== undefined) active.push({ l: v.f.max !== undefined ? `do ${v.f.max.toLocaleString('cs-CZ')} Kč` : `od ${v.f.min!.toLocaleString('cs-CZ')} Kč`, url: v.base + toQuery({ ...v.f, max: undefined, min: undefined }) });
+if (v.f.max !== undefined || v.f.min !== undefined) active.push({ l: v.f.max !== undefined ? `do ${cena(v.f.max)}` : `od ${cena(v.f.min!)}`, url: v.base + toQuery({ ...v.f, max: undefined, min: undefined }) });
 if (store) active.push({ l: store.name, url: v.base + toQuery({ ...v.f, partner: '' }) });
 const sec = v.section || v.pageType;
+const count = `${cislo(v.total)} ${ponuk(v.total)}`;
 ---
 <Base meta={v.meta} pageType={v.pageType} preloadImg={lcp}>
 	<div class="w">
@@ -38,35 +40,35 @@ const sec = v.section || v.pageType;
 					{v.ill ? <div class="vh__ik vh__ik--il"><img src={`/a/il/${v.ill}.webp`} alt="" width="120" height="120" /></div> : v.icon && <div class="vh__ik"><Ik n={v.icon} /></div>}
 					<div class="vh__t">
 						<h1>{v.h1}</h1>
-						<p class="trust"><span><b>{v.trust || `${v.total.toLocaleString('cs-CZ')} nabídek`}</b></span><span><Ik n="check" />ověření partneři</span><span><Ik n="check" />voucher hned e-mailem</span></p>
+						<p class="trust"><span><b>{v.trust || count}</b></span><span><Ik n="check" />overení partneri</span><span><Ik n="check" />voucher hneď e-mailom</span></p>
 						{v.descriptionHtml && first && <div class="lead txt" data-vice set:html={v.descriptionHtml} />}
 					</div>
 				</header>
 				{row.length > 1 && (
-					<nav class="subr" aria-label="Podkategorie">
+					<nav class="subr" aria-label="Podkategórie">
 						<ul>{row.map((c) => <li><a class="chip" href={c.url} aria-current={c.active ? 'page' : undefined}>{c.icon && <Ik n={c.icon} />}{c.name}</a></li>)}</ul>
 					</nav>
 				)}
 				<form class="tb" action={v.base} method="get">
-					<h2>{v.h2 || `${v.total.toLocaleString('cs-CZ')} nabídek`}</h2>
-					{active.length > 0 && <ul class="tb__a">{active.map((a) => <li><a href={a.url} rel="nofollow" aria-label={`Zrušit filtr ${a.l}`}>{a.l} <Ik n="zavrit" /></a></li>)}</ul>}
+					<h2>{v.h2 || count}</h2>
+					{active.length > 0 && <ul class="tb__a">{active.map((a) => <li><a href={a.url} rel="nofollow" aria-label={`Zrušiť filter ${a.l}`}>{a.l} <Ik n="zavrit" /></a></li>)}</ul>}
 					<div class="tb__f">
-						<a class="tb__fl" href="#filtry" data-filtry><Ik n="filtr" />Filtry</a>
-						<label class="sr" for="orderby">Řazení</label>
+						<a class="tb__fl" href="#filtry" data-filtry><Ik n="filtr" />Filtre</a>
+						<label class="sr" for="orderby">Zoradenie</label>
 						<select id="orderby" name="orderby">{SORTS.map(([k, l]) => <option value={k} selected={v.f.sort === k}>{l}</option>)}</select>
 						{v.f.max !== undefined && <input type="hidden" name="max_price" value={v.f.max} />}
 						{v.f.min !== undefined && <input type="hidden" name="min_price" value={v.f.min} />}
 						{v.f.partner && <input type="hidden" name="partner" value={v.f.partner} />}
-						<noscript><button type="submit">Seřadit</button></noscript>
+						<noscript><button type="submit">Zoradiť</button></noscript>
 					</div>
 				</form>
-				{v.items.length ? <Mrizka items={v.items} t={v.tree} ctx="karta" sec={sec} /> : <p class="prazdne">Teď tu nejsou žádné nabídky. Zkuste jiný rozpočet nebo <a href="/">úvodní stránku</a>.</p>}
+				{v.items.length ? <Mrizka items={v.items} t={v.tree} ctx="karta" sec={sec} /> : <p class="prazdne">Momentálne tu nie sú žiadne ponuky. Skúste iný rozpočet alebo <a href="/">úvodnú stránku</a>.</p>}
 				<Strankovani base={v.base} page={v.page} pages={v.pages} query={v.qs} />
 			</div>
 		</div>
 		{first && v.gifts.length > 0 && (
 			<section class="sek">
-				<div class="sh"><h2>Hledáte dárek?</h2><a href="/zazitkove-darky/">Všechny tipy →</a></div>
+				<div class="sh"><h2>Hľadáte darček?</h2><a href="/zazitkove-darky/">Všetky tipy →</a></div>
 				<DarkyMrizka items={v.gifts} />
 			</section>
 		)}
@@ -79,13 +81,13 @@ const sec = v.section || v.pageType;
 		)}
 		{v.related.length > 0 && (
 			<section class="sek">
-				<h2>Mohlo by se hodit</h2>
+				<h2>Mohlo by sa hodiť</h2>
 				<ul class="chips">{v.related.map((c) => <li><a class="chip" href={c.url}>{c.icon && <Ik n={c.icon} />}{c.name} <span>{c.count}</span></a></li>)}</ul>
 			</section>
 		)}
 		{v.faq.length > 0 && (
 			<section class="sek faq">
-				<h2>Časté dotazy</h2>
+				<h2>Časté otázky</h2>
 				{v.faq.map((f) => <details><summary>{f.q}</summary><div>{f.a}</div></details>)}
 			</section>
 		)}

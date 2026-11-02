@@ -10,7 +10,7 @@ export interface CatFull extends Cat { description_html: string; seo_title: stri
 export interface Card {
   id: number; slug: string; name: string; image: string; price: number; price_old: number; disc_pct: number; store_id: number; city: string;
   rating: number; reviews: number; deal_end: string | null; bought: number | null; created_at: string;
-  /** country of the offer (Slevomat COUNTRY_ID, ISO alpha-3) */
+  /** country of the offer (Zlavomat COUNTRY_ID, ISO alpha-3) */
   cc?: string | null;
   /** number of variants (the price is "od") */
   nv?: number | null;
@@ -137,12 +137,12 @@ export async function listGift(db: D1Database, catIds: number[], q: ListQuery & 
   return { items: a!.results as Card[], total: Number((c!.results[0] as { n: number }).n) };
 }
 
-/** Lowest price among active offers of a category (titles "od X Kč"). */
+/** Lowest price among active offers of a category (titles "od X €"; prices under 2 € are feed junk). */
 export async function minPrice(db: D1Database, catId: number): Promise<number> {
-  return (await db.prepare('SELECT MIN(price) AS m FROM cat_products WHERE cat_id = ? AND price >= 49').bind(catId).first<{ m: number | null }>())?.m ?? 0;
+  return (await db.prepare('SELECT MIN(price) AS m FROM cat_products WHERE cat_id = ? AND price >= 2').bind(catId).first<{ m: number | null }>())?.m ?? 0;
 }
 
-/** Offers ending soonest (Slevomat deal_end within 10 days). */
+/** Offers ending soonest (Zlavomat deal_end within 10 days). */
 export async function endingSoon(db: D1Database, n = 8): Promise<Card[]> {
   return (await db.prepare(`SELECT ${CARD} FROM products p WHERE p.active = 1 AND p.image <> '' AND json_extract(p.info, '$.de') BETWEEN date('now') AND date('now', '+10 days')
     ORDER BY p.mix DESC LIMIT ?`).bind(n).all<Card>()).results;
@@ -176,9 +176,9 @@ export async function boxOffers(db: D1Database, catId: number, seed: string): Pr
   return rows.slice(0, 9);
 }
 
-/** Home "Nejprodávanější teď": partners mixed, only gift-sized prices (a 57 000 Kč jet flight is no bestseller). */
+/** Home "Najpredávanejšie teraz": partners mixed, only gift-sized prices (a 2 300 € jet flight is no bestseller). */
 export async function popular(db: D1Database, n = 8): Promise<Card[]> {
-  return (await db.prepare(`SELECT ${CARD} FROM products p WHERE p.active = 1 AND p.image <> '' AND p.price BETWEEN 150 AND 6000 ORDER BY p.mix DESC, p.pop DESC LIMIT ?`).bind(n).all<Card>()).results;
+  return (await db.prepare(`SELECT ${CARD} FROM products p WHERE p.active = 1 AND p.image <> '' AND p.price BETWEEN 6 AND 250 ORDER BY p.mix DESC, p.pop DESC LIMIT ?`).bind(n).all<Card>()).results;
 }
 
 export async function loadPost(db: D1Database, id: number): Promise<Post | null> {

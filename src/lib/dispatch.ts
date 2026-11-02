@@ -1,4 +1,4 @@
-// Resolves every path the way WordPress did on kouzelnydeda.cz:
+// Resolves every path the way WordPress did on the Czech sister site (same URL shapes on kuzelnemiesta.sk):
 //   /<slug>/(page/<n>/)                  → offer | product category | post | page (slugs table, one root namespace)
 //   /<kat>/lokalita/<mesto>/(page/<n>/)  → category × city (child theme rewrite)
 //   /lokalita/<mesto>/  /brand/<store>/  /blog/ — blog categories sit in the root like everything else
@@ -37,7 +37,7 @@ export async function dispatch(db: D1Database, pathname: string): Promise<Route>
   if (!seg.length) return page > 1 ? { kind: 'search', page } : { kind: 'notfound' };
   const s = seg.map((x) => x.toLowerCase());
   if (s[0] === 'lokalita' && s.length === 2) return { kind: 'city', city: s[1]!, page };
-  if (s[0] === 'brand' && s.length === 2) return { kind: 'store', store: s[1] === 'skvelecesko' ? 'skvele-cesko' : s[1]!, page };
+  if (s[0] === 'brand' && s.length === 2) return { kind: 'store', store: s[1]!, page };
   if (s[0] === 'blog' && s.length === 1) return { kind: 'blog', page };
   // Rank Math stripped the category base: /category/<x>/ → /<x>/
   if (s[0] === 'category' && s.length === 2) return { kind: 'redirect', to: pg(`/${enc(s[1]!)}/`, page) };

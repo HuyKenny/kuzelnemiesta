@@ -3,8 +3,8 @@ import { defineConfig } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
-  site: process.env.SITE_URL ?? 'https://alkoholicky.cz',
-  // Catalogue (11.8k products, ~35k offers) renders on demand from D1: a price change never needs a rebuild.
+  site: process.env.SITE_URL ?? 'https://kuzelnemiesta.sk',
+  // The offer catalogue renders on demand from D1: a price change never needs a rebuild.
   output: 'server',
   adapter: cloudflare({ imageService: 'passthrough' }),
   session: false,

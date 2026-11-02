@@ -1,12 +1,13 @@
 ---
-// Homepage: hero "darujte zážitek" with the gift finder (for whom → budget), five sections as photo tiles with their
+// Homepage: hero "darujte zážitok" with the gift finder (for whom → budget), five sections as photo tiles with their
 // top subcategories, seasonal row (Christmas / Valentine), best sellers, ending soon, biggest discounts, popular
 // categories as round thumbnails, gift ideas, how it works, partners, cities, blog, SEO text.
 import Base from '../../layouts/Base.astro';
 import Mrizka from '../Mrizka.astro';
 import DarkyMrizka from '../DarkyMrizka.astro';
 import Ik from '../Ik.astro';
-import { cislo, datum, decode, excerpt } from '../../lib/format';
+import { cislo, datum, decode, excerpt, ponuk } from '../../lib/format';
+import { SITE_NAME } from '../../lib/site';
 import { card, crop } from '../../lib/img';
 import type { HomeView } from '../../lib/views';
 import { partner } from '../../lib/partners';
@@ -16,23 +17,25 @@ const forWhom = v.gifts.filter((g) => ['darek-pro-zenu', 'darek-pro-muze', 'dare
 const budget = v.gifts.filter((g) => g.slug.startsWith('darky-do-'));
 // partners with live offers, the biggest first (strip, stats)
 const partners = [...v.tree.stores.values()].filter((s) => s.count > 0).sort((a, b) => b.count - a.count);
+/** "2 overení partneri", "5 overených partnerov" */
+const partneri = (n: number) => (n === 1 ? 'overený partner' : n >= 2 && n <= 4 ? 'overení partneri' : 'overených partnerov');
 const heroImgs = v.top.filter((p) => p.image).slice(0, 2).map((p) => card(p.image, 360));
 ---
 <Base meta={v.meta} pageType="home" searchAction>
 	<section class="hero">
 		<div class="w hero__in">
 			<div>
-				<h1>Darujte zážitek, na který se <em>nezapomíná</em></h1>
-				<p class="hero__lead">Pobyty, wellness, adrenalin, degustace i kurzy s úsporou až 70 % od Slevomatu, Zážitky.cz, Adropu a dalších ověřených partnerů. Vyberete u nás, koupíte u partnera za stejnou cenu.</p>
+				<h1>Darujte zážitok, na ktorý sa <em>nezabúda</em></h1>
+				<p class="hero__lead">Pobyty, wellness, adrenalín, degustácie aj kurzy s úsporou až 70 % od overených partnerov Zlavomat.sk a Adrop.sk. Vyberiete si u nás, kúpite u partnera za rovnakú cenu.</p>
 				<div class="pruvodce">
 					<img class="pruvodce__k" src="/a/kouzelnik-darek-256.webp" alt="" width="110" height="110" />
-					<h2><Ik n="darek" />Komu chcete udělat radost?</h2>
+					<h2><Ik n="darek" />Komu chcete urobiť radosť?</h2>
 					<ul class="chips">{forWhom.map((g) => <li><a class="chip" href={`/${g.slug}/`}><Ik n={g.icon} />{g.name}</a></li>)}</ul>
-					<h2><Ik n="cena" />Kolik chcete dát?</h2>
-					<ul class="chips">{budget.map((g) => <li><a class="chip" href={`/${g.slug}/`}>{g.name}</a></li>)}<li><a class="chip" href="/zazitkove-darky/">Na ceně nezáleží</a></li></ul>
-					<p>Každá nabídka je voucher s dlouhou platností — obdarovaný si termín vybere sám.</p>
+					<h2><Ik n="cena" />Koľko chcete dať?</h2>
+					<ul class="chips">{budget.map((g) => <li><a class="chip" href={`/${g.slug}/`}>{g.name}</a></li>)}<li><a class="chip" href="/zazitkove-darky/">Na cene nezáleží</a></li></ul>
+					<p>Každá ponuka je voucher s dlhou platnosťou — obdarovaný si termín vyberie sám.</p>
 				</div>
-				<ul class="cisla"><li><b>{cislo(v.total)}</b> nabídek</li><li><b>{partners.length}</b> ověřených partnerů</li><li><b>denně</b> nové nabídky</li></ul>
+				<ul class="cisla"><li><b>{cislo(v.total)}</b> {ponuk(v.total)}</li><li><b>{partners.length}</b> {partneri(partners.length)}</li><li><b>denne</b> nové ponuky</li></ul>
 			</div>
 			<div class="hero__art" aria-hidden="true">
 				{heroImgs[0] && <img class="a1" src={heroImgs[0].src} alt="" width="360" height="270" />}
@@ -44,69 +47,69 @@ const heroImgs = v.top.filter((p) => p.image).slice(0, 2).map((p) => card(p.imag
 	</section>
 	<div class="w">
 		<section class="sek">
-			<div class="sh"><h2>Co máte rádi?</h2></div>
+			<div class="sh"><h2>Čo máte radi?</h2></div>
 			<ul class="sekce">{v.sections.map((s, i) => { const im = crop(s.image, 300, 400); const im2 = crop(s.image, 600, 800); return (
 				<li>
-					<a class="sc" href={s.url}>{im && <img src={im} srcset={`${im} 1x, ${im2} 2x`} alt="" width="300" height="400" loading={i < 2 ? 'eager' : 'lazy'} />}<span class="sc__t"><b><Ik n={s.icon} />{s.name}</b><small>{cislo(s.count)} nabídek</small></span></a>
+					<a class="sc" href={s.url}>{im && <img src={im} srcset={`${im} 1x, ${im2} 2x`} alt="" width="300" height="400" loading={i < 2 ? 'eager' : 'lazy'} />}<span class="sc__t"><b><Ik n={s.icon} />{s.name}</b><small>{cislo(s.count)} {ponuk(s.count)}</small></span></a>
 					<ul>{s.kids.map((k) => <li><a href={k.url}>{k.name}</a></li>)}</ul>
 				</li>
 			); })}</ul>
 		</section>
 		{v.season && v.seasonItems.length > 0 && (
 			<section class="sek">
-				<div class="sh"><h2><Ik n={v.season.icon} /> {v.season.h1.split(':')[0]}</h2><a href={`/${v.season.slug}/`}>Všechny tipy →</a></div>
+				<div class="sh"><h2><Ik n={v.season.icon} /> {v.season.h1.split(':')[0]}</h2><a href={`/${v.season.slug}/`}>Všetky tipy →</a></div>
 				<Mrizka items={v.seasonItems} t={v.tree} eager={false} ctx="home-sezona" />
 			</section>
 		)}
 		<section class="sek">
-			<div class="sh"><h2>Nejprodávanější teď</h2><a href="/zazitkove-darky/">Další tipy →</a></div>
+			<div class="sh"><h2>Najpredávanejšie teraz</h2><a href="/zazitkove-darky/">Ďalšie tipy →</a></div>
 			<Mrizka items={v.top} t={v.tree} eager={false} ctx="home-top" />
 		</section>
 		<section class="sek">
-			<div class="sh"><h2>Oblíbené kategorie</h2></div>
+			<div class="sh"><h2>Obľúbené kategórie</h2></div>
 			<ul class="obl">{v.popularCats.map((c) => { const im = crop(c.image, 360, 450); const im2 = crop(c.image, 720, 900); return (
-				<li><a class="sc" href={c.url}>{im && <img src={im} srcset={`${im} 1x, ${im2} 2x`} alt="" width="360" height="450" loading="lazy" />}<span class="sc__t"><b><Ik n={c.icon} />{c.name}</b><small>{cislo(c.count)} nabídek</small></span></a></li>
+				<li><a class="sc" href={c.url}>{im && <img src={im} srcset={`${im} 1x, ${im2} 2x`} alt="" width="360" height="450" loading="lazy" />}<span class="sc__t"><b><Ik n={c.icon} />{c.name}</b><small>{cislo(c.count)} {ponuk(c.count)}</small></span></a></li>
 			); })}</ul>
 		</section>
 		{v.ending.length > 0 && (
 			<section class="sek">
-				<div class="sh"><h2><Ik n="hodiny" /> Končí brzy — neprošvihněte</h2></div>
+				<div class="sh"><h2><Ik n="hodiny" /> Čoskoro končí — nezmeškajte</h2></div>
 				<Mrizka items={v.ending} t={v.tree} eager={false} ctx="home-konci" />
 			</section>
 		)}
 		<section class="sek">
-			<div class="sh"><h2>Tipy na dárek</h2><a href="/zazitkove-darky/">Všechny dárky →</a></div>
+			<div class="sh"><h2>Tipy na darček</h2><a href="/zazitkove-darky/">Všetky darčeky →</a></div>
 			<DarkyMrizka items={v.gifts} />
 		</section>
 		{v.deals.length > 0 && (
 			<section class="sek">
-				<div class="sh"><h2>Největší úspory</h2><a href="/zazitky/?orderby=disc" rel="nofollow">Vše s největší úsporou →</a></div>
+				<div class="sh"><h2>Najväčšie úspory</h2><a href="/zazitky/?orderby=disc" rel="nofollow">Všetko s najväčšou úsporou →</a></div>
 				<Mrizka items={v.deals} t={v.tree} eager={false} ctx="home-uspory" />
 			</section>
 		)}
 		<section class="sek">
-			<div class="sh"><h2>Jak to funguje</h2></div>
+			<div class="sh"><h2>Ako to funguje</h2></div>
 			<ol class="jak">
-				<li><Ik n="hledat" /><b>Vyberete zážitek</b><span>Tisíce pobytů, zážitků a služeb v aktuálních cenách na jednom místě.</span></li>
-				<li><Ik n="stit" /><b>Koupíte u partnera</b><span>Nákup dokončíte bezpečně u partnera, například u Slevomatu, Zážitky.cz nebo Adropu. Za stejnou cenu.</span></li>
-				<li><Ik n="mail" /><b>Voucher přijde e-mailem</b><span>Vytisknete ho, darujete, nebo si rovnou zarezervujete termín.</span></li>
+				<li><Ik n="hledat" /><b>Vyberiete si zážitok</b><span>Pobyty, zážitky a služby za aktuálne ceny na jednom mieste.</span></li>
+				<li><Ik n="stit" /><b>Kúpite u partnera</b><span>Nákup dokončíte bezpečne u partnera – na Zlavomat.sk alebo Adrop.sk. Za rovnakú cenu.</span></li>
+				<li><Ik n="mail" /><b>Voucher príde e-mailom</b><span>Vytlačíte ho, darujete alebo si rovno zarezervujete termín.</span></li>
 			</ol>
 		</section>
 		<section class="sek">
 			<div class="partneri">
 				{partners.map((s) => <a href={`/brand/${s.slug}/`} style={`--c:${partner(s.slug).color}`}>{partner(s.slug).name}</a>)}
-				<p>Nabídky přebíráme přímo od partnerů a obnovujeme je několikrát denně.</p>
+				<p>Ponuky preberáme priamo od partnerov a aktualizujeme ich niekoľkokrát denne.</p>
 			</div>
 		</section>
 		{v.cities.length > 0 && (
 			<section class="sek">
-				<div class="sh"><h2>Zážitky ve vašem městě</h2></div>
+				<div class="sh"><h2>Zážitky vo vašom meste</h2></div>
 				<ul class="chips">{v.cities.map((c) => <li><a class="chip" href={`/lokalita/${c.slug}/`}><Ik n="mesto" />{c.name} <span>{c.count}</span></a></li>)}</ul>
 			</section>
 		)}
 		{v.posts.length > 0 && (
 			<section class="sek">
-				<div class="sh"><h2>Inspirace z blogu</h2><a href="/blog/">Všechny články →</a></div>
+				<div class="sh"><h2>Inšpirácia z blogu</h2><a href="/blog/">Všetky články →</a></div>
 				<ul class="posts">{v.posts.map((p) => (
 					<li><article class="pk">
 						<div class="pk__i">{(p.image_card || p.image) && <img src={p.image_card || p.image} alt="" loading="lazy" width="400" height="225" />}</div>
@@ -116,11 +119,11 @@ const heroImgs = v.top.filter((p) => p.image).slice(0, 2).map((p) => card(p.imag
 			</section>
 		)}
 		<section class="sek">
-			<div class="pas"><div><h2>Nevíte, co darovat?</h2><p>Dárkový poukaz na zážitek potěší každého — obdarovaný si termín vybere sám.</p></div><a class="btn" href="/darkovy-poukaz/">Vybrat poukaz <Ik n="sipka" /></a></div>
+			<div class="pas"><div><h2>Neviete, čo darovať?</h2><p>Darčekový poukaz na zážitok poteší každého — obdarovaný si termín vyberie sám.</p></div><a class="btn" href="/darkovy-poukaz/">Vybrať poukaz <Ik n="sipka" /></a></div>
 		</section>
 		<section class="sek txt">
-			<h2>Zážitky, pobyty a dárky</h2>
-			<p>Kouzelný děda je vyhledávač zvýhodněných nabídek na zážitky, pobyty a wellness. Najdete tu wellness pobyty pro dva, glamping a tiny housy, lázně, masáže a kosmetiku, jízdy ve sportovních autech, únikové hry, degustační menu i kurzy vaření. Nabídky přebíráme přímo od partnerů – Slevomatu, Zážitky.cz, Adropu, Firmanazazitky.cz, SkvěléČesko, cestovních kanceláří České kormidlo, Rady na cestu a Excursia i od Amazing Places – a obnovujeme je několikrát denně, takže vidíte aktuální ceny i výši úspory. Většinu z nich pořídíte jako dárkový voucher — ideální dárek k narozeninám, na Vánoce nebo jen tak.</p>
+			<h2>Zážitky, pobyty a darčeky</h2>
+			<p>{SITE_NAME} je vyhľadávač zvýhodnených ponúk na zážitky, pobyty a wellness. Nájdete tu wellness pobyty pre dvoch, glamping a tiny housy, kúpele, masáže a kozmetiku, jazdy v športových autách, únikové hry, degustačné menu aj kurzy varenia. Ponuky preberáme priamo od partnerov Zlavomat.sk a Adrop.sk a aktualizujeme ich niekoľkokrát denne, takže vidíte aktuálne ceny aj výšku úspory. Väčšinu z nich kúpite ako darčekový voucher — ideálny darček k narodeninám, na Vianoce alebo len tak.</p>
 		</section>
 	</div>
 </Base>

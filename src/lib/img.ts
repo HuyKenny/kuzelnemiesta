@@ -1,6 +1,7 @@
-// Offer photos come straight from the partners' feeds (Slevomat CDN, Adrop, Zážitky.cz) and are resized on the fly by
+// Offer photos come straight from the partners' feeds (Zlavomat CDN, Adrop) and are resized on the fly by
 // wsrv.nl: nothing is stored on Cloudflare (Kenny, 27. 10. 2026: šetřit místo), the 70k WordPress copies are gone.
 // Article photos are own static files (/wp-content/uploads/…).
+import { HOST } from './site';
 
 /** Feeds sometimes put text or a broken host into the image field. */
 export function validImage(url: string | null | undefined): string {
@@ -30,9 +31,10 @@ export function hero(url: string | null | undefined): { src: string; srcset: str
 }
 
 /** Own uploads as site-relative paths, so every host (staging, workers.dev) serves its own copy. */
-export const ownUpload = (u: string | null | undefined) => String(u ?? '').replace(/^https?:\/\/(www\.)?kouzelnydeda\.cz(?=\/(wp-content|a)\/)/, '');
+const OWN_ORIGIN = new RegExp(`^https?://(www\\.)?${HOST.replace(/\./g, '\\.')}(?=/(wp-content|a)/)`);
+export const ownUpload = (u: string | null | undefined) => String(u ?? '').replace(OWN_ORIGIN, '');
 
-/** Same photo in another size/format (feeds repeat the main photo in the gallery, Firmanazazitky lists every resize). */
+/** Same photo in another size/format (feeds repeat the main photo in the gallery, some list every resize). */
 const photoKey = (u: string) => decodeURIComponent(u).toLowerCase().split('?')[0]!.replace(/^https?:\/\/(www\.)?/, '').replace(/\/(webp|thumbs?|small|medium|large)\//, '/').replace(/_\d+x\d+(?=\.\w+$)/, '').replace(/\.(webp|jpe?g|png)$/, '');
 export function uniquePhotos(main: string, more: string[], max = 6): string[] {
   const seen = new Set<string>();

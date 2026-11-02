@@ -1,21 +1,22 @@
 ---
 // Left column of a listing: the section tree (groups, counts, the current branch opened), budget, partner, cities and
-// gift tips. On desktop it is sticky beside the grid; on phones the same panel opens as a bottom sheet ("Filtry").
+// gift tips. On desktop it is sticky beside the grid; on phones the same panel opens as a bottom sheet ("Filtre").
 import Ik from './Ik.astro';
 import { toQuery, type FilterState } from '../lib/filters';
 import type { Side } from '../lib/views';
 import type { Tree } from '../lib/db';
+import { cena, cislo } from '../lib/format';
 
 interface Props { side: Side; base: string; f: FilterState; t: Tree; partners: boolean; pageUrl: string }
 const { side, base, f, t, partners, pageUrl } = Astro.props;
 const SHOW = 7;
-const BUDGET: Array<[number | undefined, string]> = [[undefined, 'Jakákoli cena'], [500, 'do 500 Kč'], [1000, 'do 1 000 Kč'], [2000, 'do 2 000 Kč'], [5000, 'do 5 000 Kč']];
+const BUDGET: Array<[number | undefined, string]> = [[undefined, 'Akákoľvek cena'], ...[20, 50, 100, 200].map((m): [number, string] => [m, `do ${cena(m)}`])];
 const stores = [...t.stores.values()].filter((s) => s.count > 0);
 const url = (x: Partial<FilterState>) => base + toQuery({ ...f, ...x });
-const n = (c?: number) => (c ? c.toLocaleString('cs-CZ') : '');
+const n = (c?: number) => (c ? cislo(c) : '');
 ---
-<aside class="sb" id="filtry" aria-label="Kategorie a filtry">
-	<div class="sb__hd"><b>Kategorie a filtry</b><button type="button" data-filtry-zavrit aria-label="Zavřít filtry"><Ik n="zavrit" /></button></div>
+<aside class="sb" id="filtry" aria-label="Kategórie a filtre">
+	<div class="sb__hd"><b>Kategórie a filtre</b><button type="button" data-filtry-zavrit aria-label="Zavrieť filtre"><Ik n="zavrit" /></button></div>
 	<section class="sb__s">
 		<a class="sb__t" href={side.url} aria-current={side.url === pageUrl ? 'page' : undefined}><Ik n={side.icon || 'darek'} />{side.title}</a>
 		{side.groups.map(({ g, items }) => {
@@ -30,7 +31,7 @@ const n = (c?: number) => (c ? c.toLocaleString('cs-CZ') : '');
 				<div class="sb__g">
 					{g && <h3>{g}</h3>}
 					<ul>{items.slice(0, cut).map(row)}</ul>
-					{items.length > cut && <details class="sb__more"><summary>+ další ({items.length - cut})</summary><ul>{items.slice(cut).map(row)}</ul></details>}
+					{items.length > cut && <details class="sb__more"><summary>+ ďalšie ({items.length - cut})</summary><ul>{items.slice(cut).map(row)}</ul></details>}
 				</div>
 			);
 		})}
@@ -43,17 +44,17 @@ const n = (c?: number) => (c ? c.toLocaleString('cs-CZ') : '');
 		<section class="sb__s">
 			<h3>Partner</h3>
 			<ul class="sb__r">
-				<li><a href={url({ partner: '' })} aria-current={!f.partner ? 'true' : undefined}>Všichni</a></li>
+				<li><a href={url({ partner: '' })} aria-current={!f.partner ? 'true' : undefined}>Všetci</a></li>
 				{stores.map((s) => <li><a href={url({ partner: s.slug })} rel="nofollow" aria-current={f.partner === s.slug ? 'true' : undefined}>{s.name}</a></li>)}
 			</ul>
 		</section>
 	)}
 	{side.cities.length > 0 && (
 		<section class="sb__s">
-			<h3>Podle místa</h3>
+			<h3>Podľa miesta</h3>
 			<ul>{side.cities.map((c) => <li><a href={c.url} aria-current={c.active ? 'page' : undefined}><span>{c.name}</span><em>{n(c.count)}</em></a></li>)}</ul>
 		</section>
 	)}
-	<a class="sb__dar" href="/zazitkove-darky/"><img src="/a/il/kouzelnik-darek.webp" alt="" width="56" height="56" loading="lazy" /><span><b>Hledáte dárek?</b>Tipy pro ni, pro něj i pro děti</span></a>
+	<a class="sb__dar" href="/zazitkove-darky/"><img src="/a/il/kouzelnik-darek.webp" alt="" width="56" height="56" loading="lazy" /><span><b>Hľadáte darček?</b>Tipy pre ňu, pre neho aj pre deti</span></a>
 </aside>
 <div class="sb__bg" data-filtry-zavrit hidden></div>

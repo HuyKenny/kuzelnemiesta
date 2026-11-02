@@ -1,5 +1,7 @@
 // GA4 with Consent Mode v2 (default denied, granted from localStorage). Same event names as the WordPress site:
 // affiliate_click (every exit to a partner, via /go/ or a direct partner link). Banner styles live in app.css.
+import { CURRENCY } from './site';
+
 const KEY = 'kd_consent';
 export function ga4Head(id: string, pageType: string): string {
   if (!/^G-[A-Z0-9]{6,}$/i.test(id)) return '';
@@ -19,12 +21,12 @@ addEventListener('load',function(){if('requestIdleCallback' in window){requestId
 }
 export function ga4Footer(id: string, pageType: string): string {
   if (!/^G-[A-Z0-9]{6,}$/i.test(id)) return '';
-  return `<div id="kd-consent" class="kd-consent" style="display:none" role="dialog" aria-live="polite" aria-label="Souhlas s měřením návštěvnosti">
-	<p class="kd-consent__t">Měříme návštěvnost, ať víme, které stránky lidem pomáhají. Bez souhlasu měříme jen anonymně, bez cookies.</p>
+  return `<div id="kd-consent" class="kd-consent" style="display:none" role="dialog" aria-live="polite" aria-label="Súhlas s meraním návštevnosti">
+	<p class="kd-consent__t">Meriame návštevnosť, aby sme vedeli, ktoré stránky ľuďom pomáhajú. Bez súhlasu meriame len anonymne, bez cookies.</p>
 	<div class="kd-consent__b">
-		<button type="button" data-kd-consent="1" class="kd-consent__yes">Souhlasím</button>
-		<button type="button" data-kd-consent="0" class="kd-consent__no">Jen nezbytné</button>
-		<a href="/cookies/" class="kd-consent__l">Více</a>
+		<button type="button" data-kd-consent="1" class="kd-consent__yes">Súhlasím</button>
+		<button type="button" data-kd-consent="0" class="kd-consent__no">Len nevyhnutné</button>
+		<a href="/spracovani-osobnych-udajov/#cookies" class="kd-consent__l">Viac</a>
 	</div>
 </div>
 <script id="kd-ga4-events">
@@ -87,8 +89,8 @@ export function ga4Footer(id: string, pageType: string): string {
 			item_id:a.getAttribute('data-id')||'',
 			item_name:(a.getAttribute('data-name')||'').slice(0,100),
 			destination:viaGo?u.pathname:u.host,
-			value:parseInt(a.getAttribute('data-price')||'0',10)||0,
-			currency:'CZK'
+			value:parseFloat(a.getAttribute('data-price')||'0')||0,
+			currency:'${CURRENCY}'
 		});
 	},true);
 })();

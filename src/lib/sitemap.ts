@@ -2,7 +2,7 @@
 // product-sitemapN, product_cat-sitemapN, store-, pa_lokalita-sitemap.xml; 200 URLs per file). Materialised into
 // site_cache by rebuildSitemaps() (import Worker, daily); the routes only read. Imported by both Workers.
 import { BASE, comboMin, isoPrague } from './site';
-import { CITY } from './cities';
+import { CITY, HOME_LOK } from './cities';
 
 const PER_FILE = 200;
 interface U { loc: string; mod: string }
@@ -48,7 +48,7 @@ export async function collect(db: D1Database): Promise<Record<string, U[]>> {
     for (const [cid, cities] of Object.entries(cm)) {
       const c = bySlug.get(Number(cid));
       if (!c || c.noindex || c.canon_id) continue;
-      for (const [city, n] of Object.entries(cities)) if (n >= comboMin(city) && city !== 'cr' && CITY[city]) comboUrls.push({ loc: `${BASE}/${c.slug}/lokalita/${city}/`, mod: '' });
+      for (const [city, n] of Object.entries(cities)) if (n >= comboMin(city) && city !== HOME_LOK && CITY[city]) comboUrls.push({ loc: `${BASE}/${c.slug}/lokalita/${city}/`, mod: '' });
     }
   } catch { /* no combos yet */ }
   const gifts = await all<{ slug: string; m: string | null }>("SELECT slug, '' AS m FROM slugs WHERE kind = 'gift'").catch(() => []);

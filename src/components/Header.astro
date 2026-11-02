@@ -3,7 +3,8 @@
 // of their subcategories (groups from taxonomie.json); on phones a full-screen drawer.
 import Ik from './Ik.astro';
 import { tree } from '../lib/db';
-import { decode } from '../lib/format';
+import { cislo, decode, ponuk } from '../lib/format';
+import { SITE_NAME } from '../lib/site';
 import { getEnv } from '../lib/server/env';
 import { TOP_GIFTS } from '../lib/views';
 
@@ -16,44 +17,46 @@ const sections = (t.kids.get(0) ?? []).filter((c) => c.count_total > 0).sort((a,
 	return { slug: c.slug, name: c.short || decode(c.name), icon: c.icon, count: c.count_total, groups: [...groups.entries()].map(([g, ks]) => ({ g, ks: ks.slice(0, 12).map((k) => ({ slug: k.slug, name: decode(k.name), icon: k.icon })) })) };
 });
 const gifts = TOP_GIFTS;
+/** "Všetkých 1 234 ponúk", "Všetky 3 ponuky" */
+const allOffers = (n: number) => (n >= 2 && n <= 4 ? `Všetky ${n} ponuky` : n === 1 ? 'Zobraziť ponuku' : `Všetkých ${cislo(n)} ${ponuk(n)}`);
 ---
-<a class="skip" href="#obsah">Přeskočit na obsah</a>
+<a class="skip" href="#obsah">Preskočiť na obsah</a>
 <div class="usp"><ul>
-	<li><Ik n="stit" />Ověření partneři: Slevomat, Zážitky.cz, Adrop a další</li>
-	<li><Ik n="mail" />Voucher přijde hned e-mailem</li>
-	<li><Ik n="cena" />Cena u partnera se nemění</li>
+	<li><Ik n="stit" />Overení partneri: Zlavomat.sk a Adrop.sk</li>
+	<li><Ik n="mail" />Voucher príde hneď e-mailom</li>
+	<li><Ik n="cena" />Cena u partnera sa nemení</li>
 </ul></div>
 <header class="hd">
 	<div class="w hd__in">
-		<a class="logo" href="/" aria-label="Kouzelný děda – úvod"><img src="/a/logo-264.webp" srcset="/a/logo-264.webp 1x, /a/logo-528.webp 2x" alt="Kouzelný děda" width="148" height="48" /></a>
+		<a class="logo" href="/" aria-label={`${SITE_NAME} – úvod`}><img src="/a/logo-264.webp" srcset="/a/logo-264.webp 1x, /a/logo-528.webp 2x" alt={SITE_NAME} width="148" height="48" /></a>
 		<div class="hl">
 			<form action="/" method="get" role="search">
 				<Ik n="hledat" />
-				<label class="sr" for="q">Hledat zážitky, pobyty a dárky</label>
+				<label class="sr" for="q">Hľadať zážitky, pobyty a darčeky</label>
 				<input id="q" type="search" name="s" placeholder="Masáž, glamping, wellness…" autocomplete="off" data-suggest />
 				<input type="hidden" name="post_type" value="product" />
-				<button type="submit">Hledat</button>
+				<button type="submit">Hľadať</button>
 			</form>
 			<div class="hl__s" role="listbox" hidden></div>
 		</div>
-		<a class="hd__dar" href="/zazitkove-darky/"><Ik n="darek" /><span>Tipy na dárek</span></a>
+		<a class="hd__dar" href="/zazitkove-darky/"><Ik n="darek" /><span>Tipy na darček</span></a>
 		<details class="nav">
 			<summary><Ik n="menu" /> Menu</summary>
 			<div class="nav__p">
-				<div class="nav__x"><img src="/a/logo-264.webp" alt="Kouzelný děda" width="132" height="43" /><button type="button" data-zavrit aria-label="Zavřít menu"><Ik n="zavrit" /></button></div>
+				<div class="nav__x"><img src="/a/logo-264.webp" alt={SITE_NAME} width="132" height="43" /><button type="button" data-zavrit aria-label="Zavrieť menu"><Ik n="zavrit" /></button></div>
 				<ul>
 					{sections.map((s) => (
 						<li><a class="nps" href={`/${s.slug}/`}><Ik n={s.icon} />{s.name}</a>
 							<ul>{s.groups.flatMap((g) => g.ks).slice(0, 10).map((k) => <li><a href={`/${k.slug}/`}>{k.name}</a></li>)}</ul></li>
 					))}
-					<li><a class="nps" href="/zazitkove-darky/"><Ik n="darek" />Dárky</a>
+					<li><a class="nps" href="/zazitkove-darky/"><Ik n="darek" />Darčeky</a>
 						<ul>{gifts.map((g) => <li><a href={`/${g.slug}/`}>{g.name}</a></li>)}</ul></li>
 					<li><a class="nps" href="/blog/"><Ik n="jazyk" />Blog a tipy</a></li>
 				</ul>
 			</div>
 		</details>
 	</div>
-	<nav class="sek-nav" aria-label="Sekce">
+	<nav class="sek-nav" aria-label="Sekcie">
 		<ul class="w">
 			{sections.map((s) => (
 				<li>
@@ -62,18 +65,18 @@ const gifts = TOP_GIFTS;
 						{s.groups.map((g) => <div class="mega__g">{g.g && <h3>{g.g}</h3>}<ul>{g.ks.map((k) => <li><a href={`/${k.slug}/`}><Ik n={k.icon} />{k.name}</a></li>)}</ul></div>)}
 						<div class="mega__side">
 							<b>{s.name}</b>
-							<a class="btn btn--c" href={`/${s.slug}/`}>Všech {s.count.toLocaleString('cs-CZ')} nabídek</a>
-							<ul>{gifts.slice(0, 3).map((g) => <li><a href={`/${g.slug}/`}><Ik n={g.icon} />Dárek {g.name.toLowerCase()}</a></li>)}</ul>
+							<a class="btn btn--c" href={`/${s.slug}/`}>{allOffers(s.count)}</a>
+							<ul>{gifts.slice(0, 3).map((g) => <li><a href={`/${g.slug}/`}><Ik n={g.icon} />Darček {g.name.toLowerCase()}</a></li>)}</ul>
 						</div>
 					</div>
 				</li>
 			))}
 			<li>
-				<a class="sn" href="/zazitkove-darky/" aria-current={path === '/zazitkove-darky/' ? 'page' : undefined}><Ik n="darek" />Dárky</a>
+				<a class="sn" href="/zazitkove-darky/" aria-current={path === '/zazitkove-darky/' ? 'page' : undefined}><Ik n="darek" />Darčeky</a>
 				<div class="mega">
-					<div class="mega__g"><h3>Pro koho</h3><ul>{gifts.filter((g) => g.slug.startsWith('darek-pro')).map((g) => <li><a href={`/${g.slug}/`}><Ik n={g.icon} />{g.name}</a></li>)}</ul></div>
-					<div class="mega__g"><h3>Příležitost a rozpočet</h3><ul>{gifts.filter((g) => !g.slug.startsWith('darek-pro')).map((g) => <li><a href={`/${g.slug}/`}><Ik n={g.icon} />{g.name}</a></li>)}</ul></div>
-					<div class="mega__side"><img src="/a/il/kouzelnik-darek.webp" alt="" width="84" height="84" loading="lazy" /><b>Nevíte, co darovat?</b><a class="btn btn--c" href="/zazitkove-darky/">Všechny tipy na dárek</a></div>
+					<div class="mega__g"><h3>Pre koho</h3><ul>{gifts.filter((g) => g.slug.startsWith('darek-pro')).map((g) => <li><a href={`/${g.slug}/`}><Ik n={g.icon} />{g.name}</a></li>)}</ul></div>
+					<div class="mega__g"><h3>Príležitosť a rozpočet</h3><ul>{gifts.filter((g) => !g.slug.startsWith('darek-pro')).map((g) => <li><a href={`/${g.slug}/`}><Ik n={g.icon} />{g.name}</a></li>)}</ul></div>
+					<div class="mega__side"><img src="/a/il/kouzelnik-darek.webp" alt="" width="84" height="84" loading="lazy" /><b>Neviete, čo darovať?</b><a class="btn btn--c" href="/zazitkove-darky/">Všetky tipy na darček</a></div>
 				</div>
 			</li>
 			<li><a class="sn" href="/blog/" aria-current={path.startsWith('/blog/') ? 'page' : undefined}><Ik n="jazyk" />Blog</a></li>

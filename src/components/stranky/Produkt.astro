@@ -1,14 +1,15 @@
 ---
 // Offer detail, built to convince and send on: title + facts, big gallery with the discount sticker, a sticky voucher box
-// (price, saving, urgency, social proof, partner, one big CTA "Koupit na <partner>"), then what you get, the place,
-// "v kostce" from the feed facts, quick facts, highlights, what is in the price, amenities, who it suits, FAQ, how it
+// (price, saving, urgency, social proof, partner, one big CTA "Objednať voucher za …"), then what you get, the place,
+// "v kocke" from the feed facts, quick facts, highlights, what is in the price, amenities, who it suits, FAQ, how it
 // works, similar offers. Everything comes from the partner feed — nothing is made up. An ended offer keeps its page
 // 30 days (noindex) and points to live alternatives.
 import Base from '../../layouts/Base.astro';
 import Drobky from '../Drobky.astro';
 import Mrizka from '../Mrizka.astro';
 import Ik from '../Ik.astro';
-import { cena, cislo, datum, decode, dni, dniDo, place } from '../../lib/format';
+import { cena, cislo, datum, decode, dni, dniDo, HOME_COUNTRY, place } from '../../lib/format';
+import { SITE_NAME } from '../../lib/site';
 import { card, hero, uniquePhotos } from '../../lib/img';
 import { partner as partnerOf, partnerColor } from '../../lib/partners';
 import type { ProductView } from '../../lib/views';
@@ -24,12 +25,12 @@ const store = v.store;
 const pt = partnerOf(store?.slug);
 const partner = pt.name;
 const go = `/go/${p.id}/?ctx=detail${v.section ? '-' + v.section : ''}`;
-// variants (Adrop: place × duration × people, Zážitky.cz: length / term): the buyer picks one, the price and the link follow
+// variants (Adrop: place × duration × people, Zlavomat: length / term): the buyer picks one, the price and the link follow
 const va = info.va && info.va.length > 1 ? info.va : [];
 const priceRange = va.length > 0 && va[va.length - 1]![1] > va[0]![1];
 const asRadio = va.length > 0 && va.length <= 6;
 const goNow = go + (va[0]?.[2] ? '&v=0' : '');
-const goAttrs = { target: '_blank', rel: 'nofollow sponsored noopener', 'data-partner': store?.slug ?? p.source, 'data-price': Math.round(p.price), 'data-id': p.id, 'data-name': name, 'data-section': v.section || undefined };
+const goAttrs = { target: '_blank', rel: 'nofollow sponsored noopener', 'data-partner': store?.slug ?? p.source, 'data-price': Math.round(p.price * 100) / 100, 'data-id': p.id, 'data-name': name, 'data-section': v.section || undefined };
 const left = dniDo(info.de);
 const paras = (s?: string) => (s ?? '').split('\n').map((x) => x.trim()).filter(Boolean);
 const where = place(p.city, info.cc);
@@ -43,29 +44,33 @@ const lastVouchers = left2 > 0 && left2 < 50 ? left2 : 0;
 const stars = p.rating > 0 && p.reviews > 0 ? String(p.rating).replace('.', ',') : '';
 const accRating = info.ar && info.arc ? String(Math.round(info.ar * 10) / 10).replace('.', ',') : '';
 const SHOW_AP = 12;
-// "v kostce": plain sentences from the facts of the feed
+/** "posledný 1 voucher", "posledné 3 vouchery", "posledných 12 voucherov" */
+const poslednych = (n: number) => (n === 1 ? 'posledný 1 voucher' : n <= 4 ? `posledné ${n} vouchery` : `posledných ${n} voucherov`);
+/** "Už kúpil 1 človek", "Už kúpili 3 ľudia", "Už kúpilo 120 ľudí" (number bold) */
+const kupili = (n: number) => (n === 1 ? ['Už kúpil', '1 človek'] : n <= 4 ? ['Už kúpili', `${n} ľudia`] : ['Už kúpilo', `${cislo(n)} ľudí`]);
+// "v kocke": plain sentences from the facts of the feed
 const kostka = [
-  info.pv?.t && info.pv.a ? `${info.pv.t} najdete na adrese ${info.pv.a}${where && where !== 'Česko' && !info.pv.a.includes(where) ? ` (${where})` : ''}.` : where && where !== 'Česko' ? `Místo: ${where}.` : '',
-  highlights.length ? `Hlavní lákadla: ${highlights.slice(0, 3).map((h, i) => (i ? h.charAt(0).toLowerCase() + h.slice(1) : h)).join(', ')}.` : '',
+  info.pv?.t && info.pv.a ? `${info.pv.t} nájdete na adrese ${info.pv.a}${where && where !== HOME_COUNTRY && !info.pv.a.includes(where) ? ` (${where})` : ''}.` : where && where !== HOME_COUNTRY ? `Miesto: ${where}.` : '',
+  highlights.length ? `Hlavné lákadlá: ${highlights.slice(0, 3).map((h, i) => (i ? h.charAt(0).toLowerCase() + h.slice(1) : h)).join(', ')}.` : '',
   info.bo ? `Strava: ${info.bo.toLowerCase()}.` : '',
-  ...(info.pa ?? []).filter(([k]) => /^(Doba trvání|Délka|Počet osob)$/i.test(k)).map(([k, val]) => `${k}: ${val}.`),
-  p.price > 0 && pt.unit ? `Ubytování stojí od ${cena(p.price)} ${pt.unit}.` : p.price > 0 ? `Teď stojí ${cena(p.price)}${p.price_old > p.price ? ` místo ${cena(p.price_old)}, tedy o ${p.disc_pct} % méně` : ''}.` : '',
+  ...(info.pa ?? []).filter(([k]) => /^(Doba trvání|Doba trvania|Délka|Dĺžka|Počet osob|Počet osôb)$/i.test(k)).map(([k, val]) => `${k}: ${val}.`),
+  p.price > 0 && pt.unit ? `Ubytovanie stojí od ${cena(p.price)} ${pt.unit}.` : p.price > 0 ? `Teraz stojí ${cena(p.price)}${p.price_old > p.price ? ` namiesto ${cena(p.price_old)}, teda o ${p.disc_pct} % menej` : ''}.` : '',
   info.ve ? `Voucher platí${info.vs ? ` od ${datum(info.vs)}` : ''} do ${datum(info.ve)}.` : '',
-  info.cu && info.cu >= 10 ? `Koupilo ji už ${cislo(info.cu)} lidí${stars ? ` a zákazníci ji hodnotí ${stars} z 5 (${cislo(p.reviews)} hodnocení)` : ''}.` : stars ? `Zákazníci ji hodnotí ${stars} z 5 (${cislo(p.reviews)} hodnocení).` : '',
+  info.cu && info.cu >= 10 ? `Kúpilo ju už ${cislo(info.cu)} ľudí${stars ? ` a zákazníci ju hodnotia na ${stars} z 5 (${cislo(p.reviews)} hodnotení)` : ''}.` : stars ? `Zákazníci ju hodnotia na ${stars} z 5 (${cislo(p.reviews)} hodnotení).` : '',
 ].filter(Boolean).join(' ');
 ---
 <Base meta={v.meta} pageType="product" preloadImg={main ? { ...main, sizes: '(max-width: 960px) 100vw, 720px' } : null}>
 	<div class="w">
 		<Drobky items={v.crumbs} />
 		{!p.active && (
-			<div class="konec"><strong>Tahle nabídka už skončila.</strong> Partner ji stáhl z prodeje — podobné nabídky, které teď platí, najdete níže{v.primary ? <> nebo v kategorii <a href={`/${v.primary.slug}/`}>{sameCat}</a></> : null}.</div>
+			<div class="konec"><strong>Táto ponuka už skončila.</strong> Partner ju stiahol z predaja — podobné ponuky, ktoré teraz platia, nájdete nižšie{v.primary ? <> alebo v kategórii <a href={`/${v.primary.slug}/`}>{sameCat}</a></> : null}.</div>
 		)}
 		<header>
 			<p class="of__m">
 				{store && <span class="pt" style={`--c:${partnerColor(store.slug)}`}>{decode(store.name)}</span>}
 				{where && <span><Ik n="mesto" /> {where}</span>}
-				{p.rating > 0 && p.reviews > 0 && <span class="hod">{String(p.rating).replace('.', ',')} <span>({p.reviews} hodnocení u partnera)</span></span>}
-				{info.cu ? <span><Ik n="lidi" /> {info.cu.toLocaleString('cs-CZ')}× koupeno</span> : null}
+				{p.rating > 0 && p.reviews > 0 && <span class="hod">{String(p.rating).replace('.', ',')} <span>({cislo(p.reviews)} hodnotení u partnera)</span></span>}
+				{info.cu ? <span><Ik n="lidi" /> {cislo(info.cu)}× kúpené</span> : null}
 			</p>
 			<h1>{name}</h1>
 		</header>
@@ -83,28 +88,28 @@ const kostka = [
 				<div class="box__p num">
 					{p.price_old > p.price && <del data-var-hide>{cena(p.price_old)}</del>}
 					<strong>{(priceRange || pt.unit) && <small class="od" data-var-hide>od </small>}<span data-var-price>{cena(p.price)}</span>{pt.unit && <small class="od"> {pt.unit}</small>}</strong>
-					{save > 0 && <span class="box__save" data-var-hide><Ik n="jiskra" />Ušetříte {cena(save)}</span>}
+					{save > 0 && <span class="box__save" data-var-hide><Ik n="jiskra" />Ušetríte {cena(save)}</span>}
 				</div>
 				{va.length > 0 && (
 					<fieldset class="vyber" data-var data-go={go}>
-						<legend>{store?.slug === 'ceske-kormidlo' || store?.slug === 'rady-na-cestu' ? 'Vyberte termín' : store?.slug === 'skvele-cesko' ? 'Vyberte místo' : 'Vyberte variantu'}</legend>
+						<legend>{pt.voucher === false ? 'Vyberte si termín' : 'Vyberte si variant'}</legend>
 						{asRadio
-							? va.map(([l, pr, t], i) => <label class="vyber__r"><input type="radio" name="var" value={i} data-price={pr} data-link={t ? '1' : undefined} checked={i === 0} /><span>{l || `Varianta ${i + 1}`}</span><b class="num">{cena(pr)}</b></label>)
-							: <select name="var" aria-label="Varianta">{va.map(([l, pr, t], i) => <option value={i} data-price={pr} data-link={t ? '1' : undefined}>{l || `Varianta ${i + 1}`} — {cena(pr)}</option>)}</select>}
+							? va.map(([l, pr, t], i) => <label class="vyber__r"><input type="radio" name="var" value={i} data-price={pr} data-link={t ? '1' : undefined} checked={i === 0} /><span>{l || `Variant ${i + 1}`}</span><b class="num">{cena(pr)}</b></label>)
+							: <select name="var" aria-label="Variant">{va.map(([l, pr, t], i) => <option value={i} data-price={pr} data-link={t ? '1' : undefined}>{l || `Variant ${i + 1}`} — {cena(pr)}</option>)}</select>}
 					</fieldset>
 				)}
 				<ul class="box__f">
-					{left !== null && left <= 14 && <li><Ik n="hodiny" /><span>Nabídka končí <b>{dni(left)}</b></span></li>}
-					{lastVouchers > 0 && <li class="box__u"><Ik n="jiskra" /><span>Zbývá posledních <b>{lastVouchers} voucherů</b></span></li>}
+					{left !== null && left <= 14 && <li><Ik n="hodiny" /><span>Ponuka končí <b>{dni(left)}</b></span></li>}
+					{lastVouchers > 0 && <li class="box__u"><Ik n="jiskra" /><span>Zostáva <b>{poslednych(lastVouchers)}</b></span></li>}
 					{info.ve && <li><Ik n="kalendar" /><span>Voucher platí {info.vs ? <>od {datum(info.vs)} </> : null}do <b>{datum(info.ve)}</b></span></li>}
-					{accRating && <li><Ik n="hvezda" /><span>Hodnocení ubytování <b>{accRating}/10</b> ({cislo(info.arc!)} hodnocení)</span></li>}
-					{info.cu ? <li><Ik n="lidi" /><span>Už koupilo <b>{info.cu.toLocaleString('cs-CZ')} lidí</b></span></li> : null}
+					{accRating && <li><Ik n="hvezda" /><span>Hodnotenie ubytovania <b>{accRating}/10</b> ({cislo(info.arc!)} hodnotení)</span></li>}
+					{info.cu ? <li><Ik n="lidi" /><span>{kupili(info.cu)[0]} <b>{kupili(info.cu)[1]}</b></span></li> : null}
 				</ul>
 				<div class="box__cta of__cta">
 					{p.active
 						? <a class="btn btn--c" href={goNow} {...goAttrs} data-cta>{pt.unit ? pt.verb : <>{pt.verb} za <span data-var-price>{cena(p.price)}</span></>} <Ik n="sipka" /></a>
-						: v.primary ? <a class="btn btn--o" href={`/${v.primary.slug}/`}>Podobné nabídky</a> : null}
-					<p class="box__pozn"><Ik n="stit" /><span>{pt.trust}. Kouzelný děda za doporučení může dostat provizi, cena se nemění.</span></p>
+						: v.primary ? <a class="btn btn--o" href={`/${v.primary.slug}/`}>Podobné ponuky</a> : null}
+					<p class="box__pozn"><Ik n="stit" /><span>{pt.trust}. {SITE_NAME} môže za odporúčanie dostať províziu, cena sa nemení.</span></p>
 				</div>
 				{p.active && (
 					<ul class="box__perks">{pt.perks.map((x) => <li><Ik n="check" />{x}</li>)}</ul>
@@ -113,34 +118,34 @@ const kostka = [
 		</div>
 		<div class="of">
 			<div class="txt">
-				{kostka && <p class="kostka"><b>V kostce:</b> {kostka}</p>}
+				{kostka && <p class="kostka"><b>V kocke:</b> {kostka}</p>}
 				{(info.pv || info.bo || info.tr || info.dp || info.ve) && (
 					<ul class="fakta">
-						{info.pv?.t && <li><Ik n={info.bo ? 'pobyty' : 'hvezda'} /><span><small>{info.bo ? 'Ubytování' : 'Poskytovatel'}</small>{info.pv.t}{accRating && <> · <b>{accRating}/10</b></>}</span></li>}
+						{info.pv?.t && <li><Ik n={info.bo ? 'pobyty' : 'hvezda'} /><span><small>{info.bo ? 'Ubytovanie' : 'Poskytovateľ'}</small>{info.pv.t}{accRating && <> · <b>{accRating}/10</b></>}</span></li>}
 						{info.pv?.a && <li><Ik n="mapa" /><span><small>Adresa</small>{info.pv.a}{map && <> · <a href={map} target="_blank" rel="nofollow noopener">mapa</a></>}</span></li>}
 						{info.bo && <li><Ik n="talir" /><span><small>Strava</small>{info.bo}</span></li>}
 						{info.tr && <li><Ik n={/autobus|bus/i.test(info.tr) ? 'bus' : /let/i.test(info.tr) ? 'let' : 'auto'} /><span><small>Doprava</small>{info.tr}</span></li>}
-						{info.dp && <li><Ik n="mesto" /><span><small>Odjezd</small>{info.dp}</span></li>}
-						{info.ve && <li><Ik n="kalendar" /><span><small>Platnost voucheru</small>{info.vs ? `${datum(info.vs)} – ` : 'do '}{datum(info.ve)}</span></li>}
-						{lastVouchers > 0 && <li><Ik n="jiskra" /><span><small>Dostupnost</small>posledních {lastVouchers} voucherů</span></li>}
+						{info.dp && <li><Ik n="mesto" /><span><small>Odchod</small>{info.dp}</span></li>}
+						{info.ve && <li><Ik n="kalendar" /><span><small>Platnosť voucheru</small>{info.vs ? `${datum(info.vs)} – ` : 'do '}{datum(info.ve)}</span></li>}
+						{lastVouchers > 0 && <li><Ik n="jiskra" /><span><small>Dostupnosť</small>{poslednych(lastVouchers)}</span></li>}
 					</ul>
 				)}
-				{highlights.length > 0 && (<><h2>Proč to stojí za to</h2><ul class="vlast">{highlights.map((h) => <li>{h}</li>)}</ul></>)}
-				{info.in?.i?.length ? (<><h2>Co je v ceně</h2><ul class="vlast">{info.in.i.map((x) => <li>{x}</li>)}</ul></>) : null}
+				{highlights.length > 0 && (<><h2>Prečo to stojí za to</h2><ul class="vlast">{highlights.map((h) => <li>{h}</li>)}</ul></>)}
+				{info.in?.i?.length ? (<><h2>Čo je v cene</h2><ul class="vlast">{info.in.i.map((x) => <li>{x}</li>)}</ul></>) : null}
 				{info.in?.g?.map(([g, lines]) => (<><h3>{g}</h3><ul>{lines.map((l) => <li>{l}</li>)}</ul></>))}
 				{info.ap && info.ap.length > 0 && (
 					<>
-						<h2>Vybavení a služby</h2>
+						<h2>Vybavenie a služby</h2>
 						<ul class="vyb">{info.ap.slice(0, SHOW_AP).map((x) => <li><Ik n="check" />{x}</li>)}</ul>
-						{info.ap.length > SHOW_AP && <details class="vyb__d"><summary>Zobrazit vše ({info.ap.length})</summary><ul class="vyb">{info.ap.slice(SHOW_AP).map((x) => <li><Ik n="check" />{x}</li>)}</ul></details>}
+						{info.ap.length > SHOW_AP && <details class="vyb__d"><summary>Zobraziť všetko ({info.ap.length})</summary><ul class="vyb">{info.ap.slice(SHOW_AP).map((x) => <li><Ik n="check" />{x}</li>)}</ul></details>}
 					</>
 				)}
-				{info.pa && info.pa.length > 0 && (<><h2>Parametry</h2><ul class="fakta">{info.pa.map(([k, val]) => <li><Ik n="check" /><span><small>{k}</small>{val}</span></li>)}</ul></>)}
+				{info.pa && info.pa.length > 0 && (<><h2>Parametre</h2><ul class="fakta">{info.pa.map(([k, val]) => <li><Ik n="check" /><span><small>{k}</small>{val}</span></li>)}</ul></>)}
 				{info.d && (<><h2>Popis</h2>{paras(info.d).map((x) => <p>{x}</p>)}</>)}
 				{legacy && <div set:html={legacy} />}
 				{v.fit.length > 0 && (
 					<>
-						<h2>Pro koho se hodí</h2>
+						<h2>Pre koho sa hodí</h2>
 						<ul class="chips">{v.fit.map((c) => <li><a class="chip" href={c.url}>{c.icon && <Ik n={c.icon} />}{c.name}</a></li>)}</ul>
 					</>
 				)}
@@ -152,27 +157,25 @@ const kostka = [
 				)}
 				{v.faq.length > 0 && (
 					<section class="faq">
-						<h2>Časté dotazy</h2>
+						<h2>Časté otázky</h2>
 						{v.faq.map((f) => <details><summary>{f.q}</summary><div>{f.a}</div></details>)}
 					</section>
 				)}
 			</div>
 			<aside>
-				<h2>Jak to funguje</h2>
+				<h2>Ako to funguje</h2>
 				<ol class="jak" style="grid-template-columns:1fr;gap:24px">
-					<li><b>Vyberete{va.length ? ' variantu' : ' zážitek'}</b><span>Porovnáte nabídky, ceny i hodnocení na jednom místě.</span></li>
-					<li><b>Zaplatíte u {partner}</b><span>Nákup dokončíte bezpečně přímo u partnera, za stejnou cenu.</span></li>
-					{store?.slug === 'skvele-cesko'
-						? <li><b>Vstupenka přijde e-mailem</b><span>Na místě ukážete QR kód v telefonu. Termín můžete bezplatně změnit.</span></li>
-						: pt.voucher === false
-							? <li><b>Potvrzení rezervace</b><span>{pt.unit ? 'Termín a cenu za celý pobyt uvidíte u partnera, potvrzení přijde e-mailem.' : 'Po objednání termínu vám cestovní kancelář pošle potvrzení a pokyny k cestě.'}</span></li>
-							: <li><b>Voucher přijde e-mailem</b><span>Vytisknete ho, darujete nebo rovnou rezervujete termín.</span></li>}
+					<li><b>Vyberiete si{va.length ? ' variant' : ' zážitok'}</b><span>Porovnáte ponuky, ceny aj hodnotenia na jednom mieste.</span></li>
+					<li><b>Zaplatíte u {partner}</b><span>Nákup dokončíte bezpečne priamo u partnera, za rovnakú cenu.</span></li>
+					{pt.voucher === false
+						? <li><b>Potvrdenie rezervácie</b><span>{pt.unit ? 'Termín a cenu za celý pobyt uvidíte u partnera, potvrdenie príde e-mailom.' : 'Po objednaní termínu vám cestovná kancelária pošle potvrdenie a pokyny na cestu.'}</span></li>
+						: <li><b>Voucher príde e-mailom</b><span>Vytlačíte ho, darujete alebo si rovno zarezervujete termín.</span></li>}
 				</ol>
 			</aside>
 		</div>
 		{v.more.length > 0 && (
 			<section class="sek">
-				<div class="sh"><h2>{p.active ? 'Mohlo by se vám líbit' : 'Tyto nabídky teď platí'}</h2>{v.primary && <a href={`/${v.primary.slug}/`}>Vše: {sameCat} →</a>}</div>
+				<div class="sh"><h2>{p.active ? 'Mohlo by sa vám páčiť' : 'Tieto ponuky teraz platia'}</h2>{v.primary && <a href={`/${v.primary.slug}/`}>Všetko: {sameCat} →</a>}</div>
 				<Mrizka items={v.more} t={v.tree} eager={false} ctx="podobne" sec={v.section} />
 			</section>
 		)}

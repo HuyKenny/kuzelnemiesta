@@ -31,13 +31,13 @@ const catName = v.boxCat ? decode(v.boxCat.name) : '';
 			</header>
 			{post.image && post.type === 'post' && <div class="cl__img"><img src={post.image} alt={post.image_alt || decode(post.title)} width={post.image_w || undefined} height={post.image_h || undefined} fetchpriority="high" /></div>}
 			<div class="obsah" set:html={before} />
-			{v.boxCat && <BoxNabidek items={top} cat={v.boxCat} t={t} heading={`Aktuální nabídky: ${catName}`} />}
+			{v.boxCat && <BoxNabidek items={top} cat={v.boxCat} t={t} heading={`Aktuálne ponuky: ${catName}`} />}
 			{after && <div class="obsah" set:html={after} />}
-			{v.boxCat && <BoxNabidek items={bottom} cat={v.boxCat} t={t} heading={`Vyberte si z nabídek: ${catName}`} />}
+			{v.boxCat && <BoxNabidek items={bottom} cat={v.boxCat} t={t} heading={`Vyberte si z ponúk: ${catName}`} />}
 		</article>
 		{v.more.length > 0 && (
 			<section class="sek">
-				<h2>Další články</h2>
+				<h2>Ďalšie články</h2>
 				<ul class="posts">{v.more.map((p) => (
 					<li><article class="pk">
 						<div class="pk__i">{(p.image_card || p.image) && <img src={p.image_card || p.image} alt="" loading="lazy" width="400" height="225" />}</div>

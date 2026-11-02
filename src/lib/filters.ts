@@ -1,10 +1,10 @@
 // Listing sort and filters in the URL (WooCommerce parameter names, so old links keep working):
-//   ?orderby=popularity|price|price-desc|date|disc   ?min_price= &max_price=   ?partner=slevomat-cz|adrop-cz|zazitky-cz
+//   ?orderby=popularity|price|price-desc|date|disc   ?min_price= &max_price=   ?partner=zlavomat-sk|adrop-sk
 // Any filter or a non-default sort makes the page noindex, follow without a canonical (the indexable listing is the plain URL).
 import type { ListQuery, Sort } from './db';
 
 export interface FilterState { sort: Sort; min?: number | undefined; max?: number | undefined; partner: string }
-export const SORTS: Array<[Sort, string]> = [['pop', 'Nejoblíbenější'], ['date', 'Nejnovější'], ['price', 'Nejlevnější'], ['price-desc', 'Nejdražší'], ['disc', 'Největší úspora']];
+export const SORTS: Array<[Sort, string]> = [['pop', 'Najobľúbenejšie'], ['date', 'Najnovšie'], ['price', 'Najlacnejšie'], ['price-desc', 'Najdrahšie'], ['disc', 'Najväčšia úspora']];
 const ALIAS: Record<string, Sort> = { popularity: 'pop', rating: 'pop', 'menu_order': 'pop', pop: 'pop', date: 'date', price: 'price', 'price-desc': 'price-desc', disc: 'disc' };
 
 export function parseFilters(sp: URLSearchParams): FilterState {

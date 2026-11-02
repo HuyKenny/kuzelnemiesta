@@ -4,7 +4,7 @@ import '../styles/app.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { ga4Head, ga4Footer } from '../lib/analytics';
-import { GA4_ID, OG_DEFAULT, SITE_NAME, orgGraph } from '../lib/site';
+import { BASE, GA4_ID, LANG, OG_DEFAULT, OG_LOCALE, SITE_NAME, orgGraph } from '../lib/site';
 import { getEnv } from '../lib/server/env';
 import type { Meta } from '../lib/views';
 
@@ -20,7 +20,7 @@ const ga = prod || env.ANALYTICS_ENABLED === '1' ? GA4_ID : '';
 const ld = (o: unknown) => JSON.stringify(o).replace(/</g, '\\u003c');
 ---
 <!DOCTYPE html>
-<html lang="cs">
+<html lang={LANG}>
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,7 +30,7 @@ const ld = (o: unknown) => JSON.stringify(o).replace(/</g, '\\u003c');
 	{canonical && <link rel="canonical" href={canonical} />}
 	{prev && <link rel="prev" href={prev} />}
 	{next && <link rel="next" href={next} />}
-	<meta property="og:locale" content="cs_CZ" />
+	<meta property="og:locale" content={OG_LOCALE} />
 	<meta property="og:type" content={ogType} />
 	<meta property="og:title" content={title} />
 	{description && <meta property="og:description" content={description} />}
@@ -46,7 +46,7 @@ const ld = (o: unknown) => JSON.stringify(o).replace(/</g, '\\u003c');
 	<link rel="apple-touch-icon" href="/a/favicon-180.png?v=2" />
 	<link rel="manifest" href="/a/manifest.webmanifest" />
 	<meta name="theme-color" content="#ffffff" />
-	<link rel="alternate" type="application/rss+xml" title="Kouzelný děda &raquo; RSS" href="https://kouzelnydeda.cz/feed/" />
+	<link rel="alternate" type="application/rss+xml" title={`${SITE_NAME} » RSS`} href={`${BASE}/feed/`} />
 	{ga && <Fragment set:html={ga4Head(ga, pageType)} />}
 	<script type="application/ld+json" set:html={ld({ '@context': 'https://schema.org', '@graph': [...orgGraph(searchAction), ...graph] })} />
 	{jsonLd.map((d) => <script type="application/ld+json" set:html={ld(d)} />)}

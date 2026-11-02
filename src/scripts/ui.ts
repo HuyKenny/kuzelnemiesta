@@ -1,5 +1,7 @@
 // Small progressive enhancements (the site works without JS): menu, listing sort/filter auto-submit, gallery,
 // sticky price bar, broken partner photos, search suggestions (/api/suggest).
+import { cena } from '../lib/format';
+
 type Root = { querySelector: Document['querySelector']; querySelectorAll: Document['querySelectorAll'] };
 const $ = <T extends Element = HTMLElement>(s: string, r: Root = document) => r.querySelector<T>(s);
 const $$ = <T extends Element = HTMLElement>(s: string, r: Root = document) => [...r.querySelectorAll<T>(s)];
@@ -27,16 +29,16 @@ for (const li of megaLis) {
 document.addEventListener('click', (e) => { if (!(e.target as Element).closest('.sek-nav')) closeMega(); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeMega(); (document.activeElement as HTMLElement | null)?.closest('.mega') && (document.activeElement as HTMLElement).blur(); } });
 
-// listing intro clamped to two lines → "Zobrazit více" when it is longer
+// listing intro clamped to two lines → "Zobraziť viac" when it is longer
 for (const lead of $$('[data-vice]')) {
   if (lead.scrollHeight <= lead.clientHeight + 4) continue;
   const b = document.createElement('button');
-  b.type = 'button'; b.className = 'vice'; b.textContent = 'Zobrazit více';
-  b.addEventListener('click', () => { const open = lead.classList.toggle('je-cele'); b.textContent = open ? 'Zobrazit méně' : 'Zobrazit více'; });
+  b.type = 'button'; b.className = 'vice'; b.textContent = 'Zobraziť viac';
+  b.addEventListener('click', () => { const open = lead.classList.toggle('je-cele'); b.textContent = open ? 'Zobraziť menej' : 'Zobraziť viac'; });
   lead.insertAdjacentElement('afterend', b);
 }
 
-// filters bottom sheet (phones): the "Filtry" link opens the sidebar, the backdrop / cross / Escape closes it
+// filters bottom sheet (phones): the "Filtre" link opens the sidebar, the backdrop / cross / Escape closes it
 const sb = $('.sb'), sbBg = $('.sb__bg');
 if (sb && sbBg) {
   const setSheet = (open: boolean) => { sb.classList.toggle('je-otevreno', open); sbBg.hidden = !open; document.body.classList.toggle('bez-scroll', open); };
@@ -75,9 +77,9 @@ if (vy) {
     const o: HTMLInputElement | HTMLOptionElement | null | undefined = vy.querySelector('input:checked') ?? vy.querySelector('select')?.selectedOptions[0];
     if (!o) return;
     const i = Number(o.value), price = Number(o.dataset.price);
-    for (const e of $$('[data-var-price]')) e.textContent = price.toLocaleString('cs-CZ') + '\u00a0Kč';
+    for (const e of $$('[data-var-price]')) e.textContent = cena(price);
     for (const e of $$('[data-var-hide]')) e.hidden = i !== 0;
-    for (const a of $$<HTMLAnchorElement>('a[data-cta]')) { a.href = base + (o.dataset.link ? `&v=${i}` : ''); a.dataset.price = String(Math.round(price)); }
+    for (const a of $$<HTMLAnchorElement>('a[data-cta]')) { a.href = base + (o.dataset.link ? `&v=${i}` : ''); a.dataset.price = String(Math.round(price * 100) / 100); }
   };
   vy.addEventListener('change', pick);
 }
@@ -111,10 +113,10 @@ for (const input of $$<HTMLInputElement>('input[data-suggest]')) {
   const hide = () => { box.hidden = true; idx = -1; };
   const render = (d: Sug, q: string) => {
     let h = '';
-    if (d.cats.length) h += '<div class="hl__h">Kategorie</div>' + d.cats.map((c) => `<a href="${esc(c.u)}" role="option"><span>${esc(c.n)}</span><span class="hl__c">${c.c}</span></a>`).join('');
-    if (d.offers.length) h += '<div class="hl__h">Nabídky</div>' + d.offers.map((p) => `<a href="${esc(p.u)}" role="option"><span>${esc(p.n)}</span><span class="hl__c">${esc(p.p)}</span></a>`).join('');
+    if (d.cats.length) h += '<div class="hl__h">Kategórie</div>' + d.cats.map((c) => `<a href="${esc(c.u)}" role="option"><span>${esc(c.n)}</span><span class="hl__c">${c.c}</span></a>`).join('');
+    if (d.offers.length) h += '<div class="hl__h">Ponuky</div>' + d.offers.map((p) => `<a href="${esc(p.u)}" role="option"><span>${esc(p.n)}</span><span class="hl__c">${esc(p.p)}</span></a>`).join('');
     if (!h) { hide(); return; }
-    h += `<a href="/?s=${encodeURIComponent(q)}&amp;post_type=product" role="option"><b>Všechny výsledky pro „${esc(q)}“</b></a>`;
+    h += `<a href="/?s=${encodeURIComponent(q)}&amp;post_type=product" role="option"><b>Všetky výsledky pre „${esc(q)}“</b></a>`;
     box.innerHTML = h; box.hidden = false; idx = -1;
   };
   input.addEventListener('input', () => {

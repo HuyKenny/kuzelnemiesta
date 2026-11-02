@@ -1,6 +1,7 @@
-// Texts and rules of the WordPress child theme (rehub-child functions.php + mu-plugin kd-redirects.php, 30. 10. 2026),
-// ported verbatim: category FAQ and intros by section, city × category intros, the 404 → category heuristic.
-import { cislo } from './format';
+// Texts and rules of the WordPress child theme (category FAQ and intros by section, city × category intros, the 404 →
+// category heuristic), ported from the Czech sister site and written in Slovak for kuzelnemiesta.sk (2. 11. 2026).
+import { overenych } from './format';
+import { SITE_NAME } from './site';
 
 export type Kind = 'pobyt' | 'zazitek' | 'restaurace' | 'krasa' | 'kurz' | 'obecne';
 // sections of the redesign v2 tree (src/data/taxonomie.json)
@@ -8,83 +9,85 @@ const ROOT_KIND: Record<string, Kind> = { pobyty: 'pobyt', zazitky: 'zazitek', '
 /** kd_category_kind(): by the slug of the root category. */
 export const kindOf = (rootSlug: string): Kind => ROOT_KIND[rootSlug] ?? 'obecne';
 
-const SAFE = 'Kouzelný děda je rozcestník nabídek. Po kliknutí přejdete přímo k ověřenému partnerovi, kde objednávku dokončíte v jeho zabezpečeném prostředí. Cena pro vás zůstává stejná.';
+const SAFE = `${SITE_NAME} je rozcestník ponúk. Po kliknutí prejdete priamo k overenému partnerovi, kde objednávku dokončíte v jeho zabezpečenom prostredí. Cena pre vás zostáva rovnaká.`;
+/** The general "how buying works" question of every FAQ (views.ts appends it to a category's own questions). */
+export const BUY_Q = /nákup|rezerváci/i;
 
 export function categoryFaq(name: string, kind: Kind): Array<{ q: string; a: string }> {
   const n = name.toLowerCase();
   switch (kind) {
     case 'pobyt': return [
-      { q: `Jak vybrat ten správný pobyt v kategorii ${n}?`, a: 'Seřaďte nabídky podle ceny, obliby nebo nejnovějších a využijte filtr ceny. U každého pobytu vidíte lokalitu, co je v ceně, původní i zvýhodněnou cenu a úsporu v korunách. Termíny a kapacity se rychle mění, proto se vyplatí rezervovat s předstihem.' },
-      { q: 'Co bývá zahrnuto v ceně pobytu?', a: 'Podle konkrétní nabídky nejčastěji ubytování se snídaní či polopenzí, vstup do wellness, parkování nebo dítě zdarma. Přesný rozsah vždy najdete v detailu nabídky u partnera.' },
-      { q: 'Jak rezervace probíhá a je bezpečná?', a: SAFE },
-      { q: 'Dá se pobyt darovat nebo má otevřený termín?', a: 'Řadu pobytů lze pořídit jako dárkový voucher s delší platností, u kterého si termín vyberete později. Hodí se tak skvěle jako dárek. Podmínky platnosti uvádí každá nabídka.' },
+      { q: `Ako vybrať ten správny pobyt v kategórii ${n}?`, a: 'Zoraďte ponuky podľa ceny, obľúbenosti alebo od najnovších a využite cenový filter. Pri každom pobyte vidíte lokalitu, čo je v cene, pôvodnú aj zvýhodnenú cenu a úsporu v eurách. Termíny a kapacity sa rýchlo menia, preto sa oplatí rezervovať s predstihom.' },
+      { q: 'Čo býva zahrnuté v cene pobytu?', a: 'Podľa konkrétnej ponuky najčastejšie ubytovanie s raňajkami či polpenziou, vstup do wellness, parkovanie alebo dieťa zdarma. Presný rozsah vždy nájdete v detaile ponuky u partnera.' },
+      { q: 'Ako prebieha rezervácia a je bezpečná?', a: SAFE },
+      { q: 'Dá sa pobyt darovať alebo má otvorený termín?', a: 'Mnohé pobyty si môžete kúpiť ako darčekový voucher s dlhšou platnosťou, pri ktorom si termín vyberiete neskôr. Preto sa skvele hodia ako darček. Podmienky platnosti uvádza každá ponuka.' },
     ];
     case 'zazitek': return [
-      { q: `Jak vybrat ten pravý zážitek v kategorii ${n}?`, a: 'Filtrujte podle ceny a lokality a porovnejte varianty. U každého zážitku vidíte, co obnáší, původní i zvýhodněnou cenu a úsporu v korunách. Myslete i na to, pro koho zážitek je – jinou náladu má adrenalin a jinou wellness.' },
-      { q: 'Kolik zážitky stojí a jak se počítá cena?', a: 'Ceny se liší podle typu zážitku. Sbíráme zvýhodněné nabídky a dárkové vouchery od prověřených partnerů, takže u většiny zážitků vidíte původní cenu i spočítanou úsporu.' },
-      { q: 'Jak nákup probíhá a je bezpečný?', a: SAFE },
-      { q: 'Dá se zážitek darovat?', a: 'Většina zážitků se pořizuje formou dárkového voucheru, často s otevřenou platností. Obdarovaný si pak sám zvolí termín – ideální dárek na poslední chvíli i s předstihem.' },
+      { q: `Ako vybrať ten pravý zážitok v kategórii ${n}?`, a: 'Filtrujte podľa ceny a lokality a porovnajte varianty. Pri každom zážitku vidíte, čo obnáša, pôvodnú aj zvýhodnenú cenu a úsporu v eurách. Myslite aj na to, pre koho je zážitok určený – inú náladu má adrenalín a inú wellness.' },
+      { q: 'Koľko zážitky stoja a ako sa počíta cena?', a: 'Ceny sa líšia podľa typu zážitku. Zbierame zvýhodnené ponuky a darčekové vouchery od preverených partnerov, takže pri väčšine zážitkov vidíte pôvodnú cenu aj vypočítanú úsporu.' },
+      { q: 'Ako prebieha nákup a je bezpečný?', a: SAFE },
+      { q: 'Dá sa zážitok darovať?', a: 'Väčšina zážitkov sa kupuje ako darčekový voucher, často s otvorenou platnosťou. Obdarovaný si potom sám zvolí termín – ideálny darček na poslednú chvíľu aj s predstihom.' },
     ];
     case 'restaurace': return [
-      { q: `Jak vybrat podnik v kategorii ${n}?`, a: 'Porovnejte lokalitu, typ kuchyně a co je v nabídce zahrnuto. U každé nabídky vidíte původní i zvýhodněnou cenu a úsporu v korunách, takže snadno vyberete podle chuti i rozpočtu.' },
-      { q: 'Jak fungují vouchery do restaurací?', a: 'Většinou jde o zvýhodněné menu nebo degustace za pevnou cenu. Rozsah (počet chodů, nápoje, počet osob) i platnost najdete v detailu konkrétní nabídky u partnera.' },
-      { q: 'Jak nákup probíhá a je bezpečný?', a: SAFE },
-      { q: 'Musím rezervovat termín dopředu?', a: 'U gastro nabídek se rezervace termínu doporučuje – konkrétní postup a platnost voucheru uvádí každá nabídka. Často poslouží i jako dárek.' },
+      { q: `Ako vybrať podnik v kategórii ${n}?`, a: 'Porovnajte lokalitu, typ kuchyne a to, čo ponuka zahŕňa. Pri každej ponuke vidíte pôvodnú aj zvýhodnenú cenu a úsporu v eurách, takže ľahko vyberiete podľa chuti aj rozpočtu.' },
+      { q: 'Ako fungujú vouchery do reštaurácií?', a: 'Väčšinou ide o zvýhodnené menu alebo degustáciu za pevnú cenu. Rozsah (počet chodov, nápoje, počet osôb) aj platnosť nájdete v detaile konkrétnej ponuky u partnera.' },
+      { q: 'Ako prebieha nákup a je bezpečný?', a: SAFE },
+      { q: 'Musím si termín rezervovať vopred?', a: 'Pri gastro ponukách sa rezervácia termínu odporúča – konkrétny postup a platnosť voucheru uvádza každá ponuka. Často poslúži aj ako darček.' },
     ];
     case 'krasa': return [
-      { q: `Jak vybrat proceduru v kategorii ${n}?`, a: 'Filtrujte podle ceny a lokality a porovnejte salony i rozsah procedury. U každé nabídky vidíte původní i zvýhodněnou cenu a úsporu v korunách, takže snadno vyberete tu pravou.' },
-      { q: 'Co bývá v ceně a jak dlouho procedura trvá?', a: 'Délka i rozsah se liší podle nabídky – od krátkého ošetření po několikahodinové balíčky. Přesný obsah a délku najdete v detailu nabídky u partnera.' },
-      { q: 'Jak nákup probíhá a je bezpečný?', a: SAFE },
-      { q: 'Dá se procedura darovat?', a: 'Ano, většinu procedur lze pořídit jako dárkový voucher s delší platností. Skvěle se hodí jako dárek – obdarovaný si termín vybere sám.' },
+      { q: `Ako vybrať procedúru v kategórii ${n}?`, a: 'Filtrujte podľa ceny a lokality a porovnajte salóny aj rozsah procedúry. Pri každej ponuke vidíte pôvodnú aj zvýhodnenú cenu a úsporu v eurách, takže ľahko vyberiete tú pravú.' },
+      { q: 'Čo býva v cene a ako dlho procedúra trvá?', a: 'Dĺžka aj rozsah sa líšia podľa ponuky – od krátkeho ošetrenia po niekoľkohodinové balíčky. Presný obsah a dĺžku nájdete v detaile ponuky u partnera.' },
+      { q: 'Ako prebieha nákup a je bezpečný?', a: SAFE },
+      { q: 'Dá sa procedúra darovať?', a: 'Áno, väčšinu procedúr si môžete kúpiť ako darčekový voucher s dlhšou platnosťou. Skvele sa hodí ako darček – obdarovaný si termín vyberie sám.' },
     ];
     case 'kurz': return [
-      { q: `Jak vybrat kurz v kategorii ${n}?`, a: 'Porovnejte délku kurzu, počet účastníků, místo konání a co je v ceně (materiál, ochutnávka, certifikát). U každé nabídky vidíte původní i zvýhodněnou cenu a úsporu v korunách.' },
-      { q: 'Je kurz vhodný pro začátečníky?', a: 'Většina kurzů je určená začátečníkům i mírně pokročilým — lektor vás vším provede. Úroveň a požadavky najdete v detailu nabídky u partnera.' },
-      { q: 'Jak nákup probíhá a je bezpečný?', a: SAFE },
-      { q: 'Dá se kurz darovat?', a: 'Ano, kurzy jsou oblíbený zážitkový dárek. Pořídíte je jako voucher s delší platností a obdarovaný si termín vybere sám.' },
+      { q: `Ako vybrať kurz v kategórii ${n}?`, a: 'Porovnajte dĺžku kurzu, počet účastníkov, miesto konania a to, čo je v cene (materiál, ochutnávka, certifikát). Pri každej ponuke vidíte pôvodnú aj zvýhodnenú cenu a úsporu v eurách.' },
+      { q: 'Je kurz vhodný pre začiatočníkov?', a: 'Väčšina kurzov je určená začiatočníkom aj mierne pokročilým — lektor vás všetkým prevedie. Úroveň a požiadavky nájdete v detaile ponuky u partnera.' },
+      { q: 'Ako prebieha nákup a je bezpečný?', a: SAFE },
+      { q: 'Dá sa kurz darovať?', a: 'Áno, kurzy sú obľúbeným zážitkovým darčekom. Kúpite ich ako voucher s dlhšou platnosťou a obdarovaný si termín vyberie sám.' },
     ];
     default: return [
-      { q: `Jak vybrat tu správnou nabídku v kategorii ${n}?`, a: 'Seřaďte nabídky podle ceny, obliby nebo nejnovějších a využijte filtr ceny. U každé nabídky vidíte původní i zvýhodněnou cenu, úsporu v korunách. Nabídky denně doplňujeme.' },
-      { q: 'Kolik nabídky stojí a jak se počítá cena?', a: 'Ceny se liší podle typu nabídky a termínu. Sbíráme zvýhodněné nabídky a dárkové vouchery od prověřených partnerů, takže u většiny vidíte původní cenu i spočítanou úsporu.' },
-      { q: 'Jak nákup probíhá a je bezpečný?', a: SAFE },
-      { q: 'Dají se nabídky darovat?', a: 'Většinu nabídek lze pořídit formou dárkového voucheru, často s delší platností. Jsou tak ideální jako dárek.' },
+      { q: `Ako vybrať tú správnu ponuku v kategórii ${n}?`, a: 'Zoraďte ponuky podľa ceny, obľúbenosti alebo od najnovších a využite cenový filter. Pri každej ponuke vidíte pôvodnú aj zvýhodnenú cenu a úsporu v eurách. Ponuky denne dopĺňame.' },
+      { q: 'Koľko ponuky stoja a ako sa počíta cena?', a: 'Ceny sa líšia podľa typu ponuky a termínu. Zbierame zvýhodnené ponuky a darčekové vouchery od preverených partnerov, takže pri väčšine vidíte pôvodnú cenu aj vypočítanú úsporu.' },
+      { q: 'Ako prebieha nákup a je bezpečný?', a: SAFE },
+      { q: 'Dajú sa ponuky darovať?', a: 'Väčšinu ponúk si môžete kúpiť ako darčekový voucher, často s dlhšou platnosťou. Sú preto ideálnym darčekom.' },
     ];
   }
 }
 
 export function categoryIntro(name: string, kind: Kind): string {
   switch (kind) {
-    case 'pobyt': return `Vybíráte v kategorii ${name}? Porovnejte lokalitu, co je v ceně i hodnocení a sledujte úsporu v korunách. Nejvýhodnější pobyty mizí rychle, vyplatí se proto rezervovat včas. Po kliknutí přejdete k ověřenému partnerovi, cena se nemění.`;
-    case 'zazitek': return `Hledáte v kategorii ${name} ten pravý zážitek? Vyberte podle ceny, lokality i toho, pro koho zážitek je. U každé nabídky vidíte původní cenu i úsporu a většinu zážitků pořídíte jako dárkový voucher s otevřenou platností. Po kliknutí přejdete k ověřenému partnerovi, cena zůstává stejná.`;
-    case 'restaurace': return `Vybíráte v kategorii ${name}? Porovnejte typ kuchyně, lokalitu a co je ve voucheru zahrnuto. U každé nabídky vidíte zvýhodněnou cenu i úsporu. Po kliknutí přejdete k ověřenému partnerovi, kde objednávku dokončíte – cena se nemění.`;
-    case 'kurz': return `Chcete se naučit něco nového nebo darovat kurz? V kategorii ${name} porovnáte lektory, délku i to, co je v ceně, a hned vidíte úsporu. Většinu kurzů pořídíte jako dárkový voucher s otevřeným termínem. Po kliknutí přejdete k ověřenému partnerovi, cena se nemění.`;
-    case 'krasa': return `Hledáte v kategorii ${name} tu pravou péči? Porovnejte salony, rozsah procedury i hodnocení a sledujte úsporu v korunách. Skvělý tip i na dárek. Po kliknutí přejdete k ověřenému partnerovi, cena pro vás zůstává stejná.`;
-    default: return `Vybíráte v kategorii ${name}? Porovnejte ceny i hodnocení a sledujte úsporu v korunách. Nabídky denně doplňujeme. Po kliknutí přejdete k ověřenému partnerovi, cena pro vás zůstává stejná.`;
+    case 'pobyt': return `Vyberáte v kategórii ${name}? Porovnajte lokalitu, čo je v cene, aj hodnotenia a sledujte úsporu v eurách. Najvýhodnejšie pobyty rýchlo miznú, preto sa oplatí rezervovať včas. Po kliknutí prejdete k overenému partnerovi, cena sa nemení.`;
+    case 'zazitek': return `Hľadáte v kategórii ${name} ten pravý zážitok? Vyberajte podľa ceny, lokality aj toho, pre koho je zážitok určený. Pri každej ponuke vidíte pôvodnú cenu aj úsporu a väčšinu zážitkov kúpite ako darčekový voucher s otvorenou platnosťou. Po kliknutí prejdete k overenému partnerovi, cena zostáva rovnaká.`;
+    case 'restaurace': return `Vyberáte v kategórii ${name}? Porovnajte typ kuchyne, lokalitu a to, čo voucher zahŕňa. Pri každej ponuke vidíte zvýhodnenú cenu aj úsporu. Po kliknutí prejdete k overenému partnerovi, kde objednávku dokončíte – cena sa nemení.`;
+    case 'kurz': return `Chcete sa naučiť niečo nové alebo darovať kurz? V kategórii ${name} porovnáte lektorov, dĺžku aj to, čo je v cene, a hneď vidíte úsporu. Väčšinu kurzov kúpite ako darčekový voucher s otvoreným termínom. Po kliknutí prejdete k overenému partnerovi, cena sa nemení.`;
+    case 'krasa': return `Hľadáte v kategórii ${name} tú pravú starostlivosť? Porovnajte salóny, rozsah procedúry aj hodnotenia a sledujte úsporu v eurách. Skvelý tip aj na darček. Po kliknutí prejdete k overenému partnerovi, cena pre vás zostáva rovnaká.`;
+    default: return `Vyberáte v kategórii ${name}? Porovnajte ceny aj hodnotenia a sledujte úsporu v eurách. Ponuky denne dopĺňame. Po kliknutí prejdete k overenému partnerovi, cena pre vás zostáva rovnaká.`;
   }
 }
 
 /** kd_combo_intro_html(): the longer category × city text (unique content of the combo landing). */
 export function comboIntro(cat: string, lok: string, count: number, kind: Kind): string {
   const catl = cat.toLowerCase();
-  const cnt = cislo(count);
+  const ov = overenych(count);
   switch (kind) {
-    case 'pobyt': return `Plánujete ${catl} ${lok} a okolí? Sesbírali jsme ${cnt} ověřených nabídek na jednom místě, ať nemusíte porovnávat desítky webů. U každého pobytu vidíte lokalitu, co je v ceně (snídaně či polopenze, vstup do wellness, parkování nebo dítě zdarma), původní i zvýhodněnou cenu a úsporu v korunách. Nejvýhodnější pobyty ${lok} mizí rychle, vyplatí se rezervovat s předstihem — a řadu z nich pořídíte jako dárkový voucher s otevřeným termínem. Po kliknutí přejdete k ověřenému partnerovi, cena pro vás zůstává stejná.`;
-    case 'zazitek': return `Hledáte ${catl} ${lok}? Máme ${cnt} ověřených nabídek přehledně na jednom místě. Vyberte podle ceny, lokality i toho, pro koho má zážitek být — jinou náladu má adrenalin a jinou romantika či wellness. U každé nabídky vidíte úsporu v korunách a většinu zážitků ${lok} pořídíte jako dárkový voucher s otevřenou platností, takže skvěle poslouží i jako dárek. Po kliknutí přejdete k ověřenému partnerovi, cena pro vás zůstává stejná.`;
-    case 'restaurace': return `Máte chuť na ${catl} ${lok}? Sesbírali jsme ${cnt} ověřených nabídek na jednom místě. Porovnáte typ kuchyně, lokalitu i to, co je ve voucheru zahrnuto (počet chodů, nápoje, počet osob), a hned vidíte zvýhodněnou cenu a úsporu v korunách. U gastro nabídek se hodí rezervovat termín předem; mnohé fungují i jako dárek. Po kliknutí přejdete k ověřenému partnerovi, kde objednávku dokončíte — cena pro vás zůstává stejná.`;
-    case 'krasa': return `Hledáte ${catl} ${lok}? Máme ${cnt} ověřených nabídek přehledně na jednom místě. Porovnejte salony, rozsah a délku procedury i hodnocení a sledujte úsporu v korunách. Většinu procedur ${lok} pořídíte i jako dárkový voucher s delší platností — ideální dárek, u kterého si termín vybere obdarovaný. Po kliknutí přejdete k ověřenému partnerovi, cena pro vás zůstává stejná.`;
-    default: return `Hledáte ${catl} ${lok}? Sesbírali jsme ${cnt} ověřených nabídek na jednom místě. Porovnejte ceny i hodnocení a sledujte úsporu v korunách; nabídky navíc denně doplňujeme. Řadu z nich pořídíte jako dárkový voucher s delší platností. Po kliknutí přejdete k ověřenému partnerovi, cena pro vás zůstává stejná.`;
+    case 'pobyt': return `Plánujete ${catl} ${lok} a okolí? Na jednom mieste máme ${ov}, aby ste nemuseli porovnávať desiatky webov. Pri každom pobyte vidíte lokalitu, čo je v cene (raňajky či polpenzia, vstup do wellness, parkovanie alebo dieťa zdarma), pôvodnú aj zvýhodnenú cenu a úsporu v eurách. Najvýhodnejšie pobyty ${lok} rýchlo miznú, oplatí sa rezervovať s predstihom — a mnohé z nich kúpite ako darčekový voucher s otvoreným termínom. Po kliknutí prejdete k overenému partnerovi, cena pre vás zostáva rovnaká.`;
+    case 'zazitek': return `Hľadáte ${catl} ${lok}? Prehľadne na jednom mieste máme ${ov}. Vyberajte podľa ceny, lokality aj toho, pre koho má byť zážitok určený — inú náladu má adrenalín a inú romantika či wellness. Pri každej ponuke vidíte úsporu v eurách a väčšinu zážitkov ${lok} kúpite ako darčekový voucher s otvorenou platnosťou, takže skvele poslúžia aj ako darček. Po kliknutí prejdete k overenému partnerovi, cena pre vás zostáva rovnaká.`;
+    case 'restaurace': return `Máte chuť na ${catl} ${lok}? Na jednom mieste máme ${ov}. Porovnáte typ kuchyne, lokalitu aj to, čo voucher zahŕňa (počet chodov, nápoje, počet osôb), a hneď vidíte zvýhodnenú cenu a úsporu v eurách. Pri gastro ponukách sa oplatí rezervovať termín vopred; mnohé fungujú aj ako darček. Po kliknutí prejdete k overenému partnerovi, kde objednávku dokončíte — cena pre vás zostáva rovnaká.`;
+    case 'krasa': return `Hľadáte ${catl} ${lok}? Prehľadne na jednom mieste máme ${ov}. Porovnajte salóny, rozsah a dĺžku procedúry aj hodnotenia a sledujte úsporu v eurách. Väčšinu procedúr ${lok} kúpite aj ako darčekový voucher s dlhšou platnosťou — ideálny darček, pri ktorom si termín vyberie obdarovaný. Po kliknutí prejdete k overenému partnerovi, cena pre vás zostáva rovnaká.`;
+    default: return `Hľadáte ${catl} ${lok}? Na jednom mieste máme ${ov}. Porovnajte ceny aj hodnotenia a sledujte úsporu v eurách; ponuky navyše denne dopĺňame. Mnohé z nich kúpite ako darčekový voucher s dlhšou platnosťou. Po kliknutí prejdete k overenému partnerovi, cena pre vás zostáva rovnaká.`;
   }
 }
 
 export function cityIntro(lok: string): string {
-  return `Hledáte zážitky, pobyty nebo dovolenou ${lok}? Sebrali jsme pro vás ověřené nabídky na jednom místě — od wellness a romantiky po gastro a adrenalin. Porovnejte ceny i hodnocení a vyberte tu pravou. Po kliknutí přejdete k ověřenému partnerovi, cena pro vás zůstává stejná.`;
+  return `Hľadáte zážitky, pobyty alebo dovolenku ${lok}? Overené ponuky sme pre vás zozbierali na jednom mieste — od wellness a romantiky po gastro a adrenalín. Porovnajte ceny aj hodnotenia a vyberte si tú pravú. Po kliknutí prejdete k overenému partnerovi, cena pre vás zostáva rovnaká.`;
 }
 
 /** kd_service_cat_candidates(): category chips on a city page (shown when the combo has ≥ 40 offers). */
 export const SERVICE_CATS: Array<[string, string]> = [
-  ['masaze', 'Masáže'], ['zazitky', 'Zážitky'], ['restaurace-a-bary', 'Restaurace a bary'], ['krasa-zdravi-a-relaxace', 'Krása a relaxace'],
-  ['kosmeticke-sluzby', 'Kosmetika'], ['sauna-a-wellness', 'Sauna a wellness'], ['adrenalinove-zazitky', 'Adrenalin'], ['degustacni-menu', 'Degustace'],
-  ['kavarny', 'Kavárny'], ['pece-o-plet-a-oblicej', 'Péče o pleť'],
+  ['masaze', 'Masáže'], ['zazitky', 'Zážitky'], ['restaurace-a-bary', 'Reštaurácie a bary'], ['krasa-zdravi-a-relaxace', 'Krása a relax'],
+  ['kosmeticke-sluzby', 'Kozmetika'], ['sauna-a-wellness', 'Sauna a wellness'], ['adrenalinove-zazitky', 'Adrenalín'], ['degustacni-menu', 'Degustácie'],
+  ['kavarny', 'Kaviarne'], ['pece-o-plet-a-oblicej', 'Starostlivosť o pleť'],
 ];
 
 /** An unknown path (old WooCommerce category / location tag / offer slug that no longer exists) → the closest live category.

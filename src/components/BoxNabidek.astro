@@ -9,8 +9,8 @@ const { items, cat, t, heading } = Astro.props;
 ---
 {items.length >= 2 && (
 	<aside class="boxn">
-		<div class="boxn__h"><h2>{heading}</h2><a href={`/${cat.slug}/`}>Všechny nabídky →</a></div>
+		<div class="boxn__h"><h2>{heading}</h2><a href={`/${cat.slug}/`}>Všetky ponuky →</a></div>
 		<Mrizka items={items} t={t} eager={false} />
-		<p class="boxn__p">Přejdete k partnerovi · cena se nemění · {decode(cat.name)}</p>
+		<p class="boxn__p">Prejdete k partnerovi · cena sa nemení · {decode(cat.name)}</p>
 	</aside>
 )}

@@ -1,31 +1,31 @@
 ---
 // Footer: sections, gifts, popular cities, information, affiliate disclosure, operator.
-import { OPERATOR } from '../lib/site';
+import { OPERATOR, SITE_NAME } from '../lib/site';
 import { TOP_GIFTS } from '../lib/views';
 const year = new Date().getFullYear();
-const CITIES: Array<[string, string]> = [['praha', 'Praha'], ['brno', 'Brno'], ['ostrava', 'Ostrava'], ['plzen', 'Plzeň'], ['ceske-budejovice', 'České Budějovice'], ['hradec-kralove', 'Hradec Králové'],
-	['olomouc', 'Olomouc'], ['liberec', 'Liberec']];
+const CITIES: Array<[string, string]> = [['bratislava', 'Bratislava'], ['kosice', 'Košice'], ['zilina', 'Žilina'], ['presov', 'Prešov'], ['banska-bystrica', 'Banská Bystrica'], ['nitra', 'Nitra'],
+	['trnava', 'Trnava'], ['trencin', 'Trenčín']];
 ---
 <footer class="ft">
 	<div class="w ft__in">
 		<div>
-			<a class="ft__logo" href="/"><img src="/a/logo-264.webp" alt="Kouzelný děda" width="140" height="46" loading="lazy" /></a>
-			<p>Zážitky, pobyty a wellness na jednom místě. Darujte zážitek místo věcí — voucher vám partner pošle hned e-mailem.</p>
+			<a class="ft__logo" href="/"><img src="/a/logo-264.webp" alt={SITE_NAME} width="140" height="46" loading="lazy" /></a>
+			<p>Zážitky, pobyty a wellness na jednom mieste. Darujte zážitok namiesto vecí — voucher vám partner pošle hneď e-mailom.</p>
 		</div>
-		<div><h2>Kategorie</h2><ul>
-			<li><a href="/pobyty/">Pobyty a dovolená</a></li><li><a href="/zazitky/">Zážitky</a></li><li><a href="/wellness-a-krasa/">Wellness a krása</a></li>
-			<li><a href="/jidlo-a-piti/">Jídlo a pití</a></li><li><a href="/kurzy/">Kurzy a workshopy</a></li><li><a href="/wellness-pobyty/">Wellness pobyty</a></li><li><a href="/glamping/">Glamping</a></li>
+		<div><h2>Kategórie</h2><ul>
+			<li><a href="/pobyty/">Pobyty a dovolenky</a></li><li><a href="/zazitky/">Zážitky</a></li><li><a href="/wellness-a-krasa/">Wellness a krása</a></li>
+			<li><a href="/jidlo-a-piti/">Jedlo a pitie</a></li><li><a href="/kurzy/">Kurzy a workshopy</a></li><li><a href="/wellness-pobyty/">Wellness pobyty</a></li><li><a href="/glamping/">Glamping</a></li>
 		</ul></div>
-		<div><h2>Dárky</h2><ul>{TOP_GIFTS.slice(0, 8).map((g) => <li><a href={`/${g.slug}/`}>{g.h1.split(':')[0]}</a></li>)}</ul></div>
-		<div><h2>Města</h2><ul>{CITIES.map(([s, n]) => <li><a href={`/lokalita/${s}/`}>{n}</a></li>)}</ul></div>
-		<div><h2>Informace</h2><ul>
-			<li><a href="/o-nas/">O nás</a></li><li><a href="/blog/">Blog</a></li><li><a href="/podminky-pouziti/">Podmínky použití</a></li>
-			<li><a href="/ochrana-osobnich-udaju/">Ochrana osobních údajů</a></li><li><a href="/prohlaseni-o-pouzivani-cookies/">Cookies</a></li>
-			<li><a href="#" data-kd-consent-open>Nastavení cookies</a></li>
+		<div><h2>Darčeky</h2><ul>{TOP_GIFTS.slice(0, 8).map((g) => <li><a href={`/${g.slug}/`}>{g.h1.split(':')[0]}</a></li>)}</ul></div>
+		<div><h2>Mestá</h2><ul>{CITIES.map(([s, n]) => <li><a href={`/lokalita/${s}/`}>{n}</a></li>)}</ul></div>
+		<div><h2>Informácie</h2><ul>
+			<li><a href="/o-nas/">O nás</a></li><li><a href="/blog/">Blog</a></li><li><a href="/vseobecne-podmienky/">Všeobecné podmienky</a></li>
+			<li><a href="/spracovani-osobnych-udajov/">Spracovanie osobných údajov</a></li><li><a href="/spracovani-osobnych-udajov/#cookies">Cookies</a></li>
+			<li><a href="#" data-kd-consent-open>Nastavenia cookies</a></li>
 		</ul></div>
 	</div>
 	<div class="w ft__pozn">
-		<p>Kouzelný děda je rozcestník nabídek. Za nákup přes odkaz na partnera můžeme dostat provizi — cena pro vás zůstává stejná. Nabídky, ceny a jejich platnost určuje partner.</p>
-		<p>© {year} Kouzelný děda · provozovatel {OPERATOR.name}, IČO {OPERATOR.ico}, DS {OPERATOR.ds}, {OPERATOR.street}, {OPERATOR.zip} {OPERATOR.city} · web <a href="https://huy.cz/">Huy.cz</a></p>
+		<p>{SITE_NAME} je rozcestník ponúk. Za nákup cez odkaz na partnera môžeme dostať províziu — cena pre vás zostáva rovnaká. Ponuky, ceny a ich platnosť určuje partner.</p>
+		<p>© {year} {SITE_NAME} · prevádzkovateľ {OPERATOR.name}, IČO {OPERATOR.ico}, DS {OPERATOR.ds}, {OPERATOR.street}, {OPERATOR.zip} {OPERATOR.city} · web <a href="https://huy.cz/">Huy.cz</a></p>
 	</div>
 </footer>

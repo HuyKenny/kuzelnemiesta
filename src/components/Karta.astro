@@ -1,15 +1,15 @@
 ---
 // Offer card: photo with the discount sticker and an urgency badge (ends soon / new / bought), partner, city, rating,
-// name, price. The card opens the offer page; the small "K nabídce" button goes straight to the partner (/go/, decided buyers).
+// name, price. The card opens the offer page; the small "K ponuke" button goes straight to the partner (/go/, decided buyers).
 import Ik from './Ik.astro';
 import type { Card, Tree } from '../lib/db';
-import { cena, decode, dni, dniDo, place } from '../lib/format';
+import { cena, cislo, decode, dni, dniDo, place } from '../lib/format';
 import { card } from '../lib/img';
 import { partner as partnerOf } from '../lib/partners';
 
 interface Props { p: Card; t: Tree; idx?: number; h?: 'h2' | 'h3'; ended?: boolean; ctx?: string; sec?: string }
 const { p, t, idx = 99, h = 'h3', ended = false, ctx = 'karta', sec = '' } = Astro.props;
-// ctx = placement-section (utm_content at Slevomat, "placement"/"context" in GA4)
+// ctx = placement-section (utm_content at Zlavomat, "placement"/"context" in GA4)
 const ctxFull = sec ? `${ctx}-${sec}` : ctx;
 const H = h;
 const name = decode(p.name);
@@ -20,7 +20,7 @@ const left = dniDo(p.deal_end);
 const where = place(p.city, p.cc);
 const fresh = Date.now() - Date.parse(String(p.created_at).replace(' ', 'T') + 'Z') < 3 * 86400_000;
 const badge = left !== null && left <= 7 ? { ik: 'hodiny', t: `Končí ${dni(left)}` }
-	: p.bought && p.bought >= 50 ? { ik: 'lidi', t: `${p.bought.toLocaleString('cs-CZ')}× koupeno` }
+	: p.bought && p.bought >= 50 ? { ik: 'lidi', t: `${cislo(p.bought)}× kúpené` }
 	: fresh ? { ik: 'jiskra', t: 'Novinka' } : null;
 ---
 <li>
@@ -35,12 +35,12 @@ const badge = left !== null && left <= 7 ? { ik: 'hodiny', t: `Končí ${dni(lef
 		</div>
 		<div class="k__b">
 			<H class="k__n"><a href={`/${p.slug}/`}>{name}</a></H>
-			{p.rating > 0 && p.reviews > 0 && <p class="k__r"><Ik n="hvezda" /><b>{String(p.rating).replace('.', ',')}</b> / 5 <span>({p.reviews.toLocaleString('cs-CZ')} hodnocení)</span></p>}
+			{p.rating > 0 && p.reviews > 0 && <p class="k__r"><Ik n="hvezda" /><b>{String(p.rating).replace('.', ',')}</b> / 5 <span>({cislo(p.reviews)} hodnotení)</span></p>}
 			<p class="k__m">
 				{store && <span class="pt" style={`--c:${pt.color}`}>{decode(store.name)}</span>}
 				{where && <span>{where}</span>}
 			</p>
 		</div>
-		{!ended && <a class="k__go" href={`/go/${p.id}/?ctx=${ctxFull}`} target="_blank" rel="nofollow sponsored noopener" data-partner={store?.slug ?? ''} data-id={p.id} data-name={name} data-section={sec || undefined} data-price={Math.round(p.price)} aria-label={`${name} – k nabídce u partnera`}>K nabídce <Ik n="sipka" /></a>}
+		{!ended && <a class="k__go" href={`/go/${p.id}/?ctx=${ctxFull}`} target="_blank" rel="nofollow sponsored noopener" data-partner={store?.slug ?? ''} data-id={p.id} data-name={name} data-section={sec || undefined} data-price={Math.round(p.price * 100) / 100} aria-label={`${name} – k ponuke u partnera`}>K ponuke <Ik n="sipka" /></a>}
 	</article>
 </li>

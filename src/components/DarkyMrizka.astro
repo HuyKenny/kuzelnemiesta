@@ -1,12 +1,13 @@
 ---
-// Gift-idea tiles ("Hledáte dárek?"): one size for all — the illustration in a fixed box, a short name, one line of
+// Gift-idea tiles ("Hľadáte darček?"): one size for all — the illustration in a fixed box, a short name, one line of
 // what is inside. Home, listings and gift landings.
 import Ik from './Ik.astro';
 import type { Gift } from '../lib/views';
+import { cena } from '../lib/format';
 
 interface Props { items: Gift[]; current?: string }
 const { items, current = '' } = Astro.props;
-const sub = (g: Gift) => (g.max ? `Zážitky a pobyty do ${g.max.toLocaleString('cs-CZ')} Kč` : (g.h1.split(':')[1] ?? g.h1).trim());
+const sub = (g: Gift) => (g.max ? `Zážitky a pobyty do ${cena(g.max)}` : (g.h1.split(':')[1] ?? g.h1).trim());
 ---
 <ul class="dm">
 	{items.map((g) => (

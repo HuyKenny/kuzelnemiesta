@@ -10,8 +10,8 @@ const { v } = Astro.props;
 <Base meta={v.meta} pageType="blog">
 	<div class="w">
 		<Drobky items={v.crumbs} />
-		<header class="vh"><h1>{v.h1}</h1><p class="lead">Inspirace a praktické tipy na cestování, zážitky, wellness a dovolenou.</p></header>
-		<ul class="chips"><li><a class="chip" href="/blog/" aria-current={!v.current ? 'page' : undefined}>Vše</a></li>{v.cats.map((c) => <li><a class="chip" href={`/${c.slug}/`} aria-current={v.current === c.slug ? 'page' : undefined}>{decode(c.name)} <span>{c.count}</span></a></li>)}</ul>
+		<header class="vh"><h1>{v.h1}</h1><p class="lead">Inšpirácia a praktické tipy na cestovanie, zážitky, wellness a dovolenku.</p></header>
+		<ul class="chips"><li><a class="chip" href="/blog/" aria-current={!v.current ? 'page' : undefined}>Všetko</a></li>{v.cats.map((c) => <li><a class="chip" href={`/${c.slug}/`} aria-current={v.current === c.slug ? 'page' : undefined}>{decode(c.name)} <span>{c.count}</span></a></li>)}</ul>
 		<ul class="posts">{v.items.map((p, i) => (
 			<li><article class="pk">
 				<div class="pk__i">{(p.image_card || p.image) && <img src={p.image_card || p.image} alt="" loading={i < 3 ? 'eager' : 'lazy'} width="400" height="225" />}</div>

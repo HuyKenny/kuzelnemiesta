@@ -4,7 +4,7 @@ import { getEnv } from '../../lib/server/env';
 
 export const prerender = false;
 const MAX_AGE_H = 200; // imports run weekly (Monday night)
-const MIN_OFFERS = 5_000;  // kouzelnydeda.cz: ~8.9k active offers at the migration (30. 10. 2026)
+const MIN_OFFERS = 500;  // kuzelnemiesta.sk: catalogue size unknown at the fork (2. 11. 2026) — raise to ~60 % of the live count after the first imports
 
 export const GET: APIRoute = async () => {
   const db = getEnv().DB;
