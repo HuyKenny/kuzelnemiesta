@@ -66,6 +66,8 @@ const EXP: Array<[RegExp, string]> = [
 const SERIES: Array<[RegExp, string, boolean]> = [
   [/cirkus|cirkusu/, 'cirkus', true],
   [/head ?spa/, 'head-spa', true],
+  // "wellness s večerou (pre dvoch)" = the best GSC query of the old WordPress site (category kept, audit 2. 11. 2026)
+  [/wellness\w* (s|a|so) (vecer|veceru|vecere|vecera)|privatn\w* wellness\w* (s|a) vecer/, 'wellness-s-vecerou', true],
   [/ferrari/, 'jazda-vo-ferrari', false],
   [/lamborghini/, 'jazda-v-lamborghini', false],
   [/porsche|porshe/, 'jazda-v-porsche', false],

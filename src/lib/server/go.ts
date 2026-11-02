@@ -27,6 +27,13 @@ async function ipHash(ip: string, env: AppEnv): Promise<string> {
   if (!salt) return '';
   return (await sha256Hex(`${salt}|${new Date().toISOString().slice(0, 10)}|${ip}`)).slice(0, 32);
 }
+/** A real click comes from one of our own pages: the browser says so (Sec-Fetch-Site) or the Referer is ours
+ *  (pattern of kurzovyradar.cz). Residential-proxy bots that hit /go/ directly never become partner clicks. */
+function fromOurPage(request: Request): boolean {
+  const site = request.headers.get('sec-fetch-site');
+  if (site === 'same-origin' || site === 'same-site') return true;
+  try { return new URL(request.headers.get('referer') ?? '').hostname === new URL(request.url).hostname; } catch { return false; }
+}
 const NO_STORE = { 'cache-control': 'private, no-store, max-age=0', 'x-robots-tag': 'noindex, nofollow', 'referrer-policy': 'strict-origin-when-cross-origin' };
 
 export async function handleGo(id: string | undefined, request: Request, env: AppEnv, waitUntil?: (p: Promise<unknown>) => void): Promise<Response> {
@@ -44,6 +51,8 @@ export async function handleGo(id: string | undefined, request: Request, env: Ap
     if (row.active) console.log(JSON.stringify({ level: 'error', event: 'go_unsafe_target', id: row.id }));
     return new Response(null, { status: 302, headers: { ...NO_STORE, location: `/${row.slug}/` } });
   }
+  // not clicked on our page (direct hit, bot, copied link): show the offer page instead, no partner click is logged
+  if (!fromOurPage(request)) return new Response(null, { status: 302, headers: { ...NO_STORE, location: `/${row.slug}/` } });
   const ctx = (new URL(request.url).searchParams.get('ctx') ?? 'go').toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 48) || 'go';
   // Zlavomat (Slevomat group) reports utm_content per campaign → the placement of the click; nothing else is touched
   let target = row.source === 'zlavomat' ? row.target_url.replace(/([?&]utm_content=)[^&]*/, `$1${ctx}`) : row.target_url;

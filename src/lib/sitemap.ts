@@ -1,16 +1,18 @@
 // Sitemaps with the Rank Math file names Google already knows (sitemap_index.xml, post-, page-, category-,
 // product-sitemapN, product_cat-sitemapN, store-, pa_lokalita-sitemap.xml; 200 URLs per file). Materialised into
 // site_cache by rebuildSitemaps() (import Worker, daily); the routes only read. Imported by both Workers.
-import { BASE, comboMin, isoPrague } from './site';
-import { CITY, HOME_LOK } from './cities';
+import { BASE, comboMin, isoPrague, THIN_CAT } from './site';
+import { CITY, CITY_INDEX_MIN, HOME_LOK } from './cities';
 
 const PER_FILE = 200;
-interface U { loc: string; mod: string }
+interface U { loc: string; mod: string; img?: string; title?: string }
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const HEAD = '<?xml version="1.0" encoding="UTF-8"?>\n';
 function urlset(urls: U[]): string {
-  return HEAD + '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
-    urls.map((u) => `\t<url>\n\t\t<loc>${esc(u.loc)}</loc>${u.mod ? `\n\t\t<lastmod>${u.mod}</lastmod>` : ''}\n\t</url>`).join('\n') + '\n</urlset>';
+  const images = urls.some((u) => u.img);
+  return HEAD + `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"${images ? ' xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"' : ''}>\n` +
+    urls.map((u) => `\t<url>\n\t\t<loc>${esc(u.loc)}</loc>${u.mod ? `\n\t\t<lastmod>${u.mod}</lastmod>` : ''}` +
+      (u.img ? `\n\t\t<image:image>\n\t\t\t<image:loc>${esc(u.img)}</image:loc>\n\t\t</image:image>` : '') + '\n\t</url>').join('\n') + '\n</urlset>';
 }
 const latest = (urls: U[]) => urls.reduce((m, u) => (u.mod > m ? u.mod : m), '');
 
@@ -20,12 +22,12 @@ export async function collect(db: D1Database): Promise<Record<string, U[]>> {
   const [posts, pages, products, cats, pcats, loks, stores, combos] = await Promise.all([
     all<R>("SELECT slug, modified_at AS m FROM posts WHERE type = 'post' AND status = 'publish' AND noindex = 0 ORDER BY published_at DESC"),
     all<R>("SELECT slug, modified_at AS m FROM posts WHERE type = 'page' AND status = 'publish' AND noindex = 0 AND slug <> 'blog' ORDER BY published_at DESC"),
-    all<R>("SELECT slug, updated_at AS m FROM products WHERE active = 1 AND noindex = 0 ORDER BY updated_at DESC, id DESC"),
+    all<R & { image: string | null }>("SELECT slug, updated_at AS m, image FROM products WHERE active = 1 AND noindex = 0 ORDER BY updated_at DESC, id DESC"),
     all<R>(`SELECT c.slug, (SELECT MAX(x.created_at) FROM cat_products x WHERE x.cat_id = c.id) AS m FROM categories c
-       WHERE c.noindex = 0 AND c.canon_id = 0 AND c.count_total > 0 AND c.seo_robots NOT LIKE '%noindex%'
+       WHERE c.noindex = 0 AND c.canon_id = 0 AND c.count_total >= ${THIN_CAT} AND c.seo_robots NOT LIKE '%noindex%'
          AND NOT EXISTS (SELECT 1 FROM redirects r WHERE r.from_path = '/' || c.slug || '/') ORDER BY c.count_total DESC`),
     all<R>("SELECT c.slug, (SELECT MAX(modified_at) FROM posts p WHERE p.cat_id = c.id AND p.type = 'post' AND p.status = 'publish') AS m FROM post_categories c WHERE c.count > 0"),
-    all<R>("SELECT l.slug, (SELECT MAX(p.updated_at) FROM products p WHERE p.lok_id = l.id AND p.active = 1) AS m FROM lokality l WHERE l.count > 0 ORDER BY l.count DESC"),
+    all<R>(`SELECT l.slug, (SELECT MAX(p.updated_at) FROM products p WHERE p.lok_id = l.id AND p.active = 1) AS m FROM lokality l WHERE l.count >= ${CITY_INDEX_MIN} ORDER BY l.count DESC`),
     all<R>("SELECT s.slug, (SELECT MAX(p.updated_at) FROM products p WHERE p.store_id = s.id AND p.active = 1) AS m FROM stores s WHERE s.count > 0"),
     db.prepare("SELECT value FROM site_cache WHERE key = 'combos'").first<{ value: string }>(),
   ]);
@@ -38,7 +40,8 @@ export async function collect(db: D1Database): Promise<Record<string, U[]>> {
     if (list.length <= PER_FILE) { if (list.length) out[name] = list; return; }
     for (let i = 0, n = 1; i < list.length; i += PER_FILE, n++) out[`${name}${n}`] = list.slice(i, i + PER_FILE);
   };
-  chunk('product-sitemap', map(products));
+  // image sitemap: the offer's main photo (Google knew 21 662 images of the WordPress site) — the partner's original URL
+  chunk('product-sitemap', products.map((r) => ({ loc: `${BASE}/${r.slug}/`, mod: isoPrague(String(r.m ?? '')), ...(r.image && /^https:\/\//.test(r.image) ? { img: r.image } : {}) })));
   out['category-sitemap'] = map(pcats);
   // category × city landings (≥ COMBO_MIN offers, the 13 mapped cities) sit next to their categories
   const comboUrls: U[] = [];
@@ -54,7 +57,8 @@ export async function collect(db: D1Database): Promise<Record<string, U[]>> {
   const gifts = await all<{ slug: string; m: string | null }>("SELECT slug, '' AS m FROM slugs WHERE kind = 'gift'").catch(() => []);
   chunk('product_cat-sitemap', [...map(cats), ...map(gifts), ...comboUrls]);
   out['store-sitemap'] = map(stores, '/brand/');
-  out['pa_lokalita-sitemap'] = map(loks, '/lokalita/');
+  // only the city pages that are indexable (cityView): known places with enough offers, never the whole country
+  out['pa_lokalita-sitemap'] = map(loks.filter((l) => CITY[l.slug] && l.slug !== HOME_LOK), '/lokalita/');
   return out;
 }
 

@@ -13,3 +13,6 @@ INSERT OR REPLACE INTO cat_alias (feed_key, cat_id) SELECT 'zážitky|striptíz'
 INSERT OR REPLACE INTO cat_alias (feed_key, cat_id) SELECT 'zážitky|darčekové poukážky plné krásy', id FROM categories WHERE slug = 'wellness-a-krasa';
 -- partner names with the Slovak spelling (WordPress had 'Zlavomat.sk')
 UPDATE stores SET name = 'Zľavomat.sk' WHERE slug = 'zlavomat-sk';
+-- the old WordPress category "Wellness s večerou" is a node again (best GSC page of the old site, 3. 11. 2026)
+INSERT OR REPLACE INTO cat_alias (feed_key, cat_id) SELECT 'krása, zdravie a relaxácia|wellness s večerou', id FROM categories WHERE slug = 'wellness-s-vecerou';
+DELETE FROM redirects WHERE from_path = '/wellness-s-vecerou/';

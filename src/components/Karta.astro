@@ -26,7 +26,7 @@ const badge = left !== null && left <= 7 ? { ik: 'hodiny', t: `Končí ${dni(lef
 <li>
 	<article class={ended ? 'k k--end' : 'k'}>
 		<div class="fo">
-			{img && <img src={img.src} srcset={img.srcset} alt="" width="360" height="270" loading={idx < 3 ? 'eager' : 'lazy'} fetchpriority={idx === 0 ? 'high' : undefined} decoding="async" />}
+			{img && <img src={img.src} srcset={img.srcset} alt={name} width="360" height="270" loading={idx < 3 ? 'eager' : 'lazy'} fetchpriority={idx === 0 ? 'high' : undefined} decoding="async" />}
 			{badge && <span class="k__badge"><Ik n={badge.ik} />{badge.t}</span>}
 			<p class="k__p num">
 				<span class="k__cena">{cena(p.price)}{pt.unit && <small>/ noc</small>}{p.price_old > p.price && <del>{cena(p.price_old)}</del>}</span>

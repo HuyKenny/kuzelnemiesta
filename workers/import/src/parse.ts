@@ -4,6 +4,7 @@ import type { XmlNode } from './xml/stream';
 import { ADROP_SKIP, SK_TERMS, ZLAVOMAT_GOODS, ZLAVOMAT_MAP, ZLAVOMAT_SKIP, ZLAVOMAT_TRAVEL_MAP, affiliateUrl, type Source } from './feeds';
 import { classify } from './classify';
 import { holidayCats } from './geo';
+import { CITY_ALIAS } from '../../../src/lib/cities';
 
 export interface Info {
   /** description (plain text, paragraphs separated by \n) */
@@ -90,7 +91,8 @@ export function citySlug(s: string): string {
   const t = s.trim();
   if (!t) return '';
   if (/^(čr|sr)$/i.test(t)) return 'sr';
-  return t.normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  const slug = t.normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  return CITY_ALIAS[slug] ?? slug;
 }
 
 function zlavomat(n: XmlNode): Item | null {

@@ -45,7 +45,21 @@ export const CITY: Record<string, [string, string]> = {
   liverpool: ['Liverpool', 'v Liverpoole'],
   napoli: ['Neapol', 'v Neapole'],
   turin: ['Turín', 'v Turíne'],
+  paris: ['Paríž', 'v Paríži'],
+  munchen: ['Mníchov', 'v Mníchove'],
+  dortmund: ['Dortmund', 'v Dortmunde'],
+  amsterdam: ['Amsterdam', 'v Amsterdame'],
+  lisabon: ['Lisabon', 'v Lisabone'],
 };
+
+/** Feed spellings of the same city (FutbalTour writes Slovak names, Zľavomat English/Italian ones) → one slug, one URL. */
+export const CITY_ALIAS: Record<string, string> = {
+  londyn: 'london', milan: 'milano', rim: 'roma', neapol: 'napoli', pariz: 'paris', mnichov: 'munchen', viden: 'vieden', wien: 'vieden',
+  budapest: 'budapest', budapesti: 'budapest', prague: 'praha', torino: 'turin',
+};
+/** A city gets an indexable landing page only when it is a known place with enough offers (audit 2. 11. 2026: 139 of 166
+ *  feed place names were raw strings like "Cela Sr" or one-offer cities). */
+export const CITY_INDEX_MIN = 15;
 
 /** Unknown slug: words capitalised, "v …" (the theme's fallback). */
 export function cityName(slug: string): { nom: string; lok: string; known: boolean } {

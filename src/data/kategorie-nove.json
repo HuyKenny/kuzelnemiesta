@@ -1,90 +1,616 @@
 [
-  {"slug": "lanove-centra", "name": "Lanové centrá a lezenie", "parent": "adrenalinove-zazitky", "icon": "adrenalin"},
-  {"slug": "lety-balonom", "name": "Lety balónom", "parent": "vyhliadkove-lety", "icon": "let"},
-  {"slug": "teambuilding", "name": "Teambuilding a skupinové zážitky", "parent": "zazitky", "icon": "parta"},
-  {"slug": "pozicovne", "name": "Požičovne bicyklov, lodí a vybavenia", "parent": "zazitky", "icon": "kolo"},
-  {"slug": "zimne-sporty", "name": "Zimné športy", "parent": "sport-a-pohyb", "icon": "hory"},
-  {"slug": "pobyty-vo-vysokych-tatrach", "name": "Pobyty vo Vysokých Tatrách", "parent": "dovolenka-na-horach", "icon": "hory", "short": "Vysoké Tatry"},
-  {"slug": "pobyty-v-nizkych-tatrach", "name": "Pobyty v Nízkych Tatrách", "parent": "dovolenka-na-horach", "icon": "hory", "short": "Nízke Tatry"},
-  {"slug": "pobyty-v-malej-fatre", "name": "Pobyty v Malej Fatre", "parent": "dovolenka-na-horach", "icon": "hory", "short": "Malá Fatra"},
-  {"slug": "pobyty-v-slovenskom-raji", "name": "Pobyty v Slovenskom raji", "parent": "dovolenka-na-horach", "icon": "hory", "short": "Slovenský raj"},
-  {"slug": "dovolenka-bratislavsky-kraj", "name": "Dovolenka v Bratislavskom kraji", "parent": "dovolenka-na-slovensku", "icon": "mapa", "short": "Bratislavský kraj"},
-  {"slug": "dovolenka-trnavsky-kraj", "name": "Dovolenka v Trnavskom kraji", "parent": "dovolenka-na-slovensku", "icon": "mapa", "short": "Trnavský kraj"},
-  {"slug": "dovolenka-trenciansky-kraj", "name": "Dovolenka v Trenčianskom kraji", "parent": "dovolenka-na-slovensku", "icon": "mapa", "short": "Trenčiansky kraj"},
-  {"slug": "dovolenka-nitriansky-kraj", "name": "Dovolenka v Nitrianskom kraji", "parent": "dovolenka-na-slovensku", "icon": "mapa", "short": "Nitriansky kraj"},
-  {"slug": "dovolenka-zilinsky-kraj", "name": "Dovolenka v Žilinskom kraji", "parent": "dovolenka-na-slovensku", "icon": "mapa", "short": "Žilinský kraj"},
-  {"slug": "dovolenka-banskobystricky-kraj", "name": "Dovolenka v Banskobystrickom kraji", "parent": "dovolenka-na-slovensku", "icon": "mapa", "short": "Banskobystrický kraj"},
-  {"slug": "dovolenka-presovsky-kraj", "name": "Dovolenka v Prešovskom kraji", "parent": "dovolenka-na-slovensku", "icon": "mapa", "short": "Prešovský kraj"},
-  {"slug": "dovolenka-kosicky-kraj", "name": "Dovolenka v Košickom kraji", "parent": "dovolenka-na-slovensku", "icon": "mapa", "short": "Košický kraj"},
-  {"slug": "pobyty-na-liptove", "name": "Pobyty na Liptove", "parent": "dovolenka-na-slovensku", "icon": "mapa", "short": "Liptov"},
-  {"slug": "pobyty-na-orave", "name": "Pobyty na Orave", "parent": "dovolenka-na-slovensku", "icon": "mapa", "short": "Orava"},
-  {"slug": "pobyty-v-banskej-stiavnici", "name": "Pobyty v Banskej Štiavnici", "parent": "dovolenka-na-slovensku", "icon": "mapa", "short": "Banská Štiavnica"},
-  {"slug": "kupele-piestany", "name": "Kúpele Piešťany", "parent": "kupelne-pobyty", "icon": "lazne", "short": "Piešťany"},
-  {"slug": "sportove-zajazdy", "name": "Športové zájazdy", "parent": "zazitky", "icon": "sport", "group": "Typ zážitku"},
-  {"slug": "zajazdy-na-futbal", "name": "Zájazdy na futbal", "parent": "sportove-zajazdy", "icon": "sport"},
-  {"slug": "zajazdy-na-hokej", "name": "Zájazdy na hokej", "parent": "sportove-zajazdy", "icon": "sport"},
-  {"slug": "zajazdy-na-formulu-1", "name": "Zájazdy na Formulu 1", "parent": "sportove-zajazdy", "icon": "auto"},
-  {"slug": "dalsie-sportove-zajazdy", "name": "Tenis, NBA, NFL a ďalšie športy", "parent": "sportove-zajazdy", "icon": "sport", "short": "Ďalšie športy"},
-  {"slug": "cirkus", "name": "Cirkus – vstupenky na predstavenie", "parent": "kultura-a-vylety", "icon": "divadlo", "short": "Cirkus"},
-  {"slug": "head-spa", "name": "Head spa – hlava, vlasy a relax", "parent": "wellness-a-krasa", "icon": "", "short": "Head spa"},
-  {"slug": "jazda-vo-ferrari", "name": "Jazda vo Ferrari – zážitková jazda", "parent": "zazitkove-jazdy", "icon": "auto", "short": "Ferrari"},
-  {"slug": "jazda-v-lamborghini", "name": "Jazda v Lamborghini – zážitková jazda", "parent": "zazitkove-jazdy", "icon": "auto", "short": "Lamborghini"},
-  {"slug": "jazda-v-porsche", "name": "Jazda v Porsche – zážitková jazda", "parent": "zazitkove-jazdy", "icon": "auto", "short": "Porsche"},
-  {"slug": "jazda-vo-forde-mustang", "name": "Jazda vo Forde Mustang – zážitková jazda", "parent": "zazitkove-jazdy", "icon": "auto", "short": "Ford Mustang"},
-  {"slug": "jazda-v-dodge", "name": "Jazda v Dodge Challenger a Charger", "parent": "zazitkove-jazdy", "icon": "auto", "short": "Dodge"},
-  {"slug": "jazda-tatrou", "name": "Jazda Tatrou – offroad a legendárne nákladiaky", "parent": "zazitkove-jazdy", "icon": "auto", "short": "Tatra"},
-  {"slug": "buginy-a-stvorkolky", "name": "Bugina, štvorkolka a offroad zážitky", "parent": "zazitkove-jazdy", "icon": "auto", "short": "Buginy a štvorkolky"},
-  {"slug": "tandemovy-zoskok", "name": "Tandemový zoskok padákom", "parent": "vyhliadkove-lety", "icon": "let", "short": "Tandemový zoskok"},
-  {"slug": "paragliding", "name": "Paragliding – tandemový let", "parent": "vyhliadkove-lety", "icon": "let", "short": "Paragliding"},
-  {"slug": "let-vzducholodou", "name": "Let vzducholoďou", "parent": "vyhliadkove-lety", "icon": "let", "short": "Vzducholoď"},
-  {"slug": "veterny-tunel-a-volny-pad", "name": "Veterný tunel a voľný pád", "parent": "adrenalinove-zazitky", "icon": "adrenalin", "short": "Veterný tunel"},
-  {"slug": "via-ferrata", "name": "Via ferrata – zážitky v skalách", "parent": "adrenalinove-zazitky", "icon": "adrenalin", "short": "Via ferrata"},
-  {"slug": "flyboarding-a-jetpack", "name": "Flyboarding, jetpack a hoverboard", "parent": "adrenalinove-zazitky", "icon": "adrenalin", "short": "Jetpack a flyboard"},
-  {"slug": "potapanie", "name": "Potápanie a freediving na skúšku", "parent": "vodne-zazitky", "icon": "more", "short": "Potápanie"},
-  {"slug": "lukostrelba", "name": "Lukostreľba – kurzy a zážitky", "parent": "strelba-na-strelnici", "icon": "sport", "short": "Lukostreľba"},
-  {"slug": "minigolf", "name": "Minigolf a adventure golf", "parent": "bowling", "icon": "sport", "short": "Minigolf"},
-  {"slug": "pub-kviz", "name": "Pub kvíz a kvíz na doma", "parent": "zazitky", "icon": "parta", "short": "Pub kvíz"},
-  {"slug": "pivne-kupele", "name": "Pivné kúpele – kúpeľ v pive", "parent": "wellness-a-krasa", "icon": "", "short": "Pivné kúpele"},
-  {"slug": "prechadzka-s-alpakami", "name": "Prechádzka s kozou, alpakou a zvieratkami na farme", "parent": "za-zvieratkami", "icon": "", "short": "Kozy a alpaky"},
-  {"slug": "bungee-jumping", "name": "Bungee jumping a skok zo žeriavu", "parent": "lanove-centra", "icon": "", "short": "Bungee jumping"},
-  {"slug": "skola-smyku", "name": "Škola šmyku a bezpečná jazda", "parent": "zazitkove-jazdy", "icon": "", "short": "Škola šmyku"},
-  {"slug": "let-stihackou", "name": "Let stíhačkou L-39 Albatros", "parent": "vyhliadkove-lety", "icon": "", "short": "Let stíhačkou"},
-  {"slug": "romanticke-pobyty", "name": "Romantické pobyty pre dvoch", "parent": "pobyty", "icon": "", "short": "Romantické pobyty"},
-  {"slug": "rybolov", "name": "Rybolov a rybárske zážitky", "parent": "zazitky", "icon": "", "short": "Rybolov"},
-  {"slug": "romanticka-vecera", "name": "Romantická večera pre dvoch", "parent": "jedlo-a-pitie", "icon": "", "short": "Romantická večera"},
-  {"slug": "rozlucka-so-slobodou", "name": "Rozlúčka so slobodou", "parent": "zazitky", "icon": "", "short": "Rozlúčka so slobodou"},
-  {"slug": "izby-s-virivkou", "name": "Izby a apartmány s vírivkou", "parent": "pobyty", "icon": "", "short": "Izba s vírivkou"},
-  {"slug": "vecera-v-oblakoch", "name": "Večera v oblakoch (Dinner in the Sky)", "parent": "jedlo-a-pitie", "icon": "", "short": "Večera v oblakoch"},
-  {"slug": "kurzy-prezitia", "name": "Kurzy prežitia v prírode a survival", "parent": "kurzy", "icon": "", "short": "Kurzy prežitia"},
-  {"slug": "baristicke-kurzy", "name": "Baristické kurzy a latte art", "parent": "kurzy", "icon": "", "short": "Baristické kurzy"},
-  {"slug": "let-vrtulnikom", "name": "Vyhliadkový let vrtuľníkom", "parent": "vyhliadkove-lety", "icon": "", "short": "Let vrtuľníkom"},
-  {"slug": "letecke-simulatory", "name": "Letecké simulátory (Boeing, Airbus, Cessna)", "parent": "virtualna-realita", "icon": "", "short": "Letecké simulátory"},
-  {"slug": "degustacia-rumu-a-whisky", "name": "Degustácia rumu, whisky a destilátov", "parent": "degustacia-vina-a-piva", "icon": "", "short": "Rum a whisky"},
-  {"slug": "zajazdy-na-premier-league", "name": "Zájazdy a vstupenky na Premier League", "parent": "zajazdy-na-futbal", "icon": "", "short": "Premier League"},
-  {"slug": "zajazdy-na-serie-a", "name": "Zájazdy a vstupenky na Serie A", "parent": "zajazdy-na-futbal", "icon": "", "short": "Serie A"},
-  {"slug": "zajazdy-na-la-ligu", "name": "Zájazdy a vstupenky na La Ligu", "parent": "zajazdy-na-futbal", "icon": "", "short": "La Liga"},
-  {"slug": "zajazdy-na-bundesligu", "name": "Zájazdy a vstupenky na Bundesligu", "parent": "zajazdy-na-futbal", "icon": "", "short": "Bundesliga"},
-  {"slug": "zajazdy-na-ligue-1", "name": "Zájazdy a vstupenky na Ligue 1", "parent": "zajazdy-na-futbal", "icon": "", "short": "Ligue 1"},
-  {"slug": "zajazdy-na-ligu-majstrov", "name": "Zájazdy a vstupenky na Ligu majstrov", "parent": "zajazdy-na-futbal", "icon": "", "short": "Liga majstrov"},
-  {"slug": "zajazdy-na-europsku-ligu", "name": "Zájazdy a vstupenky na Európsku ligu", "parent": "zajazdy-na-futbal", "icon": "", "short": "Európska liga"},
-  {"slug": "zajazdy-na-nhl", "name": "Zájazdy a vstupenky na NHL", "parent": "zajazdy-na-hokej", "icon": "", "short": "NHL"},
-  {"slug": "zajazdy-na-ms-v-hokeji", "name": "Zájazdy a vstupenky na MS v hokeji", "parent": "zajazdy-na-hokej", "icon": "", "short": "MS v hokeji"},
-  {"slug": "listky-liverpool", "name": "Lístky a zájazdy na Liverpool", "parent": "zajazdy-na-futbal", "icon": "", "short": "Liverpool"},
-  {"slug": "listky-manchester-united", "name": "Lístky a zájazdy na Manchester United", "parent": "zajazdy-na-futbal", "icon": "", "short": "Manchester United"},
-  {"slug": "listky-manchester-city", "name": "Lístky a zájazdy na Manchester City", "parent": "zajazdy-na-futbal", "icon": "", "short": "Manchester City"},
-  {"slug": "listky-arsenal", "name": "Lístky a zájazdy na Arsenal", "parent": "zajazdy-na-futbal", "icon": "", "short": "Arsenal"},
-  {"slug": "listky-chelsea", "name": "Lístky a zájazdy na Chelsea", "parent": "zajazdy-na-futbal", "icon": "", "short": "Chelsea"},
-  {"slug": "listky-tottenham", "name": "Lístky a zájazdy na Tottenham", "parent": "zajazdy-na-futbal", "icon": "", "short": "Tottenham"},
-  {"slug": "listky-fc-barcelona", "name": "Lístky a zájazdy na FC Barcelona", "parent": "zajazdy-na-futbal", "icon": "", "short": "FC Barcelona"},
-  {"slug": "listky-real-madrid", "name": "Lístky a zájazdy na Real Madrid", "parent": "zajazdy-na-futbal", "icon": "", "short": "Real Madrid"},
-  {"slug": "listky-atletico-madrid", "name": "Lístky a zájazdy na Atlético Madrid", "parent": "zajazdy-na-futbal", "icon": "", "short": "Atlético Madrid"},
-  {"slug": "listky-bayern-mnichov", "name": "Lístky a zájazdy na Bayern Mníchov", "parent": "zajazdy-na-futbal", "icon": "", "short": "Bayern Mníchov"},
-  {"slug": "listky-borussia-dortmund", "name": "Lístky a zájazdy na Borussiu Dortmund", "parent": "zajazdy-na-futbal", "icon": "", "short": "Dortmund"},
-  {"slug": "listky-juventus", "name": "Lístky a zájazdy na Juventus", "parent": "zajazdy-na-futbal", "icon": "", "short": "Juventus"},
-  {"slug": "listky-inter-milano", "name": "Lístky a zájazdy na Inter Miláno", "parent": "zajazdy-na-futbal", "icon": "", "short": "Inter Miláno"},
-  {"slug": "listky-ac-milano", "name": "Lístky a zájazdy na AC Miláno", "parent": "zajazdy-na-futbal", "icon": "", "short": "AC Miláno"},
-  {"slug": "listky-ssc-neapol", "name": "Lístky a zájazdy na SSC Neapol", "parent": "zajazdy-na-futbal", "icon": "", "short": "Neapol"},
-  {"slug": "listky-as-rim", "name": "Lístky a zájazdy na AS Rím", "parent": "zajazdy-na-futbal", "icon": "", "short": "AS Rím"},
-  {"slug": "listky-lazio-rim", "name": "Lístky a zájazdy na Lazio Rím", "parent": "zajazdy-na-futbal", "icon": "", "short": "Lazio Rím"},
-  {"slug": "listky-paris-saint-germain", "name": "Lístky a zájazdy na Paris Saint-Germain", "parent": "zajazdy-na-futbal", "icon": "", "short": "PSG"}
+ {
+  "slug": "lanove-centra",
+  "name": "Lanové centrá a lezenie",
+  "parent": "adrenalinove-zazitky",
+  "icon": "adrenalin"
+ },
+ {
+  "slug": "lety-balonom",
+  "name": "Lety balónom",
+  "parent": "vyhliadkove-lety",
+  "icon": "let"
+ },
+ {
+  "slug": "teambuilding",
+  "name": "Teambuilding a skupinové zážitky",
+  "parent": "zazitky",
+  "icon": "parta"
+ },
+ {
+  "slug": "pozicovne",
+  "name": "Požičovne bicyklov, lodí a vybavenia",
+  "parent": "zazitky",
+  "icon": "kolo"
+ },
+ {
+  "slug": "zimne-sporty",
+  "name": "Zimné športy",
+  "parent": "sport-a-pohyb",
+  "icon": "hory"
+ },
+ {
+  "slug": "pobyty-vo-vysokych-tatrach",
+  "name": "Pobyty vo Vysokých Tatrách",
+  "parent": "dovolenka-na-horach",
+  "icon": "hory",
+  "short": "Vysoké Tatry"
+ },
+ {
+  "slug": "pobyty-v-nizkych-tatrach",
+  "name": "Pobyty v Nízkych Tatrách",
+  "parent": "dovolenka-na-horach",
+  "icon": "hory",
+  "short": "Nízke Tatry"
+ },
+ {
+  "slug": "pobyty-v-malej-fatre",
+  "name": "Pobyty v Malej Fatre",
+  "parent": "dovolenka-na-horach",
+  "icon": "hory",
+  "short": "Malá Fatra"
+ },
+ {
+  "slug": "pobyty-v-slovenskom-raji",
+  "name": "Pobyty v Slovenskom raji",
+  "parent": "dovolenka-na-horach",
+  "icon": "hory",
+  "short": "Slovenský raj"
+ },
+ {
+  "slug": "dovolenka-bratislavsky-kraj",
+  "name": "Dovolenka v Bratislavskom kraji",
+  "parent": "dovolenka-na-slovensku",
+  "icon": "mapa",
+  "short": "Bratislavský kraj"
+ },
+ {
+  "slug": "dovolenka-trnavsky-kraj",
+  "name": "Dovolenka v Trnavskom kraji",
+  "parent": "dovolenka-na-slovensku",
+  "icon": "mapa",
+  "short": "Trnavský kraj"
+ },
+ {
+  "slug": "dovolenka-trenciansky-kraj",
+  "name": "Dovolenka v Trenčianskom kraji",
+  "parent": "dovolenka-na-slovensku",
+  "icon": "mapa",
+  "short": "Trenčiansky kraj"
+ },
+ {
+  "slug": "dovolenka-nitriansky-kraj",
+  "name": "Dovolenka v Nitrianskom kraji",
+  "parent": "dovolenka-na-slovensku",
+  "icon": "mapa",
+  "short": "Nitriansky kraj"
+ },
+ {
+  "slug": "dovolenka-zilinsky-kraj",
+  "name": "Dovolenka v Žilinskom kraji",
+  "parent": "dovolenka-na-slovensku",
+  "icon": "mapa",
+  "short": "Žilinský kraj"
+ },
+ {
+  "slug": "dovolenka-banskobystricky-kraj",
+  "name": "Dovolenka v Banskobystrickom kraji",
+  "parent": "dovolenka-na-slovensku",
+  "icon": "mapa",
+  "short": "Banskobystrický kraj"
+ },
+ {
+  "slug": "dovolenka-presovsky-kraj",
+  "name": "Dovolenka v Prešovskom kraji",
+  "parent": "dovolenka-na-slovensku",
+  "icon": "mapa",
+  "short": "Prešovský kraj"
+ },
+ {
+  "slug": "dovolenka-kosicky-kraj",
+  "name": "Dovolenka v Košickom kraji",
+  "parent": "dovolenka-na-slovensku",
+  "icon": "mapa",
+  "short": "Košický kraj"
+ },
+ {
+  "slug": "pobyty-na-liptove",
+  "name": "Pobyty na Liptove",
+  "parent": "dovolenka-na-slovensku",
+  "icon": "mapa",
+  "short": "Liptov"
+ },
+ {
+  "slug": "pobyty-na-orave",
+  "name": "Pobyty na Orave",
+  "parent": "dovolenka-na-slovensku",
+  "icon": "mapa",
+  "short": "Orava"
+ },
+ {
+  "slug": "pobyty-v-banskej-stiavnici",
+  "name": "Pobyty v Banskej Štiavnici",
+  "parent": "dovolenka-na-slovensku",
+  "icon": "mapa",
+  "short": "Banská Štiavnica"
+ },
+ {
+  "slug": "kupele-piestany",
+  "name": "Kúpele Piešťany",
+  "parent": "kupelne-pobyty",
+  "icon": "lazne",
+  "short": "Piešťany"
+ },
+ {
+  "slug": "sportove-zajazdy",
+  "name": "Športové zájazdy",
+  "parent": "zazitky",
+  "icon": "sport",
+  "group": "Typ zážitku"
+ },
+ {
+  "slug": "zajazdy-na-futbal",
+  "name": "Zájazdy na futbal",
+  "parent": "sportove-zajazdy",
+  "icon": "sport"
+ },
+ {
+  "slug": "zajazdy-na-hokej",
+  "name": "Zájazdy na hokej",
+  "parent": "sportove-zajazdy",
+  "icon": "sport"
+ },
+ {
+  "slug": "zajazdy-na-formulu-1",
+  "name": "Zájazdy na Formulu 1",
+  "parent": "sportove-zajazdy",
+  "icon": "auto"
+ },
+ {
+  "slug": "dalsie-sportove-zajazdy",
+  "name": "Tenis, NBA, NFL a ďalšie športy",
+  "parent": "sportove-zajazdy",
+  "icon": "sport",
+  "short": "Ďalšie športy"
+ },
+ {
+  "slug": "cirkus",
+  "name": "Cirkus – vstupenky na predstavenie",
+  "parent": "kultura-a-vylety",
+  "icon": "divadlo",
+  "short": "Cirkus"
+ },
+ {
+  "slug": "head-spa",
+  "name": "Head spa – hlava, vlasy a relax",
+  "parent": "wellness-a-krasa",
+  "icon": "",
+  "short": "Head spa"
+ },
+ {
+  "slug": "jazda-vo-ferrari",
+  "name": "Jazda vo Ferrari – zážitková jazda",
+  "parent": "zazitkove-jazdy",
+  "icon": "auto",
+  "short": "Ferrari"
+ },
+ {
+  "slug": "jazda-v-lamborghini",
+  "name": "Jazda v Lamborghini – zážitková jazda",
+  "parent": "zazitkove-jazdy",
+  "icon": "auto",
+  "short": "Lamborghini"
+ },
+ {
+  "slug": "jazda-v-porsche",
+  "name": "Jazda v Porsche – zážitková jazda",
+  "parent": "zazitkove-jazdy",
+  "icon": "auto",
+  "short": "Porsche"
+ },
+ {
+  "slug": "jazda-vo-forde-mustang",
+  "name": "Jazda vo Forde Mustang – zážitková jazda",
+  "parent": "zazitkove-jazdy",
+  "icon": "auto",
+  "short": "Ford Mustang"
+ },
+ {
+  "slug": "jazda-v-dodge",
+  "name": "Jazda v Dodge Challenger a Charger",
+  "parent": "zazitkove-jazdy",
+  "icon": "auto",
+  "short": "Dodge"
+ },
+ {
+  "slug": "jazda-tatrou",
+  "name": "Jazda Tatrou – offroad a legendárne nákladiaky",
+  "parent": "zazitkove-jazdy",
+  "icon": "auto",
+  "short": "Tatra"
+ },
+ {
+  "slug": "buginy-a-stvorkolky",
+  "name": "Bugina, štvorkolka a offroad zážitky",
+  "parent": "zazitkove-jazdy",
+  "icon": "auto",
+  "short": "Buginy a štvorkolky"
+ },
+ {
+  "slug": "tandemovy-zoskok",
+  "name": "Tandemový zoskok padákom",
+  "parent": "vyhliadkove-lety",
+  "icon": "let",
+  "short": "Tandemový zoskok"
+ },
+ {
+  "slug": "paragliding",
+  "name": "Paragliding – tandemový let",
+  "parent": "vyhliadkove-lety",
+  "icon": "let",
+  "short": "Paragliding"
+ },
+ {
+  "slug": "let-vzducholodou",
+  "name": "Let vzducholoďou",
+  "parent": "vyhliadkove-lety",
+  "icon": "let",
+  "short": "Vzducholoď"
+ },
+ {
+  "slug": "veterny-tunel-a-volny-pad",
+  "name": "Veterný tunel a voľný pád",
+  "parent": "adrenalinove-zazitky",
+  "icon": "adrenalin",
+  "short": "Veterný tunel"
+ },
+ {
+  "slug": "via-ferrata",
+  "name": "Via ferrata – zážitky v skalách",
+  "parent": "adrenalinove-zazitky",
+  "icon": "adrenalin",
+  "short": "Via ferrata"
+ },
+ {
+  "slug": "flyboarding-a-jetpack",
+  "name": "Flyboarding, jetpack a hoverboard",
+  "parent": "adrenalinove-zazitky",
+  "icon": "adrenalin",
+  "short": "Jetpack a flyboard"
+ },
+ {
+  "slug": "potapanie",
+  "name": "Potápanie a freediving na skúšku",
+  "parent": "vodne-zazitky",
+  "icon": "more",
+  "short": "Potápanie"
+ },
+ {
+  "slug": "lukostrelba",
+  "name": "Lukostreľba – kurzy a zážitky",
+  "parent": "strelba-na-strelnici",
+  "icon": "sport",
+  "short": "Lukostreľba"
+ },
+ {
+  "slug": "minigolf",
+  "name": "Minigolf a adventure golf",
+  "parent": "bowling",
+  "icon": "sport",
+  "short": "Minigolf"
+ },
+ {
+  "slug": "pub-kviz",
+  "name": "Pub kvíz a kvíz na doma",
+  "parent": "zazitky",
+  "icon": "parta",
+  "short": "Pub kvíz"
+ },
+ {
+  "slug": "pivne-kupele",
+  "name": "Pivné kúpele – kúpeľ v pive",
+  "parent": "wellness-a-krasa",
+  "icon": "",
+  "short": "Pivné kúpele"
+ },
+ {
+  "slug": "prechadzka-s-alpakami",
+  "name": "Prechádzka s kozou, alpakou a zvieratkami na farme",
+  "parent": "za-zvieratkami",
+  "icon": "",
+  "short": "Kozy a alpaky"
+ },
+ {
+  "slug": "bungee-jumping",
+  "name": "Bungee jumping a skok zo žeriavu",
+  "parent": "lanove-centra",
+  "icon": "",
+  "short": "Bungee jumping"
+ },
+ {
+  "slug": "skola-smyku",
+  "name": "Škola šmyku a bezpečná jazda",
+  "parent": "zazitkove-jazdy",
+  "icon": "",
+  "short": "Škola šmyku"
+ },
+ {
+  "slug": "let-stihackou",
+  "name": "Let stíhačkou L-39 Albatros",
+  "parent": "vyhliadkove-lety",
+  "icon": "",
+  "short": "Let stíhačkou"
+ },
+ {
+  "slug": "romanticke-pobyty",
+  "name": "Romantické pobyty pre dvoch",
+  "parent": "pobyty",
+  "icon": "",
+  "short": "Romantické pobyty"
+ },
+ {
+  "slug": "rybolov",
+  "name": "Rybolov a rybárske zážitky",
+  "parent": "zazitky",
+  "icon": "",
+  "short": "Rybolov"
+ },
+ {
+  "slug": "romanticka-vecera",
+  "name": "Romantická večera pre dvoch",
+  "parent": "jedlo-a-pitie",
+  "icon": "",
+  "short": "Romantická večera"
+ },
+ {
+  "slug": "rozlucka-so-slobodou",
+  "name": "Rozlúčka so slobodou",
+  "parent": "zazitky",
+  "icon": "",
+  "short": "Rozlúčka so slobodou"
+ },
+ {
+  "slug": "izby-s-virivkou",
+  "name": "Izby a apartmány s vírivkou",
+  "parent": "pobyty",
+  "icon": "",
+  "short": "Izba s vírivkou"
+ },
+ {
+  "slug": "vecera-v-oblakoch",
+  "name": "Večera v oblakoch (Dinner in the Sky)",
+  "parent": "jedlo-a-pitie",
+  "icon": "",
+  "short": "Večera v oblakoch"
+ },
+ {
+  "slug": "kurzy-prezitia",
+  "name": "Kurzy prežitia v prírode a survival",
+  "parent": "kurzy",
+  "icon": "",
+  "short": "Kurzy prežitia"
+ },
+ {
+  "slug": "baristicke-kurzy",
+  "name": "Baristické kurzy a latte art",
+  "parent": "kurzy",
+  "icon": "",
+  "short": "Baristické kurzy"
+ },
+ {
+  "slug": "let-vrtulnikom",
+  "name": "Vyhliadkový let vrtuľníkom",
+  "parent": "vyhliadkove-lety",
+  "icon": "",
+  "short": "Let vrtuľníkom"
+ },
+ {
+  "slug": "letecke-simulatory",
+  "name": "Letecké simulátory (Boeing, Airbus, Cessna)",
+  "parent": "virtualna-realita",
+  "icon": "",
+  "short": "Letecké simulátory"
+ },
+ {
+  "slug": "degustacia-rumu-a-whisky",
+  "name": "Degustácia rumu, whisky a destilátov",
+  "parent": "degustacia-vina-a-piva",
+  "icon": "",
+  "short": "Rum a whisky"
+ },
+ {
+  "slug": "zajazdy-na-premier-league",
+  "name": "Zájazdy a vstupenky na Premier League",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "Premier League"
+ },
+ {
+  "slug": "zajazdy-na-serie-a",
+  "name": "Zájazdy a vstupenky na Serie A",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "Serie A"
+ },
+ {
+  "slug": "zajazdy-na-la-ligu",
+  "name": "Zájazdy a vstupenky na La Ligu",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "La Liga"
+ },
+ {
+  "slug": "zajazdy-na-bundesligu",
+  "name": "Zájazdy a vstupenky na Bundesligu",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "Bundesliga"
+ },
+ {
+  "slug": "zajazdy-na-ligue-1",
+  "name": "Zájazdy a vstupenky na Ligue 1",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "Ligue 1"
+ },
+ {
+  "slug": "zajazdy-na-ligu-majstrov",
+  "name": "Zájazdy a vstupenky na Ligu majstrov",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "Liga majstrov"
+ },
+ {
+  "slug": "zajazdy-na-europsku-ligu",
+  "name": "Zájazdy a vstupenky na Európsku ligu",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "Európska liga"
+ },
+ {
+  "slug": "zajazdy-na-nhl",
+  "name": "Zájazdy a vstupenky na NHL",
+  "parent": "zajazdy-na-hokej",
+  "icon": "",
+  "short": "NHL"
+ },
+ {
+  "slug": "zajazdy-na-ms-v-hokeji",
+  "name": "Zájazdy a vstupenky na MS v hokeji",
+  "parent": "zajazdy-na-hokej",
+  "icon": "",
+  "short": "MS v hokeji"
+ },
+ {
+  "slug": "listky-liverpool",
+  "name": "Lístky a zájazdy na Liverpool",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "Liverpool"
+ },
+ {
+  "slug": "listky-manchester-united",
+  "name": "Lístky a zájazdy na Manchester United",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "Manchester United"
+ },
+ {
+  "slug": "listky-manchester-city",
+  "name": "Lístky a zájazdy na Manchester City",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "Manchester City"
+ },
+ {
+  "slug": "listky-arsenal",
+  "name": "Lístky a zájazdy na Arsenal",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "Arsenal"
+ },
+ {
+  "slug": "listky-chelsea",
+  "name": "Lístky a zájazdy na Chelsea",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "Chelsea"
+ },
+ {
+  "slug": "listky-tottenham",
+  "name": "Lístky a zájazdy na Tottenham",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "Tottenham"
+ },
+ {
+  "slug": "listky-fc-barcelona",
+  "name": "Lístky a zájazdy na FC Barcelona",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "FC Barcelona"
+ },
+ {
+  "slug": "listky-real-madrid",
+  "name": "Lístky a zájazdy na Real Madrid",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "Real Madrid"
+ },
+ {
+  "slug": "listky-atletico-madrid",
+  "name": "Lístky a zájazdy na Atlético Madrid",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "Atlético Madrid"
+ },
+ {
+  "slug": "listky-bayern-mnichov",
+  "name": "Lístky a zájazdy na Bayern Mníchov",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "Bayern Mníchov"
+ },
+ {
+  "slug": "listky-borussia-dortmund",
+  "name": "Lístky a zájazdy na Borussiu Dortmund",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "Dortmund"
+ },
+ {
+  "slug": "listky-juventus",
+  "name": "Lístky a zájazdy na Juventus",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "Juventus"
+ },
+ {
+  "slug": "listky-inter-milano",
+  "name": "Lístky a zájazdy na Inter Miláno",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "Inter Miláno"
+ },
+ {
+  "slug": "listky-ac-milano",
+  "name": "Lístky a zájazdy na AC Miláno",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "AC Miláno"
+ },
+ {
+  "slug": "listky-ssc-neapol",
+  "name": "Lístky a zájazdy na SSC Neapol",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "Neapol"
+ },
+ {
+  "slug": "listky-as-rim",
+  "name": "Lístky a zájazdy na AS Rím",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "AS Rím"
+ },
+ {
+  "slug": "listky-lazio-rim",
+  "name": "Lístky a zájazdy na Lazio Rím",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "Lazio Rím"
+ },
+ {
+  "slug": "listky-paris-saint-germain",
+  "name": "Lístky a zájazdy na Paris Saint-Germain",
+  "parent": "zajazdy-na-futbal",
+  "icon": "",
+  "short": "PSG"
+ },
+ {
+  "slug": "wellness-s-vecerou",
+  "name": "Wellness s večerou",
+  "parent": "sauna-a-wellness",
+  "icon": "sauna"
+ }
 ]

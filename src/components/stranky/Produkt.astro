@@ -80,7 +80,7 @@ const kostka = [
 				{p.disc_pct >= 5 && <span class="uspora num">−{p.disc_pct} %</span>}
 				{gallery.length > 1 && (
 					<div class="ga__t">{gallery.map((g, i) => { const c = card(g, 160); const h = hero(g); return c && h ? (
-						<button type="button" data-src={h.src} data-srcset={h.srcset} aria-current={i === 0 ? 'true' : 'false'} aria-label={`Fotka ${i + 1}`}><img src={c.src} alt="" width="96" height="72" loading="lazy" /></button>
+						<button type="button" data-src={h.src} data-srcset={h.srcset} aria-current={i === 0 ? 'true' : 'false'} aria-label={`Fotka ${i + 1}`}><img src={c.src} alt={`${name} – fotka ${i + 1}`} width="96" height="72" loading="lazy" /></button>
 					) : null; })}</div>
 				)}
 			</div>

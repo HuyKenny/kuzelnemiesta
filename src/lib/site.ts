@@ -18,8 +18,12 @@ export const POSTS_PER_PAGE = 12;
 export const COMBO_MIN = 40;
 /** Smaller Slovak towns get their landings from fewer offers. */
 export const COMBO_MIN_EXTRA = 15;
-const EXTRA = new Set(['trnava', 'trencin', 'nitra', 'banska-bystrica', 'presov', 'zilina', 'poprad', 'piestany', 'martin']);
+// smaller Slovak towns and the cities of FutbalTour's football trips
+const EXTRA = new Set(['trnava', 'trencin', 'nitra', 'banska-bystrica', 'presov', 'zilina', 'poprad', 'piestany', 'martin',
+  'london', 'manchester', 'liverpool', 'milano', 'roma', 'madrid', 'barcelona', 'munchen', 'dortmund', 'paris', 'napoli', 'turin']);
 export const comboMin = (city: string) => (EXTRA.has(city) ? COMBO_MIN_EXTRA : COMBO_MIN);
+/** A category with fewer active offers is thin: reachable, but noindex and out of the sitemap (SEO audit 2. 11. 2026). */
+export const THIN_CAT = 5;
 /** Days an ended offer keeps its page ("Ponuka skončila", noindex) before it 301s to its category. */
 export const EXPIRED_KEEP_DAYS = 30;
 /** Operator (same as the legal pages). */
@@ -33,7 +37,7 @@ export function orgGraph(searchAction = false): unknown[] {
     },
     {
       '@type': 'WebSite', '@id': BASE + '/#website', url: BASE, name: SITE_NAME, description: SITE_DESC, publisher: { '@id': BASE + '/#organization' }, inLanguage: LANG,
-      ...(searchAction ? { potentialAction: { '@type': 'SearchAction', target: BASE + '/?s={search_term_string}&post_type=product', 'query-input': 'required name=search_term_string' } } : {}),
+      ...(searchAction ? { potentialAction: { '@type': 'SearchAction', target: BASE + '/?s={search_term_string}', 'query-input': 'required name=search_term_string' } } : {}),
     },
   ];
 }

@@ -1,114 +1,1185 @@
 {
-  "_doc": "Strom kategorií kuzelnemiesta.sk (2. 11. 2026): slovenský překlad stromu kouzelnydeda.cz (redesign v2, 31. 10. 2026). Každý uzel: slug (URL /<slug>/), name, parent (slug nebo null = sekce), icon (public/a/ik/<icon>.webp), short, group, from = staré slugy slovenského WordPressu (old-categories.json), které do uzlu spadají (301 + členství nabídek); starý slug shodný se slugem uzlu je ve from také a URL zůstává beze změny. Starý slug, který není nikde vyjmenovaný, spadá do sekce svého starého kořene (roots); skip = zbožové kategorie, jejichž nabídky končí. Slugy: kde staré SK URL sedí na uzel, zůstává (zachovaná síla z Googlu), jinak nový slug podle toho, jak hledá Slovák. Uzly zemí, Slovenska a Česka (a další se starým SK slugem, např. paintball-a-lasergame, privatny-wellness) jsou tady, ne v kategorie-nove.json, aby si udržely staré URL bez 301. Převod českých slugů v kódu: slug-map.json.",
-  "roots": {"cestovanie": "pobyty", "krasa-zdravie-a-relaxacia": "wellness-a-krasa", "zazitky": "zazitky", "restauracie": "jedlo-a-pitie", "jazykove-kurzy-2": "jazykove-kurzy", "ostatne-kurzy-2": "kurzy", "zazitky-a-zabava-2": "zazitky", "autoskola": "kurzy", "nezarazene": "zazitky", "tovar": "jedlo-a-pitie"},
-  "skip": ["jedlo-so-sebou", "rozvoz-jedla", "krabickova-dieta-restauracie", "tovar", "krabickova-dieta", "potraviny-a-napoje", "restauracie-a-bary-tovar", "rozvoz-jedla-tovar"],
-  "nodes": [
-    {"slug": "pobyty", "name": "Pobyty a dovolenka", "parent": null, "icon": "pobyty", "short": "Pobyty", "from": ["cestovanie", "dovolenka", "vyberte-si-typ-ubytovania", "sezonne-ponuky", "ubytovanie-v-hoteli", "pobyty-a-ubytovanie", "pre-koho", "pobyty-a-dovolenky-pre-jedneho", "pobyty-a-dovolenky-pre-muza", "pobyty-a-dovolenky-pre-zenu", "relax-a-odpocinok", "ubytovanie-s-bazenom", "dovolenka-pri-vode", "pobyty-a-ubytovanie-pri-vode", "cestovanie-zazitky", "cestovanie-zazitky-a-zabava-2", "dovolenka-zazitky-a-zabava-2", "pre-koho-zazitky-a-zabava-2", "sezonne-ponuky-zazitky-a-zabava-2", "vyberte-si-typ-ubytovania-zazitky-a-zabava-2", "pobyty-a-dovolenky-pre-jedneho-zazitky-a-zabava-2", "pobyty-a-dovolenky-pre-zenu-zazitky-a-zabava-2", "last-minute-pobyty-a-dovolenka-zazitky-a-zabava-2"]},
-    {"slug": "wellness-pobyty", "name": "Wellness pobyty", "parent": "pobyty", "icon": "wellness", "group": "Typ pobytu", "from": ["wellness-dovolenka", "wellness-dovolenka-zazitky-a-zabava-2"]},
-    {"slug": "pobyty-pre-dvoch", "name": "Pobyty pre dvoch", "parent": "pobyty", "icon": "srdce", "group": "Pre koho", "from": ["pobyty-a-dovolenky-pre-pary", "romantika-pre-dvoch"]},
-    {"slug": "kupelne-pobyty", "name": "Kúpeľné pobyty", "parent": "pobyty", "icon": "lazne", "group": "Typ pobytu", "from": ["dovolenka-v-kupeloch"]},
-    {"slug": "termalne-kupele", "name": "Termálne kúpele", "parent": "kupelne-pobyty", "icon": "lazne", "from": ["termalne-kupele"]},
-    {"slug": "dovolenka-na-horach", "name": "Dovolenka na horách", "parent": "pobyty", "icon": "hory", "group": "Typ pobytu", "from": ["dovolenka-na-horach", "dovolenka-na-horach-zazitky-a-zabava-2"]},
-    {"slug": "lyziarske-pobyty", "name": "Lyžiarske pobyty", "parent": "dovolenka-na-horach", "icon": "hory", "from": ["lyziarske-pobyty", "skipas"]},
-    {"slug": "netradicne-ubytovanie", "name": "Netradičné ubytovanie", "parent": "pobyty", "icon": "chata", "group": "Typ pobytu", "from": ["netradicne-ubytovanie", "hausboty-a-lode", "ubytovanie-v-kempe"]},
-    {"slug": "glamping", "name": "Glamping", "parent": "netradicne-ubytovanie", "icon": "chata", "from": ["glamping"]},
-    {"slug": "tiny-house", "name": "Tiny house", "parent": "netradicne-ubytovanie", "icon": "chata", "from": ["tiny-house"]},
-    {"slug": "treehouse", "name": "Treehouse", "parent": "netradicne-ubytovanie", "icon": "chata", "from": ["treehouse"]},
-    {"slug": "chaty-a-chalupy", "name": "Chaty a chalupy", "parent": "pobyty", "icon": "chata", "group": "Typ pobytu", "from": ["ubytovanie-v-chate-chalupe-zrube-ci-drevenici", "pobyty-a-ubytovanie-na-vidieku", "ubytovanie-v-chate-chalupe-zrube-ci-drevenici-zazitky-a-zabava-2", "pobyty-a-ubytovanie-na-vidieku-zazitky-a-zabava-2"]},
-    {"slug": "penziony", "name": "Penzióny a apartmány", "parent": "pobyty", "icon": "pobyty", "group": "Typ pobytu", "from": ["ubytovanie-v-penzione", "ubytovanie-v-apartmane-ci-v-sukromi", "ubytovanie-v-penzione-zazitky-a-zabava-2"]},
-    {"slug": "luxusne-ubytovanie", "name": "Luxusné hotely a ubytovanie", "parent": "pobyty", "icon": "luxus", "group": "Typ pobytu", "from": ["luxusne-ubytovanie"]},
-    {"slug": "pobyt-na-zamku", "name": "Pobyty na zámku a v zámockých hoteloch", "parent": "pobyty", "icon": "luxus", "short": "Pobyty na zámku", "group": "Typ pobytu", "from": ["pobyt-na-zamku"]},
-    {"slug": "dovolenka-all-inclusive", "name": "Dovolenka all inclusive", "parent": "pobyty", "icon": "more", "short": "All inclusive", "group": "Typ pobytu", "from": ["dovolenka-all-inclusive"]},
-    {"slug": "aktivna-dovolenka-a-sport", "name": "Aktívna dovolenka a šport", "parent": "pobyty", "icon": "kolo", "short": "Aktívna dovolenka", "group": "Typ pobytu", "from": ["aktivna-dovolenka-a-sport", "vyberte-si-dovolenku-podla-aktivity", "turistika-v-prirode", "cyklistika", "golf", "jazda-na-koni", "aktivna-dovolenka-a-sport-zazitky-a-zabava-2", "cyklistika-zazitky-a-zabava-2", "turistika-v-prirode-zazitky-a-zabava-2", "vyberte-si-dovolenku-podla-aktivity-zazitky-a-zabava-2"]},
-    {"slug": "degustacne-pobyty", "name": "Gurmánske a degustačné pobyty", "parent": "pobyty", "icon": "vino", "short": "Gurmánske pobyty", "group": "Typ pobytu", "from": ["degustacne-pobyty", "vinarske-pobyty", "pivne-pobyty-a-degustacie", "pobyty-s-regionalnou-kuchynou", "pobyty-s-degustacnou-vecerou"]},
-    {"slug": "zazitkove-pobyty", "name": "Zážitkové pobyty", "parent": "pobyty", "icon": "hvezda", "group": "Typ pobytu", "from": ["zazitkove-pobyty", "zazitky-a-zabava"]},
-    {"slug": "rekreacne-poukazy", "name": "Pobyty na rekreačný poukaz", "parent": "pobyty", "icon": "voucher", "short": "Rekreačné poukazy", "group": "Typ pobytu", "from": ["rekreacne-poukazy", "rekreacne-poukazy-zazitky-a-zabava-2"]},
-    {"slug": "pobyty-s-detmi", "name": "Pobyty s deťmi", "parent": "pobyty", "icon": "rodina", "group": "Pre koho", "from": ["pobyty-a-dovolenky-s-detmi", "letne-prazdniny", "jesenne-prazdniny", "jarne-prazdniny", "pobyty-a-dovolenky-s-detmi-zazitky-a-zabava-2", "letne-prazdniny-zazitky-a-zabava-2"]},
-    {"slug": "pobyty-so-psom", "name": "Pobyty so psom", "parent": "pobyty", "icon": "pes", "group": "Pre koho", "from": ["pobyty-so-psom-alebo-mackou", "pobyty-so-psom-alebo-mackou-zazitky-a-zabava-2"]},
-    {"slug": "pobyty-pre-seniorov", "name": "Pobyty pre seniorov", "parent": "pobyty", "icon": "seniori", "group": "Pre koho", "from": ["pobyty-a-dovolenky-pre-seniorov"]},
-    {"slug": "pobyty-bez-deti", "name": "Pobyty bez detí", "parent": "pobyty", "icon": "srdce", "group": "Pre koho", "from": ["pobyty-a-dovolenky-bez-deti"]},
-    {"slug": "pobyty-pre-skupiny", "name": "Pobyty pre partiu", "parent": "pobyty", "icon": "parta", "group": "Pre koho", "from": ["pobyty-a-dovolenky-pre-skupinu"]},
-    {"slug": "vikendove-pobyty", "name": "Víkendové pobyty", "parent": "pobyty", "icon": "kalendar", "group": "Kedy", "from": ["vikendove-pobyty"]},
-    {"slug": "last-minute-pobyty-a-dovolenka", "name": "Last minute pobyty", "parent": "pobyty", "icon": "hodiny", "short": "Last minute", "group": "Kedy", "from": ["last-minute-pobyty-a-dovolenka"]},
-    {"slug": "silvestrovske-pobyty", "name": "Silvestrovské pobyty", "parent": "pobyty", "icon": "ohnostroj", "group": "Kedy", "from": ["silvester"]},
-    {"slug": "vianocne-pobyty", "name": "Vianočné a adventné pobyty", "parent": "pobyty", "icon": "vanoce", "group": "Kedy", "from": ["vianoce", "advent"]},
-    {"slug": "velkonocne-pobyty", "name": "Veľkonočné pobyty", "parent": "pobyty", "icon": "kalendar", "group": "Kedy", "from": ["velka-noc"]},
-    {"slug": "valentinske-pobyty", "name": "Valentínske pobyty", "parent": "pobyty", "icon": "srdce", "group": "Kedy", "from": ["valentin"]},
-    {"slug": "dovolenka-na-slovensku", "name": "Dovolenka na Slovensku", "parent": "pobyty", "icon": "mapa", "short": "Slovensko", "group": "Kam", "from": ["dovolenka-na-slovensku", "dovolenka-na-slovensku-zazitky-a-zabava-2"]},
-    {"slug": "dovolenka-v-cesku", "name": "Dovolenka v Česku", "parent": "pobyty", "icon": "mapa", "short": "Česko", "group": "Kam", "from": ["dovolenka-v-cesku"]},
-    {"slug": "dovolenka-pri-mori", "name": "Dovolenka pri mori a v zahraničí", "parent": "pobyty", "icon": "more", "short": "Pri mori a v zahraničí", "group": "Kam", "from": ["dovolenka-a-vylety-k-moru", "zajazdy-do-zahranicia", "vylety-do-zahranicia", "jednodnove-zajazdy-do-zahranicia", "eurovikendy", "exoticka-dovolenka", "jednodnove-kupanie-pri-mori", "bra", "dovolenka-v-albansku", "dovolenka-v-bosne-a-hercegovine", "dovolenka-v-bulharsku", "dovolenka-v-ciernej-hore", "dovolenka-v-holandsku", "dovolenka-v-portugalsku", "dovolenka-v-spanielsku", "dovolenka-vo-svajciarsku", "dovolenka-vo-svedsku", "jednodnove-zajazdy-do-zahranicia-zazitky-a-zabava-2", "vylety-do-zahranicia-zazitky-a-zabava-2"]},
-    {"slug": "poznavacie-zajazdy", "name": "Poznávacie zájazdy", "parent": "dovolenka-pri-mori", "icon": "bus", "from": ["poznavacie-zajazdy"]},
-    {"slug": "dovolenka-v-chorvatsku", "name": "Dovolenka v Chorvátsku", "parent": "dovolenka-pri-mori", "icon": "more", "short": "Chorvátsko", "group": "Krajina", "from": ["dovolenka-v-chorvatsku"]},
-    {"slug": "dovolenka-v-taliansku", "name": "Dovolenka v Taliansku", "parent": "dovolenka-pri-mori", "icon": "more", "short": "Taliansko", "group": "Krajina", "from": ["dovolenka-v-taliansku"]},
-    {"slug": "dovolenka-v-polsku", "name": "Dovolenka v Poľsku", "parent": "dovolenka-pri-mori", "icon": "more", "short": "Poľsko", "group": "Krajina", "from": ["dovolenka-v-polsku"]},
-    {"slug": "dovolenka-v-rakusku", "name": "Dovolenka v Rakúsku", "parent": "dovolenka-pri-mori", "icon": "more", "short": "Rakúsko", "group": "Krajina", "from": ["dovolenka-v-rakusku"]},
-    {"slug": "dovolenka-v-madarsku", "name": "Dovolenka v Maďarsku", "parent": "dovolenka-pri-mori", "icon": "more", "short": "Maďarsko", "group": "Krajina", "from": ["dovolenka-v-madarsku"]},
-    {"slug": "dovolenka-v-slovinsku", "name": "Dovolenka v Slovinsku", "parent": "dovolenka-pri-mori", "icon": "more", "short": "Slovinsko", "group": "Krajina", "from": ["dovolenka-v-slovinsku"]},
-    {"slug": "dovolenka-v-nemecku", "name": "Dovolenka v Nemecku", "parent": "dovolenka-pri-mori", "icon": "more", "short": "Nemecko", "group": "Krajina", "from": ["dovolenka-v-nemecku"]},
-
-    {"slug": "zazitky", "name": "Zážitky", "parent": null, "icon": "zazitky", "short": "Zážitky", "from": ["zazitky", "nezarazene", "specialne-akcie", "zazitky-a-zabava-2", "zazitky-a-zabava-zazitky-a-zabava-2"]},
-    {"slug": "adrenalinove-zazitky", "name": "Adrenalínové zážitky", "parent": "zazitky", "icon": "adrenalin", "from": ["adrenalinove-zazitky", "adrenalinove-zazitky-ostatne-kurzy-2"]},
-    {"slug": "vyhliadkove-lety", "name": "Lety a zážitky vo vzduchu", "parent": "adrenalinove-zazitky", "icon": "let", "from": ["vyhliadkove-lety", "adrenalin-vo-vzduchu", "adrenalin-vo-vzduchu-ostatne-kurzy-2"]},
-    {"slug": "strelba-na-strelnici", "name": "Streľba a airsoft", "parent": "adrenalinove-zazitky", "icon": "adrenalin", "short": "Streľba", "from": ["strelba-na-strelnici"]},
-    {"slug": "paintball-a-lasergame", "name": "Paintball a laser game", "parent": "adrenalinove-zazitky", "icon": "adrenalin", "from": ["paintball-a-lasergame"]},
-    {"slug": "zazitkove-jazdy", "name": "Zážitkové jazdy", "parent": "zazitky", "icon": "auto", "from": ["auto-moto-zazitky", "jazdy-a-prenajmy-aut", "zazitky-autoskola"]},
-    {"slug": "jazda-na-okruhu", "name": "Jazda na okruhu", "parent": "zazitkove-jazdy", "icon": "auto", "from": []},
-    {"slug": "motokary", "name": "Motokáry", "parent": "zazitkove-jazdy", "icon": "auto", "from": []},
-    {"slug": "escape-room", "name": "Únikové hry a escape room", "parent": "zazitky", "icon": "klic", "short": "Únikové hry", "from": ["escape-room", "unikove-a-indoor-hry", "online-unikove-hry"]},
-    {"slug": "vonkajsie-hry", "name": "Vonkajšie hry a city quest", "parent": "zazitky", "icon": "mapa", "from": ["vonkajsie-hry"]},
-    {"slug": "virtualna-realita", "name": "Virtuálna realita", "parent": "zazitky", "icon": "vr", "from": ["virtualna-realita"]},
-    {"slug": "vodne-zazitky", "name": "Vodné zážitky", "parent": "zazitky", "icon": "more", "from": ["adrenalin-na-vode", "splavy-a-rafting"]},
-    {"slug": "kultura-a-vylety", "name": "Kultúra a výlety", "parent": "zazitky", "icon": "divadlo", "from": ["kultura", "divadlo", "koncerty", "kino", "plavba-lodou", "prenajom-lode"]},
-    {"slug": "vystavy-a-muzea", "name": "Múzeá, výstavy a prehliadky", "parent": "kultura-a-vylety", "icon": "divadlo", "from": ["vystavy-a-muzea", "exkurzia"]},
-    {"slug": "zabavne-parky", "name": "Zábavné parky a aquaparky", "parent": "kultura-a-vylety", "icon": "atrakce", "from": ["zabavne-parky", "aquaparky-a-kupanie", "zabavne-parky-zazitky-a-zabava-2"]},
-    {"slug": "za-zvieratkami", "name": "Zoo a zvieratká", "parent": "kultura-a-vylety", "icon": "zvire", "from": ["za-zvieratkami", "za-zvieratkami-ostatne-kurzy-2"]},
-    {"slug": "zazitky-pre-deti", "name": "Zážitky pre deti", "parent": "zazitky", "icon": "deti", "from": ["zazitky-pre-deti", "detske-tabory", "detske-tabory-zazitky-a-zabava-2", "zazitky-pre-deti-zazitky-a-zabava-2"]},
-    {"slug": "sport-a-pohyb", "name": "Šport a pohyb", "parent": "zazitky", "icon": "sport", "from": ["sportove-zazitky"]},
-    {"slug": "fitness", "name": "Cvičenie, fitness a jóga", "parent": "sport-a-pohyb", "icon": "sport", "short": "Fitness a jóga", "from": ["fitness", "joga"]},
-    {"slug": "jazdenie-na-koni", "name": "Jazda na koni", "parent": "sport-a-pohyb", "icon": "kun", "from": ["jazda-na-koni-zazitky"]},
-    {"slug": "bowling", "name": "Bowling a zábava", "parent": "zazitky", "icon": "atrakce", "from": ["bowling"]},
-    {"slug": "fotenie", "name": "Fotenie a fotoateliéry", "parent": "zazitky", "icon": "foto", "from": ["fotenie"]},
-    {"slug": "striptiz", "name": "Striptíz a pánske zábavy", "parent": "zazitky", "icon": "hvezda", "from": []},
-
-    {"slug": "wellness-a-krasa", "name": "Wellness a krása", "parent": null, "icon": "krasa", "short": "Wellness a krása", "from": ["krasa-zdravie-a-relaxacia", "krasa-zdravie-a-relaxacia-zazitky", "darcekove-poukazky-plne-krasy"]},
-    {"slug": "masaze", "name": "Masáže", "parent": "wellness-a-krasa", "icon": "masaz", "from": ["masaze", "masaze-zazitky", "klasicka-relaxacna-masaz", "klasicka-relaxacna-masaz-zazitky", "specialne-masaze", "specialne-masaze-zazitky", "reflexna-masaz", "anticelulitidne-masaze", "ajurvedske-masaze"]},
-    {"slug": "thajske-masaze", "name": "Thajské masáže", "parent": "masaze", "icon": "masaz", "from": ["thajske-masaze"]},
-    {"slug": "lymfodrenaz", "name": "Lymfodrenáž a lymfatická masáž", "parent": "masaze", "icon": "masaz", "short": "Lymfodrenáž", "from": ["lymfodrenaz", "lymfaticka-masaz"]},
-    {"slug": "tantricke-masaze", "name": "Tantrické masáže", "parent": "masaze", "icon": "masaz", "from": []},
-    {"slug": "zdravotne-masaze", "name": "Zdravotné masáže", "parent": "masaze", "icon": "masaz", "from": ["zdravotne-masaze", "zdravotne-masaze-zazitky"]},
-    {"slug": "sauna-a-wellness", "name": "Sauna a wellness", "parent": "wellness-a-krasa", "icon": "sauna", "from": ["sauna-a-wellness", "sauna-a-wellness-zazitky", "wellness-s-vecerou", "wellness-s-vecerou-zazitky"]},
-    {"slug": "privatny-wellness", "name": "Privátny wellness a spa pre dvoch", "parent": "sauna-a-wellness", "icon": "sauna", "short": "Privátny wellness", "from": ["privatny-wellness", "privatny-wellness-zazitky"]},
-    {"slug": "solna-jaskyna", "name": "Soľná jaskyňa", "parent": "sauna-a-wellness", "icon": "sauna", "from": ["solna-jaskyna"]},
-    {"slug": "kozmeticke-sluzby", "name": "Kozmetika a starostlivosť o pleť", "parent": "wellness-a-krasa", "icon": "kosmetika", "short": "Kozmetika", "from": ["kozmeticke-sluzby", "starostlivost-o-tvar", "starostlivost-o-tvar-zazitky", "omladzujuce-procedury", "esteticke-zakroky-a-procedury", "esteticka-medicina", "operacie-a-zakroky", "epilacia-a-depilacia", "solarium", "balicky-plne-krasy-a-relaxu", "radiofrekvencia", "vizaz", "vizaz-zazitky"]},
-    {"slug": "kadernictvo", "name": "Kaderníctvo", "parent": "wellness-a-krasa", "icon": "nuzky", "from": ["kadernictvo", "kadernictvo-zazitky", "detske-strihy-a-ucesy"]},
-    {"slug": "barber", "name": "Barber shop", "parent": "kadernictvo", "icon": "nuzky", "from": ["barber"]},
-    {"slug": "manikura-a-pedikura", "name": "Manikúra a pedikúra", "parent": "wellness-a-krasa", "icon": "nehty", "from": ["starostlivost-o-nechty", "manikura", "pedikura", "starostlivost-o-nechty-zazitky", "manikura-zazitky", "pedikura-zazitky"]},
-    {"slug": "zostihlujuce-procedury", "name": "Chudnutie a tvarovanie postavy", "parent": "wellness-a-krasa", "icon": "metr", "short": "Chudnutie a tvarovanie", "from": ["zostihlujuce-procedury", "zostihlujuce-procedury-zazitky", "kavitacia", "kryolipolyza", "maderoterapia", "lpg", "anticelulitidne-zabaly", "infrashape", "infrashape-zazitky"]},
-    {"slug": "starostlivost-o-zdravie", "name": "Starostlivosť o zdravie a zuby", "parent": "wellness-a-krasa", "icon": "zdravi", "short": "Zdravie a zuby", "from": ["starostlivost-o-zdravie", "starostlivost-o-zdravie-zazitky", "dentalna-starostlivost", "zdrave-stravovanie", "zdrave-stravovanie-zazitky"]},
-
-    {"slug": "jedlo-a-pitie", "name": "Jedlo a pitie", "parent": null, "icon": "jidlo", "short": "Jedlo a pitie", "from": ["restauracie", "restauracie-a-bary", "restauracie-a-bary-zazitky", "medzinarodna-kuchyna", "vegetarianska-kuchyna", "ryby-a-morske-plody", "ranajky", "street-food", "hot-dogy-a-sendvice", "restauracie-pre-deti", "jedlo-so-sebou", "rozvoz-jedla", "krabickova-dieta-restauracie"]},
-    {"slug": "degustacne-menu", "name": "Degustačné menu", "parent": "jedlo-a-pitie", "icon": "degustace", "from": ["degustacne-menu", "degustacne-menu-zazitky", "degustacia"]},
-    {"slug": "sushi", "name": "Sushi a running sushi", "parent": "jedlo-a-pitie", "icon": "sushi", "from": ["sushi", "sushi-zazitky"]},
-    {"slug": "steaky-a-burgery", "name": "Steaky a burgery", "parent": "jedlo-a-pitie", "icon": "steak", "from": ["steaky-a-maso", "steaky-a-maso-zazitky", "burger"]},
-    {"slug": "tatarsky-biftek", "name": "Tatársky biftek", "parent": "jedlo-a-pitie", "icon": "steak", "from": []},
-    {"slug": "azijska-kuchyna", "name": "Ázijská a indická kuchyňa", "parent": "jedlo-a-pitie", "icon": "hulky", "from": ["azijska-kuchyna", "indicka-kuchyna"]},
-    {"slug": "pizza-a-talianska-kuchyna", "name": "Pizza a talianska kuchyňa", "parent": "jedlo-a-pitie", "icon": "pizza", "from": ["pizza-a-talianska-kuchyna", "pizza-a-talianska-kuchyna-zazitky"]},
-    {"slug": "slovenska-kuchyna", "name": "Slovenská kuchyňa", "parent": "jedlo-a-pitie", "icon": "jidlo", "from": ["slovenska-kuchyna", "slovenska-kuchyna-zazitky", "kacacie-a-husacie-hody"]},
-    {"slug": "mexicka-kuchyna", "name": "Mexická kuchyňa", "parent": "jedlo-a-pitie", "icon": "jidlo", "from": []},
-    {"slug": "kaviarne-a-torty", "name": "Kaviarne a torty", "parent": "jedlo-a-pitie", "icon": "kava", "from": ["kaviarne", "kava-a-caj", "torty-a-sladkosti", "cukrovinky"]},
-    {"slug": "bary-a-drinky", "name": "Bary a drinky", "parent": "jedlo-a-pitie", "icon": "drink", "from": []},
-    {"slug": "degustacia-vina-a-piva", "name": "Degustácia vína a piva", "parent": "jedlo-a-pitie", "icon": "vino", "from": ["napoje-a-ochutnavky", "napoje-a-ochutnavky-zazitky"]},
-    {"slug": "otvorene-vouchery-do-restauracii", "name": "Vouchery do reštaurácií", "parent": "jedlo-a-pitie", "icon": "voucher", "from": ["otvorene-vouchery-do-restauracii", "otvorene-vouchery"]},
-
-    {"slug": "kurzy", "name": "Kurzy a workshopy", "parent": null, "icon": "kurzy", "short": "Kurzy", "from": ["kurzy-a-skolenia", "vzdelavacie-kurzy", "ostatne-kurzy", "ostatne-kurzy-2", "kurzy-a-skolenia-ostatne-kurzy-2", "zazitky-ostatne-kurzy-2", "autoskola", "kurzy-a-skolenia-autoskola"]},
-    {"slug": "kurzy-varenia", "name": "Kurzy varenia", "parent": "kurzy", "icon": "vareni", "from": ["kurzy-varenia"]},
-    {"slug": "kreativne-kurzy", "name": "Kreatívne kurzy a DIY", "parent": "kurzy", "icon": "tvoreni", "from": ["kreativne-kurzy", "kreativne-kurzy-ostatne-kurzy-2", "diy-kurzy"]},
-    {"slug": "kurzy-malovania", "name": "Kurzy maľovania", "parent": "kurzy", "icon": "stetec", "from": []},
-    {"slug": "kurzy-fotenia", "name": "Kurzy fotenia", "parent": "kurzy", "icon": "foto", "from": []},
-    {"slug": "sportove-kurzy", "name": "Športové kurzy", "parent": "kurzy", "icon": "sport", "from": ["sportove-kurzy", "sportove-kurzy-ostatne-kurzy-2"]},
-    {"slug": "tanecne-kurzy", "name": "Tanečné kurzy a lekcie tanca", "parent": "kurzy", "icon": "sport", "short": "Tanečné kurzy", "from": ["tanecne-kurzy"]},
-    {"slug": "jazykove-kurzy", "name": "Jazykové kurzy", "parent": "kurzy", "icon": "jazyk", "from": ["jazykove-kurzy", "jazykove-kurzy-2", "kurzy-a-skolenia-jazykove-kurzy-2", "zazitky-jazykove-kurzy-2"]},
-    {"slug": "online-kurzy", "name": "Online kurzy", "parent": "kurzy", "icon": "laptop", "from": ["online-kurzy"]},
-    {"slug": "kurzy-licenia", "name": "Kurzy líčenia", "parent": "kurzy", "icon": "kosmetika", "from": ["kurzy-licenia"]}
-  ]
+ "_doc": "Strom kategorií kuzelnemiesta.sk (2. 11. 2026): slovenský překlad stromu kouzelnydeda.cz (redesign v2, 31. 10. 2026). Každý uzel: slug (URL /<slug>/), name, parent (slug nebo null = sekce), icon (public/a/ik/<icon>.webp), short, group, from = staré slugy slovenského WordPressu (old-categories.json), které do uzlu spadají (301 + členství nabídek); starý slug shodný se slugem uzlu je ve from také a URL zůstává beze změny. Starý slug, který není nikde vyjmenovaný, spadá do sekce svého starého kořene (roots); skip = zbožové kategorie, jejichž nabídky končí. Slugy: kde staré SK URL sedí na uzel, zůstává (zachovaná síla z Googlu), jinak nový slug podle toho, jak hledá Slovák. Uzly zemí, Slovenska a Česka (a další se starým SK slugem, např. paintball-a-lasergame, privatny-wellness) jsou tady, ne v kategorie-nove.json, aby si udržely staré URL bez 301. Převod českých slugů v kódu: slug-map.json.",
+ "roots": {
+  "cestovanie": "pobyty",
+  "krasa-zdravie-a-relaxacia": "wellness-a-krasa",
+  "zazitky": "zazitky",
+  "restauracie": "jedlo-a-pitie",
+  "jazykove-kurzy-2": "jazykove-kurzy",
+  "ostatne-kurzy-2": "kurzy",
+  "zazitky-a-zabava-2": "zazitky",
+  "autoskola": "kurzy",
+  "nezarazene": "zazitky",
+  "tovar": "jedlo-a-pitie"
+ },
+ "skip": [
+  "jedlo-so-sebou",
+  "rozvoz-jedla",
+  "krabickova-dieta-restauracie",
+  "tovar",
+  "krabickova-dieta",
+  "potraviny-a-napoje",
+  "restauracie-a-bary-tovar",
+  "rozvoz-jedla-tovar"
+ ],
+ "nodes": [
+  {
+   "slug": "pobyty",
+   "name": "Pobyty a dovolenka",
+   "parent": null,
+   "icon": "pobyty",
+   "short": "Pobyty",
+   "from": [
+    "cestovanie",
+    "dovolenka",
+    "vyberte-si-typ-ubytovania",
+    "sezonne-ponuky",
+    "ubytovanie-v-hoteli",
+    "pobyty-a-ubytovanie",
+    "pre-koho",
+    "pobyty-a-dovolenky-pre-jedneho",
+    "pobyty-a-dovolenky-pre-muza",
+    "pobyty-a-dovolenky-pre-zenu",
+    "relax-a-odpocinok",
+    "ubytovanie-s-bazenom",
+    "dovolenka-pri-vode",
+    "pobyty-a-ubytovanie-pri-vode",
+    "cestovanie-zazitky",
+    "cestovanie-zazitky-a-zabava-2",
+    "dovolenka-zazitky-a-zabava-2",
+    "pre-koho-zazitky-a-zabava-2",
+    "sezonne-ponuky-zazitky-a-zabava-2",
+    "vyberte-si-typ-ubytovania-zazitky-a-zabava-2",
+    "pobyty-a-dovolenky-pre-jedneho-zazitky-a-zabava-2",
+    "pobyty-a-dovolenky-pre-zenu-zazitky-a-zabava-2",
+    "last-minute-pobyty-a-dovolenka-zazitky-a-zabava-2"
+   ]
+  },
+  {
+   "slug": "wellness-pobyty",
+   "name": "Wellness pobyty",
+   "parent": "pobyty",
+   "icon": "wellness",
+   "group": "Typ pobytu",
+   "from": [
+    "wellness-dovolenka",
+    "wellness-dovolenka-zazitky-a-zabava-2"
+   ]
+  },
+  {
+   "slug": "pobyty-pre-dvoch",
+   "name": "Pobyty pre dvoch",
+   "parent": "pobyty",
+   "icon": "srdce",
+   "group": "Pre koho",
+   "from": [
+    "pobyty-a-dovolenky-pre-pary",
+    "romantika-pre-dvoch"
+   ]
+  },
+  {
+   "slug": "kupelne-pobyty",
+   "name": "Kúpeľné pobyty",
+   "parent": "pobyty",
+   "icon": "lazne",
+   "group": "Typ pobytu",
+   "from": [
+    "dovolenka-v-kupeloch"
+   ]
+  },
+  {
+   "slug": "termalne-kupele",
+   "name": "Termálne kúpele",
+   "parent": "kupelne-pobyty",
+   "icon": "lazne",
+   "from": [
+    "termalne-kupele"
+   ]
+  },
+  {
+   "slug": "dovolenka-na-horach",
+   "name": "Dovolenka na horách",
+   "parent": "pobyty",
+   "icon": "hory",
+   "group": "Typ pobytu",
+   "from": [
+    "dovolenka-na-horach",
+    "dovolenka-na-horach-zazitky-a-zabava-2"
+   ]
+  },
+  {
+   "slug": "lyziarske-pobyty",
+   "name": "Lyžiarske pobyty",
+   "parent": "dovolenka-na-horach",
+   "icon": "hory",
+   "from": [
+    "lyziarske-pobyty",
+    "skipas"
+   ]
+  },
+  {
+   "slug": "netradicne-ubytovanie",
+   "name": "Netradičné ubytovanie",
+   "parent": "pobyty",
+   "icon": "chata",
+   "group": "Typ pobytu",
+   "from": [
+    "netradicne-ubytovanie",
+    "hausboty-a-lode",
+    "ubytovanie-v-kempe"
+   ]
+  },
+  {
+   "slug": "glamping",
+   "name": "Glamping",
+   "parent": "netradicne-ubytovanie",
+   "icon": "chata",
+   "from": [
+    "glamping"
+   ]
+  },
+  {
+   "slug": "tiny-house",
+   "name": "Tiny house",
+   "parent": "netradicne-ubytovanie",
+   "icon": "chata",
+   "from": [
+    "tiny-house"
+   ]
+  },
+  {
+   "slug": "treehouse",
+   "name": "Treehouse",
+   "parent": "netradicne-ubytovanie",
+   "icon": "chata",
+   "from": [
+    "treehouse"
+   ]
+  },
+  {
+   "slug": "chaty-a-chalupy",
+   "name": "Chaty a chalupy",
+   "parent": "pobyty",
+   "icon": "chata",
+   "group": "Typ pobytu",
+   "from": [
+    "ubytovanie-v-chate-chalupe-zrube-ci-drevenici",
+    "pobyty-a-ubytovanie-na-vidieku",
+    "ubytovanie-v-chate-chalupe-zrube-ci-drevenici-zazitky-a-zabava-2",
+    "pobyty-a-ubytovanie-na-vidieku-zazitky-a-zabava-2"
+   ]
+  },
+  {
+   "slug": "penziony",
+   "name": "Penzióny a apartmány",
+   "parent": "pobyty",
+   "icon": "pobyty",
+   "group": "Typ pobytu",
+   "from": [
+    "ubytovanie-v-penzione",
+    "ubytovanie-v-apartmane-ci-v-sukromi",
+    "ubytovanie-v-penzione-zazitky-a-zabava-2"
+   ]
+  },
+  {
+   "slug": "luxusne-ubytovanie",
+   "name": "Luxusné hotely a ubytovanie",
+   "parent": "pobyty",
+   "icon": "luxus",
+   "group": "Typ pobytu",
+   "from": [
+    "luxusne-ubytovanie"
+   ]
+  },
+  {
+   "slug": "pobyt-na-zamku",
+   "name": "Pobyty na zámku a v zámockých hoteloch",
+   "parent": "pobyty",
+   "icon": "luxus",
+   "short": "Pobyty na zámku",
+   "group": "Typ pobytu",
+   "from": [
+    "pobyt-na-zamku"
+   ]
+  },
+  {
+   "slug": "dovolenka-all-inclusive",
+   "name": "Dovolenka all inclusive",
+   "parent": "pobyty",
+   "icon": "more",
+   "short": "All inclusive",
+   "group": "Typ pobytu",
+   "from": [
+    "dovolenka-all-inclusive"
+   ]
+  },
+  {
+   "slug": "aktivna-dovolenka-a-sport",
+   "name": "Aktívna dovolenka a šport",
+   "parent": "pobyty",
+   "icon": "kolo",
+   "short": "Aktívna dovolenka",
+   "group": "Typ pobytu",
+   "from": [
+    "aktivna-dovolenka-a-sport",
+    "vyberte-si-dovolenku-podla-aktivity",
+    "turistika-v-prirode",
+    "cyklistika",
+    "golf",
+    "jazda-na-koni",
+    "aktivna-dovolenka-a-sport-zazitky-a-zabava-2",
+    "cyklistika-zazitky-a-zabava-2",
+    "turistika-v-prirode-zazitky-a-zabava-2",
+    "vyberte-si-dovolenku-podla-aktivity-zazitky-a-zabava-2"
+   ]
+  },
+  {
+   "slug": "degustacne-pobyty",
+   "name": "Gurmánske a degustačné pobyty",
+   "parent": "pobyty",
+   "icon": "vino",
+   "short": "Gurmánske pobyty",
+   "group": "Typ pobytu",
+   "from": [
+    "degustacne-pobyty",
+    "vinarske-pobyty",
+    "pivne-pobyty-a-degustacie",
+    "pobyty-s-regionalnou-kuchynou",
+    "pobyty-s-degustacnou-vecerou"
+   ]
+  },
+  {
+   "slug": "zazitkove-pobyty",
+   "name": "Zážitkové pobyty",
+   "parent": "pobyty",
+   "icon": "hvezda",
+   "group": "Typ pobytu",
+   "from": [
+    "zazitkove-pobyty",
+    "zazitky-a-zabava"
+   ]
+  },
+  {
+   "slug": "rekreacne-poukazy",
+   "name": "Pobyty na rekreačný poukaz",
+   "parent": "pobyty",
+   "icon": "voucher",
+   "short": "Rekreačné poukazy",
+   "group": "Typ pobytu",
+   "from": [
+    "rekreacne-poukazy",
+    "rekreacne-poukazy-zazitky-a-zabava-2"
+   ]
+  },
+  {
+   "slug": "pobyty-s-detmi",
+   "name": "Pobyty s deťmi",
+   "parent": "pobyty",
+   "icon": "rodina",
+   "group": "Pre koho",
+   "from": [
+    "pobyty-a-dovolenky-s-detmi",
+    "letne-prazdniny",
+    "jesenne-prazdniny",
+    "jarne-prazdniny",
+    "pobyty-a-dovolenky-s-detmi-zazitky-a-zabava-2",
+    "letne-prazdniny-zazitky-a-zabava-2"
+   ]
+  },
+  {
+   "slug": "pobyty-so-psom",
+   "name": "Pobyty so psom",
+   "parent": "pobyty",
+   "icon": "pes",
+   "group": "Pre koho",
+   "from": [
+    "pobyty-so-psom-alebo-mackou",
+    "pobyty-so-psom-alebo-mackou-zazitky-a-zabava-2"
+   ]
+  },
+  {
+   "slug": "pobyty-pre-seniorov",
+   "name": "Pobyty pre seniorov",
+   "parent": "pobyty",
+   "icon": "seniori",
+   "group": "Pre koho",
+   "from": [
+    "pobyty-a-dovolenky-pre-seniorov"
+   ]
+  },
+  {
+   "slug": "pobyty-bez-deti",
+   "name": "Pobyty bez detí",
+   "parent": "pobyty",
+   "icon": "srdce",
+   "group": "Pre koho",
+   "from": [
+    "pobyty-a-dovolenky-bez-deti"
+   ]
+  },
+  {
+   "slug": "pobyty-pre-skupiny",
+   "name": "Pobyty pre partiu",
+   "parent": "pobyty",
+   "icon": "parta",
+   "group": "Pre koho",
+   "from": [
+    "pobyty-a-dovolenky-pre-skupinu"
+   ]
+  },
+  {
+   "slug": "vikendove-pobyty",
+   "name": "Víkendové pobyty",
+   "parent": "pobyty",
+   "icon": "kalendar",
+   "group": "Kedy",
+   "from": [
+    "vikendove-pobyty"
+   ]
+  },
+  {
+   "slug": "last-minute-pobyty-a-dovolenka",
+   "name": "Last minute pobyty",
+   "parent": "pobyty",
+   "icon": "hodiny",
+   "short": "Last minute",
+   "group": "Kedy",
+   "from": [
+    "last-minute-pobyty-a-dovolenka"
+   ]
+  },
+  {
+   "slug": "silvestrovske-pobyty",
+   "name": "Silvestrovské pobyty",
+   "parent": "pobyty",
+   "icon": "ohnostroj",
+   "group": "Kedy",
+   "from": [
+    "silvester"
+   ]
+  },
+  {
+   "slug": "vianocne-pobyty",
+   "name": "Vianočné a adventné pobyty",
+   "parent": "pobyty",
+   "icon": "vanoce",
+   "group": "Kedy",
+   "from": [
+    "vianoce",
+    "advent"
+   ]
+  },
+  {
+   "slug": "velkonocne-pobyty",
+   "name": "Veľkonočné pobyty",
+   "parent": "pobyty",
+   "icon": "kalendar",
+   "group": "Kedy",
+   "from": [
+    "velka-noc"
+   ]
+  },
+  {
+   "slug": "valentinske-pobyty",
+   "name": "Valentínske pobyty",
+   "parent": "pobyty",
+   "icon": "srdce",
+   "group": "Kedy",
+   "from": [
+    "valentin"
+   ]
+  },
+  {
+   "slug": "dovolenka-na-slovensku",
+   "name": "Dovolenka na Slovensku",
+   "parent": "pobyty",
+   "icon": "mapa",
+   "short": "Slovensko",
+   "group": "Kam",
+   "from": [
+    "dovolenka-na-slovensku",
+    "dovolenka-na-slovensku-zazitky-a-zabava-2"
+   ]
+  },
+  {
+   "slug": "dovolenka-v-cesku",
+   "name": "Dovolenka v Česku",
+   "parent": "pobyty",
+   "icon": "mapa",
+   "short": "Česko",
+   "group": "Kam",
+   "from": [
+    "dovolenka-v-cesku"
+   ]
+  },
+  {
+   "slug": "dovolenka-pri-mori",
+   "name": "Dovolenka pri mori a v zahraničí",
+   "parent": "pobyty",
+   "icon": "more",
+   "short": "Pri mori a v zahraničí",
+   "group": "Kam",
+   "from": [
+    "dovolenka-a-vylety-k-moru",
+    "zajazdy-do-zahranicia",
+    "vylety-do-zahranicia",
+    "jednodnove-zajazdy-do-zahranicia",
+    "eurovikendy",
+    "exoticka-dovolenka",
+    "jednodnove-kupanie-pri-mori",
+    "bra",
+    "dovolenka-v-albansku",
+    "dovolenka-v-bosne-a-hercegovine",
+    "dovolenka-v-bulharsku",
+    "dovolenka-v-ciernej-hore",
+    "dovolenka-v-holandsku",
+    "dovolenka-v-portugalsku",
+    "dovolenka-v-spanielsku",
+    "dovolenka-vo-svajciarsku",
+    "dovolenka-vo-svedsku",
+    "jednodnove-zajazdy-do-zahranicia-zazitky-a-zabava-2",
+    "vylety-do-zahranicia-zazitky-a-zabava-2"
+   ]
+  },
+  {
+   "slug": "poznavacie-zajazdy",
+   "name": "Poznávacie zájazdy",
+   "parent": "dovolenka-pri-mori",
+   "icon": "bus",
+   "from": [
+    "poznavacie-zajazdy"
+   ]
+  },
+  {
+   "slug": "dovolenka-v-chorvatsku",
+   "name": "Dovolenka v Chorvátsku",
+   "parent": "dovolenka-pri-mori",
+   "icon": "more",
+   "short": "Chorvátsko",
+   "group": "Krajina",
+   "from": [
+    "dovolenka-v-chorvatsku"
+   ]
+  },
+  {
+   "slug": "dovolenka-v-taliansku",
+   "name": "Dovolenka v Taliansku",
+   "parent": "dovolenka-pri-mori",
+   "icon": "more",
+   "short": "Taliansko",
+   "group": "Krajina",
+   "from": [
+    "dovolenka-v-taliansku"
+   ]
+  },
+  {
+   "slug": "dovolenka-v-polsku",
+   "name": "Dovolenka v Poľsku",
+   "parent": "dovolenka-pri-mori",
+   "icon": "more",
+   "short": "Poľsko",
+   "group": "Krajina",
+   "from": [
+    "dovolenka-v-polsku"
+   ]
+  },
+  {
+   "slug": "dovolenka-v-rakusku",
+   "name": "Dovolenka v Rakúsku",
+   "parent": "dovolenka-pri-mori",
+   "icon": "more",
+   "short": "Rakúsko",
+   "group": "Krajina",
+   "from": [
+    "dovolenka-v-rakusku"
+   ]
+  },
+  {
+   "slug": "dovolenka-v-madarsku",
+   "name": "Dovolenka v Maďarsku",
+   "parent": "dovolenka-pri-mori",
+   "icon": "more",
+   "short": "Maďarsko",
+   "group": "Krajina",
+   "from": [
+    "dovolenka-v-madarsku"
+   ]
+  },
+  {
+   "slug": "dovolenka-v-slovinsku",
+   "name": "Dovolenka v Slovinsku",
+   "parent": "dovolenka-pri-mori",
+   "icon": "more",
+   "short": "Slovinsko",
+   "group": "Krajina",
+   "from": [
+    "dovolenka-v-slovinsku"
+   ]
+  },
+  {
+   "slug": "dovolenka-v-nemecku",
+   "name": "Dovolenka v Nemecku",
+   "parent": "dovolenka-pri-mori",
+   "icon": "more",
+   "short": "Nemecko",
+   "group": "Krajina",
+   "from": [
+    "dovolenka-v-nemecku"
+   ]
+  },
+  {
+   "slug": "zazitky",
+   "name": "Zážitky",
+   "parent": null,
+   "icon": "zazitky",
+   "short": "Zážitky",
+   "from": [
+    "zazitky",
+    "nezarazene",
+    "specialne-akcie",
+    "zazitky-a-zabava-2",
+    "zazitky-a-zabava-zazitky-a-zabava-2"
+   ]
+  },
+  {
+   "slug": "adrenalinove-zazitky",
+   "name": "Adrenalínové zážitky",
+   "parent": "zazitky",
+   "icon": "adrenalin",
+   "from": [
+    "adrenalinove-zazitky",
+    "adrenalinove-zazitky-ostatne-kurzy-2"
+   ]
+  },
+  {
+   "slug": "vyhliadkove-lety",
+   "name": "Lety a zážitky vo vzduchu",
+   "parent": "adrenalinove-zazitky",
+   "icon": "let",
+   "from": [
+    "vyhliadkove-lety",
+    "adrenalin-vo-vzduchu",
+    "adrenalin-vo-vzduchu-ostatne-kurzy-2"
+   ]
+  },
+  {
+   "slug": "strelba-na-strelnici",
+   "name": "Streľba a airsoft",
+   "parent": "adrenalinove-zazitky",
+   "icon": "adrenalin",
+   "short": "Streľba",
+   "from": [
+    "strelba-na-strelnici"
+   ]
+  },
+  {
+   "slug": "paintball-a-lasergame",
+   "name": "Paintball a laser game",
+   "parent": "adrenalinove-zazitky",
+   "icon": "adrenalin",
+   "from": [
+    "paintball-a-lasergame"
+   ]
+  },
+  {
+   "slug": "zazitkove-jazdy",
+   "name": "Zážitkové jazdy",
+   "parent": "zazitky",
+   "icon": "auto",
+   "from": [
+    "auto-moto-zazitky",
+    "jazdy-a-prenajmy-aut",
+    "zazitky-autoskola"
+   ]
+  },
+  {
+   "slug": "jazda-na-okruhu",
+   "name": "Jazda na okruhu",
+   "parent": "zazitkove-jazdy",
+   "icon": "auto",
+   "from": []
+  },
+  {
+   "slug": "motokary",
+   "name": "Motokáry",
+   "parent": "zazitkove-jazdy",
+   "icon": "auto",
+   "from": []
+  },
+  {
+   "slug": "escape-room",
+   "name": "Únikové hry a escape room",
+   "parent": "zazitky",
+   "icon": "klic",
+   "short": "Únikové hry",
+   "from": [
+    "escape-room",
+    "unikove-a-indoor-hry",
+    "online-unikove-hry"
+   ]
+  },
+  {
+   "slug": "vonkajsie-hry",
+   "name": "Vonkajšie hry a city quest",
+   "parent": "zazitky",
+   "icon": "mapa",
+   "from": [
+    "vonkajsie-hry"
+   ]
+  },
+  {
+   "slug": "virtualna-realita",
+   "name": "Virtuálna realita",
+   "parent": "zazitky",
+   "icon": "vr",
+   "from": [
+    "virtualna-realita"
+   ]
+  },
+  {
+   "slug": "vodne-zazitky",
+   "name": "Vodné zážitky",
+   "parent": "zazitky",
+   "icon": "more",
+   "from": [
+    "adrenalin-na-vode",
+    "splavy-a-rafting"
+   ]
+  },
+  {
+   "slug": "kultura-a-vylety",
+   "name": "Kultúra a výlety",
+   "parent": "zazitky",
+   "icon": "divadlo",
+   "from": [
+    "kultura",
+    "divadlo",
+    "koncerty",
+    "kino",
+    "plavba-lodou",
+    "prenajom-lode"
+   ]
+  },
+  {
+   "slug": "vystavy-a-muzea",
+   "name": "Múzeá, výstavy a prehliadky",
+   "parent": "kultura-a-vylety",
+   "icon": "divadlo",
+   "from": [
+    "vystavy-a-muzea",
+    "exkurzia"
+   ]
+  },
+  {
+   "slug": "zabavne-parky",
+   "name": "Zábavné parky a aquaparky",
+   "parent": "kultura-a-vylety",
+   "icon": "atrakce",
+   "from": [
+    "zabavne-parky",
+    "aquaparky-a-kupanie",
+    "zabavne-parky-zazitky-a-zabava-2"
+   ]
+  },
+  {
+   "slug": "za-zvieratkami",
+   "name": "Zoo a zvieratká",
+   "parent": "kultura-a-vylety",
+   "icon": "zvire",
+   "from": [
+    "za-zvieratkami",
+    "za-zvieratkami-ostatne-kurzy-2"
+   ]
+  },
+  {
+   "slug": "zazitky-pre-deti",
+   "name": "Zážitky pre deti",
+   "parent": "zazitky",
+   "icon": "deti",
+   "from": [
+    "zazitky-pre-deti",
+    "detske-tabory",
+    "detske-tabory-zazitky-a-zabava-2",
+    "zazitky-pre-deti-zazitky-a-zabava-2"
+   ]
+  },
+  {
+   "slug": "sport-a-pohyb",
+   "name": "Šport a pohyb",
+   "parent": "zazitky",
+   "icon": "sport",
+   "from": [
+    "sportove-zazitky"
+   ]
+  },
+  {
+   "slug": "fitness",
+   "name": "Cvičenie, fitness a jóga",
+   "parent": "sport-a-pohyb",
+   "icon": "sport",
+   "short": "Fitness a jóga",
+   "from": [
+    "fitness",
+    "joga"
+   ]
+  },
+  {
+   "slug": "jazdenie-na-koni",
+   "name": "Jazda na koni",
+   "parent": "sport-a-pohyb",
+   "icon": "kun",
+   "from": [
+    "jazda-na-koni-zazitky"
+   ]
+  },
+  {
+   "slug": "bowling",
+   "name": "Bowling a zábava",
+   "parent": "zazitky",
+   "icon": "atrakce",
+   "from": [
+    "bowling"
+   ]
+  },
+  {
+   "slug": "fotenie",
+   "name": "Fotenie a fotoateliéry",
+   "parent": "zazitky",
+   "icon": "foto",
+   "from": [
+    "fotenie"
+   ]
+  },
+  {
+   "slug": "striptiz",
+   "name": "Striptíz a pánske zábavy",
+   "parent": "zazitky",
+   "icon": "hvezda",
+   "from": []
+  },
+  {
+   "slug": "wellness-a-krasa",
+   "name": "Wellness a krása",
+   "parent": null,
+   "icon": "krasa",
+   "short": "Wellness a krása",
+   "from": [
+    "krasa-zdravie-a-relaxacia",
+    "krasa-zdravie-a-relaxacia-zazitky",
+    "darcekove-poukazky-plne-krasy"
+   ]
+  },
+  {
+   "slug": "masaze",
+   "name": "Masáže",
+   "parent": "wellness-a-krasa",
+   "icon": "masaz",
+   "from": [
+    "masaze",
+    "masaze-zazitky",
+    "klasicka-relaxacna-masaz",
+    "klasicka-relaxacna-masaz-zazitky",
+    "specialne-masaze",
+    "specialne-masaze-zazitky",
+    "reflexna-masaz",
+    "anticelulitidne-masaze",
+    "ajurvedske-masaze"
+   ]
+  },
+  {
+   "slug": "thajske-masaze",
+   "name": "Thajské masáže",
+   "parent": "masaze",
+   "icon": "masaz",
+   "from": [
+    "thajske-masaze"
+   ]
+  },
+  {
+   "slug": "lymfodrenaz",
+   "name": "Lymfodrenáž a lymfatická masáž",
+   "parent": "masaze",
+   "icon": "masaz",
+   "short": "Lymfodrenáž",
+   "from": [
+    "lymfodrenaz",
+    "lymfaticka-masaz"
+   ]
+  },
+  {
+   "slug": "tantricke-masaze",
+   "name": "Tantrické masáže",
+   "parent": "masaze",
+   "icon": "masaz",
+   "from": []
+  },
+  {
+   "slug": "zdravotne-masaze",
+   "name": "Zdravotné masáže",
+   "parent": "masaze",
+   "icon": "masaz",
+   "from": [
+    "zdravotne-masaze",
+    "zdravotne-masaze-zazitky"
+   ]
+  },
+  {
+   "slug": "sauna-a-wellness",
+   "name": "Sauna a wellness",
+   "parent": "wellness-a-krasa",
+   "icon": "sauna",
+   "from": [
+    "sauna-a-wellness",
+    "sauna-a-wellness-zazitky",
+    "wellness-s-vecerou-zazitky"
+   ]
+  },
+  {
+   "slug": "privatny-wellness",
+   "name": "Privátny wellness a spa pre dvoch",
+   "parent": "sauna-a-wellness",
+   "icon": "sauna",
+   "short": "Privátny wellness",
+   "from": [
+    "privatny-wellness",
+    "privatny-wellness-zazitky"
+   ]
+  },
+  {
+   "slug": "solna-jaskyna",
+   "name": "Soľná jaskyňa",
+   "parent": "sauna-a-wellness",
+   "icon": "sauna",
+   "from": [
+    "solna-jaskyna"
+   ]
+  },
+  {
+   "slug": "kozmeticke-sluzby",
+   "name": "Kozmetika a starostlivosť o pleť",
+   "parent": "wellness-a-krasa",
+   "icon": "kosmetika",
+   "short": "Kozmetika",
+   "from": [
+    "kozmeticke-sluzby",
+    "starostlivost-o-tvar",
+    "starostlivost-o-tvar-zazitky",
+    "omladzujuce-procedury",
+    "esteticke-zakroky-a-procedury",
+    "esteticka-medicina",
+    "operacie-a-zakroky",
+    "epilacia-a-depilacia",
+    "solarium",
+    "balicky-plne-krasy-a-relaxu",
+    "radiofrekvencia",
+    "vizaz",
+    "vizaz-zazitky"
+   ]
+  },
+  {
+   "slug": "kadernictvo",
+   "name": "Kaderníctvo",
+   "parent": "wellness-a-krasa",
+   "icon": "nuzky",
+   "from": [
+    "kadernictvo",
+    "kadernictvo-zazitky",
+    "detske-strihy-a-ucesy"
+   ]
+  },
+  {
+   "slug": "barber",
+   "name": "Barber shop",
+   "parent": "kadernictvo",
+   "icon": "nuzky",
+   "from": [
+    "barber"
+   ]
+  },
+  {
+   "slug": "manikura-a-pedikura",
+   "name": "Manikúra a pedikúra",
+   "parent": "wellness-a-krasa",
+   "icon": "nehty",
+   "from": [
+    "starostlivost-o-nechty",
+    "manikura",
+    "pedikura",
+    "starostlivost-o-nechty-zazitky",
+    "manikura-zazitky",
+    "pedikura-zazitky"
+   ]
+  },
+  {
+   "slug": "zostihlujuce-procedury",
+   "name": "Chudnutie a tvarovanie postavy",
+   "parent": "wellness-a-krasa",
+   "icon": "metr",
+   "short": "Chudnutie a tvarovanie",
+   "from": [
+    "zostihlujuce-procedury",
+    "zostihlujuce-procedury-zazitky",
+    "kavitacia",
+    "kryolipolyza",
+    "maderoterapia",
+    "lpg",
+    "anticelulitidne-zabaly",
+    "infrashape",
+    "infrashape-zazitky"
+   ]
+  },
+  {
+   "slug": "starostlivost-o-zdravie",
+   "name": "Starostlivosť o zdravie a zuby",
+   "parent": "wellness-a-krasa",
+   "icon": "zdravi",
+   "short": "Zdravie a zuby",
+   "from": [
+    "starostlivost-o-zdravie",
+    "starostlivost-o-zdravie-zazitky",
+    "dentalna-starostlivost",
+    "zdrave-stravovanie",
+    "zdrave-stravovanie-zazitky"
+   ]
+  },
+  {
+   "slug": "jedlo-a-pitie",
+   "name": "Jedlo a pitie",
+   "parent": null,
+   "icon": "jidlo",
+   "short": "Jedlo a pitie",
+   "from": [
+    "restauracie",
+    "restauracie-a-bary",
+    "restauracie-a-bary-zazitky",
+    "medzinarodna-kuchyna",
+    "vegetarianska-kuchyna",
+    "ryby-a-morske-plody",
+    "ranajky",
+    "street-food",
+    "hot-dogy-a-sendvice",
+    "restauracie-pre-deti",
+    "jedlo-so-sebou",
+    "rozvoz-jedla",
+    "krabickova-dieta-restauracie"
+   ]
+  },
+  {
+   "slug": "degustacne-menu",
+   "name": "Degustačné menu",
+   "parent": "jedlo-a-pitie",
+   "icon": "degustace",
+   "from": [
+    "degustacne-menu",
+    "degustacne-menu-zazitky",
+    "degustacia"
+   ]
+  },
+  {
+   "slug": "sushi",
+   "name": "Sushi a running sushi",
+   "parent": "jedlo-a-pitie",
+   "icon": "sushi",
+   "from": [
+    "sushi",
+    "sushi-zazitky"
+   ]
+  },
+  {
+   "slug": "steaky-a-burgery",
+   "name": "Steaky a burgery",
+   "parent": "jedlo-a-pitie",
+   "icon": "steak",
+   "from": [
+    "steaky-a-maso",
+    "steaky-a-maso-zazitky",
+    "burger"
+   ]
+  },
+  {
+   "slug": "tatarsky-biftek",
+   "name": "Tatársky biftek",
+   "parent": "jedlo-a-pitie",
+   "icon": "steak",
+   "from": []
+  },
+  {
+   "slug": "azijska-kuchyna",
+   "name": "Ázijská a indická kuchyňa",
+   "parent": "jedlo-a-pitie",
+   "icon": "hulky",
+   "from": [
+    "azijska-kuchyna",
+    "indicka-kuchyna"
+   ]
+  },
+  {
+   "slug": "pizza-a-talianska-kuchyna",
+   "name": "Pizza a talianska kuchyňa",
+   "parent": "jedlo-a-pitie",
+   "icon": "pizza",
+   "from": [
+    "pizza-a-talianska-kuchyna",
+    "pizza-a-talianska-kuchyna-zazitky"
+   ]
+  },
+  {
+   "slug": "slovenska-kuchyna",
+   "name": "Slovenská kuchyňa",
+   "parent": "jedlo-a-pitie",
+   "icon": "jidlo",
+   "from": [
+    "slovenska-kuchyna",
+    "slovenska-kuchyna-zazitky",
+    "kacacie-a-husacie-hody"
+   ]
+  },
+  {
+   "slug": "mexicka-kuchyna",
+   "name": "Mexická kuchyňa",
+   "parent": "jedlo-a-pitie",
+   "icon": "jidlo",
+   "from": []
+  },
+  {
+   "slug": "kaviarne-a-torty",
+   "name": "Kaviarne a torty",
+   "parent": "jedlo-a-pitie",
+   "icon": "kava",
+   "from": [
+    "kaviarne",
+    "kava-a-caj",
+    "torty-a-sladkosti",
+    "cukrovinky"
+   ]
+  },
+  {
+   "slug": "bary-a-drinky",
+   "name": "Bary a drinky",
+   "parent": "jedlo-a-pitie",
+   "icon": "drink",
+   "from": []
+  },
+  {
+   "slug": "degustacia-vina-a-piva",
+   "name": "Degustácia vína a piva",
+   "parent": "jedlo-a-pitie",
+   "icon": "vino",
+   "from": [
+    "napoje-a-ochutnavky",
+    "napoje-a-ochutnavky-zazitky"
+   ]
+  },
+  {
+   "slug": "otvorene-vouchery-do-restauracii",
+   "name": "Vouchery do reštaurácií",
+   "parent": "jedlo-a-pitie",
+   "icon": "voucher",
+   "from": [
+    "otvorene-vouchery-do-restauracii",
+    "otvorene-vouchery"
+   ]
+  },
+  {
+   "slug": "kurzy",
+   "name": "Kurzy a workshopy",
+   "parent": null,
+   "icon": "kurzy",
+   "short": "Kurzy",
+   "from": [
+    "kurzy-a-skolenia",
+    "vzdelavacie-kurzy",
+    "ostatne-kurzy",
+    "ostatne-kurzy-2",
+    "kurzy-a-skolenia-ostatne-kurzy-2",
+    "zazitky-ostatne-kurzy-2",
+    "autoskola",
+    "kurzy-a-skolenia-autoskola"
+   ]
+  },
+  {
+   "slug": "kurzy-varenia",
+   "name": "Kurzy varenia",
+   "parent": "kurzy",
+   "icon": "vareni",
+   "from": [
+    "kurzy-varenia"
+   ]
+  },
+  {
+   "slug": "kreativne-kurzy",
+   "name": "Kreatívne kurzy a DIY",
+   "parent": "kurzy",
+   "icon": "tvoreni",
+   "from": [
+    "kreativne-kurzy",
+    "kreativne-kurzy-ostatne-kurzy-2",
+    "diy-kurzy"
+   ]
+  },
+  {
+   "slug": "kurzy-malovania",
+   "name": "Kurzy maľovania",
+   "parent": "kurzy",
+   "icon": "stetec",
+   "from": []
+  },
+  {
+   "slug": "kurzy-fotenia",
+   "name": "Kurzy fotenia",
+   "parent": "kurzy",
+   "icon": "foto",
+   "from": []
+  },
+  {
+   "slug": "sportove-kurzy",
+   "name": "Športové kurzy",
+   "parent": "kurzy",
+   "icon": "sport",
+   "from": [
+    "sportove-kurzy",
+    "sportove-kurzy-ostatne-kurzy-2"
+   ]
+  },
+  {
+   "slug": "tanecne-kurzy",
+   "name": "Tanečné kurzy a lekcie tanca",
+   "parent": "kurzy",
+   "icon": "sport",
+   "short": "Tanečné kurzy",
+   "from": [
+    "tanecne-kurzy"
+   ]
+  },
+  {
+   "slug": "jazykove-kurzy",
+   "name": "Jazykové kurzy",
+   "parent": "kurzy",
+   "icon": "jazyk",
+   "from": [
+    "jazykove-kurzy",
+    "jazykove-kurzy-2",
+    "kurzy-a-skolenia-jazykove-kurzy-2",
+    "zazitky-jazykove-kurzy-2"
+   ]
+  },
+  {
+   "slug": "online-kurzy",
+   "name": "Online kurzy",
+   "parent": "kurzy",
+   "icon": "laptop",
+   "from": [
+    "online-kurzy"
+   ]
+  },
+  {
+   "slug": "kurzy-licenia",
+   "name": "Kurzy líčenia",
+   "parent": "kurzy",
+   "icon": "kosmetika",
+   "from": [
+    "kurzy-licenia"
+   ]
+  }
+ ]
 }

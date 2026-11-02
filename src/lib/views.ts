@@ -6,12 +6,12 @@ import {
   type Card, type Cat, type PostCard, type Tree,
 } from './db';
 import { isFiltered, parseFilters, toListQuery, toQuery, type FilterState } from './filters';
-import { BASE, CURRENCY, HOST, LANG, SITE_NAME, comboMin, EXPIRED_KEEP_DAYS, OG_DEFAULT, PER_PAGE, POSTS_PER_PAGE, isoPrague } from './site';
+import { BASE, CURRENCY, HOST, LANG, SITE_NAME, comboMin, EXPIRED_KEEP_DAYS, OG_DEFAULT, PER_PAGE, POSTS_PER_PAGE, isoPrague, THIN_CAT } from './site';
 import {
-  BLOG_DESC, BLOG_TITLE, rmVars, categoryDesc, categoryTitle, cityDesc, cityTitle, clamp, comboDesc, comboTitle, productDesc, productTitle, paged, robots, withSite,
+  BLOG_DESC, BLOG_TITLE, postTitle, rmVars, categoryDesc, categoryTitle, cityDesc, cityTitle, clamp, comboDesc, comboTitle, productDesc, productTitle, paged, robots, withSite,
 } from './seo';
 import { BUY_Q, categoryFaq, categoryIntro, cityIntro, comboIntro, fallbackTarget, kindOf, SERVICE_CATS, themeTarget, type Kind } from './kd';
-import { cityName, HOME_LOK } from './cities';
+import { CITY_ALIAS, CITY_INDEX_MIN, cityName, HOME_LOK } from './cities';
 import { cena, cislo, datum, decode, place, ponuk, stripTags, tipov } from './format';
 import type { Info } from '../../workers/import/src/parse';
 import { catIcon } from './ikony';
@@ -134,13 +134,15 @@ export async function categoryView(db: D1Database, catId: number, page: number, 
   const pages = Math.max(1, Math.ceil(total / 24));
   const base = city ? `/${cat.slug}/lokalita/${city}/` : `/${cat.slug}/`;
   if (page > pages && page > 1) return { redirect: base };
+  // an empty category × city or an unknown place is no page of its own (soft 404 risk): the category answers
+  if (lok && (total === 0 || !cityName(lok.slug).known)) return { redirect: `/${cat.slug}/` };
   const name = decode(cat.name);
   const kind = rootKind(t, cat.id);
   const chain = ancestry(t, cat.id);
   const crumbs: Crumb[] = [{ name: HOME, url: '/' }, ...chain.map((c) => ({ name: decode(c.name), url: `/${c.slug}/` }))];
   const url = abs(pagePath(base, page));
   let title: string, description: string, canonical: string | undefined, h1: string, h2: string, intro: string, introTitle: string, trust = '';
-  let noindex = cat.noindex === 1 || cat.seo_robots.includes('noindex') || cat.count_total === 0;
+  let noindex = cat.noindex === 1 || cat.seo_robots.includes('noindex') || cat.count_total < THIN_CAT;
   if (lok) {
     const cn = cityName(lok.slug);
     const n = cc[String(cat.id)]?.[lok.slug] ?? total;
@@ -190,6 +192,8 @@ export async function categoryView(db: D1Database, catId: number, page: number, 
 // ---------- city ----------
 export async function cityView(db: D1Database, slug: string, page: number, sp: URLSearchParams): Promise<ListingView | Redirect | null> {
   const [t, cc] = await Promise.all([tree(db), combos(db)]);
+  const alias = CITY_ALIAS[slug];
+  if (alias && alias !== slug) return { redirect: `/lokalita/${alias}/` };
   const lok = t.lokBySlug.get(slug);
   if (!lok) return null;
   const f = parseFilters(sp);
@@ -211,7 +215,8 @@ export async function cityView(db: D1Database, slug: string, page: number, sp: U
     }
   }
   const crumbs: Crumb[] = [{ name: HOME, url: '/' }, { name: cn.nom, url: base }];
-  const noindex = lok.count === 0;
+  // only known places with enough offers are landing pages; raw feed place names stay reachable but noindex
+  const noindex = lok.count < CITY_INDEX_MIN || !cn.known || slug === HOME_LOK;
   return {
     meta: {
       title: paged(title, page), description: cityDesc(cn.nom, lok.count), robots: filtered ? ['noindex', 'follow'] : robots(noindex),
@@ -240,11 +245,13 @@ export async function storeView(db: D1Database, slug: string, page: number, sp: 
   const base = `/brand/${slug}/`;
   if (page > pages && page > 1) return { redirect: base };
   const url = abs(pagePath(base, page));
-  const title = withSite(st.name);
-  const crumbs: Crumb[] = [{ name: HOME, url: '/' }, { name: decode(st.name), url: base }];
+  const nm = decode(st.name);
+  const title = total > 0 ? `${nm}: ${cislo(total)} ${ponuk(total)} zážitkov a pobytov | ${SITE_NAME}` : withSite(st.name);
+  const desc = stripTags(st.description_html) || `Aktuálne ponuky ${nm} na jednom mieste: ${cislo(total)} ${ponuk(total)} zážitkov, pobytov a wellness. Porovnajte ceny a hodnotenia a objednajte priamo u partnera.`;
+  const crumbs: Crumb[] = [{ name: HOME, url: '/' }, { name: nm, url: base }];
   return {
     meta: {
-      title: paged(title, page), description: clamp(stripTags(st.description_html)), robots: filtered ? ['noindex', 'follow'] : robots(false),
+      title: paged(title, page), description: clamp(desc), robots: filtered ? ['noindex', 'follow'] : robots(total === 0),
       ...(filtered ? {} : { canonical: url }),
       ...(page > 1 && !filtered ? { prev: abs(pagePath(base, page - 1)) } : {}),
       ...(page < pages && !filtered ? { next: abs(pagePath(base, page + 1)) } : {}),
@@ -328,7 +335,7 @@ export async function productView(db: D1Database, id: number) {
       { '@type': 'ItemPage', '@id': url + '#webpage', url, name: title, datePublished: isoPrague(p.created_at), dateModified: isoPrague(p.updated_at), isPartOf: { '@id': BASE + '/#website' }, inLanguage: LANG },
       ...(offer ? [{
         '@type': 'Product', '@id': url + '#product', name, description: clamp(description, 300), ...(p.image ? { image: [p.image, ...images.slice(0, 3)] } : {}),
-        ...(primary ? { category: decode(primary.name) } : {}), ...(store ? { brand: { '@type': 'Brand', name: decode(store.name) } } : {}), offers: offer, mainEntityOfPage: { '@id': url + '#webpage' },
+        ...(primary ? { category: decode(primary.name) } : {}), ...(info.pv?.t ? { brand: { '@type': 'Brand', name: decode(info.pv.t) } } : {}), offers: offer, mainEntityOfPage: { '@id': url + '#webpage' },
       }] : []),
     ],
     jsonLd: [breadcrumbLd(crumbs)],
@@ -398,7 +405,7 @@ export async function postView(db: D1Database, id: number) {
   if (!post) return null;
   const t = await tree(db);
   const url = abs(`/${post.slug}/`);
-  const title = post.seo_title ? rmVars(post.seo_title, post.title) : withSite(post.title);
+  const title = post.seo_title ? rmVars(post.seo_title, post.title) : postTitle(post.title);
   let ld: { graph?: unknown[] } = {};
   try { ld = post.ld_json ? JSON.parse(post.ld_json) : {}; } catch { /* none */ }
   const graph = ld.graph?.length ? ld.graph : [{
@@ -451,7 +458,7 @@ export async function blogView(db: D1Database, page: number, catId = 0) {
   const cats = (await db.prepare("SELECT slug, name, count FROM post_categories WHERE count > 0 ORDER BY count DESC").all<{ slug: string; name: string; count: number }>()).results;
   return {
     meta: {
-      title: paged(title, page), description: cat ? clamp(cat.description) || BLOG_DESC : BLOG_DESC, canonical: url, robots: robots(false),
+      title: paged(title, page), description: cat ? clamp(cat.description) || clamp(`${decode(cat.name)}: články, rady a tipy na cestovanie, zážitky a dovolenku od redakcie ${SITE_NAME}. Praktické postupy, porovnania a inšpirácia na výlety.`) : BLOG_DESC, canonical: url, robots: robots(false),
       ...(page > 1 ? { prev: abs(pagePath(base, page - 1)) } : {}), ...(page < pages ? { next: abs(pagePath(base, page + 1)) } : {}),
       graph: [collection(url, title)], jsonLd: [breadcrumbLd(crumbs)],
     } as Meta,

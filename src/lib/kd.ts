@@ -131,44 +131,44 @@ const THEME: Array<[RegExp, string]> = [
   [/pivni-lazne|pivni-koupel/, 'pivne-kupele'], [/bugin|buggy|ctyrkol|offroad|atv/, 'buginy-a-stvorkolky'],
   // services (old WooCommerce categories and long offer slugs)
   [/let-stihack|stihack|vetron|paraglid|balon|vyhlidkov\w* let|\blety?\b/, 'vyhliadkove-lety'],
-  [/mushing|ctyrkolk|buggy|hummer|autoskola|supersport|ferrari|lambo|mustang|okruh|rolb|jizd|rizeni|spolujizd|pronajem-vozu|formule|simulator/, 'zazitkove-jazdy'],
-  [/bungee|lezeni|jump-aren|jump|via-ferrat|lanov|skok/, 'lanove-centra'],
+  [/mushing|ctyrkolk|stvorkolk|buggy|hummer|autoskola|supersport|ferrari|lambo|mustang|okruh|rolb|jizd|jazd|rizeni|riaden|spolujizd|spolujazd|pronajem-vozu|prenajom|formule|formula|simulator/, 'zazitkove-jazdy'],
+  [/bungee|lezeni|lezen|jump-aren|jump|via-ferrat|lanov|skok/, 'lanove-centra'],
   [/paintball|laser-game|\blaser\b/, 'paintball-a-lasergame'],
-  [/strelb|airsoft|zbran/, 'strelba-na-strelnici'],
+  [/strelb|strelnic|airsoft|zbran/, 'strelba-na-strelnici'],
   [/venkovni-unikov|venkovni-hry|chytre-venkovni|city-quest/, 'vonkajsie-hry'],
   [/unikov/, 'escape-room'],
-  [/potapeni|jachting|vodni|kajak|rafting|raft|plavb|surf/, 'vodne-zazitky'],
-  [/lyzov|zimni|rolba|sjezd|snowboard|bruslen/, 'zimne-sporty'],
+  [/potapeni|potapan|jachting|vodni|vodne|kajak|rafting|raft|splav|plavb|surf/, 'vodne-zazitky'],
+  [/lyzov|lyziar|zimni|zimne|rolba|sjezd|snowboard|bruslen|korcul/, 'zimne-sporty'],
   [/badminton|sport|fitness|cviceni|joga/, 'sport-a-pohyb'],
   [/cirkus/, 'cirkus'],
-  [/cirkus|prohlidka|vstric-historii|exhibition|muzeum|hrad|zamek|harry-potter/, 'kultura-a-vylety'],
+  [/cirkus|prohlidka|prehliadk|vstric-historii|exhibition|muzeum|vystav|hrad|zamek|zamok|harry-potter|divadl|koncert/, 'kultura-a-vylety'],
   [/pivni-lazne|pivni-pobyt|pivni-hotel/, 'wellness-pobyty'],
   [/degustac|vino|alkohol|pivni|pivo|tvrdy|napoje|nealkohol|cajova|whisk|rum\b|gin\b/, 'degustacia-vina-a-piva'],
   [/sushi/, 'sushi'],
-  [/pizza|burger|spaget|testovin|empanad|restaur|voucher-do-restauraci|sety|gurman|jidlo|menu|obed|vecere/, 'otvorene-vouchery-do-restauracii'],
+  [/pizza|burger|spaget|testovin|cestovin|empanad|restaur|voucher-do-restauraci|sety|gurman|jidlo|jedlo|menu|obed|vecere|vecera|steak|raňajk|ranajk/, 'otvorene-vouchery-do-restauracii'],
   [/lymfat|maderoterap|celulit|anticelul/, 'lymfodrenaz'],
   [/thajsk|thajske/, 'thajske-masaze'],
   [/tantra/, 'tantricke-masaze'],
   [/masaz|uvolnujici|relax-pro-telo|doprejte-si-relax|ulevte-si-od-bolesti|permanentka-na-tri/, 'masaze'],
   [/dentalni|zub|beleni|hygien/, 'starostlivost-o-zdravie'],
   [/head-spa/, 'head-spa'],
-  [/kadernic|vlas|keratin|shinique/, 'kadernictvo'],
-  [/kosmet|plet|peeling|hifu|thermage|omlazen|liceni|make-up|aknozn|karbonov|depilac/, 'kozmeticke-sluzby'],
+  [/kadernic|kadernict|vlas|keratin|shinique|strih/, 'kadernictvo'],
+  [/kosmet|kozmet|plet|peeling|hifu|thermage|omlazen|omladz|liceni|licen|make-up|aknozn|karbonov|depilac|mihalnic|obocie|manikur|pedikur|necht/, 'kozmeticke-sluzby'],
   [/krasa|relax\b|wellness-a-krasa|bryle/, 'wellness-a-krasa'],
-  [/wellness|sauna|virivk|lazne|spa\b/, 'wellness-pobyty'],
-  [/foceni|fotokn|atelier/, 'fotenie'],
-  [/kovarsk|tanecni|kurz/, 'kurzy'],
-  [/valentyn/, 'valentinske-pobyty'],
-  [/romantik|pro-dva|rozlucka/, 'pobyty-pre-dvoch'],
+  [/wellness|sauna|virivk|lazne|kupel|spa\b/, 'wellness-pobyty'],
+  [/foceni|foten|fotokn|atelier/, 'fotenie'],
+  [/kovarsk|tanecni|tanecn|kurz/, 'kurzy'],
+  [/valentyn|valentin/, 'valentinske-pobyty'],
+  [/romantik|pro-dva|pre-dvoch|pre-dva|rozlucka/, 'pobyty-pre-dvoch'],
   [/s-detmi|detsky|prazdniny|rodin/, 'pobyty-s-detmi'],
   [/bez-deti/, 'pobyty-bez-deti'],
   [/prodlouzeny-vikend|vikend|long-weekend|svatky/, 'vikendove-pobyty'],
   [/na-horach|hory|hotel-na-horach/, 'dovolenka-na-horach'],
   [/chata|chalup|kemp/, 'chaty-a-chalupy'],
   [/penzion/, 'penziony'],
-  [/luxusni|chateau|resort/, 'luxusne-ubytovanie'],
-  [/netradicni|glamping|tiny|iglu/, 'netradicne-ubytovanie'],
-  [/pobyt|hotel|ubytovan|typ-ubytovani|dovolen|nocleh|apartm|vyborne|skvele-85|travelking|personal/, 'pobyty'],
+  [/luxusni|luxusn|chateau|resort|kastiel/, 'luxusne-ubytovanie'],
+  [/netradicni|netradicn|glamping|tiny|iglu/, 'netradicne-ubytovanie'],
+  [/pobyt|hotel|ubytovan|typ-ubytovani|dovolen|nocleh|noclah|apartm|vyborne|skvele-85|travelking|personal/, 'pobyty'],
   [/black-friday|darkov|bedny|truhly|poukaz|voucher|zbozi|potraviny|drogerie|doplnk|bytove|domacnost|hracky|plavky|saty|satky|damske|goji|yuzee|cascara|vitamin|fotoknihy|detsky-pokoj|army|letenky|pro-koho|pro-jednoho|auto-moto/, 'zazitkove-darceky'],
 ];
 function ascii(s: string): string { return s.normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }
@@ -181,3 +181,11 @@ export function fallbackTarget(path: string): string {
   return D('zazitky');
 }
 export function themeTarget(slug: string): string { return fallbackTarget(slug); }
+/** Like fallbackTarget, but null when nothing matches — an unknown URL then answers a real 404 (no soft 404 to a section). */
+export function matchTarget(path: string): string | null {
+  const t = ascii(path.replace(/\/page\/\d+\/?$/, ''));
+  if (/^hotel-[a-z0-9-]{2,18}$/.test(t)) return D('dovolenka-pri-mori');
+  for (const [re, to] of THEME) if (re.test(t)) return D(to);
+  for (const [re, to] of GEO) if (re.test(t)) return D(to);
+  return null;
+}

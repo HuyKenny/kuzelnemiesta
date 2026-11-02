@@ -1,7 +1,7 @@
 /**
  * Every on-demand request:
- *  1. production workers.dev host → 301 to the production domain (BASE; only /api/health stays,
- *     the uptime monitor cannot pass Bot Fight Mode on the zone); host allow-list; staging whole host behind Access
+ *  1. production workers.dev host → 301 to the production domain (BASE; only /api/health stays for the uptime monitor,
+ *     the zone WAF challenges script clients); host allow-list; staging whole host behind Access
  *  2. canonical URL in ONE 301: www → apex, duplicate slashes, lowercase, legacy WordPress paths, trailing slash and the
  *     Rank Math `redirects` table (kept in isolate memory)
  *  3. edge cache (Cache API) for public GET HTML/XML. Key = host + path + normalised listing params (filters.ts) + search
@@ -17,7 +17,7 @@ import { clientIp } from './lib/server/http';
 import { dataVersion } from './lib/server/versions';
 import { htmlCsp, securityHeaders } from './lib/security';
 import { parseFilters, toQuery } from './lib/filters';
-import { tree } from './lib/db';
+import { resolveSlug, tree } from './lib/db';
 import { BASE, HOST } from './lib/site';
 
 /** own absolute links (apex or www) in article HTML */
@@ -61,6 +61,15 @@ const LEGACY: Array<[RegExp, (m: RegExpExecArray) => string]> = [
   [/^\/(.+)\/feed\/?$/, (m) => '/' + m[1] + '/'],
 ];
 
+/** Routes the Worker itself serves: sitemaps, city pages, paged listings and slugs of the slugs table. */
+async function isLive(db: D1Database, p: string): Promise<boolean> {
+  if (/^\/[a-z0-9_-]*sitemap[a-z0-9_-]*\.xml$/i.test(p)) return true;
+  if (/^\/lokalita\/[^/]+\/(page\/\d+\/)?$/.test(p)) return true;
+  const m = /^\/([^/]+)\/(?:page\/\d+\/)?$/.exec(p);
+  if (!m) return false;
+  try { return !!(await resolveSlug(db, decodeURIComponent(m[1]!).toLowerCase())); } catch { return false; }
+}
+
 /** Final path after all canonicalisation steps, or null when the request is already canonical. */
 async function canonicalPath(path: string, db: D1Database): Promise<{ to: string; status: number } | null> {
   let p = path.replace(/\/\/+/g, '/');
@@ -81,7 +90,8 @@ async function canonicalPath(path: string, db: D1Database): Promise<{ to: string
   if (!NO_CACHE.some((r) => r.test(p)) && p !== '/') {
     try {
       const r = (await redirects(db)).get(decodeURIComponent(p).toLowerCase());
-      if (r) { if (r.status === 410) return { to: '', status: 410 }; p = r.to_path; status = r.status; }
+      // a redirect row never overrides a live page (old WordPress rows hit sitemaps, /page/N/ and city pages — audit 2. 11.)
+      if (r && !(await isLive(db, p))) { if (r.status === 410) return { to: '', status: 410 }; p = r.to_path; status = r.status; }
     } catch { /* a DB hiccup must not break pages */ }
   }
   return p === path ? null : { to: p, status };

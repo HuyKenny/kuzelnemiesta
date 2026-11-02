@@ -362,6 +362,10 @@ def main():
         f = "/" + frm.strip("/").lower() + "/" if not re.search(r"\.[a-z0-9]{2,5}$", frm) else "/" + frm.strip("/").lower()
         if f == "/" or f in red:
             return
+        # never redirect live Worker routes or scanner junk (audit 3. 11. 2026, scripts/redirects-uklid.py)
+        if re.search(r"\.xml$|/page/\d+/$|^/lokalita/|^/\.|/\.[a-z]|^/wp-|\.php|/cgi-bin|admin|\.(jpe?g|png|gif|webp|svg|ico|pdf|txt|js|css|zip|json)/?$", f, re.I):
+            rep["redirect_" + why + "_junk_skipped"] += 1
+            return
         if f.strip("/") in slugs:  # a live page wins (kd-redirects.php only acted on 404)
             rep["redirect_" + why + "_live_skipped"] += 1
             return
