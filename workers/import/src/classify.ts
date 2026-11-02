@@ -66,6 +66,12 @@ const EXP: Array<[RegExp, string]> = [
 const SERIES: Array<[RegExp, string, boolean]> = [
   [/cirkus|cirkusu/, 'cirkus', true],
   [/head ?spa/, 'head-spa', true],
+  // spa towns (content gap 3. 11. 2026: "kupele X pobyt" 100–860 searches each) — stays only, matched in name or address
+  [/bardejov/, 'bardejovske-kupele', true], [/bojnic/, 'kupele-bojnice', true], [/rajeck\w* teplic/, 'kupele-rajecke-teplice', true],
+  [/turcianske teplic|turcianskych teplic/, 'kupele-turcianske-teplice', true], [/trencianske teplic|trencianskych teplic/, 'kupele-trencianske-teplice', true],
+  [/ajurved|ayurved/, 'ajurveda', true],
+  [/(husac|kacac|husi|kaci)\w* (hod|menu|stehn|veceri)|martinsk\w* (hod|hus)|pecen\w* (kacic|husac)|husacin/, 'husacie-hody', false],
+  [/wellness\w*.*(s detmi|pre rodin|rodinn)|rodinn\w* wellness/, 'wellness-pobyty-s-detmi', true],
   // "wellness s večerou (pre dvoch)" = the best GSC query of the old WordPress site (category kept, audit 2. 11. 2026)
   [/wellness\w* (s|a|so) (vecer|veceru|vecere|vecera)|privatn\w* wellness\w* (s|a) vecer/, 'wellness-s-vecerou', true],
   [/ferrari/, 'jazda-vo-ferrari', false],
@@ -142,7 +148,7 @@ const SERIES: Array<[RegExp, string, boolean]> = [
   [/\brum\b|\brumu\b|whisky|whiskey|destilat/, 'degustacia-rumu-a-whisky', false],
 ];
 // series that only make sense for stays (a castle tour or a romantic dinner is not a castle stay)
-const STAY_ONLY = new Set(['romanticke-pobyty', 'pobyt-na-zamku', 'izby-s-virivkou', 'pobyty-vo-vysokych-tatrach', 'pobyty-v-nizkych-tatrach', 'pobyty-na-liptove', 'pobyty-na-orave', 'pobyty-v-malej-fatre', 'pobyty-v-slovenskom-raji', 'pobyty-v-banskej-stiavnici', 'kupele-piestany', 'dovolenka-all-inclusive']);
+const STAY_ONLY = new Set(['bardejovske-kupele', 'kupele-bojnice', 'kupele-rajecke-teplice', 'kupele-turcianske-teplice', 'kupele-trencianske-teplice', 'wellness-pobyty-s-detmi', 'romanticke-pobyty', 'pobyt-na-zamku', 'izby-s-virivkou', 'pobyty-vo-vysokych-tatrach', 'pobyty-v-nizkych-tatrach', 'pobyty-na-liptove', 'pobyty-na-orave', 'pobyty-v-malej-fatre', 'pobyty-v-slovenskom-raji', 'pobyty-v-banskej-stiavnici', 'kupele-piestany', 'dovolenka-all-inclusive']);
 export const seriesCats = (name: string): string[] => {
   const n = norm(name), stay = isStay(n);
   return SERIES.filter(([re, s, stayOk]) => re.test(n) && (stayOk || !stay) && (stay || !STAY_ONLY.has(s))).map(([, s]) => '@' + s);

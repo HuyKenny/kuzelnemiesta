@@ -162,7 +162,8 @@ export async function categoryView(db: D1Database, catId: number, page: number, 
     canonical = cn.known && n >= comboMin(lok.slug) ? url : abs(`/${cat.slug}/`);
     if (!cn.known) title = categoryTitle(name, cat.count_total, minP);
   } else {
-    title = categoryTitle(name, cat.count_total, minP);
+    // a hand-written SEO title (content gap 3. 11. 2026: keyword first, the main query of the page) wins over the generated one
+    title = cat.seo_title ? rmVars(cat.seo_title, name) : categoryTitle(name, cat.count_total, minP);
     description = categoryDesc(name, cat.count_total, minP);
     h1 = name;
     h2 = `${name} — ${cislo(cat.count_total)} ${ponuk(cat.count_total)}`;

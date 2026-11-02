@@ -612,5 +612,53 @@
   "name": "Wellness s večerou",
   "parent": "sauna-a-wellness",
   "icon": "sauna"
+ },
+ {
+  "slug": "husacie-hody",
+  "name": "Husacie a kačacie hody",
+  "parent": "jedlo-a-pitie",
+  "icon": "jidlo"
+ },
+ {
+  "slug": "bardejovske-kupele",
+  "name": "Bardejovské kúpele",
+  "parent": "kupelne-pobyty",
+  "icon": "wellness"
+ },
+ {
+  "slug": "kupele-bojnice",
+  "name": "Kúpele Bojnice",
+  "parent": "kupelne-pobyty",
+  "icon": "wellness"
+ },
+ {
+  "slug": "kupele-rajecke-teplice",
+  "name": "Rajecké Teplice",
+  "parent": "kupelne-pobyty",
+  "icon": "wellness"
+ },
+ {
+  "slug": "kupele-turcianske-teplice",
+  "name": "Turčianske Teplice",
+  "parent": "kupelne-pobyty",
+  "icon": "wellness"
+ },
+ {
+  "slug": "kupele-trencianske-teplice",
+  "name": "Trenčianske Teplice",
+  "parent": "kupelne-pobyty",
+  "icon": "wellness"
+ },
+ {
+  "slug": "ajurveda",
+  "name": "Ajurvéda",
+  "parent": "wellness-a-krasa",
+  "icon": "wellness"
+ },
+ {
+  "slug": "wellness-pobyty-s-detmi",
+  "name": "Wellness pobyty s deťmi",
+  "parent": "wellness-pobyty",
+  "icon": "wellness"
  }
 ]
