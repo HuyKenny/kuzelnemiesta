@@ -17,7 +17,7 @@ export interface FeedDef {
 export const FEEDS: FeedDef[] = [
   { key: 'zlavomat', item: 'DEAL', store: 'zlavomat-sk', secret: 'FEED_URL_ZLAVOMAT', everyH: 12 },
   { key: 'adrop', item: 'SHOPITEM', store: 'adrop-sk', secret: 'FEED_URL_ADROP', everyH: 24 },
-  // FutbalTour.sk (zájazdy so vstupenkou na futbal, hokej, F1 …; Google Merchant RSS na Mergade, eHub kampaň 91959d88)
+  // FutbalTour.sk (zájazdy so vstupenkou na futbal, hokej, F1 …; Google Merchant RSS na Mergade, eHub kampaň 06a468a6)
   { key: 'futbaltour', item: 'item', store: 'futbaltour', secret: 'FEED_URL_FUTBALTOUR', everyH: 12 },
 ];
 
@@ -28,7 +28,8 @@ export function affiliateUrl(src: Source, id: string, url: string): string {
   if (src === 'zlavomat') {
     return `${url}?utm_source=affiliate&utm_medium=cpc&utm_campaign=${ZLAVOMAT_CAMPAIGN}&utm_content=${id}&utm_term=q6q55khb`;
   }
-  if (src === 'futbaltour') return `https://ehub.cz/system/scripts/click.php?a_aid=052443b7&a_bid=91959d88&data1=${id}&desturl=${url}`;
+  // FutbalTour.sk eHub deeplink (Kenny 3. 11. 2026: the old bid 91959d88 returned an error)
+  if (src === 'futbaltour') return `https://ehub.cz/system/scripts/click.php?a_aid=052443b7&a_bid=06a468a6&desturl=${url}`;
   return ehubUrl(id, url);
 }
 /** eHub (Adrop.sk campaign 640cdf23): desturl is appended raw (that is how every live link looks and is tracked). */
