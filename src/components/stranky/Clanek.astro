@@ -1,0 +1,50 @@
+---
+// Post or page: title, photo, the WordPress HTML as it was rendered, offer boxes (3 before the first H2, 6 at the end),
+// related posts. External links are printed exactly as written in WordPress (sold links stay dofollow).
+import Base from '../../layouts/Base.astro';
+import Drobky from '../Drobky.astro';
+import BoxNabidek from '../BoxNabidek.astro';
+import { datum, decode, excerpt, texturize } from '../../lib/format';
+import { tree } from '../../lib/db';
+import { getEnv } from '../../lib/server/env';
+import type { PostView } from '../../lib/views';
+
+interface Props { v: PostView }
+const { v } = Astro.props;
+const { post } = v;
+const t = await tree(getEnv().DB);
+const html = post.content_html;
+const at = v.box.length ? html.search(/<h2[\s>]/i) : -1;
+const before = at > 0 ? html.slice(0, at) : html;
+const after = at > 0 ? html.slice(at) : '';
+const top = at > 0 ? v.box.slice(0, 3) : [];
+const bottom = v.box.slice(top.length ? 3 : 0, (top.length ? 3 : 0) + 6);
+const catName = v.boxCat ? decode(v.boxCat.name) : '';
+---
+<Base meta={v.meta} pageType={post.type}>
+	<div class="w">
+		<Drobky items={v.crumbs} />
+		<article class="cl">
+			<header class="cl__h">
+				<h1>{texturize(decode(post.title))}</h1>
+				{post.type === 'post' && <p class="cl__m">{datum(post.published_at)}{post.author ? ` · ${post.author}` : ''}</p>}
+			</header>
+			{post.image && post.type === 'post' && <div class="cl__img"><img src={post.image} alt={post.image_alt || decode(post.title)} width={post.image_w || undefined} height={post.image_h || undefined} fetchpriority="high" /></div>}
+			<div class="obsah" set:html={before} />
+			{v.boxCat && <BoxNabidek items={top} cat={v.boxCat} t={t} heading={`Aktuální nabídky: ${catName}`} />}
+			{after && <div class="obsah" set:html={after} />}
+			{v.boxCat && <BoxNabidek items={bottom} cat={v.boxCat} t={t} heading={`Vyberte si z nabídek: ${catName}`} />}
+		</article>
+		{v.more.length > 0 && (
+			<section class="sek">
+				<h2>Další články</h2>
+				<ul class="posts">{v.more.map((p) => (
+					<li><article class="pk">
+						<div class="pk__i">{(p.image_card || p.image) && <img src={p.image_card || p.image} alt="" loading="lazy" width="400" height="225" />}</div>
+						<div class="pk__b"><time>{datum(p.published_at)}</time><h3><a href={`/${p.slug}/`}>{decode(p.title)}</a></h3><p>{excerpt(p.excerpt, 140)}</p></div>
+					</article></li>
+				))}</ul>
+			</section>
+		)}
+	</div>
+</Base>

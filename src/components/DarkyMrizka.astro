@@ -1,0 +1,19 @@
+---
+// Gift-idea tiles ("Hledáte dárek?"): one size for all — the illustration in a fixed box, a short name, one line of
+// what is inside. Home, listings and gift landings.
+import Ik from './Ik.astro';
+import type { Gift } from '../lib/views';
+
+interface Props { items: Gift[]; current?: string }
+const { items, current = '' } = Astro.props;
+const sub = (g: Gift) => (g.max ? `Zážitky a pobyty do ${g.max.toLocaleString('cs-CZ')} Kč` : (g.h1.split(':')[1] ?? g.h1).trim());
+---
+<ul class="dm">
+	{items.map((g) => (
+		<li><a href={`/${g.slug}/`} aria-current={g.slug === current ? 'page' : undefined}>
+			<span class="dm__il">{g.il ? <img src={`/a/il/${g.il}.webp`} alt="" width="88" height="88" loading="lazy" /> : <Ik n={g.icon} />}</span>
+			<b>{g.name}</b>
+			<small>{sub(g)}</small>
+		</a></li>
+	))}
+</ul>

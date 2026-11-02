@@ -1,0 +1,63 @@
+---
+// Page shell: head (Rank Math-equivalent meta, OG, JSON-LD), header, footer, GA4 + consent, UI script.
+import '../styles/app.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { ga4Head, ga4Footer } from '../lib/analytics';
+import { GA4_ID, OG_DEFAULT, SITE_NAME, orgGraph } from '../lib/site';
+import { getEnv } from '../lib/server/env';
+import type { Meta } from '../lib/views';
+
+interface Props { meta: Meta; pageType: string; searchAction?: boolean; preloadImg?: { src: string; srcset?: string; sizes?: string } | null }
+const { meta, pageType, searchAction = false, preloadImg = null } = Astro.props;
+const { title, description, canonical, prev, next, robots, ogType = 'article', ogImage = OG_DEFAULT, graph = [], jsonLd = [] } = meta;
+const env = getEnv();
+const prod = env.ENVIRONMENT === 'production';
+// meta robots = production value everywhere (parity checks compare it); non-production hosts are closed by Access and
+// the middleware's X-Robots-Tag: noindex header.
+const robotsContent = env.ENVIRONMENT === 'local' ? 'noindex, nofollow' : robots.join(', ');
+const ga = prod || env.ANALYTICS_ENABLED === '1' ? GA4_ID : '';
+const ld = (o: unknown) => JSON.stringify(o).replace(/</g, '\\u003c');
+---
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>{title}</title>
+	{description && <meta name="description" content={description} />}
+	<meta name="robots" content={robotsContent} />
+	{canonical && <link rel="canonical" href={canonical} />}
+	{prev && <link rel="prev" href={prev} />}
+	{next && <link rel="next" href={next} />}
+	<meta property="og:locale" content="cs_CZ" />
+	<meta property="og:type" content={ogType} />
+	<meta property="og:title" content={title} />
+	{description && <meta property="og:description" content={description} />}
+	{canonical && <meta property="og:url" content={canonical} />}
+	<meta property="og:site_name" content={SITE_NAME} />
+	<meta property="og:image" content={ogImage} />
+	<meta name="twitter:card" content="summary_large_image" />
+	<link rel="preload" href="/fonts/gabarito-800-1.woff2" as="font" type="font/woff2" crossorigin />
+	<link rel="preconnect" href="https://wsrv.nl" crossorigin />
+	{preloadImg && <link rel="preload" as="image" href={preloadImg.src} imagesrcset={preloadImg.srcset} imagesizes={preloadImg.sizes} fetchpriority="high" />}
+	<link rel="icon" href="/a/favicon-32.png?v=2" sizes="32x32" type="image/png" />
+	<link rel="icon" href="/a/favicon-192.png?v=2" sizes="192x192" type="image/png" />
+	<link rel="apple-touch-icon" href="/a/favicon-180.png?v=2" />
+	<link rel="manifest" href="/a/manifest.webmanifest" />
+	<meta name="theme-color" content="#ffffff" />
+	<link rel="alternate" type="application/rss+xml" title="Kouzelný děda &raquo; RSS" href="https://kouzelnydeda.cz/feed/" />
+	{ga && <Fragment set:html={ga4Head(ga, pageType)} />}
+	<script type="application/ld+json" set:html={ld({ '@context': 'https://schema.org', '@graph': [...orgGraph(searchAction), ...graph] })} />
+	{jsonLd.map((d) => <script type="application/ld+json" set:html={ld(d)} />)}
+</head>
+<body class={`t-${pageType}`}>
+<Header />
+<main id="obsah" tabindex="-1">
+<slot />
+</main>
+<Footer />
+<script src="../scripts/ui.ts"></script>
+{ga && <Fragment set:html={ga4Footer(ga, pageType)} />}
+</body>
+</html>

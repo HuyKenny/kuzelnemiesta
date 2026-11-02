@@ -1,0 +1,20 @@
+{
+ "extends": "astro/tsconfigs/strictest",
+ "include": [
+  "src/**/*",
+  "../../worker-configuration.d.ts"
+ ],
+ "compilerOptions": {
+  "noEmit": true,
+  "types": [],
+  "resolveJsonModule": true,
+  "allowImportingTsExtensions": true,
+  "verbatimModuleSyntax": true,
+  "lib": [
+   "ES2023",
+   "DOM"
+  ],
+  "noUncheckedIndexedAccess": true,
+  "exactOptionalPropertyTypes": false
+ }
+}

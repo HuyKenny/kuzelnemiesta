@@ -1,0 +1,39 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  // Offer import Worker (src/index.ts), replaces WP All Import. Secrets per environment (scripts/set-feed-secrets.py):
+  //   IMPORT_SHARED_SECRET, FEED_URL_SLEVOMAT (auth token), FEED_URL_ADROP, FEED_URL_ZAZITKY.
+  "name": "kouzelnydeda-import-local",
+  "main": "./src/index.ts",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "preview_urls": false,
+  // the Slevomat feed is ~37 MB / 7.7k deals
+  "limits": { "cpu_ms": 300000 },
+  "d1_databases": [{ "binding": "DB", "database_name": "kouzelnydeda-local", "database_id": "00000000-0000-0000-0000-000000000000", "migrations_dir": "../../migrations" }],
+  "triggers": { "crons": [] },
+  "vars": { "ALLOWED_FEED_HOSTS": "www.slevomat.cz,feeds.mergado.com,alis.zazitky.cz,www.skvelecesko.cz,export.ceskekormidlo.cz,xml.radynacestu.cz", "MAX_DROP_PCT": "40", "MAX_WRITES": "2500" },
+  "observability": { "enabled": true, "head_sampling_rate": 1 },
+  "env": {
+    "staging": {
+      "name": "kouzelnydeda-import-staging",
+      // HTTP API protected by the bearer secret; no cron on staging (runs are triggered by hand: POST /tick, /run/<feed>)
+      "workers_dev": true,
+      "preview_urls": false,
+      "triggers": { "crons": [] },
+      "limits": { "cpu_ms": 300000 },
+      "d1_databases": [{ "binding": "DB", "database_name": "kouzelnydeda-staging", "database_id": "f8ddc3d1-1107-4581-92d3-4c15ceb4da85", "migrations_dir": "../../migrations" }],
+      "vars": { "ALLOWED_FEED_HOSTS": "www.slevomat.cz,feeds.mergado.com,alis.zazitky.cz,www.skvelecesko.cz,export.ceskekormidlo.cz,xml.radynacestu.cz", "MAX_DROP_PCT": "40", "MAX_WRITES": "2500" }
+    },
+    "production": {
+      "name": "kouzelnydeda-import",
+      "workers_dev": true,
+      "preview_urls": false,
+      // every 20 min: the next due feed (Slevomat 6 h, Adrop + Zážitky 12 h), otherwise the daily finalisation
+      "triggers": { "crons": ["*/20 0-12 * * 1"] },
+      "limits": { "cpu_ms": 300000 },
+      "d1_databases": [{ "binding": "DB", "database_name": "kouzelnydeda-production", "database_id": "87b9cf42-57ee-4800-afa2-9134b8f857eb", "migrations_dir": "../../migrations" }],
+      "vars": { "ALLOWED_FEED_HOSTS": "www.slevomat.cz,feeds.mergado.com,alis.zazitky.cz,www.skvelecesko.cz,export.ceskekormidlo.cz,xml.radynacestu.cz", "MAX_DROP_PCT": "40", "MAX_WRITES": "2500" }
+    }
+  }
+}

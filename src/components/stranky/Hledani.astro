@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+import Mrizka from '../Mrizka.astro';
+import Strankovani from '../Strankovani.astro';
+import { tree } from '../../lib/db';
+import { getEnv } from '../../lib/server/env';
+import type { SearchView } from '../../lib/views';
+interface Props { v: SearchView }
+const { v } = Astro.props;
+const t = await tree(getEnv().DB);
+---
+<Base meta={v.meta} pageType="search">
+	<div class="w">
+		<header class="vh"><h1>{v.q ? `Hledáte „${v.q}“` : 'Hledání'}</h1><p class="lead">{v.total ? `Našli jsme ${v.total.toLocaleString('cs-CZ')} nabídek.` : 'Nic jsme nenašli — zkuste jiné slovo nebo projděte kategorie.'}</p></header>
+		{v.items.length > 0 && <Mrizka items={v.items} t={t} />}
+		<Strankovani base="/" page={v.page} pages={v.pages} query={`?s=${encodeURIComponent(v.q)}&post_type=product`} />
+	</div>
+</Base>

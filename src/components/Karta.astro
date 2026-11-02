@@ -1,0 +1,46 @@
+---
+// Offer card: photo with the discount sticker and an urgency badge (ends soon / new / bought), partner, city, rating,
+// name, price. The card opens the offer page; the small "K nabídce" button goes straight to the partner (/go/, decided buyers).
+import Ik from './Ik.astro';
+import type { Card, Tree } from '../lib/db';
+import { cena, decode, dni, dniDo, place } from '../lib/format';
+import { card } from '../lib/img';
+import { partner as partnerOf } from '../lib/partners';
+
+interface Props { p: Card; t: Tree; idx?: number; h?: 'h2' | 'h3'; ended?: boolean; ctx?: string; sec?: string }
+const { p, t, idx = 99, h = 'h3', ended = false, ctx = 'karta', sec = '' } = Astro.props;
+// ctx = placement-section (utm_content at Slevomat, "placement"/"context" in GA4)
+const ctxFull = sec ? `${ctx}-${sec}` : ctx;
+const H = h;
+const name = decode(p.name);
+const img = card(p.image, 360);
+const store = t.stores.get(p.store_id);
+const pt = partnerOf(store?.slug);
+const left = dniDo(p.deal_end);
+const where = place(p.city, p.cc);
+const fresh = Date.now() - Date.parse(String(p.created_at).replace(' ', 'T') + 'Z') < 3 * 86400_000;
+const badge = left !== null && left <= 7 ? { ik: 'hodiny', t: `Končí ${dni(left)}` }
+	: p.bought && p.bought >= 50 ? { ik: 'lidi', t: `${p.bought.toLocaleString('cs-CZ')}× koupeno` }
+	: fresh ? { ik: 'jiskra', t: 'Novinka' } : null;
+---
+<li>
+	<article class={ended ? 'k k--end' : 'k'}>
+		<div class="fo">
+			{img && <img src={img.src} srcset={img.srcset} alt="" width="360" height="270" loading={idx < 3 ? 'eager' : 'lazy'} fetchpriority={idx === 0 ? 'high' : undefined} decoding="async" />}
+			{badge && <span class="k__badge"><Ik n={badge.ik} />{badge.t}</span>}
+			<p class="k__p num">
+				<span class="k__cena">{cena(p.price)}{pt.unit && <small>/ noc</small>}{p.price_old > p.price && <del>{cena(p.price_old)}</del>}</span>
+				{p.disc_pct >= 5 && <span class="k__sleva">−{p.disc_pct} %</span>}
+			</p>
+		</div>
+		<div class="k__b">
+			<H class="k__n"><a href={`/${p.slug}/`}>{name}</a></H>
+			{p.rating > 0 && p.reviews > 0 && <p class="k__r"><Ik n="hvezda" /><b>{String(p.rating).replace('.', ',')}</b> / 5 <span>({p.reviews.toLocaleString('cs-CZ')} hodnocení)</span></p>}
+			<p class="k__m">
+				{store && <span class="pt" style={`--c:${pt.color}`}>{decode(store.name)}</span>}
+				{where && <span>{where}</span>}
+			</p>
+		</div>
+		{!ended && <a class="k__go" href={`/go/${p.id}/?ctx=${ctxFull}`} target="_blank" rel="nofollow sponsored noopener" data-partner={store?.slug ?? ''} data-id={p.id} data-name={name} data-section={sec || undefined} data-price={Math.round(p.price)} aria-label={`${name} – k nabídce u partnera`}>K nabídce <Ik n="sipka" /></a>}
+	</article>
+</li>

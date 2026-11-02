@@ -1,0 +1,16 @@
+---
+// Live offers inside an article (kd_post_offers of the child theme): direct partner exits are on the offer pages,
+// the box links the offers and the whole category.
+import Mrizka from './Mrizka.astro';
+import type { Card, Cat, Tree } from '../lib/db';
+import { decode } from '../lib/format';
+interface Props { items: Card[]; cat: Cat; t: Tree; heading: string }
+const { items, cat, t, heading } = Astro.props;
+---
+{items.length >= 2 && (
+	<aside class="boxn">
+		<div class="boxn__h"><h2>{heading}</h2><a href={`/${cat.slug}/`}>Všechny nabídky →</a></div>
+		<Mrizka items={items} t={t} eager={false} />
+		<p class="boxn__p">Přejdete k partnerovi · cena se nemění · {decode(cat.name)}</p>
+	</aside>
+)}

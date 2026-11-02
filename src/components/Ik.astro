@@ -1,0 +1,6 @@
+---
+// Line icon from the sprite public/a/i2.svg (rename the file when icons change — it is cached immutable).
+interface Props { n: string; cls?: string }
+const { n, cls = 'ik' } = Astro.props;
+---
+<svg class={cls} aria-hidden="true" focusable="false"><use href={`/a/i2.svg#${n}`}></use></svg>

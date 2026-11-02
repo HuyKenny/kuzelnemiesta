@@ -1,0 +1,59 @@
+---
+// Left column of a listing: the section tree (groups, counts, the current branch opened), budget, partner, cities and
+// gift tips. On desktop it is sticky beside the grid; on phones the same panel opens as a bottom sheet ("Filtry").
+import Ik from './Ik.astro';
+import { toQuery, type FilterState } from '../lib/filters';
+import type { Side } from '../lib/views';
+import type { Tree } from '../lib/db';
+
+interface Props { side: Side; base: string; f: FilterState; t: Tree; partners: boolean; pageUrl: string }
+const { side, base, f, t, partners, pageUrl } = Astro.props;
+const SHOW = 7;
+const BUDGET: Array<[number | undefined, string]> = [[undefined, 'Jakákoli cena'], [500, 'do 500 Kč'], [1000, 'do 1 000 Kč'], [2000, 'do 2 000 Kč'], [5000, 'do 5 000 Kč']];
+const stores = [...t.stores.values()].filter((s) => s.count > 0);
+const url = (x: Partial<FilterState>) => base + toQuery({ ...f, ...x });
+const n = (c?: number) => (c ? c.toLocaleString('cs-CZ') : '');
+---
+<aside class="sb" id="filtry" aria-label="Kategorie a filtry">
+	<div class="sb__hd"><b>Kategorie a filtry</b><button type="button" data-filtry-zavrit aria-label="Zavřít filtry"><Ik n="zavrit" /></button></div>
+	<section class="sb__s">
+		<a class="sb__t" href={side.url} aria-current={side.url === pageUrl ? 'page' : undefined}><Ik n={side.icon || 'darek'} />{side.title}</a>
+		{side.groups.map(({ g, items }) => {
+			const cut = items.findIndex((x) => x.active || x.kids?.some((k) => k.active)) >= SHOW ? items.length : SHOW;
+			const row = (x: (typeof items)[number]) => (
+				<li>
+					<a href={x.url} aria-current={x.active ? 'page' : undefined}><span>{x.name}</span>{x.count ? <em>{n(x.count)}</em> : null}</a>
+					{x.kids && <ul>{x.kids.map((k) => <li><a href={k.url} aria-current={k.active ? 'page' : undefined}><span>{k.name}</span><em>{n(k.count)}</em></a></li>)}</ul>}
+				</li>
+			);
+			return (
+				<div class="sb__g">
+					{g && <h3>{g}</h3>}
+					<ul>{items.slice(0, cut).map(row)}</ul>
+					{items.length > cut && <details class="sb__more"><summary>+ další ({items.length - cut})</summary><ul>{items.slice(cut).map(row)}</ul></details>}
+				</div>
+			);
+		})}
+	</section>
+	<section class="sb__s">
+		<h3>Rozpočet</h3>
+		<ul class="sb__r">{BUDGET.map(([m, l]) => <li><a href={url({ max: m, min: undefined })} rel={m ? 'nofollow' : undefined} aria-current={f.max === m && !f.min ? 'true' : undefined}>{l}</a></li>)}</ul>
+	</section>
+	{partners && stores.length > 1 && (
+		<section class="sb__s">
+			<h3>Partner</h3>
+			<ul class="sb__r">
+				<li><a href={url({ partner: '' })} aria-current={!f.partner ? 'true' : undefined}>Všichni</a></li>
+				{stores.map((s) => <li><a href={url({ partner: s.slug })} rel="nofollow" aria-current={f.partner === s.slug ? 'true' : undefined}>{s.name}</a></li>)}
+			</ul>
+		</section>
+	)}
+	{side.cities.length > 0 && (
+		<section class="sb__s">
+			<h3>Podle místa</h3>
+			<ul>{side.cities.map((c) => <li><a href={c.url} aria-current={c.active ? 'page' : undefined}><span>{c.name}</span><em>{n(c.count)}</em></a></li>)}</ul>
+		</section>
+	)}
+	<a class="sb__dar" href="/zazitkove-darky/"><img src="/a/il/kouzelnik-darek.webp" alt="" width="56" height="56" loading="lazy" /><span><b>Hledáte dárek?</b>Tipy pro ni, pro něj i pro děti</span></a>
+</aside>
+<div class="sb__bg" data-filtry-zavrit hidden></div>
