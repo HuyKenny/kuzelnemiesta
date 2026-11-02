@@ -1,17 +1,17 @@
 {
- "_doc": "Darčekové landingy – slovenská verzia pre kuzelnemiesta.sk (lokalizácia 2. 11. 2026 z českého kouzelnydeda.cz, redesign v2): výber aktívnych ponúk z kategórií (vrátane podkategórií) podľa pravidla. Poradie položiek = ref_id v databáze, nemeniť. slug = URL /<slug>/, cats = slugy uzlov z taxonomie.json (zatiaľ české, premapujú sa slug mapou; prázdne = všetky), max = cenový strop v EUR. kw = hlavné slovenské kľúčové slovo, hľadanosť (?) sa doplní po meraní.",
+ "_doc": "Darčekové landingy – slovenská verzia pre kuzelnemiesta.sk (lokalizácia 2. 11. 2026 z českého kouzelnydeda.cz, redesign v2): výber aktívnych ponúk z kategórií (vrátane podkategórií) podľa pravidla. Poradie položiek = ref_id v databáze, nemeniť. slug = URL /<slug>/, cats = slugy uzlov z taxonomie.json (zatiaľ české, premapujú sa slug mapou; prázdne = všetky), max = cenový strop v EUR. kw = hlavné slovenské kľúčové slovo, hľadanosť (?) sa doplní po meraní. + 12 gift landings of the Christmas content gap (3. 11. 2026), appended at the end.",
  "items": [
   {
    "slug": "zazitkove-darceky",
    "name": "Zážitkové darčeky",
-   "h1": "Zážitkové darčeky a darčekové poukazy",
+   "h1": "Zážitkové darčeky: darčekový poukaz na zážitok",
    "icon": "darek",
    "kw": "zážitkové darčeky (?)",
    "cats": [],
    "hub": true,
-   "title": "Zážitkové darčeky a poukazy | Kúzelné miesta",
-   "desc": "Darujte zážitok namiesto vecí: pobyty, wellness, adrenalín, degustácie aj kurzy so zľavou až 70 %. Overení partneri, voucher príde hneď e-mailom.",
-   "intro": "Veci sa omrzia, zážitky zostanú. Vybrali sme darčeky, z ktorých má obdarovaný naozajstnú radosť — od romantického pobytu cez masáž až po jazdu v športovom aute. Väčšinu kúpite ako darčekový voucher s dlhou platnosťou, ktorý vám partner pošle hneď e-mailom.",
+   "title": "Zážitkové darčeky – poukazy na zážitok | Kúzelné miesta",
+   "desc": "Zážitkový darček na každú príležitosť: pobyty, wellness, masáže, adrenalín či degustácie. Overení partneri, voucher príde hneď e-mailom.",
+   "intro": "Hľadáte zážitkový darček, ktorý nezapadne medzi ostatné veci? Vybrali sme zážitkové darčeky od pobytov cez masáž až po jazdu v športovom aute. Väčšinu kúpite ako darčekový poukaz na zážitok s dlhou platnosťou a voucher vám príde e-mailom.",
    "il": "kouzelnik-darek",
    "body": "<h2>Zážitkové darčeky: ako vybrať ten pravý</h2>\n<p>Zážitkové darčeky majú oproti veciam jednu zásadnú výhodu: neležia v šuplíku. Obdarovaný si ich užije, spomína na ne a často si ich rád vyberá aj nabudúce. Rozcestník vám pomôže nájsť ponuky partnerov na jednom mieste, porovnať ceny a vybrať voucher, ktorý príde e-mailom. Nakupuje sa priamo u partnera za jeho cenu.</p>\n<h3>Ako sa v ponuke zorientovať</h3>\n<p>V ponuke sú tisíce zážitkov a pobytov. Pomôže, keď si najprv odpoviete na tri otázky:</p>\n<ul>\n<li><strong>Pre koho je darček?</strong> Pre partnera, rodičov, kolegu alebo dieťa? Podľa toho sa líši vhodný zážitok.</li>\n<li><strong>Čo ho baví?</strong> Adrenalín, jedlo, relax, tvorenie alebo šport?</li>\n<li><strong>Koľko chcete minúť?</strong> Do 20 €, do 40 €, do 80 € alebo viac?</li>\n</ul>\n<h2>Druhy zážitkových darčekov</h2>\n<h3>Relax a starostlivosť</h3>\n<p>Masáže, kozmetika, sauna a wellness sú najčastejšou voľbou. Masáže začínajú zhruba na 6 € a v priemere vychádzajú okolo 50 €. Hodia sa pre ženy aj mužov, rodičov, priateľov aj kolegov.</p>\n<h3>Pobyty</h3>\n<p>Pobyty pre dvoch sú najväčším darčekom. Začínajú približne na 20 € a v priemere stoja okolo 180 €. Rodinné pobyty, wellness pobyty či kúpele sa líšia cenou aj programom, preto vždy skontrolujte počet osôb a to, čo je v cene.</p>\n<h3>Adrenalín a jazdy</h3>\n<p>Adrenalínové zážitky, jazdy v športových autách, lety a streľba sú darčekom pre tých, ktorí radi skúšajú nové veci. Ceny sa pohybujú od pár eur až po stovky eur, podľa dĺžky a typu zážitku.</p>\n<h3>Jedlo a pitie</h3>\n<p>Degustačné menu, steakové večere, kurzy varenia a degustácie vína či piva potešia gurmánov. Degustácie alkoholu sú len pre dospelých.</p>\n<h3>Tvorenie a kultúra</h3>\n<p>Kurzy maľovania a tvorenia, fotenie, múzeá a výlety sú vhodné pre tých, ktorí uprednostňujú pokojnejšiu zábavu.</p>\n<h2>Koľko stojí zážitkový darček</h2>\n<p>Zážitok sa dá kúpiť pri každom rozpočte. Konkrétnu sumu vám pomôžu nájsť prehľady <a href=\"/darceky-do-20-eur/\">darčekov do 20 €</a>, <a href=\"/darceky-do-40-eur/\">do 40 €</a> a <a href=\"/darceky-do-80-eur/\">do 80 €</a>. Pri väčších príležitostiach sa pozrite na pobyty a wellness, ktoré zvyčajne stoja stovky eur.</p>\n<h2>Darčeky podľa osoby</h2>\n<p>Ak hľadáte pre konkrétneho človeka, nechajte sa inšpirovať: <a href=\"/darcek-pre-zenu/\">darček pre ženu</a>, <a href=\"/darcek-pre-muza/\">darček pre muža</a>, <a href=\"/darcek-pre-par/\">darček pre pár</a> alebo <a href=\"/darcek-pre-deti/\">darček pre deti</a>. Na Vianoce sa hodí vianočný darček, na narodeniny darček k narodeninám.</p>\n<h2>Ako zážitok odovzdať, aby urobil radosť</h2>\n<p>Zážitok sa dá zabaliť rovnako pekne ako vec. Vytlačte voucher, vložte ho do obálky a pridajte drobnosť: k jazde okuliare, k degustácii pohár, k masáži sviečku. Zaujímavé je aj zabaliť voucher do škatule s hádankou, ktorá sa týka zážitku. Darček môžete odovzdať aj s osobným listom a s návrhom termínu, ktorý vyhovuje vám obom.</p>\n<h3>Zážitok pre viac ľudí</h3>\n<p>Na väčší darček sa môže zložiť rodina, kolegovia alebo priatelia. Vyberajte ponuky, pri ktorých je jasne uvedený počet osôb, alebo darček rozdeľte na viac menších. Pri skupinových zážitkoch, ako sú únikové hry, bowling či degustácie, je spoločné plánovanie samo osebe súčasťou radosti.</p>\n<h2>Praktické rady</h2>\n<ul>\n<li>Voucher príde e-mailom po zaplatení, takže darček stihnete aj na poslednú chvíľu. Pre pekný dojem ho vytlačte a vložte do obálky.</li>\n<li>Termín si vyberá obdarovaný. Platnosť voucheru skontrolujte pri konkrétnej ponuke.</li>\n<li>Na víkendy, prázdniny a sviatky rezervujte s predstihom.</li>\n<li>Pri pobytoch si overte počet osôb a to, čo je zahrnuté v cene (strava, wellness, vstupy).</li>\n<li>Pri adrenalíne a športe skontrolujte vekové, hmotnostné či zdravotné obmedzenia.</li>\n<li>Ak si nie ste istí, zvoľte flexibilnejší zážitok alebo darčekový poukaz.</li>\n</ul>\n<p>Všetky ponuky sú od overených partnerov a cena je rovnaká ako u nich. My ich iba prehľadne triedime, aby ste vyberali rýchlejšie.</p>",
    "faq": [
@@ -56,11 +56,11 @@
     "kaviarne-a-torty",
     "sportove-zajazdy"
    ],
-   "title": "Darček pre ženu – zážitky a poukazy | Kúzelné miesta",
+   "title": "Darček pre ženu – zážitky, wellness, pobyty | Kúzelné miesta",
    "desc": "Masáž, wellness, kozmetika, romantický pobyt alebo kurz? Tipy na darček pre ženu od overených partnerov. Voucher hneď e-mailom.",
-   "intro": "Hľadáte darček pre manželku, priateľku, mamu alebo kamarátku? Zážitok poteší viac než ďalšia vec do skrine. Vybrali sme to, čo ženy dostávajú najradšej: chvíľu len pre seba v rukách masérky, wellness, starostlivosť o pleť, tvorenie aj romantiku vo dvojici.",
+   "intro": "Hľadáte darček pre ženu, ktorý nie je ďalšia vec do skrine? Masáž, wellness, kozmetika, tvorivý kurz alebo romantika vo dvojici: darček pre manželku, priateľku, mamu aj kamarátku. Voucher príde e-mailom a obdarovaná si termín vyberie sama.",
    "il": "pro-ni",
-   "body": "<h2>Darček pre ženu: ako vybrať zážitok, ktorý naozaj poteší</h2>\n<p>Darček pre ženu sa vyberá ľahšie, keď sa najprv zamyslíte, akú úlohu má vo vašom živote a čo jej chýba. Manželka zvyčajne ocení spoločný čas a pokoj, kamarátka skôr niečo hravé, kolegyňa drobnú pozornosť. Zážitok má oproti veci jednu výhodu: nikdy netrafíte zlú veľkosť ani farbu a nič nezostane ležať v šuplíku.</p>\n<h3>Podľa čoho sa rozhodnúť</h3>\n<ul>\n<li><strong>Záujmy:</strong> kto rád tvorí, ocení kurz maľovania alebo tvorenia; kto má rád dobré jedlo, degustáciu či posedenie v kaviarni.</li>\n<li><strong>Vek a životná situácia:</strong> pre ženy s deťmi býva najväčším luxusom hodina bez povinností, napríklad masáž alebo wellness.</li>\n<li><strong>Rozpočet:</strong> v ponuke nájdete všetko od drobnej pozornosti po celý víkendový pobyt.</li>\n</ul>\n<h2>Zážitky pre ženy, ktoré sa osvedčili</h2>\n<ul>\n<li><a href=\"/masaze/\">Masáže</a>: klasická, aromaterapeutická alebo masáž chrbta a šije. Hodí sa takmer vždy a obdarovaná si termín vyberie sama.</li>\n<li><a href=\"/kozmeticke-sluzby/\">Kozmetické ošetrenie</a>: starostlivosť o pleť, ošetrenie tváre alebo mihalnice a obočie. Príjemná chvíľa len pre seba.</li>\n<li><a href=\"/sauna-a-wellness/\">Sauna a privátny wellness</a>: pre tie, ktoré chcú relaxovať v pokoji, či už samy, alebo s kamarátkou.</li>\n<li><a href=\"/kurzy-malovania/\">Kurz maľovania</a> a <a href=\"/kreativne-kurzy/\">tvorenia</a>: večer s pohárom vína a výsledkom, ktorý si odnesie domov.</li>\n<li>Fotenie: profesionálny portrét alebo párové fotenie v ateliéri, spomienka na dlhé roky.</li>\n<li>Wellness pobyt alebo pobyt pre dvoch: na veľkú príležitosť, napríklad výročie alebo okrúhle narodeniny.</li>\n</ul>\n<p>Ak je žena fanúšičkou športu, pozrite sa aj na športové zájazdy. Zaujať môže aj degustačné menu alebo posedenie v kaviarni.</p>\n<h2>Koľko stojí darček pre ženu</h2>\n<p>Podľa aktuálnej ponuky začína masáž zhruba na 6 €, kozmetické ošetrenie na 4 € a posedenie v kaviarni na pár eurách. Priemerná masáž vyjde približne na 50 €, kozmetika na 45 €. Wellness pobyty začínajú okolo 45 € a v priemere stoja vyše 200 €, pobyty pre dvoch začínajú približne na 20 € a v priemere stoja okolo 180 €. Ceny sa menia, preto platí údaj pri konkrétnej ponuke.</p>\n<h2>Ako darček odovzdať, aby mal atmosféru</h2>\n<p>Aj najlepší zážitok pôsobí krajšie, keď sa odovzdá s drobným gestom. Voucher môžete vytlačiť, vložiť do obálky a pridať kyticu, bonboniéru alebo ručne písanú kartičku. Ak chcete prekvapiť, nechajte si voucher v e-maile a odovzdajte ho až v ten správny deň. K masáži či wellness môžete pridať pozvánku „vyber si termín, o deti sa postarám ja“, ktorá ženám s deťmi často urobí väčšiu radosť než samotný zážitok.</p>\n<h3>Na akú príležitosť čo vybrať</h3>\n<p>K narodeninám sa hodí kurz, fotenie alebo wellness, na Vianoce skôr pobyt či masáž, na MDŽ drobnejšia a príjemná pozornosť, napríklad kozmetika alebo kaviareň s tortou. Na rozlúčku či poďakovanie stačí menšia suma.</p>\n<h2>Praktické rady pred objednávkou</h2>\n<ul>\n<li>Nákup prebieha u partnera, cena je rovnaká ako na jeho webe. Voucher príde e-mailom, môžete ho vytlačiť alebo odovzdať v peknej obálke.</li>\n<li>Termín si vyberá obdarovaná podľa podmienok konkrétnej ponuky. Platnosť voucheru je uvedená pri každej ponuke, skontrolujte ju.</li>\n<li>Na obľúbené termíny a víkendy sa oplatí rezervovať s predstihom.</li>\n<li>Pri pobytoch si všímajte počet osôb v cene a to, či je v cene strava alebo vstup do wellness.</li>\n</ul>\n<p>Hľadáte inšpiráciu pre konkrétnu osobu? Skúste <a href=\"/darcek-pre-mamu/\">darček pre mamu</a> alebo <a href=\"/darcek-pre-priatelku/\">darček pre priateľku</a>.</p>",
+   "body": "<h2>Darček pre ženu: ako vybrať zážitok, ktorý naozaj poteší</h2>\n<p>Darček pre ženu sa vyberá ľahšie, keď sa najprv zamyslíte, akú úlohu má vo vašom živote a čo jej chýba. Manželka zvyčajne ocení spoločný čas a pokoj, kamarátka skôr niečo hravé, kolegyňa drobnú pozornosť. Zážitok má oproti veci jednu výhodu: nikdy netrafíte zlú veľkosť ani farbu a nič nezostane ležať v šuplíku.</p>\n<h3>Podľa čoho sa rozhodnúť</h3>\n<ul>\n<li><strong>Záujmy:</strong> kto rád tvorí, ocení kurz maľovania alebo tvorenia; kto má rád dobré jedlo, degustáciu či posedenie v kaviarni.</li>\n<li><strong>Vek a životná situácia:</strong> pre ženy s deťmi býva najväčším luxusom hodina bez povinností, napríklad masáž alebo wellness.</li>\n<li><strong>Rozpočet:</strong> v ponuke nájdete všetko od drobnej pozornosti po celý víkendový pobyt.</li>\n</ul>\n<h2>Zážitky pre ženy, ktoré sa osvedčili</h2>\n<ul>\n<li><a href=\"/masaze/\">Masáže</a>: klasická, aromaterapeutická alebo masáž chrbta a šije. Hodí sa takmer vždy a obdarovaná si termín vyberie sama.</li>\n<li><a href=\"/kozmeticke-sluzby/\">Kozmetické ošetrenie</a>: starostlivosť o pleť, ošetrenie tváre alebo mihalnice a obočie. Príjemná chvíľa len pre seba.</li>\n<li><a href=\"/sauna-a-wellness/\">Sauna a privátny wellness</a>: pre tie, ktoré chcú relaxovať v pokoji, či už samy, alebo s kamarátkou.</li>\n<li><a href=\"/kurzy-malovania/\">Kurz maľovania</a> a <a href=\"/kreativne-kurzy/\">tvorenia</a>: večer s pohárom vína a výsledkom, ktorý si odnesie domov.</li>\n<li>Fotenie: profesionálny portrét alebo párové fotenie v ateliéri, spomienka na dlhé roky.</li>\n<li>Wellness pobyt alebo pobyt pre dvoch: na veľkú príležitosť, napríklad výročie alebo okrúhle narodeniny.</li>\n</ul>\n<p>Ak je žena fanúšičkou športu, pozrite sa aj na športové zájazdy. Zaujať môže aj degustačné menu alebo posedenie v kaviarni.</p>\n<h2>Koľko stojí darček pre ženu</h2>\n<p>Podľa aktuálnej ponuky začína masáž zhruba na 6 €, kozmetické ošetrenie na 4 € a posedenie v kaviarni na pár eurách. Priemerná masáž vyjde približne na 50 €, kozmetika na 45 €. Wellness pobyty začínajú okolo 45 € a v priemere stoja vyše 200 €, pobyty pre dvoch začínajú približne na 20 € a v priemere stoja okolo 180 €. Ceny sa menia, preto platí údaj pri konkrétnej ponuke.</p>\n<h2>Ako darček odovzdať, aby mal atmosféru</h2>\n<p>Aj najlepší zážitok pôsobí krajšie, keď sa odovzdá s drobným gestom. Voucher môžete vytlačiť, vložiť do obálky a pridať kyticu, bonboniéru alebo ručne písanú kartičku. Ak chcete prekvapiť, nechajte si voucher v e-maile a odovzdajte ho až v ten správny deň. K masáži či wellness môžete pridať pozvánku „vyber si termín, o deti sa postarám ja“, ktorá ženám s deťmi často urobí väčšiu radosť než samotný zážitok.</p>\n<h3>Na akú príležitosť čo vybrať</h3>\n<p>K narodeninám sa hodí kurz, fotenie alebo wellness, na Vianoce skôr pobyt či masáž, na MDŽ drobnejšia a príjemná pozornosť, napríklad kozmetika alebo kaviareň s tortou. Na rozlúčku či poďakovanie stačí menšia suma.</p>\n<h2>Vianočný darček pre ženu</h2>\n<p>Na Vianoce poteší najmä čas pre seba: masáž, wellness, kozmetika alebo pobyt. Voucher stihnete kúpiť aj na poslednú chvíľu, no lepší výber je v novembri. Pozrite <a href=\"/vianocne-darceky-pre-zenu/\">vianočný darček pre ženu</a> a k narodeninám <a href=\"/darcek-pre-zenu-k-narodeninam/\">darček pre ženu k narodeninám</a>.</p>\n<h2>Praktické rady pred objednávkou</h2>\n<ul>\n<li>Nákup prebieha u partnera, cena je rovnaká ako na jeho webe. Voucher príde e-mailom, môžete ho vytlačiť alebo odovzdať v peknej obálke.</li>\n<li>Termín si vyberá obdarovaná podľa podmienok konkrétnej ponuky. Platnosť voucheru je uvedená pri každej ponuke, skontrolujte ju.</li>\n<li>Na obľúbené termíny a víkendy sa oplatí rezervovať s predstihom.</li>\n<li>Pri pobytoch si všímajte počet osôb v cene a to, či je v cene strava alebo vstup do wellness.</li>\n</ul>\n<p>Hľadáte inšpiráciu pre konkrétnu osobu? Skúste <a href=\"/darcek-pre-mamu/\">darček pre mamu</a> alebo <a href=\"/darcek-pre-priatelku/\">darček pre priateľku</a>.</p>",
    "faq": [
     {
      "q": "Čo darovať žene, ktorá má všetko?",
@@ -87,7 +87,7 @@
   {
    "slug": "darcek-pre-muza",
    "name": "Pre neho",
-   "h1": "Darček pre muža: zážitky s adrenalínom aj pohodou",
+   "h1": "Darček pre muža: zážitky a darčeky pre mužov",
    "icon": "pro-nej",
    "kw": "darček pre muža (?)",
    "cats": [
@@ -103,11 +103,11 @@
     "sport-a-pohyb",
     "bary-a-drinky"
    ],
-   "title": "Darček pre muža – zážitky a poukazy | Kúzelné miesta",
+   "title": "Darček pre muža, darčeky pre mužov | Kúzelné miesta",
    "desc": "Jazda na okruhu, streľba, úniková hra, steak alebo degustácia piva. Tipy na zážitkový darček pre muža, voucher príde hneď e-mailom.",
-   "intro": "Chlapi veci väčšinou nepotrebujú, zážitky však milujú. Nájdete tu jazdy v športových autách, streľbu, únikové hry, virtuálnu realitu, degustácie aj poriadny steak — darčeky pre manžela, otca, brata aj kamaráta, od pár eur po veľké zážitky.",
+   "intro": "Hľadáte darček pre muža alebo darčeky pre mužov, ktoré nebudú len ďalšou vecou? Chlapi zážitky milujú: jazdy v športových autách, streľbu, únikové hry, virtuálnu realitu, degustácie aj poriadny steak. Darčeky pre manžela, otca, brata aj kamaráta, od pár eur po veľké zážitky.",
    "il": "pro-nej",
-   "body": "<h2>Darček pre muža: zážitky, ktoré ocení viac než ďalšie tričko</h2>\n<p>Darček pre muža býva oriešok najmä preto, že si väčšinu vecí kúpi sám. Zážitok tento problém obchádza: nemusíte hádať značku ani veľkosť a darček navyše vydrží v pamäti dlhšie než ďalšia sada ponožiek. Vyberajte podľa toho, či váš muž túži po adrenalíne, alebo po pokoji a dobrom jedle.</p>\n<h3>Ako vybrať podľa typu</h3>\n<ul>\n<li><strong>Športovec a fanúšik:</strong> zájazd na zápas jeho klubu alebo aktívny zážitok, napríklad lezenie, paintball či zimné športy.</li>\n<li><strong>Technik a motorkár:</strong> jazda v športovom aute, motokáry, simulátor alebo vyhliadkový let.</li>\n<li><strong>Gurmán:</strong> steak, tatarák, degustácia piva alebo whisky.</li>\n<li><strong>Pohodár:</strong> barber shop, wellness či večer v dobrom bare.</li>\n</ul>\n<h2>Zážitky pre mužov, ktoré fungujú</h2>\n<ul>\n<li><a href=\"/zazitkove-jazdy/\">Zážitkové jazdy</a>: superšport, pretekárske auto alebo terénne vozidlo. Hodia sa pre každého, kto má rád motory.</li>\n<li><a href=\"/adrenalinove-zazitky/\">Adrenalínové zážitky</a>: zoskok, rafting, vyhliadkový let alebo bungee. Výber je obrovský, od pár eur až po stovky eur.</li>\n<li><a href=\"/escape-room/\">Únikové hry</a> a <a href=\"/virtualna-realita/\">virtuálna realita</a>: ideálny darček pre partiu priateľov.</li>\n<li>Steaky a burgery alebo tatarák: večer, na ktorý sa teší už pri objednávke.</li>\n<li>Degustácie vína a piva, bary a drinky: len pre dospelých.</li>\n<li>Barber shop: strih a úprava brady, praktická a príjemná pozornosť.</li>\n</ul>\n<p>Fanúšikovi príde vhod aj zájazd na športový zápas alebo športová aktivita, ktorú by si sám nevyskúšal.</p>\n<h2>Koľko stojí zážitok pre muža</h2>\n<p>Podľa ponuky stojí barber shop v priemere okolo 17 €, steak či burger zhruba 25 €, únikové hry v priemere okolo 45 € a zážitkové jazdy v priemere takmer 115 €. Degustácia vína a piva vychádza v priemere zhruba na 90 €. Zájazdy na zápasy sú drahšie, pretože zahŕňajú vstupenku a dopravu, ceny „od“ sú orientačné.</p>\n<h2>Ako darček odovzdať a nepokaziť prekvapenie</h2>\n<p>Voucher na zážitok sa odovzdáva jednoducho: vytlačte ho, vložte do obálky alebo ho zabaľte do krabičky s drobnosťou, ktorá k zážitku patrí, napríklad s okuliarmi k jazde či pohárom k degustácii. Ak chcete mať istotu, že voucher využije, navrhnite mu aj termín, ktorý nebude kolidovať s prácou, a pomôžte mu s rezerváciou. Muži zážitok často odkladajú na „keď bude čas“, takže krátka poznámka s konkrétnym mesiacom pomáha.</p>\n<h3>Príležitosti, ku ktorým sa zážitok hodí</h3>\n<p>Na narodeniny sa hodí adrenalínový zážitok alebo jazda, na Vianoce skôr večera alebo pobyt, na Deň otcov pokojnejšia degustácia či steak. Pre kolegu stačí menšia suma, napríklad bowling, degustácia alebo úniková hra s tímom.</p>\n<h3>Keď neviete, čo vybrať</h3>\n<p>Zvoľte kategóriu podľa záujmu a až v nej prechádzajte konkrétne ponuky. Ak si nie ste istí, vyberte flexibilnejší zážitok, ktorý sa dá využiť na viacerých miestach alebo v dlhšom časovom okne, a v popise ponuky si pozrite platnosť voucheru a podmienky rezervácie. Skontrolujte tiež, či sa zážitok dá využiť jednotlivo, alebo je cena za skupinu, pretože pri niektorých únikovkách a jazdách sa platí za osobu a pri iných za celý tím.</p>\n<h2>Praktické rady</h2>\n<ul>\n<li>Voucher príde e-mailom po zaplatení, takže sa hodí aj na poslednú chvíľu. Môžete ho vytlačiť a zabaliť.</li>\n<li>Termín a čas si vyberá obdarovaný. Platnosť voucheru skontrolujte pri ponuke.</li>\n<li>Rýchle jazdy a lety bývajú obsadené, rezervácia s predstihom je rozumná.</li>\n<li>Skontrolujte vekové či zdravotné obmedzenia, napríklad pri adrenalíne.</li>\n</ul>\n<p>Pre konkrétnejšiu inšpiráciu sa pozrite na <a href=\"/darcek-pre-otca/\">darček pre otca</a>, <a href=\"/darcek-pre-priatela/\">darček pre priateľa</a> alebo <a href=\"/darcek-pre-dedka/\">darček pre dedka</a>.</p>\n<p>Nákup prebieha u partnera za rovnakú cenu, akú nájdete na jeho webe. Rozcestník vám pomôže rýchlejšie vybrať a porovnať ponuky.</p>",
+   "body": "<h2>Darček pre muža: zážitky, ktoré ocení viac než ďalšie tričko</h2>\n<p>Darček pre muža býva oriešok najmä preto, že si väčšinu vecí kúpi sám. Zážitok tento problém obchádza: nemusíte hádať značku ani veľkosť a darček navyše vydrží v pamäti dlhšie než ďalšia sada ponožiek. Vyberajte podľa toho, či váš muž túži po adrenalíne, alebo po pokoji a dobrom jedle.</p>\n<h3>Ako vybrať podľa typu</h3>\n<ul>\n<li><strong>Športovec a fanúšik:</strong> zájazd na zápas jeho klubu alebo aktívny zážitok, napríklad lezenie, paintball či zimné športy.</li>\n<li><strong>Technik a motorkár:</strong> jazda v športovom aute, motokáry, simulátor alebo vyhliadkový let.</li>\n<li><strong>Gurmán:</strong> steak, tatarák, degustácia piva alebo whisky.</li>\n<li><strong>Pohodár:</strong> barber shop, wellness či večer v dobrom bare.</li>\n</ul>\n<h2>Zážitky pre mužov, ktoré fungujú</h2>\n<ul>\n<li><a href=\"/zazitkove-jazdy/\">Zážitkové jazdy</a>: superšport, pretekárske auto alebo terénne vozidlo. Hodia sa pre každého, kto má rád motory.</li>\n<li><a href=\"/adrenalinove-zazitky/\">Adrenalínové zážitky</a>: zoskok, rafting, vyhliadkový let alebo bungee. Výber je obrovský, od pár eur až po stovky eur.</li>\n<li><a href=\"/escape-room/\">Únikové hry</a> a <a href=\"/virtualna-realita/\">virtuálna realita</a>: ideálny darček pre partiu priateľov.</li>\n<li>Steaky a burgery alebo tatarák: večer, na ktorý sa teší už pri objednávke.</li>\n<li>Degustácie vína a piva, bary a drinky: len pre dospelých.</li>\n<li>Barber shop: strih a úprava brady, praktická a príjemná pozornosť.</li>\n</ul>\n<p>Fanúšikovi príde vhod aj zájazd na športový zápas alebo športová aktivita, ktorú by si sám nevyskúšal.</p>\n<h2>Koľko stojí zážitok pre muža</h2>\n<p>Podľa ponuky stojí barber shop v priemere okolo 17 €, steak či burger zhruba 25 €, únikové hry v priemere okolo 45 € a zážitkové jazdy v priemere takmer 115 €. Degustácia vína a piva vychádza v priemere zhruba na 90 €. Zájazdy na zápasy sú drahšie, pretože zahŕňajú vstupenku a dopravu, ceny „od“ sú orientačné.</p>\n<h2>Ako darček odovzdať a nepokaziť prekvapenie</h2>\n<p>Voucher na zážitok sa odovzdáva jednoducho: vytlačte ho, vložte do obálky alebo ho zabaľte do krabičky s drobnosťou, ktorá k zážitku patrí, napríklad s okuliarmi k jazde či pohárom k degustácii. Ak chcete mať istotu, že voucher využije, navrhnite mu aj termín, ktorý nebude kolidovať s prácou, a pomôžte mu s rezerváciou. Muži zážitok často odkladajú na „keď bude čas“, takže krátka poznámka s konkrétnym mesiacom pomáha.</p>\n<h3>Príležitosti, ku ktorým sa zážitok hodí</h3>\n<p>Na narodeniny sa hodí adrenalínový zážitok alebo jazda, na Vianoce skôr večera alebo pobyt, na Deň otcov pokojnejšia degustácia či steak. Pre kolegu stačí menšia suma, napríklad bowling, degustácia alebo úniková hra s tímom.</p>\n<h3>Keď neviete, čo vybrať</h3>\n<p>Zvoľte kategóriu podľa záujmu a až v nej prechádzajte konkrétne ponuky. Ak si nie ste istí, vyberte flexibilnejší zážitok, ktorý sa dá využiť na viacerých miestach alebo v dlhšom časovom okne, a v popise ponuky si pozrite platnosť voucheru a podmienky rezervácie. Skontrolujte tiež, či sa zážitok dá využiť jednotlivo, alebo je cena za skupinu, pretože pri niektorých únikovkách a jazdách sa platí za osobu a pri iných za celý tím.</p>\n<h2>Vianočný darček pre muža</h2>\n<p>Na Vianoce sa lepšie hodia zážitky, ktoré sa dajú využiť aj v zime: večera so steakom, únikovka, wellness či pobyt. Vonkajšie jazdy a lety môže oslávenec využiť na jar. Viac tipov nájdete v <a href=\"/vianocne-darceky-pre-muza/\">vianočnom darčeku pre muža</a>. K narodeninám pozrite <a href=\"/darcek-pre-muza-k-narodeninam/\">darček pre muža k narodeninám</a>.</p>\n<h2>Praktické rady</h2>\n<ul>\n<li>Voucher príde e-mailom po zaplatení, takže sa hodí aj na poslednú chvíľu. Môžete ho vytlačiť a zabaliť.</li>\n<li>Termín a čas si vyberá obdarovaný. Platnosť voucheru skontrolujte pri ponuke.</li>\n<li>Rýchle jazdy a lety bývajú obsadené, rezervácia s predstihom je rozumná.</li>\n<li>Skontrolujte vekové či zdravotné obmedzenia, napríklad pri adrenalíne.</li>\n</ul>\n<p>Pre konkrétnejšiu inšpiráciu sa pozrite na <a href=\"/darcek-pre-otca/\">darček pre otca</a>, <a href=\"/darcek-pre-priatela/\">darček pre priateľa</a> alebo <a href=\"/darcek-pre-dedka/\">darček pre dedka</a>.</p>\n<p>Nákup prebieha u partnera za rovnakú cenu, akú nájdete na jeho webe. Rozcestník vám pomôže rýchlejšie vybrať a porovnať ponuky.</p>",
    "faq": [
     {
      "q": "Čo dať mužovi, ktorý nič nechce?",
@@ -134,7 +134,7 @@
   {
    "slug": "darcek-pre-par",
    "name": "Pre pár",
-   "h1": "Darček pre pár: zážitky vo dvojici",
+   "h1": "Darček pre pár: darčeky pre páry a spoločný zážitok",
    "icon": "pro-par",
    "kw": "darček pre pár (?)",
    "cats": [
@@ -146,8 +146,8 @@
     "escape-room",
     "degustacia-vina-a-piva"
    ],
-   "title": "Darček pre pár – zážitky a pobyty | Kúzelné miesta",
-   "desc": "Romantický pobyt, privátny wellness, degustačná večera alebo kurz varenia vo dvojici. Darčeky pre páry, voucher hneď e-mailom.",
+   "title": "Darček pre pár – darčeky pre páry | Kúzelné miesta",
+   "desc": "Darček pre pár a darčeky pre páry: pobyt, privátny wellness, večera či kurz vo dvojici. Voucher príde hneď e-mailom.",
    "intro": "Svadba, výročie, Vianoce alebo len tak — najlepší darček pre pár je spoločný čas. Vybrali sme pobyty a zážitky pre dvoch: wellness s privátnou saunou, degustačnú večeru, kurz varenia aj únikovú hru, v ktorej sa ukáže, ako spolu ťaháte za jeden povraz.",
    "il": "pro-par",
    "body": "<h2>Darček pre pár: ako vybrať zážitok pre dvoch</h2>\n<p>Darček pre pár sa líši od darčeka pre jedného človeka: musí byť príjemný pre oboch a ideálne ich prinúti tráviť čas spolu. Hodí sa na svadbu, výročie, Vianoce aj bez dôvodu. Skôr než začnete vyberať, zvážte, či pár ocení pokoj, alebo skôr zábavu a trochu súťaženia.</p>\n<h3>Podľa čoho sa rozhodnúť</h3>\n<ul>\n<li><strong>Typ páru:</strong> romantici ocenia pobyt alebo večeru, aktívne páry kurz či únikovku.</li>\n<li><strong>Dĺžka vzťahu:</strong> novomanželom sa hodí pobyt, dlhoročným partnerom niečo nové, napríklad kurz varenia.</li>\n<li><strong>Rozpočet:</strong> od večere po víkend vo wellness hoteli.</li>\n</ul>\n<h2>Zážitky pre dvoch, ktoré sa hodia ako darček</h2>\n<ul>\n<li><a href=\"/pobyty-pre-dvoch/\">Pobyt pre dvoch</a>: najobvyklejší svadobný aj výročný darček. Ponuky sa líšia počtom nocí, polpenziou a wellness.</li>\n<li><a href=\"/wellness-pobyty/\">Wellness pobyt</a>: bazén, sauna a masáže bez starostí. Vhodné pre pár, ktorý si chce oddýchnuť.</li>\n<li><a href=\"/sauna-a-wellness/\">Privátna sauna a wellness</a>: hodina či dve len pre vás, bez cudzích ľudí.</li>\n<li><a href=\"/degustacne-menu/\">Degustačné menu</a>: večer s niekoľkými chodmi, pri ktorom sa pár pri stole zastaví.</li>\n<li>Kurz varenia: spoločné varenie a potom spoločná večera.</li>\n<li>Úniková hra: hodina spolupráce, ktorá pár baví.</li>\n<li>Degustácia vína alebo piva: len pre dospelých.</li>\n</ul>\n<h2>Koľko stojí darček pre pár</h2>\n<p>Podľa ponuky začínajú pobyty pre dvoch zhruba na 20 €, v priemere však stoja okolo 180 €. Wellness pobyty začínajú približne na 45 € a v priemere vychádzajú na 210 €. Privátny wellness a sauny sú lacnejšie, v priemere okolo 80 €, degustačné menu zhruba 60 € a únikové hry okolo 45 €. Ceny sa menia, rozhoduje údaj pri konkrétnej ponuke.</p>\n<h2>Ako vybrať podľa príležitosti</h2>\n<p>Na svadbu a výročie je najprirodzenejší pobyt či wellness víkend, ktorý si pár užije po všetkom zhone. Na Valentína a podobné dni stačí menší zážitok, napríklad večera či privátny wellness. Pre pár, ktorý už má všetko, je zaujímavou voľbou spoločný kurz, pretože z neho zostane zručnosť aj spomienka.</p>\n<h3>Rady k výberu pobytu</h3>\n<p>Pozrite sa, či je v cene raňajky, polpenzia alebo vstup do bazéna a sauny a dokedy sa dá voucher využiť. Zvážte vzdialenosť miesta a ročné obdobie: v zime sa hodí wellness, v lete napríklad pobyt pri vode alebo v prírode. Ak si nie ste istí vkusom páru, zvoľte hotel so širším výberom služieb.</p>\n<h3>Darček, ktorý sa dá doplniť</h3>\n<p>K pobytu môžete pridať drobnosť: fľašu vína, sviečku alebo pohľadnicu s popisom. Pre skeptickejšie páry funguje aj kratší zážitok na skúšku, ktorý sa neskôr môže stať tradíciou.</p>\n<h2>Praktické rady</h2>\n<ul>\n<li>Pri pobytoch skontrolujte počet osôb v cene, dĺžku pobytu a to, čo zahŕňa (raňajky, polpenzia, wellness).</li>\n<li>Termín si vyberá obdarovaný pár. Platnosť voucheru je uvedená pri ponuke.</li>\n<li>Rezervujte s predstihom, najmä na víkendy a prázdniny.</li>\n<li>Voucher príde e-mailom. Môžete ho vytlačiť a zabaliť alebo pridať vytlačenú pozvánku.</li>\n</ul>\n<p>Podobné ponuky nájdete aj v častiach <a href=\"/darcek-na-valentina/\">darček na Valentína</a>, <a href=\"/darcek-pre-priatelku/\">darček pre priateľku</a> alebo <a href=\"/darcekovy-poukaz/\">darčekové poukazy</a>.</p>\n<p>Nákup prebieha u partnera za rovnakú cenu ako priamo u neho.</p>",
@@ -218,7 +218,7 @@
   {
    "slug": "darcek-pre-rodicov",
    "name": "Pre rodičov",
-   "h1": "Darček pre rodičov: oddych a zážitky",
+   "h1": "Darček pre rodičov: pobyty, kúpele a spoločný zážitok",
    "icon": "pro-rodice",
    "kw": "darček pre rodičov (?)",
    "cats": [
@@ -231,9 +231,9 @@
    ],
    "title": "Darček pre rodičov – pobyty a zážitky | Kúzelné miesta",
    "desc": "Kúpele, wellness pobyt, degustačná večera alebo divadlo. Darčeky pre rodičov a starých rodičov, voucher príde hneď e-mailom.",
-   "intro": "Rodičia už majú všetko — okrem času pre seba. Darujte im pobyt v kúpeľoch alebo wellness, večeru v dobrej reštaurácii, kultúru či výlet. Väčšinu ponúk si môžu vybrať s otvoreným termínom.",
+   "intro": "Rodičia už majú všetko, chýba im len čas pre seba. Darujte im kúpele, wellness pobyt, večeru, kultúru alebo výlet, a to pre mamu, otca aj oboch naraz. Väčšinu ponúk si vyberú s otvoreným termínom a voucher príde e-mailom.",
    "il": "pro-rodice",
-   "body": "<h2>Darček pre rodičov: chvíle oddychu, ktoré si zaslúžia</h2>\n<p>Darček pre rodičov vyberáte v čase, keď už väčšinu vecí majú a sami hovoria, že nič nepotrebujú. Pritom čas len pre seba, dobré jedlo či pobyt v pokoji sú veci, ktoré si často odopierajú. Vhodný darček je zároveň spôsob, ako sa im poďakovať za starostlivosť.</p>\n<h3>Ako vybrať</h3>\n<ul>\n<li><strong>Zdravotný stav a pohyblivosť:</strong> pre starších rodičov zvoľte pokojné aktivity bez dlhej chôdze.</li>\n<li><strong>Záujmy:</strong> kto rád je, ocení degustáciu či gurmánsky pobyt, kto rád cestuje, pobyt alebo výlet.</li>\n<li><strong>Spoločný darček:</strong> súrodenci sa môžu zložiť na drahší pobyt.</li>\n</ul>\n<h2>Zážitky, ktoré rodičom vyhovujú</h2>\n<ul>\n<li><a href=\"/kupelne-pobyty/\">Kúpeľný pobyt</a>: procedúry, pokoj a režim, ktorý rodičia vyhľadávajú, napríklad v Piešťanoch, Bardejove či Rajeckých Tepliciach.</li>\n<li><a href=\"/pobyty-pre-seniorov/\">Pobyt pre seniorov</a>: prispôsobené programy a tempo.</li>\n<li><a href=\"/wellness-pobyty/\">Wellness pobyt</a>: bazén, sauna a masáž pre aktívnejších rodičov.</li>\n<li><a href=\"/degustacne-menu/\">Degustačné menu</a>: večera o niekoľkých chodoch, kam by rodičia sami nezašli.</li>\n<li><a href=\"/kultura-a-vylety/\">Kultúra a výlety</a>: divadlo, koncert, výlet loďou alebo vlakom.</li>\n<li>Gurmánsky či vinársky pobyt: pre rodičov, ktorí majú radi dobré jedlo a víno.</li>\n</ul>\n<h2>Koľko stojí darček pre rodičov</h2>\n<p>Podľa ponuky začínajú kúpeľné pobyty zhruba na 40 € a v priemere vychádzajú na 180 €. Pobyty pre seniorov začínajú okolo 35 €, v priemere stoja vyše 230 €. Degustačné menu je výrazne dostupnejšie, v priemere okolo 60 €, a kultúra a výlety okolo 40 €. Gurmánske pobyty sú najdrahšie, začínajú okolo 50 € a v priemere stoja takmer 280 €.</p>\n<h2>Ako darček odovzdať a uľahčiť rodičom rozhodnutie</h2>\n<p>Rodičia si často hovoria, že na luxus nemajú čas, a voucher preto odkladajú. Pomôže, keď im rovno ponúknete konkrétny termín alebo pomoc s organizáciou: postaráte sa o psa, odveziete ich, postrážite vnúčatá. Voucher môžete odovzdať na rodinnej oslave, vložiť do albumu s fotkami alebo pridať odkaz s poďakovaním.</p>\n<h3>Príležitosti</h3>\n<p>Narodeniny, výročie svadby, Vianoce, Deň matiek alebo Deň otcov. Ak darček kupujete pre oboch rodičov spolu, vyberte pobyt či večeru pre dvoch. Ak každému zvlášť, pomôže osobnejšia voľba podľa záujmov.</p>\n<h2>Praktické rady</h2>\n<ul>\n<li>Pobyt si rodičia vyberú podľa svojich termínov, platnosť voucheru je uvedená pri ponuke.</li>\n<li>Pri pobytoch si overte, koľko osôb je v cene a či je v cene strava a procedúry.</li>\n<li>Voucher príde e-mailom. Ak rodičia e-mail nepoužívajú, vytlačte ho alebo im ho odovzdajte osobne.</li>\n<li>Ponúknite pomoc s rezerváciou, rodičia často telefonát odkladajú.</li>\n</ul>\n<p>Pre každého z rodičov zvlášť sa môže hodiť <a href=\"/darcek-pre-mamu/\">darček pre mamu</a> a <a href=\"/darcek-pre-otca/\">darček pre otca</a>.</p>\n<p>Nákup prebieha u partnera, cena je rovnaká ako u neho.</p>",
+   "body": "<h2>Darček pre rodičov: chvíle oddychu, ktoré si zaslúžia</h2>\n<p>Darček pre rodičov vyberáte v čase, keď už väčšinu vecí majú a sami hovoria, že nič nepotrebujú. Pritom čas len pre seba, dobré jedlo či pobyt v pokoji sú veci, ktoré si často odopierajú. Vhodný darček je zároveň spôsob, ako sa im poďakovať za starostlivosť.</p>\n<h3>Ako vybrať</h3>\n<ul>\n<li><strong>Zdravotný stav a pohyblivosť:</strong> pre starších rodičov zvoľte pokojné aktivity bez dlhej chôdze.</li>\n<li><strong>Záujmy:</strong> kto rád je, ocení degustáciu či gurmánsky pobyt, kto rád cestuje, pobyt alebo výlet.</li>\n<li><strong>Spoločný darček:</strong> súrodenci sa môžu zložiť na drahší pobyt.</li>\n</ul>\n<h2>Zážitky, ktoré rodičom vyhovujú</h2>\n<ul>\n<li><a href=\"/kupelne-pobyty/\">Kúpeľný pobyt</a>: procedúry, pokoj a režim, ktorý rodičia vyhľadávajú, napríklad v Piešťanoch, Bardejove či Rajeckých Tepliciach.</li>\n<li><a href=\"/pobyty-pre-seniorov/\">Pobyt pre seniorov</a>: prispôsobené programy a tempo.</li>\n<li><a href=\"/wellness-pobyty/\">Wellness pobyt</a>: bazén, sauna a masáž pre aktívnejších rodičov.</li>\n<li><a href=\"/degustacne-menu/\">Degustačné menu</a>: večera o niekoľkých chodoch, kam by rodičia sami nezašli.</li>\n<li><a href=\"/kultura-a-vylety/\">Kultúra a výlety</a>: divadlo, koncert, výlet loďou alebo vlakom.</li>\n<li>Gurmánsky či vinársky pobyt: pre rodičov, ktorí majú radi dobré jedlo a víno.</li>\n</ul>\n<h2>Koľko stojí darček pre rodičov</h2>\n<p>Podľa ponuky začínajú kúpeľné pobyty zhruba na 40 € a v priemere vychádzajú na 180 €. Pobyty pre seniorov začínajú okolo 35 €, v priemere stoja vyše 230 €. Degustačné menu je výrazne dostupnejšie, v priemere okolo 60 €, a kultúra a výlety okolo 40 €. Gurmánske pobyty sú najdrahšie, začínajú okolo 50 € a v priemere stoja takmer 280 €.</p>\n<h2>Ako darček odovzdať a uľahčiť rodičom rozhodnutie</h2>\n<p>Rodičia si často hovoria, že na luxus nemajú čas, a voucher preto odkladajú. Pomôže, keď im rovno ponúknete konkrétny termín alebo pomoc s organizáciou: postaráte sa o psa, odveziete ich, postrážite vnúčatá. Voucher môžete odovzdať na rodinnej oslave, vložiť do albumu s fotkami alebo pridať odkaz s poďakovaním.</p>\n<h3>Príležitosti</h3>\n<p>Narodeniny, výročie svadby, Vianoce, Deň matiek alebo Deň otcov. Ak darček kupujete pre oboch rodičov spolu, vyberte pobyt či večeru pre dvoch. Ak každému zvlášť, pomôže osobnejšia voľba podľa záujmov.</p>\n<h2>Vianočný darček pre rodičov</h2>\n<p>Na Vianoce sa pre rodičov najviac hodí spoločný zážitok: kúpele, wellness pobyt alebo večera, ktorá ich vytrhne z bežného týždňa. Pozrite <a href=\"/vianocne-darceky-pre-rodicov/\">vianočný darček pre rodičov</a>, <a href=\"/vianocne-darceky-pre-mamu/\">pre mamu</a> a <a href=\"/vianocne-darceky-pre-otca/\">pre otca</a>.</p>\n<h2>Praktické rady</h2>\n<ul>\n<li>Pobyt si rodičia vyberú podľa svojich termínov, platnosť voucheru je uvedená pri ponuke.</li>\n<li>Pri pobytoch si overte, koľko osôb je v cene a či je v cene strava a procedúry.</li>\n<li>Voucher príde e-mailom. Ak rodičia e-mail nepoužívajú, vytlačte ho alebo im ho odovzdajte osobne.</li>\n<li>Ponúknite pomoc s rezerváciou, rodičia často telefonát odkladajú.</li>\n</ul>\n<p>Pre každého z rodičov zvlášť sa môže hodiť <a href=\"/darcek-pre-mamu/\">darček pre mamu</a> a <a href=\"/darcek-pre-otca/\">darček pre otca</a>.</p>\n<p>Nákup prebieha u partnera, cena je rovnaká ako u neho.</p>",
    "faq": [
     {
      "q": "Čo darovať rodičom, ktorí nič nechcú?",
@@ -300,16 +300,16 @@
   {
    "slug": "vianocne-darceky",
    "name": "Vianoce",
-   "h1": "Vianočný darček: zážitky pod stromček",
+   "h1": "Darčeky na Vianoce 2026: zážitky pod stromček",
    "icon": "vanoce",
    "kw": "vianočné darčeky (?), darček na Vianoce (?)",
    "cats": [],
    "season": "11-12",
-   "title": "Vianočné darčeky – zážitky pod stromček | Kúzelné miesta",
-   "desc": "Zážitky a pobyty ako vianočný darček. Voucher príde hneď e-mailom, stihnete ho aj na poslednú chvíľu.",
-   "intro": "Tento rok pod stromček zážitok namiesto ďalšej veci. Vybrali sme najobľúbenejšie vianočné darčeky — pobyty, wellness, masáže, adrenalín aj degustácie. Voucher vám partner pošle hneď e-mailom, takže darček stihnete aj na poslednú chvíľu.",
+   "title": "Darčeky na Vianoce 2026 – zážitky | Kúzelné miesta",
+   "desc": "Darčeky na Vianoce 2026: tipy pre ženu, muža, mamu, otca, deti aj pár. Pobyty a zážitky, voucher príde hneď e-mailom.",
+   "intro": "Hľadáte vianočný darček, ktorý nezapadne medzi ostatné? Vybrali sme zážitky a pobyty pre ženu, muža, mamu, otca, deti aj pár. Voucher príde e-mailom, takže darček máte hneď po zaplatení a môžete ho vytlačiť a zabaliť.",
    "il": "vanoce",
-   "body": "<h2>Vianočný darček: zážitok namiesto ďalšej veci pod stromček</h2>\n<p>Vianočný darček, ktorý sa nestratí v kope baliaceho papiera, je často zážitok. Voucher sa zmestí do obálky, netreba ho nosiť domov a po sviatkoch darček pokračuje: rezerváciou, tešením a napokon samotným zážitkom. Navyše sa k nemu nemusíte predierať cez obchody plné ľudí.</p>\n<h3>Ako vybrať vianočný darček</h3>\n<ul>\n<li><strong>Partner alebo partnerka:</strong> pobyt pre dvoch, privátny wellness, večera.</li>\n<li><strong>Rodičia a starí rodičia:</strong> kúpele, pobyt, kultúra, pokojný výlet.</li>\n<li><strong>Deti:</strong> aquapark, zoo, zábavný park, rodinný pobyt.</li>\n<li><strong>Priatelia a kolegovia:</strong> únikovka, degustácia, masáž, bowling.</li>\n</ul>\n<h2>Zážitky, ktoré sa na Vianoce hodia</h2>\n<ul>\n<li><a href=\"/pobyty-pre-dvoch/\">Pobyt pre dvoch</a> a <a href=\"/wellness-pobyty/\">wellness pobyt</a>: najväčší darček pod stromček, pre pár alebo od celej rodiny. Wellness pobyty začínajú okolo 45 € a v priemere stoja zhruba 210 €.</li>\n<li><a href=\"/masaze/\">Masáž</a>: darček, ktorý poteší takmer každého. Podľa ponuky zhruba od 6 €, v priemere okolo 50 €.</li>\n<li>Degustačné menu: večer o niekoľkých chodoch, v priemere okolo 60 €.</li>\n<li>Adrenalínový zážitok: pre tých, ktorí si zimu spestria niečím novým.</li>\n<li>Zážitková jazda: obľúbený darček pre mužov, v priemere takmer 115 €.</li>\n</ul>\n<p>Ak hľadáte pre konkrétnu osobu, pozrite sa aj na <a href=\"/darcek-pre-par/\">darček pre pár</a> či <a href=\"/darcek-pre-rodicov/\">darček pre rodičov</a>.</p>\n<h2>Kedy objednať vianočný darček</h2>\n<p>Voucher príde e-mailom, takže ho teoreticky stihnete aj na Štedrý deň. Napriek tomu odporúčame nakupovať v novembri a v prvej polovici decembra. Dôvodom nie je doručenie, ale výber: o predvianočné termíny a víkendy býva najväčší záujem a obdarovaný sa potrebuje v termínoch zorientovať. Postup je jednoduchý: vybrať zážitok, zaplatiť, vytlačiť voucher a zabaliť ho. Ak chcete mať istotu, že zážitok využije hneď po sviatkoch, skontrolujte platnosť voucheru a pridajte odkaz s odporúčaním, kedy rezervovať.</p>\n<h2>Vianočný darček podľa rozpočtu</h2>\n<p>Ak rátate s menšou sumou, vystačíte si s masážou, kozmetikou, posedením v kaviarni alebo kurzom tvorenia. Pri strednom rozpočte sa hodí jazda, degustácia či privátny wellness. Najväčšie darčeky, teda pobyty, často skladá viac ľudí spolu: rodina sa dohodne a daruje rodičom alebo starým rodičom spoločný víkend. Zážitok navyše umožní obdarovať všetkých členov rodiny naraz, napríklad rodinným pobytom, ktorý sa nezmestí do žiadnej krabice.</p>\n<h3>Na čo si dať pozor</h3>\n<p>V zime nie sú dostupné všetky aktivity. Pri vonkajších zážitkoch, ako sú lety či jazdy, sa pozrite, v akom období sa dajú využiť, a zvážte, či ich obdarovaný využije až na jar. Ak je to pre vás dôležité, vyberajte voucher s dlhšou platnosťou.</p>\n<h2>Praktické rady</h2>\n<ul>\n<li>Nákup prebieha u partnera, cena je rovnaká ako u neho.</li>\n<li>Termín si vyberá obdarovaný podľa podmienok ponuky.</li>\n<li>Pri pobytoch skontrolujte počet osôb v cene a to, čo je zahrnuté.</li>\n<li>Voucher môžete vytlačiť, vložiť do obálky a pridať drobnosť, napríklad sviečku alebo čokoládu.</li>\n</ul>\n<p>Na menšie pozornosti sa hodia <a href=\"/darceky-do-40-eur/\">darčeky do 40 €</a> a <a href=\"/darceky-do-20-eur/\">darčeky do 20 €</a>.</p>",
+   "body": "<h2>Vianočný darček: zážitok namiesto ďalšej veci pod stromček</h2>\n<p>Vianočný darček, ktorý sa nestratí v kope baliaceho papiera, je často zážitok. Voucher sa zmestí do obálky, netreba ho nosiť domov a po sviatkoch darček pokračuje: rezerváciou, tešením a napokon samotným zážitkom. Navyše sa k nemu nemusíte predierať cez obchody plné ľudí.</p>\n<h3>Ako vybrať vianočný darček</h3>\n<ul>\n<li><strong>Partner alebo partnerka:</strong> pobyt pre dvoch, privátny wellness, večera.</li>\n<li><strong>Rodičia a starí rodičia:</strong> kúpele, pobyt, kultúra, pokojný výlet.</li>\n<li><strong>Deti:</strong> aquapark, zoo, zábavný park, rodinný pobyt.</li>\n<li><strong>Priatelia a kolegovia:</strong> únikovka, degustácia, masáž, bowling.</li>\n</ul>\n<h2>Vianočné darčeky podľa toho, pre koho</h2>\n<p>Najrýchlejšie sa rozhodnete, keď si vyberiete osobu. Pre každú máme samostatný prehľad:</p>\n<ul>\n<li><a href=\"/vianocne-darceky-pre-zenu/\">Vianočný darček pre ženu</a> a <a href=\"/vianocne-darceky-pre-muza/\">pre muža</a></li>\n<li><a href=\"/vianocne-darceky-pre-mamu/\">Vianočný darček pre mamu</a> a <a href=\"/vianocne-darceky-pre-otca/\">pre otca</a></li>\n<li><a href=\"/vianocne-darceky-pre-rodicov/\">Vianočný darček pre rodičov</a> a <a href=\"/darcek-pre-starych-rodicov/\">pre starých rodičov</a></li>\n<li><a href=\"/vianocne-darceky-pre-priatelku/\">Pre priateľku (frajerku)</a> a <a href=\"/vianocne-darceky-pre-priatela/\">pre priateľa (frajera)</a></li>\n<li><a href=\"/vianocne-darceky-pre-pary/\">Vianočný darček pre pár</a></li>\n<li><a href=\"/vianocne-darceky-pre-deti/\">Vianočné darčeky pre deti</a> a <a href=\"/vianocne-darceky-pre-tinedzerov/\">pre tínedžera</a></li>\n</ul>\n<h2>Vianočné darčeky podľa typu a rozpočtu</h2>\n<p>Ak neviete, komu darček pôjde alebo koľko chcete minúť, začnite rozpočtom: <a href=\"/darceky-do-20-eur/\">darčeky do 20 €</a>, <a href=\"/darceky-do-40-eur/\">do 40 €</a> a <a href=\"/darceky-do-80-eur/\">do 80 €</a>. Pre väčší darček sú tu <a href=\"/masaz-pre-dvoch/\">masáž pre dvoch</a>, <a href=\"/lacne-wellness-pobyty/\">lacné wellness pobyty</a> a <a href=\"/luxusne-darceky/\">luxusné darčeky</a>. Ak ste v časovej tiesni, pozrite <a href=\"/darcek-na-poslednu-chvilu/\">darček na poslednú chvíľu</a>.</p>\n<h2>Zážitky, ktoré sa na Vianoce hodia</h2>\n<ul>\n<li><a href=\"/pobyty-pre-dvoch/\">Pobyt pre dvoch</a> a <a href=\"/wellness-pobyty/\">wellness pobyt</a>: najväčší darček pod stromček, pre pár alebo od celej rodiny. Wellness pobyty začínajú okolo 45 € a v priemere stoja zhruba 210 €.</li>\n<li><a href=\"/masaze/\">Masáž</a>: darček, ktorý poteší takmer každého. Podľa ponuky zhruba od 6 €, v priemere okolo 50 €.</li>\n<li>Degustačné menu: večer o niekoľkých chodoch, v priemere okolo 60 €.</li>\n<li>Adrenalínový zážitok: pre tých, ktorí si zimu spestria niečím novým.</li>\n<li>Zážitková jazda: obľúbený darček pre mužov, v priemere takmer 115 €.</li>\n</ul>\n<p>Ak hľadáte pre konkrétnu osobu, pozrite sa aj na <a href=\"/darcek-pre-par/\">darček pre pár</a> či <a href=\"/darcek-pre-rodicov/\">darček pre rodičov</a>.</p>\n<h2>Kedy objednať vianočný darček</h2>\n<p>Voucher príde e-mailom, takže ho teoreticky stihnete aj na Štedrý deň. Napriek tomu odporúčame nakupovať v novembri a v prvej polovici decembra. Dôvodom nie je doručenie, ale výber: o predvianočné termíny a víkendy býva najväčší záujem a obdarovaný sa potrebuje v termínoch zorientovať. Postup je jednoduchý: vybrať zážitok, zaplatiť, vytlačiť voucher a zabaliť ho. Ak chcete mať istotu, že zážitok využije hneď po sviatkoch, skontrolujte platnosť voucheru a pridajte odkaz s odporúčaním, kedy rezervovať.</p>\n<h2>Vianočný darček podľa rozpočtu</h2>\n<p>Ak rátate s menšou sumou, vystačíte si s masážou, kozmetikou, posedením v kaviarni alebo kurzom tvorenia. Pri strednom rozpočte sa hodí jazda, degustácia či privátny wellness. Najväčšie darčeky, teda pobyty, často skladá viac ľudí spolu: rodina sa dohodne a daruje rodičom alebo starým rodičom spoločný víkend. Zážitok navyše umožní obdarovať všetkých členov rodiny naraz, napríklad rodinným pobytom, ktorý sa nezmestí do žiadnej krabice.</p>\n<h3>Na čo si dať pozor</h3>\n<p>V zime nie sú dostupné všetky aktivity. Pri vonkajších zážitkoch, ako sú lety či jazdy, sa pozrite, v akom období sa dajú využiť, a zvážte, či ich obdarovaný využije až na jar. Ak je to pre vás dôležité, vyberajte voucher s dlhšou platnosťou.</p>\n<h2>Praktické rady</h2>\n<ul>\n<li>Nákup prebieha u partnera, cena je rovnaká ako u neho.</li>\n<li>Termín si vyberá obdarovaný podľa podmienok ponuky.</li>\n<li>Pri pobytoch skontrolujte počet osôb v cene a to, čo je zahrnuté.</li>\n<li>Voucher môžete vytlačiť, vložiť do obálky a pridať drobnosť, napríklad sviečku alebo čokoládu.</li>\n</ul>\n<p>Na menšie pozornosti sa hodia <a href=\"/darceky-do-40-eur/\">darčeky do 40 €</a> a <a href=\"/darceky-do-20-eur/\">darčeky do 20 €</a>.</p>",
    "faq": [
     {
      "q": "Kedy je najlepší čas kúpiť vianočný darček?",
@@ -485,15 +485,15 @@
   {
    "slug": "darcekovy-poukaz",
    "name": "Darčekové poukazy",
-   "h1": "Darčekový poukaz na zážitok alebo pobyt",
+   "h1": "Darčekový poukaz a poukážka na zážitok, pobyt, wellness",
    "icon": "voucher",
    "kw": "darčekový poukaz (?)",
    "cats": [],
-   "title": "Darčekový poukaz na zážitok či pobyt | Kúzelné miesta",
-   "desc": "Darčekový poukaz na pobyt, wellness, masáž alebo zážitok. Poukaz príde hneď e-mailom, obdarovaný si termín vyberie sám.",
-   "intro": "Darčekový poukaz je istota: obdarovaný si termín vyberie sám a vy nemusíte hádať. Každá ponuka je tu voucher od overeného partnera — po zaplatení vám príde e-mailom a môžete ho vytlačiť alebo poslať ďalej.",
+   "title": "Darčekový poukaz na zážitok a pobyt | Kúzelné miesta",
+   "desc": "Darčeková poukážka na zážitok, pobyt či wellness: ako funguje, ceny a výber. Voucher príde hneď e-mailom, termín si vyberie obdarovaný.",
+   "intro": "Darčekový poukaz je istota: obdarovaný si termín vyberie sám a vy nemusíte hádať. Nájdete tu darčekové poukážky na zážitok, pobyt aj wellness od overených partnerov. Po zaplatení vám príde e-mailom, vytlačiť alebo poslať ho môžete ďalej.",
    "il": "voucher",
-   "body": "<h2>Darčekový poukaz na zážitok alebo pobyt: ako funguje</h2>\n<p>Darčekový poukaz je istota pre všetkých, ktorí nechcú hádať. Obdarovaný si zážitok vyberá a rezervuje sám, vy zaplatíte a pošlete voucher. Voucher príde e-mailom, môžete ho vytlačiť alebo odovzdať v obálke. Každá ponuka v rozcestníku je voucher od partnera, u ktorého nakupujete za rovnakú cenu ako priamo u neho.</p>\n<h3>Pre koho sa darčekový poukaz hodí</h3>\n<ul>\n<li>Pre niekoho so širokými záujmami, keď neviete, čo zvoliť.</li>\n<li>Pre obdarovaného, ktorý býva inde a vyberie si zážitok neďaleko.</li>\n<li>Na darček na poslednú chvíľu, pretože voucher máte hneď.</li>\n</ul>\n<h2>Aké poukazy nájdete</h2>\n<p>V ponuke sú tisíce aktívnych zážitkov a pobytov. Podľa toho, koľko chcete minúť, môžete vyberať od pár eur až po stovky eur.</p>\n<ul>\n<li><a href=\"/pobyty-pre-dvoch/\">Pobyty pre dvoch</a> a <a href=\"/wellness-pobyty/\">wellness pobyty</a>: väčší darček, najčastejšie od niekoľkých desiatok po stovky eur.</li>\n<li><a href=\"/masaze/\">Masáže</a> a <a href=\"/kozmeticke-sluzby/\">kozmetika</a>: darček pre každého, kto chce oddychovať.</li>\n<li>Zážitkové jazdy a adrenalín: pre odvážnejších.</li>\n<li>Degustačné menu: darček pre gurmánov.</li>\n</ul>\n<h2>Ako vybrať správnu hodnotu</h2>\n<p>Rozpočet určuje, aký zážitok kúpite. Do 20 € nájdete kaviarne, bowling či masáže, do 40 € kozmetiku, únikové hry a degustácie, do 80 € dlhšie masáže, jazdy a pobyty pre dvoch. Pomôžu vám prehľady <a href=\"/darceky-do-20-eur/\">darčeky do 20 €</a> a <a href=\"/darceky-do-40-eur/\">darčeky do 40 €</a>. Ak chcete inšpiráciu podľa príležitosti, pozrite sa na <a href=\"/darcek-k-narodeninam/\">darček k narodeninám</a>.</p>\n<h2>Darčekový poukaz namiesto hotovosti alebo pevného termínu</h2>\n<p>Hlavná výhoda poukazu: obdarovaný si vyberá sám a nikto ho nenúti do pevného dátumu. Hodí sa pre ľudí, ktorí sa ťažko rozhodujú, majú nabitý kalendár alebo bývajú ďaleko. Pre vás je výhodou, že nemusíte riešiť osobný odber ani poštu, pretože voucher príde e-mailom. A keďže si termín dohodne podľa seba, odpadá nepríjemná situácia, keď darček nevyjde.</p>\n<h3>Čo si overiť pred nákupom</h3>\n<p>Pred nákupom si v ponuke skontrolujte, či voucher platí pre jednu osobu, alebo pre skupinu, ako dlho zážitok trvá a ako sa rezervuje. Pri pobytoch zistite, či je v cene strava a wellness, a overte obmedzenia pre deti či zvieratá, ak je to pre vás dôležité.</p>\n<h2>Praktické rady</h2>\n<ul>\n<li>Termín si vyberá obdarovaný podľa podmienok konkrétnej ponuky.</li>\n<li>Platnosť voucheru je uvedená pri každej ponuke, pred nákupom ju skontrolujte.</li>\n<li>Pri pobytoch si overte počet osôb v cene a čo je zahrnuté.</li>\n<li>Na obľúbené termíny a víkendy rezervujte s predstihom.</li>\n<li>Voucher príde e-mailom, nič sa neposiela poštou.</li>\n</ul>\n<h3>Ako poukaz odovzdať</h3>\n<p>Vytlačte ho a vložte do obálky, alebo ho pošlite e-mailom. Ak chcete, aby darček pôsobil efektnejšie, zabaľte ho s drobnosťou, ktorá sa viaže k zážitku. Obdarovanému napíšte pár slov a odporúčanie, kedy rezervovať.</p>",
+   "body": "<h2>Darčekový poukaz na zážitok alebo pobyt: ako funguje</h2>\n<p>Darčekový poukaz je istota pre všetkých, ktorí nechcú hádať. Obdarovaný si zážitok vyberá a rezervuje sám, vy zaplatíte a pošlete voucher. Voucher príde e-mailom, môžete ho vytlačiť alebo odovzdať v obálke. Každá ponuka v rozcestníku je voucher od partnera, u ktorého nakupujete za rovnakú cenu ako priamo u neho.</p>\n<h3>Pre koho sa darčekový poukaz hodí</h3>\n<ul>\n<li>Pre niekoho so širokými záujmami, keď neviete, čo zvoliť.</li>\n<li>Pre obdarovaného, ktorý býva inde a vyberie si zážitok neďaleko.</li>\n<li>Na darček na poslednú chvíľu, pretože voucher máte hneď.</li>\n</ul>\n<h2>Darčeková poukážka na zážitok, pobyt alebo wellness</h2>\n<p>Darčeková poukážka a darčekový poukaz označujú to isté: kúpený voucher, ktorý obdarovaný uplatní na zážitok. Môže ísť o poukaz na zážitok, darčekový poukaz na pobyt alebo na wellness. Po zaplatení vám príde e-mailom, vytlačíte ho alebo pošlete ďalej. Viac podrobností nájdete v <a href=\"/poukaz-na-pobyt/\">poukaze na pobyt</a>, <a href=\"/poukaz-na-wellness/\">poukaze na wellness</a> a <a href=\"/poukaz-na-veceru-pre-dvoch/\">poukaze na večeru pre dvoch</a>.</p>\n<h2>Aké poukazy nájdete</h2>\n<p>V ponuke sú tisíce aktívnych zážitkov a pobytov. Podľa toho, koľko chcete minúť, môžete vyberať od pár eur až po stovky eur.</p>\n<ul>\n<li><a href=\"/pobyty-pre-dvoch/\">Pobyty pre dvoch</a> a <a href=\"/wellness-pobyty/\">wellness pobyty</a>: väčší darček, najčastejšie od niekoľkých desiatok po stovky eur.</li>\n<li><a href=\"/masaze/\">Masáže</a> a <a href=\"/kozmeticke-sluzby/\">kozmetika</a>: darček pre každého, kto chce oddychovať.</li>\n<li>Zážitkové jazdy a adrenalín: pre odvážnejších.</li>\n<li>Degustačné menu: darček pre gurmánov.</li>\n</ul>\n<h2>Ako vybrať správnu hodnotu</h2>\n<p>Rozpočet určuje, aký zážitok kúpite. Do 20 € nájdete kaviarne, bowling či masáže, do 40 € kozmetiku, únikové hry a degustácie, do 80 € dlhšie masáže, jazdy a pobyty pre dvoch. Pomôžu vám prehľady <a href=\"/darceky-do-20-eur/\">darčeky do 20 €</a> a <a href=\"/darceky-do-40-eur/\">darčeky do 40 €</a>. Ak chcete inšpiráciu podľa príležitosti, pozrite sa na <a href=\"/darcek-k-narodeninam/\">darček k narodeninám</a>.</p>\n<h2>Darčekový poukaz namiesto hotovosti alebo pevného termínu</h2>\n<p>Hlavná výhoda poukazu: obdarovaný si vyberá sám a nikto ho nenúti do pevného dátumu. Hodí sa pre ľudí, ktorí sa ťažko rozhodujú, majú nabitý kalendár alebo bývajú ďaleko. Pre vás je výhodou, že nemusíte riešiť osobný odber ani poštu, pretože voucher príde e-mailom. A keďže si termín dohodne podľa seba, odpadá nepríjemná situácia, keď darček nevyjde.</p>\n<h3>Čo si overiť pred nákupom</h3>\n<p>Pred nákupom si v ponuke skontrolujte, či voucher platí pre jednu osobu, alebo pre skupinu, ako dlho zážitok trvá a ako sa rezervuje. Pri pobytoch zistite, či je v cene strava a wellness, a overte obmedzenia pre deti či zvieratá, ak je to pre vás dôležité.</p>\n<h2>Praktické rady</h2>\n<ul>\n<li>Termín si vyberá obdarovaný podľa podmienok konkrétnej ponuky.</li>\n<li>Platnosť voucheru je uvedená pri každej ponuke, pred nákupom ju skontrolujte.</li>\n<li>Pri pobytoch si overte počet osôb v cene a čo je zahrnuté.</li>\n<li>Na obľúbené termíny a víkendy rezervujte s predstihom.</li>\n<li>Voucher príde e-mailom, nič sa neposiela poštou.</li>\n</ul>\n<h3>Ako poukaz odovzdať</h3>\n<p>Vytlačte ho a vložte do obálky, alebo ho pošlite e-mailom. Ak chcete, aby darček pôsobil efektnejšie, zabaľte ho s drobnosťou, ktorá sa viaže k zážitku. Obdarovanému napíšte pár slov a odporúčanie, kedy rezervovať.</p>",
    "faq": [
     {
      "q": "Ako funguje darčekový poukaz?",
@@ -562,7 +562,7 @@
   {
    "slug": "darcek-pre-mamu",
    "name": "Pre mamu",
-   "h1": "Darček pre mamu: zážitky, ktoré ju potešia",
+   "h1": "Darček pre mamu: zážitky, ktoré jej dajú oddych",
    "icon": "pro-ni",
    "kw": "darček pre mamu (?), darček pre mamičku (?)",
    "cats": [
@@ -577,11 +577,11 @@
     "kreativne-kurzy",
     "fotenie"
    ],
-   "title": "Darček pre mamu – zážitky a pobyty | Kúzelné miesta",
+   "title": "Darček pre mamu – zážitky, pobyty, wellness | Kúzelné miesta",
    "desc": "Masáž, wellness, kúpele alebo spoločný výlet. Tipy na darček pre mamu k narodeninám, na Vianoce aj Deň matiek. Voucher hneď e-mailom.",
-   "intro": "Mama si zaslúži chvíľu len pre seba. Namiesto ďalšej veci jej darujte masáž, wellness, kúpele alebo kurz, na ktorý si sama nikdy nenájde čas. Vybrali sme darčeky, ktoré potešia bez ohľadu na vek, a väčšinu z nich kúpite ako voucher s otvoreným termínom.",
+   "intro": "Hľadáte darček pre mamu k narodeninám, na Vianoce alebo na Deň matiek? Namiesto ďalšej veci jej darujte masáž, wellness, kúpele alebo kurz, na ktorý si sama nenájde čas. Väčšinu kúpite ako voucher s otvoreným termínom a príde vám e-mailom.",
    "il": "pro-ni",
-   "body": "<h2>Darček pre mamu: chvíle len pre seba</h2>\n<p>Mamy sa väčšinou starajú o všetkých okolo seba a sebe doprajú najmenej. Preto dobrý darček pre mamu nie je ďalší hrnček ani župan, ale čas a pokoj, ktorý si sama nezariadi. Zážitok mame povie: myslel som na teba a chcem, aby si si oddýchla. Oplatí sa vopred ponúknuť aj praktickú pomoc, napríklad postrážiť deti alebo psa, aby termín naozaj využila.</p>\n<h3>Ako vybrať podľa mamy</h3>\n<ul>\n<li><strong>Mama, ktorá stále behá:</strong> masáž alebo wellness, kde sa zastaví.</li>\n<li><strong>Mama, ktorá rada tvorí:</strong> kurz maľovania či tvorenia.</li>\n<li><strong>Mama, ktorá rada varí:</strong> kurz varenia alebo večera v dobrej reštaurácii.</li>\n<li><strong>Mama, ktorá si nič nekúpi sama:</strong> fotenie, kúpele alebo pobyt.</li>\n</ul>\n<h2>Zážitky, ktoré mamy ocenia</h2>\n<ul>\n<li><a href=\"/masaze/\">Masáž</a>: chrbát, šija, relaxačná či aromatická. Zhruba od 6 €, v priemere okolo 50 €.</li>\n<li><a href=\"/kozmeticke-sluzby/\">Kozmetika</a>: ošetrenie pleti alebo úprava obočia. Zhruba od 4 €.</li>\n<li><a href=\"/sauna-a-wellness/\">Sauna a privátny wellness</a>: hodina v pokoji, napríklad s kamarátkou alebo dcérou.</li>\n<li><a href=\"/kupelne-pobyty/\">Kúpeľný pobyt</a>: pokoj a procedúry, napríklad v Piešťanoch či Trenčianskych Tepliciach; začínajú zhruba na 40 €, priemer okolo 180 €.</li>\n<li>Kurz varenia alebo tvorenia: večer s novou zručnosťou.</li>\n<li>Fotenie: rodinné alebo portrétne, zhruba od 20 €.</li>\n</ul>\n<h2>Koľko stojí darček pre mamu</h2>\n<p>Na Deň matiek alebo ako malá pozornosť stačí posedenie v kaviarni, ktoré často vyjde na pár eur, alebo kratšia masáž. Na narodeniny sa hodí dlhšia masáž, wellness či fotenie, teda 40 až 100 €. Na veľkú príležitosť, napríklad päťdesiatku, môžete darček zložiť so súrodencami a kúpiť wellness či kúpeľný pobyt. Wellness pobyty začínajú približne na 45 € a v priemere stoja vyše 210 €.</p>\n<h2>Ako darček odovzdať, aby si mama naozaj oddýchla</h2>\n<p>Najčastejšia chyba je, že mama voucher dostane, ale nikdy ho nevyužije, pretože sa vždy nájde niečo dôležitejšie. Pomôže konkrétny plán: dohodnite dátum, zabezpečte stráženie alebo odvoz a rezerváciu vybavte rovno s ňou. Ak je darček od detí, každé z nich môže napísať pár slov a z darčeka vznikne pekná spomienka.</p>\n<h3>Deň matiek, narodeniny, Vianoce</h3>\n<p>Na Deň matiek sa hodí menšia pozornosť, na narodeniny dlhšia masáž či fotenie, na Vianoce wellness alebo pobyt. Ak chcete mame urobiť radosť bez veľkého rozpočtu, stačí poukaz do kaviarne a popoludnie len pre vás dvoch.</p>\n<h2>Praktické rady</h2>\n<ul>\n<li>Voucher príde e-mailom, vytlačte ho a vložte do obálky alebo ho odovzdajte s kyticou.</li>\n<li>Termín si vyberá mama. Platnosť voucheru je uvedená pri ponuke.</li>\n<li>Pri pobytoch overte počet osôb v cene a rezervujte s predstihom.</li>\n<li>Ponúknite pomoc s dohodnutím termínu a strážením, mamy veľa vecí odkladajú na „keď bude čas“.</li>\n</ul>\n<p>Pre iný pohľad sa pozrite na <a href=\"/darcek-pre-babku/\">darček pre babku</a>, <a href=\"/darcek-pre-zenu/\">darček pre ženu</a> alebo <a href=\"/darcek-pre-rodicov/\">darček pre rodičov</a>.</p>\n<p>Nákup prebieha u partnera, cena je rovnaká ako priamo u neho.</p>",
+   "body": "<h2>Darček pre mamu: chvíle len pre seba</h2>\n<p>Mamy sa väčšinou starajú o všetkých okolo seba a sebe doprajú najmenej. Preto dobrý darček pre mamu nie je ďalší hrnček ani župan, ale čas a pokoj, ktorý si sama nezariadi. Zážitok mame povie: myslel som na teba a chcem, aby si si oddýchla. Oplatí sa vopred ponúknuť aj praktickú pomoc, napríklad postrážiť deti alebo psa, aby termín naozaj využila.</p>\n<h3>Ako vybrať podľa mamy</h3>\n<ul>\n<li><strong>Mama, ktorá stále behá:</strong> masáž alebo wellness, kde sa zastaví.</li>\n<li><strong>Mama, ktorá rada tvorí:</strong> kurz maľovania či tvorenia.</li>\n<li><strong>Mama, ktorá rada varí:</strong> kurz varenia alebo večera v dobrej reštaurácii.</li>\n<li><strong>Mama, ktorá si nič nekúpi sama:</strong> fotenie, kúpele alebo pobyt.</li>\n</ul>\n<h2>Zážitky, ktoré mamy ocenia</h2>\n<ul>\n<li><a href=\"/masaze/\">Masáž</a>: chrbát, šija, relaxačná či aromatická. Zhruba od 6 €, v priemere okolo 50 €.</li>\n<li><a href=\"/kozmeticke-sluzby/\">Kozmetika</a>: ošetrenie pleti alebo úprava obočia. Zhruba od 4 €.</li>\n<li><a href=\"/sauna-a-wellness/\">Sauna a privátny wellness</a>: hodina v pokoji, napríklad s kamarátkou alebo dcérou.</li>\n<li><a href=\"/kupelne-pobyty/\">Kúpeľný pobyt</a>: pokoj a procedúry, napríklad v Piešťanoch či Trenčianskych Tepliciach; začínajú zhruba na 40 €, priemer okolo 180 €.</li>\n<li>Kurz varenia alebo tvorenia: večer s novou zručnosťou.</li>\n<li>Fotenie: rodinné alebo portrétne, zhruba od 20 €.</li>\n</ul>\n<h2>Koľko stojí darček pre mamu</h2>\n<p>Na Deň matiek alebo ako malá pozornosť stačí posedenie v kaviarni, ktoré často vyjde na pár eur, alebo kratšia masáž. Na narodeniny sa hodí dlhšia masáž, wellness či fotenie, teda 40 až 100 €. Na veľkú príležitosť, napríklad päťdesiatku, môžete darček zložiť so súrodencami a kúpiť wellness či kúpeľný pobyt. Wellness pobyty začínajú približne na 45 € a v priemere stoja vyše 210 €.</p>\n<h2>Ako darček odovzdať, aby si mama naozaj oddýchla</h2>\n<p>Najčastejšia chyba je, že mama voucher dostane, ale nikdy ho nevyužije, pretože sa vždy nájde niečo dôležitejšie. Pomôže konkrétny plán: dohodnite dátum, zabezpečte stráženie alebo odvoz a rezerváciu vybavte rovno s ňou. Ak je darček od detí, každé z nich môže napísať pár slov a z darčeka vznikne pekná spomienka.</p>\n<h3>Deň matiek, narodeniny, Vianoce</h3>\n<p>Na Deň matiek sa hodí menšia pozornosť, na narodeniny dlhšia masáž či fotenie, na Vianoce wellness alebo pobyt. Ak chcete mame urobiť radosť bez veľkého rozpočtu, stačí poukaz do kaviarne a popoludnie len pre vás dvoch.</p>\n<h2>Vianočný darček pre mamu</h2>\n<p>Na Vianoce je mama často tá, ktorá všetko zabezpečuje. Darujte jej čas pre seba: masáž, wellness, kúpele alebo spoločný zážitok s celou rodinou. Pozrite <a href=\"/vianocne-darceky-pre-mamu/\">vianočný darček pre mamu</a> a <a href=\"/vianocne-darceky-pre-zenu/\">vianočný darček pre ženu</a>.</p>\n<h2>Praktické rady</h2>\n<ul>\n<li>Voucher príde e-mailom, vytlačte ho a vložte do obálky alebo ho odovzdajte s kyticou.</li>\n<li>Termín si vyberá mama. Platnosť voucheru je uvedená pri ponuke.</li>\n<li>Pri pobytoch overte počet osôb v cene a rezervujte s predstihom.</li>\n<li>Ponúknite pomoc s dohodnutím termínu a strážením, mamy veľa vecí odkladajú na „keď bude čas“.</li>\n</ul>\n<p>Pre iný pohľad sa pozrite na <a href=\"/darcek-pre-babku/\">darček pre babku</a>, <a href=\"/darcek-pre-zenu/\">darček pre ženu</a> alebo <a href=\"/darcek-pre-rodicov/\">darček pre rodičov</a>.</p>\n<p>Nákup prebieha u partnera, cena je rovnaká ako priamo u neho.</p>",
    "faq": [
     {
      "q": "Čo darovať mame k narodeninám alebo na Deň matiek?",
@@ -695,7 +695,7 @@
   {
    "slug": "darcek-pre-otca",
    "name": "Pre otca",
-   "h1": "Darček pre otca: zážitky, ktoré ho nadchnú",
+   "h1": "Darček pre otca: zážitky, ktoré ocení",
    "icon": "pro-nej",
    "kw": "darček pre otca (?), darček pre ocina (?)",
    "cats": [
@@ -708,11 +708,11 @@
     "escape-room",
     "wellness-pobyty"
    ],
-   "title": "Darček pre otca – zážitky a poukazy | Kúzelné miesta",
+   "title": "Darček pre otca – zážitky a jazdy | Kúzelné miesta",
    "desc": "Jazda v športovom aute, strelnica, degustácia piva alebo zájazd na zápas. Tipy na darček pre otca, voucher príde hneď e-mailom.",
-   "intro": "Otec väčšinou povie, že nič nechce, a potom sa celé týždne usmieva pri zážitku, ktorý dostal. Nájdete tu jazdy v športových autách, strelnice, degustácie, steaky, vyhliadkové lety aj zájazdy na zápasy. Darčeky pre otca v každom veku, od pár eur po veľké zážitky.",
+   "intro": "Otec zvykne povedať, že nič nepotrebuje, a potom sa mesiace usmieva pri zážitku, ktorý dostal. Jazda v športovom aute, strelnica, degustácia, steak, vyhliadkový let alebo zájazd na zápas. Darček pre otca k narodeninám, na Vianoce aj Deň otcov, voucher príde e-mailom.",
    "il": "pro-nej",
-   "body": "<h2>Darček pre otca: zážitky, ktoré ho nadchnú</h2>\n<p>Otec býva ten, kto si všetko kúpi sám a nikdy nič nechce. Zážitok tento problém obchádza: namiesto ďalšej košele dostane hodinu za volantom alebo večer s grilovaným steakom. Najlepší darček pre otca zodpovedá tomu, čo ho baví, a ak sa dá, zahŕňa aj spoločný čas s deťmi.</p>\n<h3>Podľa čoho vyberať</h3>\n<ul>\n<li><strong>Otec technik:</strong> jazda, simulátor, let.</li>\n<li><strong>Otec športovec:</strong> zájazd na zápas, aktívny šport.</li>\n<li><strong>Otec gurmán:</strong> steak, pivo alebo víno.</li>\n<li><strong>Otec pohodár:</strong> wellness alebo úniková hra s rodinou.</li>\n</ul>\n<h2>Zážitky, ktoré otec ocení</h2>\n<ul>\n<li><a href=\"/zazitkove-jazdy/\">Zážitkové jazdy</a>: superšport, pretekársky okruh alebo terén; v priemere okolo 115 €.</li>\n<li><a href=\"/strelba-na-strelnici/\">Streľba</a>: pre dospelých, podľa podmienok partnera; v priemere okolo 115 €.</li>\n<li><a href=\"/vyhliadkove-lety/\">Vyhliadkový let</a>: lietadlom, balónom či vrtuľníkom.</li>\n<li><a href=\"/degustacia-vina-a-piva/\">Degustácia piva alebo vína</a>: len pre dospelých.</li>\n<li>Steak či burger: v priemere okolo 25 €.</li>\n<li>Úniková hra: s deťmi, v priemere okolo 45 €.</li>\n<li>Športový zájazd: pre fanúšika.</li>\n</ul>\n<h2>Koľko stojí darček pre otca</h2>\n<p>Na Deň otcov stačí menší zážitok: steak, degustácia či úniková hra, teda od desiatok eur po zhruba 40 €. K narodeninám sa hodí jazda či let, ceny začínajú na pár desiatkach eur a môžu vystúpať až na stovky. Wellness pobyty začínajú okolo 45 € a v priemere stoja vyše 210 €, sú vhodné na väčšie príležitosti. Presnú cenu vždy nájdete pri ponuke.</p>\n<h2>Ako darček odovzdať a z čoho vybrať</h2>\n<p>Otec ocení, keď zážitok dostane s ľahkým humorom: voucher v kufríku na náradie alebo v obálke s motívom auta. Ak zážitok zahŕňa pozvánku pre deti, získa darček ďalší rozmer. Hodí sa aj skupinový zážitok, napríklad úniková hra s celou rodinou, pretože otec sa nemusí hanbiť, že niečo nevie, a všetci sa zasmejú.</p>\n<h3>Príležitosti</h3>\n<p>Narodeniny, Vianoce a Deň otcov. Päťdesiatnikom a šesťdesiatnikom sa hodí zážitok, ktorý si sami nedoprajú, napríklad jazda v športovom aute, vyhliadkový let alebo pobyt s manželkou. Mladšiemu otcovi zase aktivita s deťmi.</p>\n<h2>Praktické rady</h2>\n<ul>\n<li>Voucher príde e-mailom. Vytlačte ho do obálky alebo ho zabaľte s drobnosťou k zážitku.</li>\n<li>Termín si vyberá otec, platnosť voucheru je uvedená pri ponuke.</li>\n<li>Pri jazdách, letoch a streľbe skontrolujte vekové a zdravotné obmedzenia.</li>\n<li>Ak je zážitok pre dvoch, môžete sa pridať a urobiť z neho spoločný deň.</li>\n</ul>\n<p>Pre ďalších členov rodiny sa pozrite na <a href=\"/darcek-pre-dedka/\">darček pre dedka</a>, <a href=\"/darcek-pre-muza/\">darček pre muža</a> a <a href=\"/darcek-pre-rodicov/\">darček pre rodičov</a>.</p>\n<p>Nákup prebieha u partnera za rovnakú cenu ako priamo u neho.</p>",
+   "body": "<h2>Darček pre otca: zážitky, ktoré ho nadchnú</h2>\n<p>Otec býva ten, kto si všetko kúpi sám a nikdy nič nechce. Zážitok tento problém obchádza: namiesto ďalšej košele dostane hodinu za volantom alebo večer s grilovaným steakom. Najlepší darček pre otca zodpovedá tomu, čo ho baví, a ak sa dá, zahŕňa aj spoločný čas s deťmi.</p>\n<h3>Podľa čoho vyberať</h3>\n<ul>\n<li><strong>Otec technik:</strong> jazda, simulátor, let.</li>\n<li><strong>Otec športovec:</strong> zájazd na zápas, aktívny šport.</li>\n<li><strong>Otec gurmán:</strong> steak, pivo alebo víno.</li>\n<li><strong>Otec pohodár:</strong> wellness alebo úniková hra s rodinou.</li>\n</ul>\n<h2>Zážitky, ktoré otec ocení</h2>\n<ul>\n<li><a href=\"/zazitkove-jazdy/\">Zážitkové jazdy</a>: superšport, pretekársky okruh alebo terén; v priemere okolo 115 €.</li>\n<li><a href=\"/strelba-na-strelnici/\">Streľba</a>: pre dospelých, podľa podmienok partnera; v priemere okolo 115 €.</li>\n<li><a href=\"/vyhliadkove-lety/\">Vyhliadkový let</a>: lietadlom, balónom či vrtuľníkom.</li>\n<li><a href=\"/degustacia-vina-a-piva/\">Degustácia piva alebo vína</a>: len pre dospelých.</li>\n<li>Steak či burger: v priemere okolo 25 €.</li>\n<li>Úniková hra: s deťmi, v priemere okolo 45 €.</li>\n<li>Športový zájazd: pre fanúšika.</li>\n</ul>\n<h2>Koľko stojí darček pre otca</h2>\n<p>Na Deň otcov stačí menší zážitok: steak, degustácia či úniková hra, teda od desiatok eur po zhruba 40 €. K narodeninám sa hodí jazda či let, ceny začínajú na pár desiatkach eur a môžu vystúpať až na stovky. Wellness pobyty začínajú okolo 45 € a v priemere stoja vyše 210 €, sú vhodné na väčšie príležitosti. Presnú cenu vždy nájdete pri ponuke.</p>\n<h2>Ako darček odovzdať a z čoho vybrať</h2>\n<p>Otec ocení, keď zážitok dostane s ľahkým humorom: voucher v kufríku na náradie alebo v obálke s motívom auta. Ak zážitok zahŕňa pozvánku pre deti, získa darček ďalší rozmer. Hodí sa aj skupinový zážitok, napríklad úniková hra s celou rodinou, pretože otec sa nemusí hanbiť, že niečo nevie, a všetci sa zasmejú.</p>\n<h3>Príležitosti</h3>\n<p>Narodeniny, Vianoce a Deň otcov. Päťdesiatnikom a šesťdesiatnikom sa hodí zážitok, ktorý si sami nedoprajú, napríklad jazda v športovom aute, vyhliadkový let alebo pobyt s manželkou. Mladšiemu otcovi zase aktivita s deťmi.</p>\n<h2>Vianočný darček pre otca</h2>\n<p>Na Vianoce sa hodí zážitok, ktorý otec využije aj v zime, alebo voucher s dlhou platnosťou na jar. Tipy nájdete v <a href=\"/vianocne-darceky-pre-otca/\">vianočnom darčeku pre otca</a>, pre oboch rodičov v <a href=\"/vianocne-darceky-pre-rodicov/\">vianočnom darčeku pre rodičov</a>.</p>\n<h2>Praktické rady</h2>\n<ul>\n<li>Voucher príde e-mailom. Vytlačte ho do obálky alebo ho zabaľte s drobnosťou k zážitku.</li>\n<li>Termín si vyberá otec, platnosť voucheru je uvedená pri ponuke.</li>\n<li>Pri jazdách, letoch a streľbe skontrolujte vekové a zdravotné obmedzenia.</li>\n<li>Ak je zážitok pre dvoch, môžete sa pridať a urobiť z neho spoločný deň.</li>\n</ul>\n<p>Pre ďalších členov rodiny sa pozrite na <a href=\"/darcek-pre-dedka/\">darček pre dedka</a>, <a href=\"/darcek-pre-muza/\">darček pre muža</a> a <a href=\"/darcek-pre-rodicov/\">darček pre rodičov</a>.</p>\n<p>Nákup prebieha u partnera za rovnakú cenu ako priamo u neho.</p>",
    "faq": [
     {
      "q": "Čo darovať otcovi, ktorý nič nechce?",
@@ -739,7 +739,7 @@
   {
    "slug": "darcek-pre-priatelku",
    "name": "Pre priateľku",
-   "h1": "Darček pre priateľku: romantika a starostlivosť",
+   "h1": "Darček pre priateľku (frajerku): romantika a starostlivosť",
    "icon": "pro-ni",
    "kw": "darček pre priateľku (?)",
    "cats": [
@@ -752,12 +752,16 @@
     "fotenie",
     "kaviarne-a-torty"
    ],
-   "title": "Darček pre priateľku – zážitky a pobyty | Kúzelné miesta",
+   "title": "Darček pre priateľku, frajerku – zážitky | Kúzelné miesta",
    "desc": "Romantický pobyt, masáž, wellness alebo večera vo dvojici. Tipy na darček pre priateľku k výročiu, narodeninám aj na Vianoce. Voucher hneď e-mailom.",
-   "intro": "Priateľku potešíte najviac, keď jej venujete čas a pozornosť. Romantický pobyt, privátny wellness, masáž alebo večera na mieste, kde ste ešte neboli. Vybrali sme darčeky, ktoré pôsobia osobne, a väčšinu z nich kúpite ako voucher, ktorý stačí vytlačiť alebo poslať e-mailom.",
+   "intro": "Frajerku potešíte najviac, keď jej venujete čas a pozornosť. Romantický pobyt, privátny wellness, masáž alebo večera na mieste, kde ste ešte neboli. Darček pre priateľku k výročiu, narodeninám aj na Vianoce, voucher príde e-mailom.",
    "il": "pro-ni",
-   "body": "<h2>Darček pre priateľku: romantika a starostlivosť o ňu</h2>\n<p>Darček pre priateľku sa vyberá inak než pre mamu či kamarátku. Chcete dať najavo, že vám na nej záleží, a urobiť jej radosť spôsobom, ktorý je osobný, nie povinný. Zážitok sa na to hodí, pretože je zároveň pozornosťou aj spoločným časom. Najlepšie je vyberať podľa toho, čo ju baví, a nie podľa toho, čo je práve v móde.</p>\n<h3>Ako vybrať</h3>\n<ul>\n<li><strong>Romantička:</strong> pobyt, večera pri sviečkach, privátny wellness.</li>\n<li><strong>Tá, čo si rada dopraje starostlivosť:</strong> masáž, kozmetika, wellness.</li>\n<li><strong>Tvorivá duša:</strong> kurz maľovania alebo fotenie.</li>\n<li><strong>Gurmánka:</strong> degustačné menu či kaviareň s tortou.</li>\n</ul>\n<h2>Zážitky pre priateľku</h2>\n<ul>\n<li><a href=\"/pobyty-pre-dvoch/\">Pobyt pre dvoch</a>: víkend vo dvojici, ponuky začínajú zhruba na 20 €.</li>\n<li><a href=\"/wellness-pobyty/\">Wellness pobyt</a>: bazén, sauna a masáže; v priemere zhruba 210 €.</li>\n<li><a href=\"/masaze/\">Masáž</a>: zhruba od 6 €, vhodná aj ako menší darček.</li>\n<li><a href=\"/kozmeticke-sluzby/\">Kozmetické ošetrenie</a>: starostlivosť o pleť, v priemere okolo 45 €.</li>\n<li><a href=\"/degustacne-menu/\">Degustačné menu</a>: večer vo dvojici, v priemere okolo 60 €.</li>\n<li>Kurz maľovania alebo fotenie: aktivita, z ktorej zostane spomienka.</li>\n</ul>\n<h2>Koľko stojí darček pre priateľku</h2>\n<p>Ako menšia pozornosť stačí posedenie v kaviarni či masáž za pár desiatok eur. Stredný rozpočet okolo 40 až 80 € pokryje dlhšiu masáž, kozmetiku, degustačné menu či fotenie. Na veľkú príležitosť, napríklad výročie, sa hodí pobyt, kde ceny začínajú na desiatkach eur a v priemere vychádzajú na stovky. Presnú cenu a obsah skontrolujte pri konkrétnej ponuke.</p>\n<h2>Ako darček odovzdať a načasovať</h2>\n<p>Zážitok sa dá odovzdať s trochou romantiky: voucher v obálke na vankúši, pozvánka pri večeri alebo odkaz s hádankou. Ak ide o prekvapenie, naplánujte aj termín a zariaďte, aby mala v ten deň voľno. Ak si nie ste istí jej plánmi, nechajte termín na nej, nech si vyberie sama v rámci platnosti voucheru.</p>\n<h3>Príležitosti</h3>\n<p>Výročie vzťahu, narodeniny, Vianoce či Valentín. Na menšie gesto stačí večera alebo masáž, na výročie pobyt. Ak je to začiatok vzťahu, držte sa ľahšej varianty, napríklad wellness či kurzu tvorenia.</p>\n<h2>Praktické rady</h2>\n<ul>\n<li>Voucher príde e-mailom, vytlačte ho do obálky alebo ho odovzdajte s kyticou.</li>\n<li>Termín si vyberá obdarovaná, platnosť voucheru je uvedená pri ponuke.</li>\n<li>Pri pobytoch skontrolujte počet osôb a čo je v cene.</li>\n<li>Rezervujte s predstihom, najmä na víkendy.</li>\n</ul>\n<p>Podobne sa hodí <a href=\"/darcek-pre-zenu/\">darček pre ženu</a> a <a href=\"/darcek-na-valentina/\">darček na Valentína</a>.</p>\n<p>Nákup prebieha u partnera za rovnakú cenu ako priamo u neho.</p>",
+   "body": "<h2>Darček pre priateľku: romantika a starostlivosť o ňu</h2>\n<p>Darček pre priateľku sa vyberá inak než pre mamu či kamarátku. Chcete dať najavo, že vám na nej záleží, a urobiť jej radosť spôsobom, ktorý je osobný, nie povinný. Zážitok sa na to hodí, pretože je zároveň pozornosťou aj spoločným časom. Najlepšie je vyberať podľa toho, čo ju baví, a nie podľa toho, čo je práve v móde.</p>\n<h3>Ako vybrať</h3>\n<ul>\n<li><strong>Romantička:</strong> pobyt, večera pri sviečkach, privátny wellness.</li>\n<li><strong>Tá, čo si rada dopraje starostlivosť:</strong> masáž, kozmetika, wellness.</li>\n<li><strong>Tvorivá duša:</strong> kurz maľovania alebo fotenie.</li>\n<li><strong>Gurmánka:</strong> degustačné menu či kaviareň s tortou.</li>\n</ul>\n<h2>Zážitky pre priateľku</h2>\n<ul>\n<li><a href=\"/pobyty-pre-dvoch/\">Pobyt pre dvoch</a>: víkend vo dvojici, ponuky začínajú zhruba na 20 €.</li>\n<li><a href=\"/wellness-pobyty/\">Wellness pobyt</a>: bazén, sauna a masáže; v priemere zhruba 210 €.</li>\n<li><a href=\"/masaze/\">Masáž</a>: zhruba od 6 €, vhodná aj ako menší darček.</li>\n<li><a href=\"/kozmeticke-sluzby/\">Kozmetické ošetrenie</a>: starostlivosť o pleť, v priemere okolo 45 €.</li>\n<li><a href=\"/degustacne-menu/\">Degustačné menu</a>: večer vo dvojici, v priemere okolo 60 €.</li>\n<li>Kurz maľovania alebo fotenie: aktivita, z ktorej zostane spomienka.</li>\n</ul>\n<h2>Koľko stojí darček pre priateľku</h2>\n<p>Ako menšia pozornosť stačí posedenie v kaviarni či masáž za pár desiatok eur. Stredný rozpočet okolo 40 až 80 € pokryje dlhšiu masáž, kozmetiku, degustačné menu či fotenie. Na veľkú príležitosť, napríklad výročie, sa hodí pobyt, kde ceny začínajú na desiatkach eur a v priemere vychádzajú na stovky. Presnú cenu a obsah skontrolujte pri konkrétnej ponuke.</p>\n<h2>Ako darček odovzdať a načasovať</h2>\n<p>Zážitok sa dá odovzdať s trochou romantiky: voucher v obálke na vankúši, pozvánka pri večeri alebo odkaz s hádankou. Ak ide o prekvapenie, naplánujte aj termín a zariaďte, aby mala v ten deň voľno. Ak si nie ste istí jej plánmi, nechajte termín na nej, nech si vyberie sama v rámci platnosti voucheru.</p>\n<h3>Príležitosti</h3>\n<p>Výročie vzťahu, narodeniny, Vianoce či Valentín. Na menšie gesto stačí večera alebo masáž, na výročie pobyt. Ak je to začiatok vzťahu, držte sa ľahšej varianty, napríklad wellness či kurzu tvorenia.</p>\n<h2>Vianočný darček pre priateľku</h2>\n<p>Na Vianoce pozrite <a href=\"/vianocne-darceky-pre-priatelku/\">vianočný darček pre priateľku (frajerku)</a>, <a href=\"/vianocne-darceky-pre-zenu/\">pre ženu</a> a <a href=\"/vianocne-darceky-pre-pary/\">pre pár</a>.</p>\n<h2>Praktické rady</h2>\n<ul>\n<li>Voucher príde e-mailom, vytlačte ho do obálky alebo ho odovzdajte s kyticou.</li>\n<li>Termín si vyberá obdarovaná, platnosť voucheru je uvedená pri ponuke.</li>\n<li>Pri pobytoch skontrolujte počet osôb a čo je v cene.</li>\n<li>Rezervujte s predstihom, najmä na víkendy.</li>\n</ul>\n<p>Podobne sa hodí <a href=\"/darcek-pre-zenu/\">darček pre ženu</a> a <a href=\"/darcek-na-valentina/\">darček na Valentína</a>.</p>\n<p>Nákup prebieha u partnera za rovnakú cenu ako priamo u neho.</p>",
    "faq": [
+    {
+     "q": "Čo dať frajerke?",
+     "a": "Zážitok, ktorý ju poteší: romantický pobyt, masáž, wellness alebo večeru pre dvoch. Voucher príde e-mailom."
+    },
     {
      "q": "Čo darovať priateľke, ktorá má všetko?",
      "a": "Zážitok, ktorý si sama nezariadi: pobyt, wellness, masáž alebo kurz."
@@ -783,7 +787,7 @@
   {
    "slug": "darcek-pre-priatela",
    "name": "Pre priateľa",
-   "h1": "Darček pre priateľa: zážitky od adrenalínu po pohodu",
+   "h1": "Darček pre priateľa (frajera): zážitky od adrenalínu po pohodu",
    "icon": "pro-nej",
    "kw": "darček pre priateľa (?)",
    "cats": [
@@ -796,12 +800,16 @@
     "pobyty-pre-dvoch",
     "vyhliadkove-lety"
    ],
-   "title": "Darček pre priateľa – zážitky a poukazy | Kúzelné miesta",
+   "title": "Darček pre priateľa, frajera – zážitky | Kúzelné miesta",
    "desc": "Jazda v športovom aute, zájazd na zápas, únikovka alebo degustácia. Tipy na darček pre priateľa, voucher príde hneď e-mailom.",
-   "intro": "Priateľ spozná, že ste sa snažili, keď mu darujete niečo, čo by si sám nekúpil. Zájazd na zápas jeho klubu, jazdu v rýchlom aute, strelnicu, únikovku alebo víkend vo dvojici. Vybrali sme darčeky pre každý štýl, od adrenalínu po pokojný relax.",
+   "intro": "Frajer spozná, že ste sa snažili, keď mu darujete niečo, čo by si sám nekúpil. Zájazd na zápas jeho klubu, jazdu v rýchlom aute, strelnicu, únikovku alebo víkend vo dvojici. Darček pre priateľa pre každý štýl, od adrenalínu po pokojný relax.",
    "il": "pro-nej",
-   "body": "<h2>Darček pre priateľa: zážitky od adrenalínu po pohodu</h2>\n<p>Priateľ spozná, že ste sa snažili, keď mu darujete niečo, čo by si sám nekúpil. Darček pre priateľa preto neriešte cez značku či veľkosť, ale cez to, čo ho baví. Zážitok sa dá využiť spolu, a to z darčeka robí dvojnásobnú radosť: dostane niečo, čo ho poteší, a navyše má pri tom vás.</p>\n<h3>Ako vybrať podľa typu</h3>\n<ul>\n<li><strong>Fanúšik:</strong> zájazd na zápas jeho klubu.</li>\n<li><strong>Nadšenec do áut:</strong> jazda v športovom aute alebo na okruhu.</li>\n<li><strong>Dobrodruh:</strong> adrenalín, vyhliadkový let.</li>\n<li><strong>Gurmán:</strong> steak či degustácia piva a vína.</li>\n<li><strong>Pohodár:</strong> pobyt pre dvoch.</li>\n</ul>\n<h2>Zážitky pre priateľa</h2>\n<ul>\n<li><a href=\"/sportove-zajazdy/\">Športový zájazd</a>: vstupenka, doprava a termín zápasu; ceny „od“ sú orientačné.</li>\n<li><a href=\"/zazitkove-jazdy/\">Zážitková jazda</a>: superšport, pretekárske auto; v priemere takmer 115 €.</li>\n<li><a href=\"/adrenalinove-zazitky/\">Adrenalín</a>: zoskok, rafting, lety; široká ponuka už od pár eur.</li>\n<li><a href=\"/escape-room/\">Úniková hra</a>: pre dvoch či s partiou; v priemere okolo 45 €.</li>\n<li><a href=\"/degustacia-vina-a-piva/\">Degustácia piva alebo vína</a>: len pre dospelých.</li>\n<li>Steak či burger: dobrá večera zhruba od 4 €.</li>\n<li>Vyhliadkový let: pre romantika aj dobrodruha.</li>\n</ul>\n<h2>Koľko stojí darček pre priateľa</h2>\n<p>Ako menší darček stačí steak či degustácia, teda desiatky eur. Stredný rozpočet, približne 40 až 80 €, pokryje únikovku, kratšiu jazdu či degustáciu. Na veľké príležitosti sa hodia dlhšie jazdy, lety alebo pobyt pre dvoch, kde ceny začínajú na desiatkach eur a v priemere vychádzajú na stovky. Pobyty pre dvoch začínajú zhruba na 20 €.</p>\n<h2>Ako darček odovzdať a vybrať správne načasovanie</h2>\n<p>Muži často nechcú počuť, že majú darček využiť, a potom ho odkladajú. Pomôže zážitok naplánovať spolu alebo ho odovzdať s konkrétnym termínom. Voucher môžete vložiť do obálky s odkazom alebo ho zabaliť s drobnosťou, napríklad so šálom klubu k zájazdu na zápas. Ak je zážitok pre dvoch, môžete sa pridať a urobiť z neho spoločný deň.</p>\n<h3>Príležitosti</h3>\n<p>Narodeniny, výročie, Vianoce alebo len tak. Na výročie sa hodí pobyt, na narodeniny jazda, zájazd či adrenalín, na Vianoce večera alebo wellness.</p>\n<h2>Praktické rady</h2>\n<ul>\n<li>Voucher príde e-mailom. Vytlačte ho do obálky alebo ho zabaľte s drobnosťou.</li>\n<li>Termín si vyberá obdarovaný. Pri zájazdoch na zápas je termín pevný.</li>\n<li>Pri jazdách a letoch skontrolujte obmedzenia.</li>\n<li>Zážitok naplánujte spolu, nech sa tešíte obaja.</li>\n</ul>\n<p>Podobne sa hodí <a href=\"/darcek-pre-muza/\">darček pre muža</a> a <a href=\"/darcek-pre-priatelku/\">darček pre priateľku</a>, ak hľadáte pre druhú polovičku páru.</p>\n<p>Nákup prebieha u partnera za rovnakú cenu ako priamo u neho.</p>",
+   "body": "<h2>Darček pre priateľa: zážitky od adrenalínu po pohodu</h2>\n<p>Priateľ spozná, že ste sa snažili, keď mu darujete niečo, čo by si sám nekúpil. Darček pre priateľa preto neriešte cez značku či veľkosť, ale cez to, čo ho baví. Zážitok sa dá využiť spolu, a to z darčeka robí dvojnásobnú radosť: dostane niečo, čo ho poteší, a navyše má pri tom vás.</p>\n<h3>Ako vybrať podľa typu</h3>\n<ul>\n<li><strong>Fanúšik:</strong> zájazd na zápas jeho klubu.</li>\n<li><strong>Nadšenec do áut:</strong> jazda v športovom aute alebo na okruhu.</li>\n<li><strong>Dobrodruh:</strong> adrenalín, vyhliadkový let.</li>\n<li><strong>Gurmán:</strong> steak či degustácia piva a vína.</li>\n<li><strong>Pohodár:</strong> pobyt pre dvoch.</li>\n</ul>\n<h2>Zážitky pre priateľa</h2>\n<ul>\n<li><a href=\"/sportove-zajazdy/\">Športový zájazd</a>: vstupenka, doprava a termín zápasu; ceny „od“ sú orientačné.</li>\n<li><a href=\"/zazitkove-jazdy/\">Zážitková jazda</a>: superšport, pretekárske auto; v priemere takmer 115 €.</li>\n<li><a href=\"/adrenalinove-zazitky/\">Adrenalín</a>: zoskok, rafting, lety; široká ponuka už od pár eur.</li>\n<li><a href=\"/escape-room/\">Úniková hra</a>: pre dvoch či s partiou; v priemere okolo 45 €.</li>\n<li><a href=\"/degustacia-vina-a-piva/\">Degustácia piva alebo vína</a>: len pre dospelých.</li>\n<li>Steak či burger: dobrá večera zhruba od 4 €.</li>\n<li>Vyhliadkový let: pre romantika aj dobrodruha.</li>\n</ul>\n<h2>Koľko stojí darček pre priateľa</h2>\n<p>Ako menší darček stačí steak či degustácia, teda desiatky eur. Stredný rozpočet, približne 40 až 80 €, pokryje únikovku, kratšiu jazdu či degustáciu. Na veľké príležitosti sa hodia dlhšie jazdy, lety alebo pobyt pre dvoch, kde ceny začínajú na desiatkach eur a v priemere vychádzajú na stovky. Pobyty pre dvoch začínajú zhruba na 20 €.</p>\n<h2>Ako darček odovzdať a vybrať správne načasovanie</h2>\n<p>Muži často nechcú počuť, že majú darček využiť, a potom ho odkladajú. Pomôže zážitok naplánovať spolu alebo ho odovzdať s konkrétnym termínom. Voucher môžete vložiť do obálky s odkazom alebo ho zabaliť s drobnosťou, napríklad so šálom klubu k zájazdu na zápas. Ak je zážitok pre dvoch, môžete sa pridať a urobiť z neho spoločný deň.</p>\n<h3>Príležitosti</h3>\n<p>Narodeniny, výročie, Vianoce alebo len tak. Na výročie sa hodí pobyt, na narodeniny jazda, zájazd či adrenalín, na Vianoce večera alebo wellness.</p>\n<h2>Vianočný darček pre priateľa</h2>\n<p>Na Vianoce pozrite <a href=\"/vianocne-darceky-pre-priatela/\">vianočný darček pre priateľa (frajera)</a> a <a href=\"/vianocne-darceky-pre-muza/\">vianočný darček pre muža</a>.</p>\n<h2>Praktické rady</h2>\n<ul>\n<li>Voucher príde e-mailom. Vytlačte ho do obálky alebo ho zabaľte s drobnosťou.</li>\n<li>Termín si vyberá obdarovaný. Pri zájazdoch na zápas je termín pevný.</li>\n<li>Pri jazdách a letoch skontrolujte obmedzenia.</li>\n<li>Zážitok naplánujte spolu, nech sa tešíte obaja.</li>\n</ul>\n<p>Podobne sa hodí <a href=\"/darcek-pre-muza/\">darček pre muža</a> a <a href=\"/darcek-pre-priatelku/\">darček pre priateľku</a>, ak hľadáte pre druhú polovičku páru.</p>\n<p>Nákup prebieha u partnera za rovnakú cenu ako priamo u neho.</p>",
    "faq": [
+    {
+     "q": "Čo dať frajerovi?",
+     "a": "Zážitok, ktorý si sám nekúpi: jazdu, únikovku, steak, zájazd na zápas alebo víkend pre dvoch. Voucher príde e-mailom."
+    },
     {
      "q": "Čo darovať priateľovi, ktorý má všetko?",
      "a": "Zážitok: jazdu, let, únikovku, degustáciu alebo pobyt. Zaberie čas, nie miesto."
@@ -1898,7 +1906,7 @@
   {
    "slug": "zazitky-pre-dvoch",
    "name": "Zážitky pre dvoch",
-   "h1": "Zážitky pre dvoch: nápady pre páry",
+   "h1": "Zážitky pre dvoch: nápady na spoločný čas",
    "icon": "pro-par",
    "kw": "zážitky pre dvoch (?)",
    "cats": [
@@ -1911,8 +1919,8 @@
     "escape-room",
     "otvorene-vouchery-do-restauracii"
    ],
-   "title": "Zážitky pre dvoch – darčeky pre páry | Kúzelné miesta",
-   "desc": "Wellness, romantická večera, let balónom alebo únikovka. Zážitky pre dvoch, voucher príde hneď e-mailom.",
+   "title": "Zážitky pre dvoch – nápady na spoločný čas | Kúzelné miesta",
+   "desc": "Zážitky pre dvoch: wellness, romantická večera, let balónom alebo únikovka. Tipy a ceny, voucher príde hneď e-mailom.",
    "intro": "Chcete niečo, čo zažijete spolu? Od wellness cez večeru po let balónom: vybrali sme zážitky pre dvoch.",
    "il": "pro-par",
    "body": "<h2>Zážitky pre dvoch: čo zažiť spolu, nie vedľa seba</h2>\n<p>Dobrý zážitok pre dvoch spoznáte podľa toho, že sa o ňom rozprávate ešte mesiac. Nejde o to minúť čo najviac, ale vybrať niečo, pri čom sa naozaj venujete jeden druhému. Spoločný zážitok vám dá pauzu od práce aj od telefónu, a to je často cennejšie než samotný darček.</p>\n<h2>Pokojné zážitky: wellness, masáž, jedlo</h2>\n<ul>\n<li><a href=\"/pobyty-pre-dvoch/\">Pobyty pre dvoch</a> patria k najširšej ponuke a v priemere vychádzajú zhruba na 175 €. Nájdete tu mestský pobyt v centre Bratislavy aj horský pobyt s wellness.</li>\n<li><a href=\"/wellness-pobyty/\">Wellness pobyty</a> sa hodia, keď chcete vypnúť. Priemer okolo 210 €.</li>\n<li><a href=\"/masaze/\">Masáže</a> a privátna sauna pre pár. Medzi ponukami nájdete párové hýčkanie s vírivkou a proseccom.</li>\n<li><a href=\"/degustacne-menu/\">Degustačné menu</a>, napríklad kórejské BBQ alebo päťchodová večera. Priemer okolo 60 €.</li>\n<li><a href=\"/otvorene-vouchery-do-restauracii/\">Vouchery do reštaurácií</a> na spontánny večer, v priemere okolo 20 €.</li>\n</ul>\n<h2>Niečo výnimočné: let a hra</h2>\n<p>Na zvláštnu príležitosť siahnite po <a href=\"/lety-balonom/\">lete balónom</a>. Priemer sa pohybuje okolo 460 €, takže ide o darček na výročie alebo veľkú oslavu. Pre hravé páry sú tu <a href=\"/escape-room/\">únikové hry</a> pre 2 až 6 hráčov, v priemere okolo 45 €. Pomôžu vám zistiť, kto z vás zachová pod tlakom pokoj.</p>\n<h2>Ako vybrať, aby sa páčilo obom</h2>\n<p>Najčastejšia chyba je vyberať podľa seba. Rozhoduje to, čo baví toho druhého, alebo čo ste obaja niekedy spomenuli. Keď váhate, zvoľte zážitok so stredným tempom, ktorý zvládne každý bez špeciálnej prípravy. Pri aktivitách si u partnera overte vekové a zdravotné obmedzenia.</p>\n<p>Zážitky s alkoholom sú podľa zákona len pre dospelých. Ak sa chcete vyhnúť stresu z rezervácie, vyberte voucher s otvoreným termínom.</p>\n<h2>Praktické rady a ceny</h2>\n<ul>\n<li>Na večer vo dvojici stačí okolo 20 až 60 €, na pobyt počítajte zhruba so 160 € a viac.</li>\n<li>Voucher pri väčšine ponúk príde e-mailom po zaplatení, takže ho zoženiete rýchlo.</li>\n<li>Platnosť a podmienky sa líšia podľa ponuky, overte si ich u partnera.</li>\n<li>Termín si dohodnete spoločne. Zážitok sa tak neobmedzí na jeden večer, ale začína už plánovaním.</li>\n</ul>\n<h3>Zážitok pre dvoch ako prekvapenie</h3>\n<p>Ak chcete toho druhého prekvapiť, dohodnite si vopred len voľný termín a zvyšok nechajte ako tajomstvo. Voucher môžete odovzdať v obálke s hádankou alebo mapou. Keď zážitok vyžaduje rezerváciu, zistite si vopred, ako ďaleko dopredu bývajú termíny obsadené. Cez víkendy a sviatky to býva skôr ako cez pracovný týždeň. Podmienky nájdete v popise ponuky a u partnera.</p>\n<p>Ďalšie nápady nájdete v rubrike <a href=\"/darcek-pre-par/\">darček pre pár</a> a medzi <a href=\"/darcek-na-valentina/\">darčekmi na Valentína</a>.</p>",
@@ -3387,6 +3395,578 @@
     {
      "q": "Platí poukaz aj cez víkend?",
      "a": "Líši sa to podľa ponuky, overte si to u partnera."
+    }
+   ]
+  },
+  {
+   "slug": "vianocne-darceky-pre-muza",
+   "name": "Vianoce pre muža",
+   "h1": "Vianočný darček pre muža: zážitky pod stromček",
+   "icon": "vanoce",
+   "kw": "vianočný darček pre muža (650)",
+   "cats": [
+    "zazitkove-jazdy",
+    "adrenalinove-zazitky",
+    "strelba-na-strelnici",
+    "escape-room",
+    "degustacia-vina-a-piva",
+    "steaky-a-burgery",
+    "wellness-pobyty",
+    "pobyty-pre-dvoch",
+    "barber"
+   ],
+   "hub": false,
+   "season": "11-12",
+   "title": "Vianočný darček pre muža – zážitky | Kúzelné miesta",
+   "desc": "Čo dať mužovi pod stromček? Jazda, streľba, únikovka, steak, degustácia alebo wellness. Voucher príde hneď e-mailom.",
+   "intro": "Muž, ktorý si všetko kúpi sám, sa najťažšie obdarúva. Vianočný zážitok problém rieši: nemusíte hádať veľkosť ani značku a darček sa nestratí medzi ponožkami. Vybrali sme jazdy, streľbu, únikové hry, jedlo aj pokojné wellness, voucher príde e-mailom.",
+   "il": "vanoce",
+   "body": "<h2>Vianočný darček pre muža: čo dať, keď „nič nepotrebuje“</h2>\n<p>Pri mužoch býva najčastejšia odpoveď na otázku, čo chcú, „nič“. Pod stromčekom potom skončí ďalšia košeľa alebo sada na holenie. Zážitok funguje inak: nezaberie miesto doma, dá sa na neho tešiť a po sviatkoch má darček pokračovanie. Navyše ho kúpite z gauča bez zástupov v obchodoch.</p>\n<h2>Vianočný darček pre muža podľa záujmu</h2>\n<ul>\n<li><strong>Motorista:</strong> <a href=\"/zazitkove-jazdy/\">zážitková jazda</a> v superšporte, pretekárskom aute či v teréne. V zime nie je každá jazda vhodná, preto pri nákupe skontrolujte, v akom období sa dá využiť.</li>\n<li><strong>Adrenalín:</strong> <a href=\"/adrenalinove-zazitky/\">adrenalínové zážitky</a> od lezenia po vyhliadkový let. Termín si môže zvoliť na jar.</li>\n<li><strong>Gurmán:</strong> <a href=\"/steaky-a-burgery/\">steak alebo burger</a> v dobrej reštaurácii, degustácia piva či whisky (len pre dospelých).</li>\n<li><strong>Partia a hry:</strong> <a href=\"/escape-room/\">úniková hra</a> alebo <a href=\"/virtualna-realita/\">virtuálna realita</a> pre dvoch až pre celú partiu.</li>\n<li><strong>Pohodár:</strong> masáž, barber shop alebo <a href=\"/wellness-pobyty/\">wellness pobyt</a>, ak chcete darovať aj čas navyše.</li>\n<li><strong>Fanúšik:</strong> zájazd na zápas jeho klubu, ak viete, ktorému fandí.</li>\n</ul>\n<h2>Vianočný darček pre muža podľa rozpočtu</h2>\n<p>Do približne 40 € vystačíte s barber shopom, večerou alebo bowlingom. Za 40 až 80 € sa už dá kúpiť únikovka s priateľmi, kratšia jazda alebo degustácia. Nad 100 € nájdete zážitkové jazdy, pobyty pre dvoch a väčšie adrenalínové balíky. Podľa ponuky stojí únikovka v priemere okolo 45 €, zážitková jazda takmer 115 € a pobyt pre dvoch v priemere okolo 180 €. Ceny sa menia, rozhoduje konkrétna ponuka.</p>\n<h2>Ako vybrať, aby sa trafilo</h2>\n<p>Najprv si odpovedzte, či váš muž radšej naberá adrenalín, alebo dobíja energiu. Pri adrenalíne skontrolujte vekové, výškové a zdravotné obmedzenia. Pri jedle zvážte, či chce ísť s vami, alebo s kamarátmi, a podľa toho vyberte voucher pre jednu osobu alebo pre dvoch. Ak váhate, siahnite po voucheri s dlhšou platnosťou, aby ho nemusel využiť v zime, keď sa mu nechce.</p>\n<h2>Ako funguje voucher</h2>\n<ol>\n<li>Vyberiete ponuku a zaplatíte u partnera, cena je rovnaká ako na jeho webe.</li>\n<li>Voucher vám príde e-mailom.</li>\n<li>Vytlačíte ho, vložíte do obálky alebo zabalíte s drobnosťou, ktorá k zážitku patrí.</li>\n<li>Obdarovaný si sám dohodne termín podľa podmienok ponuky.</li>\n</ol>\n<h2>Ďalšie tipy pre muža</h2>\n<p>Mimo Vianoc sa hodí aj <a href=\"/darcek-pre-muza/\">darček pre muža</a> k narodeninám či meninám. Konkrétnejšie sú <a href=\"/vianocne-darceky-pre-otca/\">vianočný darček pre otca</a> a <a href=\"/vianocne-darceky-pre-priatela/\">pre priateľa</a>. Pri menšom rozpočte pozrite <a href=\"/darceky-do-40-eur/\">darčeky do 40 €</a> a celý výber <a href=\"/vianocne-darceky/\">vianočných darčekov</a>.</p><h2>Kedy darček objednať a ako ho zabaliť</h2>\n<p>Voucher máte po zaplatení hneď v e-maile, preto sa dá kúpiť aj pár dní pred Štedrým dňom. Napriek tomu odporúčame nakúpiť skôr: v novembri a v prvej polovici decembra je väčší výber a obdarovaný nebude riešiť termíny v preplnenom januári. Voucher môžete vložiť do kníh, ktoré rád číta, zabaliť s malým doplnkom, napríklad s pohárom, rukavicami či čokoládou, alebo ho pripnúť na stromček v obálke s krátkym odkazom.</p>\n<h3>Čo radšej nedávať</h3>\n<p>Nevyberajte zážitok, ktorý je pre vášho muža príliš mimo komfortnej zóny, hoci by sa vám páčil. Zoskok padákom nikoho nepoteší, ak sa bojí výšok. Radšej siahnite po niečom, čo už u neho videli: koníčku, o ktorom hovorí, alebo jedle, ktoré má rád.</p>\n",
+   "faq": [
+    {
+     "q": "Čo dať mužovi na Vianoce, keď nič nechce?",
+     "a": "Zážitok, ktorý si sám nekúpi: jazdu, steak či degustáciu, únikovú hru alebo wellness. Nezaberie miesto a obdarovaný sa môže tešiť dlhšie než pri veci."
+    },
+    {
+     "q": "Aký zážitok je vhodný pre muža, ktorý nemá rád adrenalín?",
+     "a": "Pokojnejšie varianty: večera so steakom, degustácia, barber shop, masáž alebo wellness pobyt."
+    },
+    {
+     "q": "Kedy objednať, aby voucher stihol Vianoce?",
+     "a": "Voucher príde e-mailom po zaplatení, takže darček máte k dispozícii hneď. Lepšie je však nakupovať v novembri a v prvej polovici decembra, kým je výber najširší. Termíny dodania a rezervácie sa líšia podľa partnera, pozrite si podmienky pri ponuke."
+    },
+    {
+     "q": "Dá sa zážitok využiť aj v zime?",
+     "a": "Mnohé áno, napríklad wellness, jedlo, únikové hry či masáže. Pri jazdách a letoch skontrolujte v ponuke, v akom období sa dajú využiť, prípadne vyberte voucher s dlhšou platnosťou."
+    },
+    {
+     "q": "Sú degustácie alkoholu vhodné ako darček?",
+     "a": "Áno, ale len pre dospelých. Ak si nie ste istí, zvoľte jedlo alebo wellness."
+    },
+    {
+     "q": "Koľko stojí vianočný darček pre muža?",
+     "a": "Od pár desiatok eur po stovky eur. Orientačne barber shop alebo večera okolo 20 až 40 €, únikovka okolo 45 € a zážitková jazda okolo 115 €."
+    }
+   ]
+  },
+  {
+   "slug": "vianocne-darceky-pre-zenu",
+   "name": "Vianoce pre ženu",
+   "h1": "Vianočný darček pre ženu: zážitky, ktoré potešia",
+   "icon": "vanoce",
+   "kw": "vianočný darček pre ženu (420)",
+   "cats": [
+    "masaze",
+    "kozmeticke-sluzby",
+    "sauna-a-wellness",
+    "wellness-pobyty",
+    "pobyty-pre-dvoch",
+    "kurzy-malovania",
+    "kreativne-kurzy",
+    "fotenie",
+    "kaviarne-a-torty",
+    "head-spa",
+    "degustacne-menu"
+   ],
+   "hub": false,
+   "season": "11-12",
+   "title": "Vianočný darček pre ženu – zážitky | Kúzelné miesta",
+   "desc": "Čo dať žene pod stromček? Masáž, wellness, kozmetika, kurz alebo pobyt pre dvoch. Voucher príde hneď e-mailom.",
+   "intro": "Vianočný darček pre ženu nemusí byť parfum ani sada krémov. Najviac poteší čas len pre seba, starostlivosť alebo spoločný zážitok. Vybrali sme masáže, wellness, kozmetiku, tvorivé kurzy aj pobyty pre dvoch. Voucher príde e-mailom, vytlačiť ho môžete pred Štedrým dňom.",
+   "il": "vanoce",
+   "body": "<h2>Vianočný darček pre ženu: na čo sa zamerať</h2>\n<p>Pred Vianocami žena väčšinou všetkých obdaruje, pripraví večeru a poupratuje, a sama si oddýchne naposledy. Preto sa osvedčili darčeky, ktoré jej dajú čas a pohodu. Zážitok zároveň ušetrí starosti s veľkosťou, odtieňom či značkou, ktoré pri vecných darčekoch často pokazia dobrý úmysel.</p>\n<h2>Vianočné zážitky pre ženu podľa typu</h2>\n<ul>\n<li><strong>Relax:</strong> <a href=\"/masaze/\">masáž</a>, <a href=\"/sauna-a-wellness/\">sauna a wellness</a> alebo <a href=\"/head-spa/\">head spa</a>. Masáže začínajú okolo 6 € a v priemere vychádzajú zhruba na 50 €.</li>\n<li><strong>Starostlivosť o seba:</strong> <a href=\"/kozmeticke-sluzby/\">kozmetika</a>, ošetrenie pleti či manikúra.</li>\n<li><strong>Tvorivá:</strong> <a href=\"/kreativne-kurzy/\">kreatívny kurz</a>, maľovanie alebo keramika, na ktoré si sama nenájde čas.</li>\n<li><strong>Romantická:</strong> <a href=\"/pobyty-pre-dvoch/\">pobyt pre dvoch</a>, večera alebo degustačné menu.</li>\n<li><strong>Sladká:</strong> kaviareň s dezertom či tortou pre ženu, ktorá miluje sladké.</li>\n<li><strong>Spomienková:</strong> <a href=\"/fotenie/\">fotenie</a> pre pár alebo rodinu.</li>\n</ul>\n<h2>Vianočný darček pre ženu podľa rozpočtu</h2>\n<p>Do 40 € sa hodí masáž, kozmetika, kaviareň alebo kurz tvorenia. Do približne 80 € nájdete dlhšie ošetrenia, privátne posedenie či degustáciu. Nad túto sumu sú wellness pobyty a pobyty pre dvoch: wellness pobyty začínajú okolo 45 € a v priemere stoja zhruba 210 €. Orientačné ceny si pred nákupom overte pri konkrétnej ponuke.</p>\n<h2>Ako vybrať, aby sa to trafilo</h2>\n<p>Zamyslite sa, čo robí rada a čo si dlho odkladá. Ak často hovorí o bolesti chrbta, patrí jej masáž. Ak miluje tvorenie, kurz. Ak hovorí, že by chcela „niekam vypadnúť“, pobyt. Pri masážach a wellness skontrolujte, či je voucher na jednu osobu, na dvoch a aký typ masáže zahŕňa. Voucher na wellness pre dvoch môže byť zároveň darčekom pre vás oboch.</p>\n<h2>Ako darček odovzdať</h2>\n<p>Voucher vytlačte, vložte do obálky alebo krabičky a pridajte drobnosť, napríklad sviečku, čaj alebo čokoládu. Dobrý nápad je ponúknuť sa, že ten deň postaráte o deti či domácnosť, aby mohla zážitok skutočne využiť. Termín si vyberá obdarovaná podľa podmienok ponuky.</p>\n<h2>Ďalšie nápady</h2>\n<p>Viac tipov nájdete v <a href=\"/darcek-pre-zenu/\">darčekoch pre ženu</a> a <a href=\"/zazitky-pre-zeny/\">zážitkoch pre ženy</a>. Pre konkrétnu osobu zas <a href=\"/vianocne-darceky-pre-mamu/\">vianočný darček pre mamu</a> či <a href=\"/vianocne-darceky-pre-priatelku/\">pre priateľku</a>. Celý výber nájdete v prehľade <a href=\"/vianocne-darceky/\">vianočných darčekov</a>.</p><h2>Kedy darček objednať</h2>\n<p>Voucher príde hneď po zaplatení e-mailom, takže ho stihnete aj tesne pred Vianocami. Lepšie je však nakupovať v novembri alebo začiatkom decembra, kým je výber širší a kým sa v kalendári dajú nájsť termíny. Ak ide o darček od celej rodiny, dohodnite sa vopred, kto zaplatí a komu príde voucher, aby sa neobjavili dva rovnaké darčeky.</p>\n<h3>Spoločný zážitok, alebo darček pre ňu samotnú</h3>\n<p>Pred nákupom zvážte, čo si žena skutočne želá. Niektoré ženy ocenia čas v tichu, iné spoločnú chvíľu s partnerom či kamarátkou. Voucher na masáž alebo kozmetiku je darček pre ňu, voucher na pobyt či večeru pre vás oboch. Pri pochybnostiach vyberte pokojný zážitok bez pevného programu, ktorý si môže prispôsobiť.</p>\n<h3>Rýchly výber podľa času</h3>\n<p>Ak máte na výber len pár minút, rozhodnite sa podľa toho, koľko času má obdarovaná. Pri tesnom kalendári zvoľte masáž alebo kaviareň, pri voľnejšom víkende wellness či pobyt. Pre rodinnú ženu, ktorá sa celý rok stará o ostatných, je ideálny aj zážitok, ktorý jej dá pokoj bez povinností.</p>\n",
+   "faq": [
+    {
+     "q": "Čo dať žene na Vianoce okrem parfumu?",
+     "a": "Zážitok: masáž, wellness, kozmetiku, kreatívny kurz alebo pobyt pre dvoch. Poteší čas pre seba a nemusíte hádať veľkosť ani vôňu."
+    },
+    {
+     "q": "Aký vianočný zážitok je vhodný pre ženu, ktorá má všetko?",
+     "a": "Skúste niečo, na čo si sama nenájde čas: masáž, wellness, head spa, fotenie alebo víkend mimo domova."
+    },
+    {
+     "q": "Kedy objednať vianočný voucher?",
+     "a": "Voucher príde hneď e-mailom, takže ho stihnete aj na poslednú chvíľu. Lepšie je však nakúpiť v novembri alebo začiatkom decembra, kým je širší výber."
+    },
+    {
+     "q": "Dá sa darovať aj zážitok pre dve osoby?",
+     "a": "Áno, pri pobytoch, wellness aj večerách je často cena za dvoch. Pri každej ponuke skontrolujte, pre koľko osôb voucher platí."
+    },
+    {
+     "q": "Koľko stojí vianočný darček pre ženu?",
+     "a": "Od pár desiatok eur po stovky eur. Masáž býva v priemere okolo 50 €, wellness pobyt okolo 210 €."
+    }
+   ]
+  },
+  {
+   "slug": "vianocne-darceky-pre-otca",
+   "name": "Vianoce pre otca",
+   "h1": "Vianočný darček pre otca: zážitky, ktoré ocení",
+   "icon": "vanoce",
+   "kw": "vianočný darček pre otca (460)",
+   "cats": [
+    "zazitkove-jazdy",
+    "strelba-na-strelnici",
+    "degustacia-vina-a-piva",
+    "steaky-a-burgery",
+    "vyhliadkove-lety",
+    "sportove-zajazdy",
+    "escape-room",
+    "wellness-pobyty",
+    "kupelne-pobyty",
+    "pobyty-pre-dvoch"
+   ],
+   "hub": false,
+   "season": "11-12",
+   "title": "Vianočný darček pre otca – zážitky | Kúzelné miesta",
+   "desc": "Darček pre otca na Vianoce: jazda, strelnica, degustácia, steak, kúpele alebo zájazd na zápas. Voucher príde hneď e-mailom.",
+   "intro": "Otec zvykne povedať, že nič nepotrebuje, a o rok neskôr stále spomína na zážitok, ktorý dostal. Pod stromček sa hodí jazda, strelnica, degustácia, steak, ale aj kúpele a pobyt pre rodičov. Vybrali sme tipy pre otcov v každom veku, voucher príde e-mailom.",
+   "il": "vanoce",
+   "body": "<h2>Vianočný darček pre otca: prečo sa osvedčil zážitok</h2>\n<p>Otcovia majú náradie, košele aj ponožky. Zážitok je preto pri Vianociach často lepšia voľba než vec: nestratí sa v šuplíku a otec sa na neho môže tešiť. Pre mladšieho otca je to adrenalín, pre staršieho pokoj, jedlo či kúpele. Voucher navyše kúpite z domu a zmestí sa do obálky.</p>\n<h2>Vianočný darček pre otca podľa záujmu</h2>\n<ul>\n<li><strong>Motorista:</strong> <a href=\"/zazitkove-jazdy/\">zážitková jazda</a> v superšporte, pretekárskom aute alebo terénna jazda. V zime sa ešte pozrite na obdobie platnosti.</li>\n<li><strong>Strelec a technik:</strong> <a href=\"/strelba-na-strelnici/\">strelnica</a> s inštruktorom, vyhliadkový let alebo simulátor.</li>\n<li><strong>Gurmán:</strong> <a href=\"/steaky-a-burgery/\">steak</a>, <a href=\"/degustacia-vina-a-piva/\">degustácia vína či piva</a> (len pre dospelých).</li>\n<li><strong>Fanúšik:</strong> <a href=\"/sportove-zajazdy/\">zájazd na zápas</a> jeho obľúbeného klubu.</li>\n<li><strong>Pokojný otec:</strong> <a href=\"/kupelne-pobyty/\">kúpele</a> alebo <a href=\"/wellness-pobyty/\">wellness pobyt</a>, prípadne <a href=\"/pobyty-pre-dvoch/\">pobyt pre rodičov</a>.</li>\n</ul>\n<h2>Koľko stojí vianočný darček pre otca</h2>\n<p>Do 40 € nájdete steak, bowling, kratšiu masáž alebo degustáciu. Za 40 až 100 € únikovku, strelnicu alebo kratšiu jazdu. Zážitkové jazdy stoja podľa ponuky v priemere takmer 115 €, pobyty pre dvoch okolo 180 €. Zájazdy na zápasy bývajú drahšie, lebo zahŕňajú vstupenku a dopravu. Ak sa viaceré sestry či bratia poskladajú, otec dostane veľký darček.</p>\n<h2>Ako vybrať a nepokaziť prekvapenie</h2>\n<p>Pomôže, ak sa nepriamo spýtate maminy alebo sa započúvate, o čom otec hovorí, keď si myslí, že ho nikto nepočúva. Zvážte tiež zdravotný stav a vek: vyberajte zážitky bez ostrých obmedzení a pri adrenalíne si prečítajte podmienky. Otcovia zážitky často odkladajú, preto je dobré dať k voucheru konkrétny návrh mesiaca alebo sa ponúknuť, že pôjdete s ním.</p>\n<h2>Ako funguje voucher</h2>\n<p>Po zaplatení u partnera príde voucher e-mailom. Vytlačíte ho alebo pošlete ďalej, obdarovaný si dohodne termín podľa podmienok. Cena je rovnaká ako priamo u partnera a platnosť nájdete pri každej ponuke.</p>\n<h2>Zážitok pre otca, ktorý s ním zdieľate</h2>\n<p>Najlepšie darčeky pre otcov sú tie, kde môžete ísť s ním: steak a pivo, jazda či výlet. Otec si takýto darček spojí s vami a nielen s vecou. Ak sa s ním vidíte málokedy, je to dôvod navyše vybrať spoločný zážitok, ktorý vám dá čas bez telefónov. Ak ide o dar od viacerých detí, dohodnite si, kto kúpi voucher a kto ho zabalí.</p>\n<h3>Ako zabaliť voucher</h3>\n<p>Vytlačte ho a zabaľte do krabičky s drobnosťou, ktorá k zážitku patrí: pohár, mapa či rukavice. Pridajte pár slov, kedy by ste mohli ísť spolu. Otec zážitky zvyčajne odkladá, preto pomôže konkrétny návrh mesiaca. Pri jazdách, strelnici či lete nezabudnite skontrolovať vekové a zdravotné obmedzenia v popise ponuky.</p>\n<h3>Rýchly výber podľa typu otca</h3>\n<p>Aktívny otec ocení jazdu, strelnicu či výlet, domáci otec skôr steak, pivo a pokojnú večeru, a otec po šesťdesiatke kúpele a wellness. Ak váhate, vyberte niečo, čo sa dá využiť aj pre dvoch, a pozvite ho s kamarátom alebo s mamou. Vďaka tomu odpadne pocit, že sa musí rozhodnúť sám.</p>\n<h2>Ďalšie tipy</h2>\n<p>Celoročne sa hodí <a href=\"/darcek-pre-otca/\">darček pre otca</a>, v marci až júni zas <a href=\"/darcek-na-den-otcov/\">darček na Deň otcov</a>. Pozrite aj <a href=\"/vianocne-darceky-pre-muza/\">vianočný darček pre muža</a>, <a href=\"/vianocne-darceky-pre-rodicov/\">pre rodičov</a> a hlavný prehľad <a href=\"/vianocne-darceky/\">vianočných darčekov</a>.</p>",
+   "faq": [
+    {
+     "q": "Čo dať otcovi na Vianoce, keď nič nechce?",
+     "a": "Zážitok: jazdu, strelnicu, steak, degustáciu alebo kúpele. Nezaberie miesto doma a otec sa naň môže tešiť."
+    },
+    {
+     "q": "Aký darček pre staršieho otca?",
+     "a": "Pokojnejšie zážitky: kúpele, wellness, pobyt s manželkou, degustáciu, kultúrny výlet alebo dobrú večeru."
+    },
+    {
+     "q": "Dá sa darček kúpiť na poslednú chvíľu?",
+     "a": "Áno, voucher príde e-mailom po zaplatení. Lepšie je však nakúpiť v novembri alebo začiatkom decembra, aby ste mali širší výber."
+    },
+    {
+     "q": "Môžu sa deti poskladať na väčší darček?",
+     "a": "Áno, voucher na pobyt či jazdu vychádza lepšie, keď sa poskladá viac súrodencov. Vyberte jednu ponuku a zaplatíte spolu."
+    },
+    {
+     "q": "Sú degustácie vhodné ako darček pre otca?",
+     "a": "Áno, sú určené len dospelým. Ak otec nepije, zvoľte steak, jazdu či wellness."
+    }
+   ]
+  },
+  {
+   "slug": "vianocne-darceky-pre-priatela",
+   "name": "Vianoce pre priateľa",
+   "h1": "Vianočný darček pre priateľa (frajera): zážitky na dvoch",
+   "icon": "vanoce",
+   "kw": "vianočný darček pre priateľa / frajera (?)",
+   "cats": [
+    "zazitkove-jazdy",
+    "adrenalinove-zazitky",
+    "escape-room",
+    "virtualna-realita",
+    "steaky-a-burgery",
+    "degustacia-vina-a-piva",
+    "pobyty-pre-dvoch",
+    "wellness-pobyty",
+    "sportove-zajazdy",
+    "vyhliadkove-lety"
+   ],
+   "hub": false,
+   "season": "11-12",
+   "title": "Vianočný darček pre priateľa, frajera | Kúzelné miesta",
+   "desc": "Čo dať frajerovi na Vianoce? Jazda, únikovka, steak, zájazd na zápas alebo víkend pre dvoch. Voucher príde hneď e-mailom.",
+   "intro": "Chcete frajerovi pod stromček niečo lepšie než ďalšie tričko? Daruje mu zážitok, na ktorý sa môže tešiť a ktorý zažijete spolu alebo si ho vychutná sám. Vybrali sme jazdy, únikovky, jedlo, víkendové pobyty aj zájazdy na zápasy. Voucher príde e-mailom.",
+   "il": "vanoce",
+   "body": "<h2>Vianočný darček pre priateľa: veci verzus zážitok</h2>\n<p>Keď váš priateľ povie, že nič nepotrebuje, väčšinou to myslí vážne. Zážitok mu dá niečo iné než vec: spoločný čas, príbeh na pol roka a dôvod vypadnúť z bežného týždňa. Zároveň zmenšíte riziko, že darujete niečo, čo skončí v skrini.</p>\n<h2>Vianočný darček pre frajera podľa typu</h2>\n<ul>\n<li><strong>Adrenalín:</strong> <a href=\"/zazitkove-jazdy/\">zážitková jazda</a>, <a href=\"/adrenalinove-zazitky/\">adrenalínový zážitok</a> alebo <a href=\"/vyhliadkove-lety/\">vyhliadkový let</a>.</li>\n<li><strong>Hry a technika:</strong> <a href=\"/escape-room/\">úniková hra</a> alebo <a href=\"/virtualna-realita/\">virtuálna realita</a>, ktoré môžete vyskúšať spolu.</li>\n<li><strong>Jedlo a pitie:</strong> <a href=\"/steaky-a-burgery/\">steak</a> alebo <a href=\"/degustacia-vina-a-piva/\">degustácia</a> (len pre dospelých).</li>\n<li><strong>Šport:</strong> <a href=\"/sportove-zajazdy/\">zájazd na zápas</a> jeho tímu, ak viete, komu fandí.</li>\n<li><strong>Spoločný víkend:</strong> <a href=\"/pobyty-pre-dvoch/\">pobyt pre dvoch</a> alebo <a href=\"/wellness-pobyty/\">wellness pobyt</a>, ktorý si užijete obaja.</li>\n</ul>\n<h2>Čo darovať podľa rozpočtu</h2>\n<p>Do 40 € sa hodí steak, bowling či kratšia masáž. Do 80 € už nájdete únikovku s priateľmi, degustáciu alebo kratšiu jazdu. Pobyt pre dvoch začína okolo 20 € a v priemere stojí okolo 180 €, zážitkové jazdy vychádzajú v priemere takmer 115 €. Ceny sú orientačné a zakaždým sa líšia podľa konkrétnej ponuky.</p>\n<h2>Ako vybrať: pre neho, alebo pre vás oboch</h2>\n<p>Rozhodnite sa, či ide o darček pre neho samého, alebo spoločný zážitok. Jazda či zájazd s kamarátmi je darček pre neho, večera alebo pobyt pre vás obidvoch. Ak dávate pobyt, uveďte aj návrh termínu, inak sa odkladá. V ponuke skontrolujte, pre koľko osôb voucher platí, a či sa dá zážitok využiť v zime.</p>\n<h2>Ako voucher odovzdať</h2>\n<p>Voucher príde e-mailom, vytlačíte ho a vložíte do obálky. Môžete ho zabaliť do krabičky s drobnosťou, napríklad s pohárom k degustácii alebo okuliarmi k jazde. Termín si vyberá obdarovaný podľa podmienok ponuky.</p>\n<h2>Kedy darček objednať a ako ho odovzdať</h2>\n<p>Voucher máte po zaplatení hneď v e-maile, takže sa dá kúpiť aj tesne pred Štedrým dňom. Lepší výber je však v novembri a začiatkom decembra. Pri väčšom darčeku, napríklad víkendovom pobyte, pridajte kartu s pozvaním a navrhnite termín. Ak je to prekvapenie, nechajte si rezerváciu na neho, aby si mohol zážitok naplánovať podľa svojich možností.</p>\n<h3>Na čo si dať pozor</h3>\n<p>Dávajte pozor na to, aby zážitok zodpovedal jeho záujmom, nie vašim. Ak nemá rád tlačenicu, vyberte pokojnejšie miesto. Ak sa bojí výšok, neobdarúvajte ho letom. A ak viete, že veľa cestuje, zvoľte voucher s dlhšou platnosťou, aby si ho stihol uplatniť.</p>\n<h3>Rýchly výber podľa rozpočtu</h3>\n<p>Pri menšom rozpočte vyberte jedlo či bowling. Pri strednom únikovku alebo degustáciu a pri väčšom jazdu, zájazd či pobyt pre dvoch. Ak ste spolu krátko, držte sa nižších súm, aby darček nepôsobil nátlakovo. Pri dlhšom vzťahu si môžete dovoliť viac.</p>\n<h2>Súvisiace tipy</h2>\n<p>Mimo sviatkov pozrite <a href=\"/darcek-pre-priatela/\">darček pre priateľa</a>. Na Vianoce vás môžu inšpirovať aj <a href=\"/vianocne-darceky-pre-muza/\">vianočný darček pre muža</a>, <a href=\"/vianocne-darceky-pre-pary/\">vianočný darček pre pár</a> a celý <a href=\"/vianocne-darceky/\">výber vianočných darčekov</a>.</p>",
+   "faq": [
+    {
+     "q": "Čo dať frajerovi na Vianoce?",
+     "a": "Zážitok, ktorý si sám nekúpi: jazdu, únikovku, steak, zájazd na zápas alebo víkend pre dvoch."
+    },
+    {
+     "q": "Aký je dobrý darček pre priateľa, ktorý má všetko?",
+     "a": "Zážitok, ktorý nezaberá miesto: jazda, degustácia, wellness alebo spoločný pobyt."
+    },
+    {
+     "q": "Dá sa darovať spoločný zážitok pre dvoch?",
+     "a": "Áno. Pobyty, wellness aj večere sú často vo voucheri pre dvoch. Skontrolujte počet osôb pri ponuke."
+    },
+    {
+     "q": "Stihnem darček aj na poslednú chvíľu?",
+     "a": "Voucher príde hneď e-mailom po zaplatení. Lepšie je však nakúpiť skôr, aby ste mali širší výber."
+    },
+    {
+     "q": "Koľko minúť na darček pre priateľa?",
+     "a": "Záleží na vzťahu a príležitosti. Zážitky sú dostupné od pár desiatok eur po stovky eur, vyberte podľa rozpočtu a záujmov."
+    }
+   ]
+  },
+  {
+   "slug": "vianocne-darceky-pre-priatelku",
+   "name": "Vianoce pre priateľku",
+   "h1": "Vianočný darček pre priateľku (frajerku): romantika a pohoda",
+   "icon": "vanoce",
+   "kw": "vianočný darček pre priateľku / frajerku (?)",
+   "cats": [
+    "pobyty-pre-dvoch",
+    "romanticke-pobyty",
+    "wellness-pobyty",
+    "masaze",
+    "kozmeticke-sluzby",
+    "degustacne-menu",
+    "romanticka-vecera",
+    "kurzy-malovania",
+    "fotenie",
+    "lety-balonom"
+   ],
+   "hub": false,
+   "season": "11-12",
+   "title": "Vianočný darček pre priateľku, frajerku | Kúzelné miesta",
+   "desc": "Čo dať frajerke na Vianoce? Romantický pobyt, privátny wellness, masáž alebo večera pre dvoch. Voucher príde hneď e-mailom.",
+   "intro": "Frajerku potešíte najviac, keď jej dáte čas a pozornosť. Vianočný darček od vás nemusí byť drahý, ale má pôsobiť osobne: romantický pobyt, wellness, masáž alebo večera na mieste, kde ste ešte neboli. Voucher príde e-mailom.",
+   "il": "vanoce",
+   "body": "<h2>Vianočný darček pre priateľku: čo funguje</h2>\n<p>Šperk a parfum sú bezpečná voľba, no často zapadnú. Zážitok je osobnejší: poukazuje na to, že ste si všimli, čo ju baví, a že chcete s ňou stráviť čas. Hodí sa pre nový vzťah aj pre dlhoročnú partnerku, rozdiel je len v rozsahu a cene.</p>\n<h2>Vianočný darček pre frajerku podľa typu vzťahu</h2>\n<ul>\n<li><strong>Začiatok vzťahu:</strong> večera v peknom prostredí, <a href=\"/romanticka-vecera/\">romantická večera</a>, <a href=\"/kozmeticke-sluzby/\">kozmetika</a> alebo <a href=\"/masaze/\">masáž</a>. Nič, čo by zaväzovalo.</li>\n<li><strong>Stabilný vzťah:</strong> <a href=\"/pobyty-pre-dvoch/\">pobyt pre dvoch</a>, <a href=\"/wellness-pobyty/\">wellness pobyt</a> alebo <a href=\"/romanticke-pobyty/\">romantický pobyt</a>.</li>\n<li><strong>Výnimočné chvíle:</strong> <a href=\"/lety-balonom/\">let balónom</a> či fotenie pre dvoch.</li>\n<li><strong>Pre ňu samu:</strong> <a href=\"/masaze/\">masáž</a>, ošetrenie pleti, <a href=\"/kurzy-malovania/\">kurz maľovania</a> alebo kreatívny workshop.</li>\n</ul>\n<h2>Čo darovať podľa rozpočtu</h2>\n<p>Do 40 € nájdete masáž, kaviareň, kozmetiku alebo kurz tvorenia. Okolo 60 až 100 € je degustačné menu pre dvoch alebo privátny wellness. Za väčšiu sumu kúpite pobyt, ktorý je darčekom pre oboch: pobyty pre dvoch stoja v priemere okolo 180 €, wellness pobyty okolo 210 €. Konkrétnu cenu vždy skontrolujte pri ponuke.</p>\n<h2>Ako vybrať, aby to nebolo trápne</h2>\n<p>Pri novom vzťahu zvoľte niečo menšie a nenútené. Pri dlhšom vzťahu si dovoľte pobyt či let. Ak ste spolu, vyberte zážitok pre dvoch a nezabudnite uviesť, kedy by sa mohol uskutočniť. Skontrolujte, či sú v cene strava, wellness a či je voucher pre dve osoby.</p>\n<h2>Ako voucher odovzdať a načasovať</h2>\n<p>Voucher príde e-mailom po zaplatení. Vytlačte ho do obálky, pridajte sviečku, čaj alebo ručne písanú kartu. Ak chcete, aby sa zážitok skutočne uskutočnil, navrhnite termín, napríklad prvý februárový víkend, a pomôžte s rezerváciou. Termín si vyberá obdarovaná podľa podmienok ponuky.</p>\n<h2>Spoločný zážitok, alebo darček pre ňu</h2>\n<p>Zvážte, či má byť darček pre vás obidvoch, alebo len pre ňu. Pobyt, večera či let sú spoločný čas. Masáž, kozmetika alebo kurz sú čas pre ňu a pozornosť, že ste na ňu mysleli. Obe možnosti fungujú, len pri druhej pridajte slovo, že jej to želáte, a ponúknite sa, že sa o niečo postaráte, aby si zážitok užila.</p>\n<h3>Kedy darček objednať</h3>\n<p>Voucher dostanete e-mailom hneď po zaplatení, preto ho stihnete aj tesne pred Vianocami. Lepší výber a termíny sú však v novembri a začiatkom decembra. Ak ide o prekvapenie, pripravte aj termín, ktorý jej bude vyhovovať, aby sa zážitok neodkladal.</p>\n<h3>Rýchly výber podľa rozpočtu</h3>\n<p>Do 40 € vyberte masáž, kozmetiku alebo kaviareň. Do 100 € večeru či privátny wellness. Nad 100 € pobyt pre dvoch alebo let balónom. Pri každej sume skontrolujte, pre koľko osôb voucher platí, čo je v cene a dokedy ho môže priateľka využiť.</p>\n<h2>Ďalšie tipy</h2>\n<p>Mimo Vianoc pozrite <a href=\"/darcek-pre-priatelku/\">darček pre priateľku</a>. Na sviatky sa hodia aj <a href=\"/vianocne-darceky-pre-zenu/\">vianočný darček pre ženu</a>, <a href=\"/vianocne-darceky-pre-pary/\">pre pár</a> a prehľad <a href=\"/vianocne-darceky/\">vianočných darčekov</a>.</p>",
+   "faq": [
+    {
+     "q": "Čo dať frajerke na Vianoce?",
+     "a": "Zážitok, ktorý ju poteší: romantický pobyt, wellness, masáž alebo večeru pre dvoch. Dôležité je, aby darček pôsobil osobne."
+    },
+    {
+     "q": "Aký darček na začiatku vzťahu?",
+     "a": "Niečo menšie a nenútené: večera, kaviareň, masáž alebo kozmetika. Pobyt a lety nechajte na neskôr."
+    },
+    {
+     "q": "Dá sa darovať pobyt pre dvoch?",
+     "a": "Áno. Pri pobytoch skontrolujte počet osôb v cene, zahrnutú stravu a platnosť voucheru."
+    },
+    {
+     "q": "Kedy objednať vianočný darček?",
+     "a": "Voucher príde hneď e-mailom, takže ho stihnete aj na poslednú chvíľu. Lepšie je kúpiť v novembri alebo začiatkom decembra."
+    },
+    {
+     "q": "Môže si frajerka sama vybrať termín?",
+     "a": "Áno, termín si vyberá sama podľa podmienok a platnosti ponuky."
+    }
+   ]
+  },
+  {
+   "slug": "vianocne-darceky-pre-deti",
+   "name": "Vianoce pre deti",
+   "h1": "Vianočné darčeky pre deti: zážitky namiesto hračiek",
+   "icon": "vanoce",
+   "kw": "vianočné darčeky pre deti (220)",
+   "cats": [
+    "zazitky-pre-deti",
+    "zabavne-parky",
+    "za-zvieratkami",
+    "jazdenie-na-koni",
+    "pobyty-s-detmi",
+    "kreativne-kurzy",
+    "motokary",
+    "escape-room",
+    "virtualna-realita",
+    "bowling"
+   ],
+   "hub": false,
+   "season": "11-12",
+   "title": "Vianočné darčeky pre deti – zážitky | Kúzelné miesta",
+   "desc": "Vianočné darčeky pre deti: zábavný park, zvieratká, motokáry, únikovka alebo rodinný pobyt. Voucher príde hneď e-mailom.",
+   "intro": "Hračky pod stromčekom mizne medzi ostatnými a po mesiaci o ne nie je záujem. Zážitok je iný darček: dieťa sa naň teší, užije si ho s vami a spomienka ostane. Vybrali sme tipy pre mladšie aj staršie deti. Voucher príde e-mailom, dá sa vytlačiť a vložiť pod stromček.",
+   "il": "vanoce",
+   "body": "<h2>Vianočné darčeky pre deti: prečo zážitok</h2>\n<p>Deti dostanú na Vianoce kopu vecí, a pritom si často pamätajú len pár. Zážitok dá niečo iné: čas s rodičmi, nové skúsenosti a tešenie sa na termín. Navyše šetríte miesto v detskej izbe. Zážitok má zmysel aj ako spoločný darček od starých rodičov či celej rodiny.</p>\n<h2>Vianočné darčeky pre deti podľa veku</h2>\n<ul>\n<li><strong>Predškoláci:</strong> <a href=\"/za-zvieratkami/\">návšteva zvieratiek</a>, zábavný park, rodinný <a href=\"/pobyty-s-detmi/\">pobyt s deťmi</a>.</li>\n<li><strong>Školáci 6 až 12 rokov:</strong> <a href=\"/zabavne-parky/\">zábavný park</a>, <a href=\"/jazdenie-na-koni/\">jazda na koni</a>, tvorivý workshop, <a href=\"/bowling/\">bowling</a> či <a href=\"/escape-room/\">detská únikovka</a>.</li>\n<li><strong>Tínedžeri:</strong> <a href=\"/virtualna-realita/\">virtuálna realita</a>, <a href=\"/motokary/\">motokáry</a>, fotenie. Viac v <a href=\"/vianocne-darceky-pre-tinedzerov/\">vianočnom darčeku pre tínedžera</a>.</li>\n<li><strong>Tvorivé deti:</strong> <a href=\"/kreativne-kurzy/\">kreatívny kurz</a>, keramika alebo varenie.</li>\n</ul>\n<h2>Vianočné zážitky pre deti podľa rozpočtu</h2>\n<p>Do 20 € vystačíte s bowlingom, vstupom do zábavného parku či kratším kurzom. Do 40 € únikovka alebo motokáry. Väčší darček je rodinný pobyt s aquaparkom alebo wellness pre rodiny, ktorý zvyčajne skladá viac členov rodiny. Konkrétne ceny sa líšia, pri každej ponuke skontrolujte, či platí za dieťa, alebo za skupinu.</p>\n<h2>Na čo si dať pozor</h2>\n<ul>\n<li><strong>Vek a výška:</strong> mnohé aktivity majú minimálny vek alebo výšku.</li>\n<li><strong>Doprovod:</strong> pri mladších deťoch skontrolujte, či sa dospelý platí zvlášť.</li>\n<li><strong>Sezóna:</strong> vonkajšie zážitky sa dajú využiť až na jar, voucher by mal mať dostatočnú platnosť.</li>\n<li><strong>Skupina:</strong> detské oslavy a kurzy sa platia často za skupinu.</li>\n</ul>\n<h2>Ako zážitok odovzdať</h2>\n<p>Voucher vytlačte a vložte do obálky, alebo ho zabaľte do krabice s malým symbolom: plyšovým zvieratkom, pohárom či drobnosťou, ktorá k zážitku patrí. Dieťa si najlepšie uvedomí, že ide o darček, keď mu povedáte, kedy a s kým pôjde. Termín si dohodnete spoločne podľa podmienok.</p>\n<h2>Zážitok od starých rodičov či celej rodiny</h2>\n<p>Zážitok pre deti sa dobre skladá: staré mamy, tety aj krstní rodičia môžu zložiť jeden väčší darček namiesto troch drobností. Vzniká tak rodinný pobyt, vstup do aquaparku či lístky do zábavného parku pre celú rodinu. Dohodnite sa vopred, kto voucher kúpi, aby ste sa neskôr nepreplatili.</p>\n<h3>Kedy objednať</h3>\n<p>Voucher príde e-mailom hneď po zaplatení, takže ho kúpite aj tesne pred Vianocami. Lepší výber je v novembri a začiatkom decembra. Pri výletoch na jar alebo v lete vyberte voucher s dlhšou platnosťou a skontrolujte, ako sa zážitok rezervuje.</p>\n<h3>Rýchly výber podľa záujmu</h3>\n<p>Športovo založené dieťa poteší motokáry či paintball, zvedavé únikovka alebo virtuálna realita, tvorivé kurz alebo keramiku a dieťa, ktoré miluje zvieratá, farmu, jazdu na koni či zoo. Ak nepoznáte záujmy, vyberte zábavný park, kde nájde niečo každý.</p>\n<h2>Ďalšie tipy</h2>\n<p>Mimo Vianoc sa hodí <a href=\"/darcek-pre-deti/\">darček pre deti</a>, pre chlapcov <a href=\"/darcek-pre-chlapca/\">darček pre chlapca</a> a pre dievčatá <a href=\"/darcek-pre-dievca/\">darček pre dievča</a>. Pre celú rodinu je tu <a href=\"/vianocne-darceky/\">prehľad vianočných darčekov</a>.</p>",
+   "faq": [
+    {
+     "q": "Aký vianočný darček pre dieťa namiesto hračky?",
+     "a": "Zážitok: zábavný park, jazda na koni, zvieratká, únikovka, motokáry alebo rodinný pobyt. Zážitok zostane v pamäti dlhšie než hračka."
+    },
+    {
+     "q": "Hodí sa zážitok aj pre malé deti?",
+     "a": "Áno, pre menšie deti sú vhodné zvieratká, zábavné parky či rodinný pobyt. Pri aktivitách si skontrolujte minimálny vek."
+    },
+    {
+     "q": "Dá sa zážitok využiť aj v zime?",
+     "a": "Mnohé áno, napríklad bowling, únikovky či tvorivé kurzy. Vonkajšie aktivity sú vhodnejšie na jar, preto zvoľte voucher s dlhšou platnosťou."
+    },
+    {
+     "q": "Musí dieťa ísť s dospelým?",
+     "a": "Pri mladších deťoch zvyčajne áno. Pri ponuke skontrolujte, či je dospelý v cene."
+    },
+    {
+     "q": "Kedy objednať vianočný darček?",
+     "a": "Voucher príde e-mailom po zaplatení, takže ho stihnete aj na poslednú chvíľu. Lepšie je nakúpiť v novembri alebo začiatkom decembra."
+    }
+   ]
+  },
+  {
+   "slug": "darcek-pre-starych-rodicov",
+   "name": "Darček pre starých rodičov",
+   "h1": "Darček pre starých rodičov: pobyty, kúpele a pokojné zážitky",
+   "icon": "pro-rodice",
+   "kw": "darček pre starých rodičov (510)",
+   "cats": [
+    "kupelne-pobyty",
+    "pobyty-pre-seniorov",
+    "wellness-pobyty",
+    "masaze",
+    "kultura-a-vylety",
+    "kaviarne-a-torty",
+    "vystavy-a-muzea",
+    "termalne-kupele",
+    "otvorene-vouchery-do-restauracii"
+   ],
+   "hub": false,
+   "title": "Darček pre starých rodičov – zážitky | Kúzelné miesta",
+   "desc": "Darček pre starých rodičov: kúpele, pobyt, masáž, večera či kultúra. Zážitky v pokojnom tempe, voucher príde hneď e-mailom.",
+   "intro": "Starí rodičia majú doma všetko a ďalšia vec sa im najčastejšie hromadí v skrini. Zážitok je lepší: kúpele, pobyt, masáž, dobrá večera či výlet, na ktorý sa pôjdu s radosťou. Vybrali sme darčeky v pokojnom tempe pre babku, dedka aj pre oboch naraz.",
+   "il": "pro-rodice",
+   "body": "<h2>Darček pre starých rodičov: čo ocenia</h2>\n<p>Pri starších ľuďoch sa málokedy trafíte vecou. Majú svoje zvyky, nádobie a oblečenie. Zážitok im dá niečo, čo nemajú každý deň: spoločný čas, pozornosť, vyjsť z domu. Najlepšie fungujú zážitky v pokojnom tempe a s komfortom: bez schodov, behania a hluku.</p>\n<h2>Darčeky pre starých rodičov podľa typu</h2>\n<ul>\n<li><strong>Kúpele a relax:</strong> <a href=\"/kupelne-pobyty/\">kúpeľný pobyt</a>, <a href=\"/termalne-kupele/\">termálne kúpele</a> alebo <a href=\"/wellness-pobyty/\">wellness pobyt</a>.</li>\n<li><strong>Špeciálne pre seniorov:</strong> <a href=\"/pobyty-pre-seniorov/\">pobyty pre seniorov</a> s programom šitým na mieru.</li>\n<li><strong>Telo a pohoda:</strong> <a href=\"/masaze/\">masáž</a>, ktorá uľaví chrbtu a kĺbom.</li>\n<li><strong>Kultúra:</strong> <a href=\"/kultura-a-vylety/\">divadlo, koncert, výlet</a> či <a href=\"/vystavy-a-muzea/\">výstava</a>.</li>\n<li><strong>Jedlo:</strong> <a href=\"/kaviarne-a-torty/\">kaviareň s dezertom</a> alebo <a href=\"/otvorene-vouchery-do-restauracii/\">voucher do reštaurácie</a>.</li>\n</ul>\n<h2>Pre babku a pre dedka zvlášť</h2>\n<p>Ak viete, že darujete jednému z nich, pozrite <a href=\"/darcek-pre-babku/\">darček pre babku</a> alebo <a href=\"/darcek-pre-dedka/\">darček pre dedka</a>. Dedkovia často ocenia degustáciu, jazdu či vyhliadkový let, babky skôr masáž, kaviareň či kúpele. Najlepšie je vybrať spoločný zážitok pre dvoch, aby sa nemuseli deliť.</p>\n<h2>Koľko to stojí</h2>\n<p>Orientačne: masáž od okolo 6 €, v priemere okolo 50 €. Pobyt pre dvoch začína okolo 20 € a v priemere vychádza zhruba na 180 €, wellness pobyty v priemere okolo 210 €. Pri väčších pobytoch sa často poskladajú vnúčatá, takže darček je z celej rodiny. Cena je vždy uvedená pri ponuke.</p>\n<h2>Ako vybrať: na čo myslieť</h2>\n<ul>\n<li><strong>Zdravie a pohyblivosť:</strong> skontrolujte schody, vzdialenosť či obmedzenia.</li>\n<li><strong>Doprava:</strong> môžete ponúknuť, že ich odveziete, alebo vyberte zážitok blízko domova.</li>\n<li><strong>Termín:</strong> radšej mimo sezóny a bez zhonu.</li>\n<li><strong>Jednoduchá rezervácia:</strong> ak je to pre nich náročné, pomôžte s telefonátom alebo e-mailom.</li>\n</ul>\n<h2>Ako voucher odovzdať</h2>\n<p>Voucher príde e-mailom po zaplatení. Starším ľuďom je lepšie ho vytlačiť a dať do ruky, prípadne zabaliť s drobnosťou, ktorá sa k zážitku viaže. Termín si dohodnite spolu, aby vedeli, že sa naň môžu tešiť a že im pomôžete s rezerváciou.</p>\n<h2>Spoločný čas ako darček</h2>\n<p>Starým rodičom často najviac chýba spoločný čas s vnúčatami. Preto sa osvedčujú zážitky, ktoré zažijete spolu: kaviareň s dezertom, výlet či jednoduchý wellness deň. Vyberte niečo, čo nevyžaduje veľa chôdze, a dajte starým rodičom vedieť vopred, aby sa naň mohli tešiť. Pre menšie deti sa hodí zážitok, ktorý spája generácie, napríklad návšteva zvieratiek alebo tvorivý workshop.</p>\n<h3>Kedy sa hodí</h3>\n<p>Starým rodičom sa dáva darček na Vianoce, narodeniny, k meninám aj bez príležitosti. Pri Vianociach je dobré vybrať niečo, čo sa dá využiť aj v zime: kúpele, masáž, kaviareň či večera. Na jar sa hodia výlety a pobyty v prírode.</p>\n<h3>Rýchly výber podľa zdravia a energie</h3>\n<p>Aktívni starí rodičia ocenia výlet, kultúru alebo lahodné jedlo. Pre tých, ktorí sa ťažšie pohybujú, vyberte masáž či kaviareň blízko domova. Ak ide o kúpele, zistite, či sú v cene procedúry a stravovanie a či je pobyt vhodný pre seniorov.</p>\n<h2>Ďalšie tipy</h2>\n<p>Pozrite aj <a href=\"/darcek-pre-rodicov/\">darček pre rodičov</a>, <a href=\"/darcek-pre-seniorov/\">darček pre seniorov</a> a na Vianoce <a href=\"/vianocne-darceky-pre-rodicov/\">vianočný darček pre rodičov</a>.</p>",
+   "faq": [
+    {
+     "q": "Čo dať starým rodičom, ktorí všetko majú?",
+     "a": "Zážitok: kúpele, wellness pobyt, masáž, večeru alebo kultúrny výlet. Zaberie málo miesta a dá spoločný čas."
+    },
+    {
+     "q": "Je zážitok vhodný pre seniorov?",
+     "a": "Áno, ak vyberiete pokojný program. Skontrolujte prístupnosť, vzdialenosť a obmedzenia pri ponuke."
+    },
+    {
+     "q": "Môže sa vnúčatá poskladať na väčší darček?",
+     "a": "Áno, pobyt alebo kúpele sa často kupujú spoločne. Zaplatíte jednu ponuku a voucher dostanete e-mailom."
+    },
+    {
+     "q": "Ako pomôcť s rezerváciou?",
+     "a": "Ponúknite, že termín vyberiete spolu, prípadne zavoláte vy. Starším ľuďom to uľahčí využitie voucheru."
+    },
+    {
+     "q": "Dá sa darovať spoločný zážitok pre babku aj dedka?",
+     "a": "Áno, pobyty pre dvoch, wellness a večere bývajú vo voucheri pre dve osoby. Skontrolujte počet osôb v cene."
+    }
+   ]
+  },
+  {
+   "slug": "darcek-pre-muza-k-narodeninam",
+   "name": "Darček pre muža k narodeninám",
+   "h1": "Darček pre muža k narodeninám: zážitky, ktoré nadchnú",
+   "icon": "pro-nej",
+   "kw": "darček pre muža k narodeninám (600)",
+   "cats": [
+    "zazitkove-jazdy",
+    "adrenalinove-zazitky",
+    "vyhliadkove-lety",
+    "strelba-na-strelnici",
+    "escape-room",
+    "degustacia-vina-a-piva",
+    "steaky-a-burgery",
+    "wellness-pobyty",
+    "pobyty-pre-dvoch",
+    "sportove-zajazdy",
+    "motokary"
+   ],
+   "hub": false,
+   "title": "Darček pre muža k narodeninám – zážitky | Kúzelné miesta",
+   "desc": "Čo dať mužovi k narodeninám? Jazda, let, streľba, únikovka, degustácia alebo víkend pre dvoch. Voucher príde hneď e-mailom.",
+   "intro": "Narodeniny sú príležitosť darovať mužovi niečo, čo si sám nekúpi. Zážitok je istota: nemusíte hádať vkus ani veľkosť a oslávenec si ho vyberie v termíne, ktorý mu vyhovuje. Pripravili sme tipy od jazdy v športovom aute až po pokojný víkend, voucher príde e-mailom.",
+   "il": "pro-nej",
+   "body": "<h2>Darček pre muža k narodeninám: ako ho vybrať</h2>\n<p>K narodeninám chcete mužovi dať niečo osobnejšie než poukážku do obchodu. Zážitok dá oslávencovi dôvod, aby si urobil čas na sebe. Narodeniny navyše pripadajú na celý rok, takže môžete vyberať aj vonkajšie aktivity, ktoré v zime nejdú.</p>\n<h2>Darček pre muža podľa záujmu</h2>\n<ul>\n<li><strong>Motorista:</strong> <a href=\"/zazitkove-jazdy/\">zážitková jazda</a> v superšporte alebo na okruhu, <a href=\"/motokary/\">motokáry</a> s kamarátmi.</li>\n<li><strong>Adrenalín:</strong> <a href=\"/adrenalinove-zazitky/\">adrenalínový zážitok</a> či <a href=\"/vyhliadkove-lety/\">vyhliadkový let</a>.</li>\n<li><strong>Strelec:</strong> <a href=\"/strelba-na-strelnici/\">streľba na strelnici</a> s inštruktorom.</li>\n<li><strong>Gurmán:</strong> <a href=\"/steaky-a-burgery/\">steak</a> alebo <a href=\"/degustacia-vina-a-piva/\">degustácia</a> (len pre dospelých).</li>\n<li><strong>Parta:</strong> <a href=\"/escape-room/\">úniková hra</a> alebo virtuálna realita.</li>\n<li><strong>Fanúšik:</strong> <a href=\"/sportove-zajazdy/\">zájazd na zápas</a>.</li>\n<li><strong>Pokojná oslava:</strong> <a href=\"/wellness-pobyty/\">wellness pobyt</a> alebo <a href=\"/pobyty-pre-dvoch/\">víkend pre dvoch</a>.</li>\n</ul>\n<h2>Darček podľa rozpočtu a veku</h2>\n<p>Do 40 € sa hodí steak, bowling, degustácia či kratšia masáž. Za 40 až 100 € únikovka, kratšia jazda alebo strelnica. Zážitkové jazdy stoja v priemere takmer 115 €, pobyty pre dvoch okolo 180 €. Pri okrúhlych narodeninách si dovoľte viac: pozrite <a href=\"/darcek-k-30-narodeninam/\">darček k 30</a>, <a href=\"/darcek-k-40-narodeninam/\">k 40</a>, <a href=\"/darcek-k-50-narodeninam/\">k 50</a> či <a href=\"/darcek-k-60-narodeninam/\">k 60. narodeninám</a>.</p>\n<h2>Ako nepokaziť prekvapenie</h2>\n<p>Ak je to prekvapenie, nič neprezrádzajte pred odovzdaním. Voucher vytlačte, vložte do obálky a pridajte symbol k zážitku, napríklad pohár či rukavice. Ak chcete, aby ho oslávenec naozaj využil, navrhnite termín alebo ponúknite spoločnú účasť. Pri adrenalíne skontrolujte vekové a zdravotné obmedzenia.</p>\n<h2>Ako funguje voucher</h2>\n<p>Zaplatíte u partnera za rovnakú cenu ako na jeho webe, voucher príde e-mailom a oslávenec si dohodne termín podľa podmienok. Pri jazdách a letoch rátajte s tým, že termíny sa dohodujú vopred, a platnosť si skontrolujte pri ponuke.</p>\n<h2>Narodeninový zážitok podľa ročného obdobia</h2>\n<p>Pri narodeninách rátajte s tým, kedy oslávenec dovŕši vek. V lete sú ideálne lety, vodné zážitky a jazdy, v zime wellness, degustácie, únikovky a večere. Ak má narodeniny uprostred zimy, zvážte voucher s dlhšou platnosťou na jar, aby si nemusel vyberať medzi chladom a termínom.</p>\n<h3>Spoločne s priateľmi</h3>\n<p>K narodeninám sa často hodí zážitok pre partiu. Únikovka, paintball či motokáry fungujú pre štyroch až osem ľudí, voucher stačí kúpiť a pozvať priateľov. Dobrý nápad je dohodnúť sa s priateľmi a poskladať sa na väčší darček, napríklad jazdu či degustáciu, ktorú by si sám nekúpil.</p>\n<h3>Rýchly výber podľa veku oslávenca</h3>\n<p>Mladším mužom sa hodia motokáry, virtuálna realita či únikovka. Štyridsiatnici ocenia jazdu či degustáciu, päťdesiatnici a starší pokojný víkend, wellness alebo vyhliadkový let. Pri okrúhlych narodeninách vyberte väčší zážitok, aby bola oslava výnimočná.</p>\n<h2>Ďalšie tipy</h2>\n<p>Pozrite aj všeobecný <a href=\"/darcek-pre-muza/\">darček pre muža</a>, <a href=\"/darcek-k-narodeninam/\">darček k narodeninám</a> a <a href=\"/zazitky-pre-muzov/\">zážitky pre mužov</a>. Ak chcete osláviť spolu, vyberte <a href=\"/zazitky-pre-dvoch/\">zážitok pre dvoch</a>.</p>",
+   "faq": [
+    {
+     "q": "Čo dať mužovi k narodeninám, keď nič nechce?",
+     "a": "Zážitok: jazdu, strelnicu, steak, degustáciu alebo wellness. Nezaberie miesto a oslávenec si ho užije v termíne, ktorý mu vyhovuje."
+    },
+    {
+     "q": "Aký darček k narodeninám pre muža do 40 €?",
+     "a": "Steak či burger, bowling, degustácia piva alebo kratšia masáž. Pozrite aj darčeky do 40 €."
+    },
+    {
+     "q": "Dá sa darček k narodeninám kúpiť na poslednú chvíľu?",
+     "a": "Áno, voucher príde e-mailom hneď po zaplatení. Oslávenec si potom sám dohodne termín."
+    },
+    {
+     "q": "Sú degustácie alkoholu vhodné k narodeninám?",
+     "a": "Áno, ale len pre dospelých. Ak chcete alkohol vynechať, vyberte jedlo či wellness."
+    },
+    {
+     "q": "Ako darček pre muža odovzdať?",
+     "a": "Vytlačte voucher, vložte ho do obálky alebo krabičky a pridajte drobnosť, ktorá k zážitku patrí."
+    }
+   ]
+  },
+  {
+   "slug": "darcek-pre-zenu-k-narodeninam",
+   "name": "Darček pre ženu k narodeninám",
+   "h1": "Darček pre ženu k narodeninám: zážitky, ktoré potešia",
+   "icon": "pro-ni",
+   "kw": "darček pre ženu k narodeninám (520)",
+   "cats": [
+    "masaze",
+    "kozmeticke-sluzby",
+    "sauna-a-wellness",
+    "wellness-pobyty",
+    "pobyty-pre-dvoch",
+    "kurzy-malovania",
+    "kreativne-kurzy",
+    "fotenie",
+    "kaviarne-a-torty",
+    "degustacne-menu",
+    "lety-balonom",
+    "head-spa"
+   ],
+   "hub": false,
+   "title": "Darček pre ženu k narodeninám – zážitky | Kúzelné miesta",
+   "desc": "Čo dať žene k narodeninám? Masáž, wellness, kozmetika, kurz, fotenie alebo pobyt pre dvoch. Voucher príde hneď e-mailom.",
+   "intro": "Narodeniny sú príležitosť dať žene niečo, čo si sama neurobí: chvíľu pre seba, romantiku alebo zážitok s priateľkami. Vybrali sme masáže, wellness, kozmetiku, kurzy aj pobyty. Voucher príde e-mailom a oslávenkyňa si termín vyberie sama.",
+   "il": "pro-ni",
+   "body": "<h2>Darček pre ženu k narodeninám: čo zvoliť</h2>\n<p>K narodeninám chce žena cítiť, že na ňu niekto myslel. Kvety a šperk sú fajn, ale zážitok dodá osobný rozmer: zaplatíte čas, ktorý by si sama nedoprala. Funguje pri manželke, mame, kamarátke aj sestre, líši sa len rozsah a cena.</p>\n<h2>Darček pre ženu podľa typu</h2>\n<ul>\n<li><strong>Relax:</strong> <a href=\"/masaze/\">masáž</a>, <a href=\"/sauna-a-wellness/\">sauna a wellness</a> či <a href=\"/head-spa/\">head spa</a>.</li>\n<li><strong>Starostlivosť:</strong> <a href=\"/kozmeticke-sluzby/\">kozmetika</a>, ošetrenie pleti či manikúra.</li>\n<li><strong>Tvorenie:</strong> <a href=\"/kreativne-kurzy/\">kreatívny kurz</a>, <a href=\"/kurzy-malovania/\">maľovanie</a>, keramika.</li>\n<li><strong>Spomienka:</strong> <a href=\"/fotenie/\">fotenie</a> pre ňu alebo pre pár.</li>\n<li><strong>Chuť a sladké:</strong> <a href=\"/kaviarne-a-torty/\">kaviareň s tortou</a> alebo <a href=\"/degustacne-menu/\">degustačné menu</a>.</li>\n<li><strong>Výnimočné:</strong> <a href=\"/lety-balonom/\">let balónom</a> či <a href=\"/pobyty-pre-dvoch/\">pobyt pre dvoch</a>.</li>\n</ul>\n<h2>Koľko stojí darček pre ženu k narodeninám</h2>\n<p>Do 40 € sa hodí masáž, kaviareň, kozmetika alebo kurz. Okolo 60 až 100 € nájdete degustačné menu či privátny wellness. Pobyty sú väčší darček: pobyty pre dvoch stoja v priemere okolo 180 €, wellness pobyty okolo 210 €. Masáže začínajú okolo 6 € a v priemere vychádzajú na zhruba 50 €. Podľa okrúhlych narodenín pozrite aj <a href=\"/darcek-k-30-narodeninam/\">darček k 30</a> či <a href=\"/darcek-k-40-narodeninam/\">k 40. narodeninám</a>.</p>\n<h2>Ako vybrať: tri otázky</h2>\n<ul>\n<li>Chce si oddýchnuť, alebo niečo zažiť?</li>\n<li>Chce byť sama, s vami, alebo s priateľkami?</li>\n<li>Má čas teraz, alebo skôr na jar?</li>\n</ul>\n<p>Podľa odpovedí zvoľte jednu kategóriu a až v nej vyberajte konkrétnu ponuku. Pri pobytoch skontrolujte, pre koľko osôb voucher platí.</p>\n<h2>Ako darček odovzdať</h2>\n<p>Vytlačte voucher a vložte ho do pekného obalu, pridajte kvet alebo drobnosť. Dobrý nápad je ponúknuť, že sa postaráte o deti či domácnosť, aby mohla zážitok využiť bez stresu. Termín si vyberá oslávenkyňa podľa podmienok ponuky.</p>\n<h2>Narodeninový zážitok podľa ročného obdobia</h2>\n<p>V lete vyberte let balónom, kurz vonku, výlet či fotenie v prírode. V zime sa viac hodí wellness, masáž, kozmetika a pobyt. Ak má narodeniny v čase, keď sa nehodí cestovať, zvoľte voucher s dlhšou platnosťou a pridajte odkaz, do kedy by bolo ideálne ho využiť.</p>\n<h3>S priateľkami a rodinou</h3>\n<p>Zážitok môžete kúpiť aj ako spoločný darček od priateľov či rodiny. Wellness pobyt, kurz alebo degustačné menu sa dá využiť pre viac ľudí a je to príležitosť stráviť spolu čas. Ak sa skladáte, dohodnite sa, kto voucher kúpi, a pošlite oslávenkyni jedno pozvanie, nie niekoľko darčekov.</p>\n<h3>Rýchly výber podľa veku oslávenkyne</h3>\n<p>Mladším ženám sa hodí fotenie, kurz či wellness s kamarátkami. Tridsiatničky ocenia masáž, kozmetiku a víkend pre dvoch, pri päťdesiatke a viac sa hodia kúpele, wellness alebo večera. Pri okrúhlych narodeninách zvoľte väčší zážitok, aby bola oslava výnimočná.</p>\n<h2>Ďalšie tipy</h2>\n<p>Pozrite aj všeobecný <a href=\"/darcek-pre-zenu/\">darček pre ženu</a>, <a href=\"/darcek-k-narodeninam/\">darček k narodeninám</a>, <a href=\"/zazitky-pre-zeny/\">zážitky pre ženy</a> a <a href=\"/darcek-pre-mamu/\">darček pre mamu</a>.</p>",
+   "faq": [
+    {
+     "q": "Čo dať žene k narodeninám, keď má všetko?",
+     "a": "Zážitok: masáž, wellness, kozmetiku, kurz tvorenia alebo pobyt. Zaberá málo miesta a dá jej čas pre seba."
+    },
+    {
+     "q": "Aký zážitok je vhodný pre ženu k okrúhlym narodeninám?",
+     "a": "Pobyt pre dvoch, wellness víkend, let balónom alebo fotenie. Vyberte niečo, čo si pamätá."
+    },
+    {
+     "q": "Dá sa zaplatiť zážitok pre dve osoby?",
+     "a": "Áno, pobyty a wellness často platia pre dvoch. Pri ponuke skontrolujte počet osôb."
+    },
+    {
+     "q": "Dá sa darček kúpiť na poslednú chvíľu?",
+     "a": "Áno, voucher príde e-mailom hneď po zaplatení. Termín si vyberie oslávenkyňa sama."
+    },
+    {
+     "q": "Koľko stojí darček pre ženu k narodeninám?",
+     "a": "Od pár desiatok eur po stovky eur. Masáž okolo 50 €, wellness pobyt okolo 210 €."
+    }
+   ]
+  },
+  {
+   "slug": "luxusne-darceky",
+   "name": "Luxusné darčeky",
+   "h1": "Luxusné darčeky: výnimočné zážitky a pobyty",
+   "icon": "darek",
+   "kw": "luxusné darčeky (500+480)",
+   "cats": [
+    "luxusne-ubytovanie",
+    "pobyt-na-zamku",
+    "wellness-pobyty",
+    "privatny-wellness",
+    "romanticke-pobyty",
+    "lety-balonom",
+    "jazda-vo-ferrari",
+    "zazitkove-jazdy",
+    "degustacne-pobyty",
+    "vyhliadkove-lety"
+   ],
+   "min": 150,
+   "hub": false,
+   "title": "Luxusné darčeky – zážitky a pobyty od 150 € | Kúzelné miesta",
+   "desc": "Luxusné darčeky na zážitok: pobyt na zámku, privátny wellness, let balónom alebo jazda v superšporte. Voucher príde e-mailom.",
+   "intro": "Luxusný darček nemusí byť vec za veľa peňazí. Najviac zostane zážitok, ktorý je výnimočný a nedá sa len tak kúpiť v obchode. Vybrali sme ponuky od 150 €: pobyty na zámku, privátny wellness, lety, jazdy aj degustácie. Voucher príde e-mailom.",
+   "il": "kouzelnik-darek",
+   "body": "<h2>Luxusné darčeky: čo za ne dostanete</h2>\n<p>Luxusný darček sa dá chápať dvojako: ako drahšia vec alebo ako zážitok, ktorý je výnimočný. V tomto prehľade nájdete druhú možnosť. Ide o ponuky od 150 € vyššie, pri ktorých dostávate dlhší čas, lepšie prostredie a väčší komfort. Hodia sa na okrúhle výročie, svadbu, narodeniny alebo ako poďakovanie.</p>\n<h2>Luxusné zážitky podľa typu</h2>\n<ul>\n<li><strong>Pobyt:</strong> <a href=\"/luxusne-ubytovanie/\">luxusné ubytovanie</a>, <a href=\"/pobyt-na-zamku/\">pobyt na zámku</a> či <a href=\"/romanticke-pobyty/\">romantický pobyt</a> s večerou.</li>\n<li><strong>Wellness len pre vás:</strong> <a href=\"/privatny-wellness/\">privátny wellness</a> alebo <a href=\"/wellness-pobyty/\">wellness pobyt</a> s ošetrením.</li>\n<li><strong>Zo vzduchu:</strong> <a href=\"/lety-balonom/\">let balónom</a> či <a href=\"/vyhliadkove-lety/\">vyhliadkový let</a>.</li>\n<li><strong>Rýchlosť:</strong> <a href=\"/jazda-vo-ferrari/\">jazda vo Ferrari</a> alebo iná <a href=\"/zazitkove-jazdy/\">zážitková jazda</a> v superšporte.</li>\n<li><strong>Gurmánsky:</strong> <a href=\"/degustacne-pobyty/\">degustačný pobyt</a> s vínom (len pre dospelých).</li>\n</ul>\n<h2>Koľko stojí luxusný darček</h2>\n<p>Orientačne začínajú luxusné pobyty a zážitky okolo 150 €. Pobyty pre dvoch s wellness a večerou sa pohybujú od niekoľkých stoviek eur, zážitkové jazdy v superšportoch od približne 100 € vyššie a lety balónom podľa ponuky. Vždy sa pozrite, čo je v cene: strava, ošetrenia, počet osôb a dĺžka zážitku.</p>\n<h2>Ako vybrať luxusný darček</h2>\n<ul>\n<li><strong>Osobnosť:</strong> adrenalín, pokoj alebo romantika? Podľa toho sa vyberá kategória.</li>\n<li><strong>Čas:</strong> prvé miesto dajte zážitku, na ktorý sa dá vyhradiť víkend.</li>\n<li><strong>Pre koho:</strong> pre jedného, pre pár, pre rodinu. Skontrolujte počet osôb.</li>\n<li><strong>Sezóna:</strong> lety a jazdy závisia od počasia, pobyty menej.</li>\n</ul>\n<h2>Ako luxusný darček odovzdať</h2>\n<p>Voucher príde e-mailom, ale luxusný darček si zaslúži aj dobrý obal: vytlačte ho na kvalitný papier, vložte do krabičky a pridajte kartičku s odporúčaným termínom. Ak ide o prekvapenie, pripravte aj rezerváciu. Termín si obdarovaný volí podľa podmienok ponuky.</p>\n<h2>Ak je rozpočet nižší</h2>\n<p>Nie vždy treba míňať stovky eur. Pozrite <a href=\"/darceky-do-80-eur/\">darčeky do 80 €</a>, <a href=\"/darceky-do-40-eur/\">do 40 €</a> alebo <a href=\"/darceky-do-20-eur/\">do 20 €</a>. Pre pár je tu <a href=\"/wellness-pre-dvoch/\">wellness pobyt pre dvoch</a> a <a href=\"/darcek-pre-par/\">darček pre pár</a>.</p><h2>Pre koho sa luxusný darček hodí</h2>\n<p>Luxusný zážitok vyberajte na výnimočné príležitosti: okrúhle výročie svadby, významné narodeniny, odchod do dôchodku či poďakovanie. Dobre sa hodí aj ako firemný darček pre kľúčového klienta alebo zamestnanca, ak je to v súlade s vašimi pravidlami. Pri nižších sumách by mohol pôsobiť neprimerane, preto zvážte vzťah k obdarovanému.</p>\n<h3>Na čo si dať pozor</h3>\n<p>Pri drahších zážitkoch skontrolujte storno podmienky, platnosť a to, či sa dá voucher použiť aj pre inú osobu. Pri jazdách a letoch overte vekové, váhové a zdravotné obmedzenia a pri pobytoch dostupnosť v sezóne. Dobre je vybrať si zážitok s dlhšou platnosťou, aby ste mali čas zladiť termín.</p>\n<h3>Rýchly výber podľa typu osobnosti</h3>\n<p>Romantik ocení zámok či balón, športovec jazdu v superšporte, gurmán degustačný pobyt a pohodár privátny wellness. Ak váhate, siahnite po pobyte pre dvoch, ktorý sa hodí takmer pre každého a zároveň je darček, ktorý si užijete spolu.</p>\n",
+   "faq": [
+    {
+     "q": "Čo sa počíta za luxusný darček?",
+     "a": "Výnimočný zážitok alebo pobyt od cca 150 €: zámok, privátny wellness, let balónom, jazda v superšporte."
+    },
+    {
+     "q": "Aký luxusný darček pre muža?",
+     "a": "Jazda v superšporte, let, degustácia alebo pobyt s wellness. Vyberte podľa záujmu."
+    },
+    {
+     "q": "Aký luxusný darček pre ženu?",
+     "a": "Pobyt na zámku, privátny wellness s ošetrením, romantická večera alebo let balónom."
+    },
+    {
+     "q": "Dá sa luxusný darček vybrať aj na poslednú chvíľu?",
+     "a": "Áno, voucher príde e-mailom po zaplatení, termín si vyberá obdarovaný."
+    },
+    {
+     "q": "Je cena u vás rovnaká ako u partnera?",
+     "a": "Áno, nakupujete priamo u partnera za jeho cenu."
+    }
+   ]
+  },
+  {
+   "slug": "masaz-pre-dvoch",
+   "name": "Masáž pre dvoch",
+   "h1": "Masáž pre dvoch: poukaz na párovú masáž ako darček",
+   "icon": "pro-par",
+   "kw": "masáž pre dvoch / párová masáž / poukaz na masáž (≈330)",
+   "cats": [
+    "masaze",
+    "sauna-a-wellness",
+    "privatny-wellness",
+    "wellness-pobyty",
+    "pobyty-pre-dvoch",
+    "head-spa",
+    "thajske-masaze",
+    "zdravotne-masaze"
+   ],
+   "hub": false,
+   "title": "Masáž pre dvoch – poukaz na párovú masáž | Kúzelné miesta",
+   "desc": "Masáž pre dvoch ako darček: párová masáž, wellness s masážou a poukazy na masáž. Ceny, tipy a voucher e-mailom.",
+   "intro": "Párová masáž je darček, ktorý využijete obaja. Poukaz na masáž pre dvoch nájdete v rôznych štýloch: klasická, thajská, relaxačná aj spojená s wellness. Pomôžeme vám vybrať, odhadnúť cenu a darček odovzdať. Voucher príde e-mailom.",
+   "il": "pro-par",
+   "body": "<h2>Masáž pre dvoch: ako funguje</h2>\n<p>Pri párovej masáži ležíte vedľa seba v jednej miestnosti a masáž vám robia dvaja maséri naraz. Existuje aj varianta, keď sa striedate. Oboje funguje ako dar pre pár, rodičov či priateľky. Poukaz na masáž sa hodí aj pre jedného, ak nechcete určovať spoločný termín.</p>\n<h2>Aké druhy masáží vybrať</h2>\n<ul>\n<li><strong>Klasická relaxačná:</strong> všeobecná voľba, ktorá sedí takmer každému.</li>\n<li><a href=\"/zdravotne-masaze/\">Zdravotná masáž</a>: pri bolestiach chrbta a krku, ak chcete pomôcť aj zdraviu.</li>\n<li><a href=\"/thajske-masaze/\">Thajská masáž</a>: dôraznejšia, s naťahovaním, pre tých, čo majú radi tlak.</li>\n<li><a href=\"/head-spa/\">Head spa</a>: relax pre hlavu a pokožku hlavy.</li>\n<li><strong>Masáž s wellness:</strong> <a href=\"/privatny-wellness/\">privátny wellness</a> s masážou, saunou a vírivkou.</li>\n</ul>\n<h2>Koľko stojí masáž pre dvoch</h2>\n<p>Masáže začínajú podľa ponuky okolo 6 € a v priemere vychádzajú zhruba na 50 €. Párová masáž je zvyčajne dvojnásobok ceny, rátajte teda od približne 40 € vyššie podľa dĺžky a typu. Wellness s masážou pre dvoch stojí viac. Dôležité je sledovať dĺžku, typ masáže a to, či je v cene wellness.</p>\n<h2>Ako vybrať správny poukaz</h2>\n<ul>\n<li><strong>Dĺžka:</strong> 30 minút stačí na chrbát, na relax sa hodí 60 minút.</li>\n<li><strong>Pre koľko osôb:</strong> skontrolujte, či voucher platí pre dvoch, alebo pre jednu osobu.</li>\n<li><strong>Miesto:</strong> vyberte lokalitu, ktorá je pre obdarovaných dostupná.</li>\n<li><strong>Platnosť:</strong> pozrite, dokedy sa voucher dá využiť a ako sa rezervuje.</li>\n<li><strong>Zdravie:</strong> pri tehotenstve či zdravotných problémoch vyberajte masáž s poradou.</li>\n</ul>\n<h2>Čo si dať ku masáži</h2>\n<p>Ak chcete, aby bol darček výnimočnejší, vyberte <a href=\"/wellness-pobyty/\">wellness pobyt</a> alebo <a href=\"/sauna-a-wellness/\">saunu a wellness</a> s masážou. Víkend pre dvoch nájdete v <a href=\"/pobyty-pre-dvoch/\">pobytoch pre dvoch</a>, kde je masáž často súčasťou balíčka.</p>\n<h2>Ako poukaz odovzdať</h2>\n<p>Voucher príde e-mailom po zaplatení u partnera. Vytlačte ho do obálky, pridajte sviečku či masážny olej, a napíšte krátke pozvanie. Termín si dohodnú obdarovaní podľa podmienok ponuky.</p>\n<h2>Kedy sa párová masáž hodí</h2>\n<p>Párová masáž sa hodí na Valentína, výročie, Vianoce, narodeniny aj ako poďakovanie rodičom. Je to zážitok, ktorý nevyžaduje rozhovor ani plánovanie, takže ho ocenia aj ľudia, ktorí sa ťažko rozhodujú. Dá sa spojiť so saunou alebo vírivkou, čím sa z hodiny stane celý večer.</p>\n<h3>Čo si zobrať so sebou</h3>\n<p>Väčšina salónov poskytuje uteráky a vybavenie, pre istotu si overte podmienky. Pred masážou je lepšie nejesť veľké jedlo a vypiť dostatok vody. Ak máte zdravotné problémy, tehotenstvo, alergie alebo úrazy, povedzte to masérovi vopred.</p>\n<h3>Rýchly výber podľa účelu</h3>\n<p>Na uvoľnenie vyberte klasickú alebo relaxačnú masáž, na bolesti chrbta zdravotnú a pre romantický večer masáž s wellness. Ak váhate, pozrite si dĺžku, recenzie miesta a či je voucher na jedného, alebo na dvoch. V prípade pochybností zvoľte hodinovú masáž, pretože 30 minút často nestačí.</p>\n<h2>Ďalšie tipy</h2>\n<p>Masáž sa hodí na Vianoce, narodeniny aj Valentína. Pozrite <a href=\"/darcek-pre-par/\">darček pre pár</a>, <a href=\"/poukaz-na-wellness/\">poukaz na wellness</a> a <a href=\"/zazitky-pre-dvoch/\">zážitky pre dvoch</a>.</p>",
+   "faq": [
+    {
+     "q": "Čo je párová masáž?",
+     "a": "Masáž, pri ktorej ležia dve osoby vedľa seba a dvaja maséri ich masírujú súčasne, alebo sa striedajú. Presný formát je v popise ponuky."
+    },
+    {
+     "q": "Koľko stojí masáž pre dvoch?",
+     "a": "Podľa ponuky obvykle dvojnásobok ceny jednej masáže. Masáže začínajú okolo 6 € a v priemere stoja zhruba 50 €."
+    },
+    {
+     "q": "Je poukaz na masáž dobrý darček?",
+     "a": "Áno, hodí sa pre ženy, mužov aj rodičov. Obdarovaný si vyberie termín a nemusíte hádať."
+    },
+    {
+     "q": "Dá sa poukaz na masáž kúpiť na poslednú chvíľu?",
+     "a": "Áno, voucher príde e-mailom po zaplatení."
+    },
+    {
+     "q": "Aká masáž je vhodná pre začiatočníkov?",
+     "a": "Klasická relaxačná masáž. Pri zdravotných problémoch zvoľte zdravotnú masáž."
+    }
+   ]
+  },
+  {
+   "slug": "lacne-wellness-pobyty",
+   "name": "Lacné wellness pobyty",
+   "h1": "Lacné wellness pobyty pre dvoch do 100 €",
+   "icon": "cena",
+   "kw": "lacné wellness pobyty (pre dvoch) (1100–1300)",
+   "cats": [
+    "wellness-pobyty",
+    "pobyty-pre-dvoch",
+    "vikendove-pobyty",
+    "kupelne-pobyty",
+    "last-minute-pobyty-a-dovolenka",
+    "izby-s-virivkou"
+   ],
+   "max": 100,
+   "hub": false,
+   "title": "Lacné wellness pobyty pre dvoch do 100 € | Kúzelné miesta",
+   "desc": "Lacné wellness pobyty pre dvoch do 100 €: ako vybrať, na čo si dať pozor a čo býva v cene. Voucher príde hneď e-mailom.",
+   "intro": "Wellness pobyt nemusí stáť stovky eur. V tomto prehľade nájdete lacné wellness pobyty pre dvoch do 100 €. Ukážeme, na čo si dať pozor, čo býva v cene a kedy sa oplatí vybrať niečo drahšie. Voucher príde e-mailom, termín si vyberiete sami.",
+   "il": "cena",
+   "body": "<h2>Lacné wellness pobyty: čo čakať</h2>\n<p>Lacné wellness pobyty pre dvoch zvyčajne zahŕňajú ubytovanie a vstup do wellness, často aj raňajky. Menej ponúkajú procedúr či stravy ako drahšie pobyty. Keď viete, čo chcete, vyberiete si dobrý pobyt aj za menej než 100 €.</p>\n<h2>Čo býva v cene</h2>\n<ul>\n<li><strong>Ubytovanie:</strong> zvyčajne 1 až 2 noci pre dvoch.</li>\n<li><strong>Raňajky alebo polpenzia:</strong> pri lacnejších pobytoch sa líšia, skontrolujte pri ponuke.</li>\n<li><strong>Wellness:</strong> sauna, vírivka alebo bazén. Niekedy len niekoľko hodín denne.</li>\n<li><strong>Procedúry:</strong> masáž či ošetrenie bývajú drahšie a nie vždy sú v cene.</li>\n</ul>\n<h2>Kde ušetriť a na čo si dať pozor</h2>\n<p>Lacnejšie vychádzajú pobyty v pracovných dňoch, mimo sezóny a mimo sviatkov. Skontrolujte tieto veci:</p>\n<ul>\n<li><strong>Cena za osobu alebo za dvoch:</strong> pri porovnaní si overte, čo ponuka počíta.</li>\n<li><strong>Doplatky:</strong> mestská taxa, parkovanie, vstup do wellness, strava.</li>\n<li><strong>Termíny:</strong> víkendy a sviatky môžu byť obmedzené.</li>\n<li><strong>Platnosť voucheru:</strong> či dáva dostatok času na rezerváciu.</li>\n<li><strong>Vybavenie:</strong> či je wellness súkromné, alebo spoločné.</li>\n</ul>\n<h2>Kedy sa oplatí vybrať drahší pobyt</h2>\n<p>Ak ide o výročie alebo väčší darček, stojí za to pozrieť sa aj na pobyty nad 100 €. V priemere stoja <a href=\"/wellness-pobyty/\">wellness pobyty</a> okolo 210 €, <a href=\"/pobyty-pre-dvoch/\">pobyty pre dvoch</a> okolo 180 € a ponúkajú viac procedúr, stravu a lepšie vybavenie. Orientačne sú ceny od 45 € pre wellness a od 20 € pre pobyty pre dvoch.</p>\n<h2>Ako vybrať</h2>\n<ol>\n<li>Stanovte si rozpočet a počet nocí.</li>\n<li>Vyberte lokalitu a dopravu.</li>\n<li>Porovnajte, čo je v cene, nie len cenu.</li>\n<li>Skontrolujte platnosť a podmienky rezervácie.</li>\n<li>Zaplaťte u partnera a vytlačte voucher.</li>\n</ol>\n<h2>Ako darček odovzdať</h2>\n<p>Voucher príde e-mailom. Vytlačte ho do obálky a pridajte drobnosť, napríklad župan, sviečku či čaj. Obdarovaný si termín vyberie podľa podmienok ponuky.</p>\n<h2>Tipy, ako vyťažiť viac z lacného pobytu</h2>\n<p>Pri lacnejších pobytoch vyplatí sa vopred sa dohodnúť, čo si chcete dopriať navyše: masáž, večeru či neskorý check-out. Zistite si, kedy je wellness najpokojnejšie a koľko hodín denne je v cene. Skontrolujte cestu a čas, aby ste nestratili polovicu pobytu v aute. Ak je pobyt len na jednu noc, zvoľte lokalitu do dvoch hodín od domova.</p>\n<h3>Lacný pobyt ako darček</h3>\n<p>Aj pobyt do 100 € je dobrý darček, ak k nemu pridáte drobnosť: župan, čaj alebo kartičku s termínom. Voucher stačí vytlačiť a vložiť do obálky. Ak sa niekoľko ľudí poskladá, dá sa zo základného pobytu spraviť aj pobyt s masážou.</p>\n<h3>Rýchly výber podľa typu pobytu</h3>\n<p>Pre pár bez detí vyberte pokojné ubytovanie s wellness. Pre rodiny s deťmi skontrolujte, či je wellness prístupné aj im. Pre dlhšie pobyty zvoľte penzión s privátnym wellness, pre krátke lokality blízko domova. Vždy porovnajte pobyty s rovnakým počtom nocí.</p>\n<h2>Súvisiace tipy</h2>\n<p>Pozrite aj <a href=\"/wellness-pre-dvoch/\">wellness pobyt pre dvoch</a>, <a href=\"/vikendove-pobyty-pre-dvoch/\">víkendové pobyty pre dvoch</a>, <a href=\"/darceky-do-80-eur/\">darčeky do 80 €</a> a <a href=\"/darcek-pre-par/\">darček pre pár</a>.</p>",
+   "faq": [
+    {
+     "q": "Koľko stojí lacný wellness pobyt pre dvoch?",
+     "a": "Do 100 € nájdete pobyty, ktoré často zahŕňajú jednu noc a základné wellness. Rozsah ponuky sa líši, preto sledujte, čo je v cene."
+    },
+    {
+     "q": "Čo býva v cene lacného wellness pobytu?",
+     "a": "Ubytovanie, často raňajky a vstup do wellness. Masáže a procedúry bývajú za príplatok."
+    },
+    {
+     "q": "Kedy sú wellness pobyty najlacnejšie?",
+     "a": "Mimo sezóny a cez pracovné dni. Víkendy a sviatky bývajú drahšie."
+    },
+    {
+     "q": "Na čo si dať pozor?",
+     "a": "Na doplatky, platnosť voucheru, termíny a rozsah wellness."
+    },
+    {
+     "q": "Je cena u vás rovnaká ako u partnera?",
+     "a": "Áno, nakupujete priamo u partnera za jeho cenu."
     }
    ]
   }
