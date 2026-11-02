@@ -39,6 +39,8 @@ export async function dispatch(db: D1Database, pathname: string): Promise<Route>
   if (s[0] === 'lokalita' && s.length === 2) return { kind: 'city', city: s[1]!, page };
   if (s[0] === 'brand' && s.length === 2) return { kind: 'store', store: s[1]!, page };
   if (s[0] === 'blog' && s.length === 1) return { kind: 'blog', page };
+  // old WooCommerce attribute archives (pa_doprava: /doprava/letecky/) → the stays section
+  if (s[0] === 'doprava' && s.length === 2) return { kind: 'redirect', to: '/pobyty/' };
   // Rank Math stripped the category base: /category/<x>/ → /<x>/
   if (s[0] === 'category' && s.length === 2) return { kind: 'redirect', to: pg(`/${enc(s[1]!)}/`, page) };
   if (s[0] === 'tag' && s.length === 2) return { kind: 'redirect', to: '/blog/' };

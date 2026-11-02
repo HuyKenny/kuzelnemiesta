@@ -125,7 +125,7 @@ const GEO: Array<[RegExp, string]> = [
 const THEME: Array<[RegExp, string]> = [
   // Slovak offer slugs of the old WordPress catalogue (audit 3. 11. 2026: 78 dead offer URLs had no match → now mapped)
   [/hurricane-factory|veterny-tunel|indoor-skydiving/, 'veterny-tunel-a-volny-pad'], [/lanoland|korun-stromov|lanovy-park/, 'lanove-centra'],
-  [/prelet|lietadl|vyhliadkov/, 'vyhliadkove-lety'], [/strelec|strelnic/, 'strelba-na-strelnici'],
+  [/prelet|lietadl|lietanie|pilotovan|vyhliadkov/, 'vyhliadkove-lety'], [/strelec|strelnic/, 'strelba-na-strelnici'],
   [/lymfodrenaz|lymfatick/, 'lymfodrenaz'],
   [/chudnut|tuk-nema|zostihl|formovan|tvarovan|body-scu?l?pt|hifem|emslim|ems-trening|kryo|lipolaser|plochebrucho|ploche-brucho/, 'zostihlujuce-procedury'],
   [/epilac|laser(?!-?game|-?tag)|obocia|obocie|lash|mihalnic|tetovan|\bpmu\b|nastrek|solari|plazm|radiofrekv|salmon|esteti|beauty|pier\b|bradavic|omladen|lifting|skraslujuc|dotyky-krasy/, 'kozmeticke-sluzby'],
@@ -138,6 +138,10 @@ const THEME: Array<[RegExp, string]> = [
   [/tapas|rebierk|koleno|pub\b|gulicky|bomballs|bistro|steak/, 'otvorene-vouchery-do-restauracii'],
   [/uvolnenie-od-hlavy|telove-ritualy|kralovsky-oddych|andulacn/, 'masaze'],
   [/villa-|vila-|izby-a-studia|apartman/, 'pobyty'],
+  [/botulotox|lipolyz|vrask/, 'kozmeticke-sluzby'], [/breathwork|dychani|fyzioterap/, 'starostlivost-o-zdravie'],
+  [/cokolad|coffee|kava|wine-bar/, 'kaviarne-a-torty'], [/kacka|pecen|kapust|lokse/, 'otvorene-vouchery-do-restauracii'],
+  [/keramick|keramik/, 'kreativne-kurzy'], [/tiesnav|vyprava|vylet/, 'kultura-a-vylety'], [/tabor|happyland/, 'pobyty-s-detmi'],
+  [/sifrovac|unikova-hra|bosorka/, 'escape-room'],
   [/termaln\w*-kupalisk|kupalisko/, 'termalne-kupele'],
   [/v-oblacich|dinner-in-the-sky/, 'vecera-v-oblakoch'], [/preziti|survival/, 'kurzy-prezitia'], [/barist|latte-art/, 'baristicke-kurzy'], [/vrtulnik/, 'let-vrtulnikom'], [/letecky-simulator|boeing|airbus/, 'letecke-simulatory'],
   [/bungee|bunge-jump/, 'bungee-jumping'], [/skola-smyku|smyk/, 'skola-smyku'], [/l-39|albatros|stihack/, 'let-stihackou'], [/rybar|rybol/, 'rybolov'], [/rozluck/, 'rozlucka-so-slobodou'], [/romanticka-vecere|vecere-pro-dva/, 'romanticka-vecera'],
