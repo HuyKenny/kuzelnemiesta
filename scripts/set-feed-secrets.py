@@ -22,7 +22,7 @@ for f in (".cloudflare-credentials.env", ".kuzelnemiesta-credentials.env"):
             k, v = line.strip().split("=", 1)
             c.setdefault(k, v.strip("\"'"))
 feeds = json.load(open(f"{CRED}/.kuzelnemiesta-feeds.json"))
-secrets = {f"FEED_URL_{k.upper()}": feeds[k].replace("http://", "https://") for k in ("zlavomat", "adrop")}
+secrets = {f"FEED_URL_{k.upper()}": feeds[k].replace("http://", "https://") for k in ("zlavomat", "adrop", "futbaltour")}
 secrets["IMPORT_SHARED_SECRET"] = c[f"IMPORT_SHARED_SECRET_{env.upper()}"]
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 node = "/home/kenny/.nvm/versions/node/v22.23.1/bin"

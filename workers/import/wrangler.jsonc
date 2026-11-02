@@ -12,7 +12,7 @@
   "limits": { "cpu_ms": 300000 },
   "d1_databases": [{ "binding": "DB", "database_name": "kuzelnemiesta-local", "database_id": "00000000-0000-0000-0000-000000000000", "migrations_dir": "../../migrations" }],
   "triggers": { "crons": [] },
-  "vars": { "ALLOWED_FEED_HOSTS": "www.zlavomat.sk,www.adrop.sk", "MAX_DROP_PCT": "40", "MAX_WRITES": "2500" },
+  "vars": { "ALLOWED_FEED_HOSTS": "www.zlavomat.sk,www.adrop.sk,feeds.mergado.com", "MAX_DROP_PCT": "40", "MAX_WRITES": "2500" },
   "observability": { "enabled": true, "head_sampling_rate": 1 },
   "env": {
     "staging": {
@@ -23,7 +23,7 @@
       "triggers": { "crons": [] },
       "limits": { "cpu_ms": 300000 },
       "d1_databases": [{ "binding": "DB", "database_name": "kuzelnemiesta-staging", "database_id": "a0b2c9da-760d-41bf-a52e-49823732cf66", "migrations_dir": "../../migrations" }],
-      "vars": { "ALLOWED_FEED_HOSTS": "www.zlavomat.sk,www.adrop.sk", "MAX_DROP_PCT": "40", "MAX_WRITES": "2500" }
+      "vars": { "ALLOWED_FEED_HOSTS": "www.zlavomat.sk,www.adrop.sk,feeds.mergado.com", "MAX_DROP_PCT": "40", "MAX_WRITES": "2500" }
     },
     "production": {
       "name": "kuzelnemiesta-import",
@@ -33,7 +33,7 @@
       "triggers": { "crons": ["*/20 1-4 * * *"] },
       "limits": { "cpu_ms": 300000 },
       "d1_databases": [{ "binding": "DB", "database_name": "kuzelnemiesta-production", "database_id": "acc5cf80-fa65-4c97-bc44-2ad7d91cf4d9", "migrations_dir": "../../migrations" }],
-      "vars": { "ALLOWED_FEED_HOSTS": "www.zlavomat.sk,www.adrop.sk", "MAX_DROP_PCT": "40", "MAX_WRITES": "2500" }
+      "vars": { "ALLOWED_FEED_HOSTS": "www.zlavomat.sk,www.adrop.sk,feeds.mergado.com", "MAX_DROP_PCT": "40", "MAX_WRITES": "2500" }
     }
   }
 }

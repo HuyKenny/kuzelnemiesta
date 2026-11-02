@@ -235,8 +235,130 @@ export function finishVariants(it: Item): void {
   if (new Set(parts.map((p) => p[0]).filter(Boolean)).size > 1) { it.lok = ''; it.city = ''; }
 }
 
+
+const skDate = (iso: string) => { const [y, m, d] = iso.split('-'); return `${Number(d)}. ${Number(m)}. ${y}`; };
+/** Competitions named in the title as "Zájazd na <acc>: A – B" (accusative). */
+const COMP_ACC: Record<string, string> = { 'liga majstrov': 'Ligu majstrov', 'európska liga': 'Európsku ligu', 'konferenčná liga': 'Konferenčnú ligu', 'liga národov': 'Ligu národov' };
+const LEAGUES = new Set(['Premier League', 'Serie A', 'La Liga', 'Bundesliga', 'Ligue 1', 'Eredivisie', 'Coppa Italia', 'FA Cup', 'Carabao Cup', 'DFB-Pokal']);
+/** SEO name of a FutbalTour trip: "AC Miláno - AS Rím" (Serie A, 5. 12. 2026) → "Zájazd na zápas AC Miláno – AS Rím (Serie A), 5. 12. 2026". */
+export function sportTitle(raw: string, sport: string, league: string, iso: string): string {
+  const t = plain(raw).replace(/[\s\u00a0]+/g, ' ').trim().replace(/\s+[-–]\s+/g, ' – ');
+  const when = iso && !/\d{1,2}\. ?\d{1,2}\. ?\d{4}/.test(t) ? `, ${skDate(iso)}` : '';
+  if (/^zájazd/i.test(t)) return t + when;
+  const lowFirst = (x: string) => x.charAt(0).toLowerCase() + x.slice(1);
+  const m = t.match(/^([^:]+):\s*(.+ – .+)$/);
+  if (m && COMP_ACC[m[1]!.toLowerCase()]) return `Zájazd na ${COMP_ACC[m[1]!.toLowerCase()]}: ${m[2]}${when}`;
+  if (m && /^(NHL|NBA|NFL)\b/.test(m[1]!)) return `Zájazd na ${m[1]}: ${m[2]}${when}`;
+  if (m && sport !== 'Hokej') return `Zájazd na zápas ${m[1]}: ${m[2]}${when}`;
+  if (/^[^:]+ – [^:]+$/.test(t)) {
+    const acc = COMP_ACC[league.toLowerCase()];
+    if (acc) return `Zájazd na ${acc}: ${t}${when}`;
+    if (sport === 'Hokej') return `Hokejový zájazd: ${t}${league && league !== 'Ostatné ligy a zápasy' ? ` (${league})` : ''}${when}`;
+    return `Zájazd na zápas ${t}${LEAGUES.has(league) ? ` (${league})` : ''}${when}`;
+  }
+  if (/^F1 Špeciál/i.test(t)) return `Zájazd F1 Špeciál: ${t.replace(/^F1 Špeciál:?\s*/i, '')}${when}`;
+  if (/^F1\b/.test(t)) return `Zájazd na Formulu 1: ${t.replace(/^F1:?\s*/i, '')}${when}`;
+  if (/^(Semi)?finále/i.test(t)) return `Zájazd na ${lowFirst(t)}${when}`;
+  if (/^(maratón|polmaratón)/i.test(t)) return `Zájazd na ${lowFirst(t)}${when}`;
+  if (sport === 'Tenis') return `Zájazd na tenis: ${t.replace(/^Tenis:\s*/i, '')}${when}`;
+  if (sport === 'Hokej') return `Hokejový zájazd: ${t}${when}`;
+  return `Zájazd: ${t}${when}`;
+}
+
+/** The feed's image_link is a generated banner with the event text across the picture; sport stock photos (Pexels, via wsrv) replace it. */
+const SPORT_PHOTOS: Record<string, string[]> = {
+ "Futbal": [
+  "https://images.pexels.com/photos/30651230/pexels-photo-30651230.jpeg",
+  "https://images.pexels.com/photos/32190714/pexels-photo-32190714.jpeg",
+  "https://images.pexels.com/photos/29557630/pexels-photo-29557630.jpeg",
+  "https://images.pexels.com/photos/33210166/pexels-photo-33210166.jpeg"
+ ],
+ "Hokej": [
+  "https://images.pexels.com/photos/6469035/pexels-photo-6469035.jpeg",
+  "https://images.pexels.com/photos/6468744/pexels-photo-6468744.jpeg",
+  "https://images.pexels.com/photos/6847284/pexels-photo-6847284.jpeg"
+ ],
+ "Formula 1": [
+  "https://images.pexels.com/photos/28680795/pexels-photo-28680795.jpeg",
+  "https://images.pexels.com/photos/38041837/pexels-photo-38041837.jpeg",
+  "https://images.pexels.com/photos/10373654/pexels-photo-10373654.jpeg"
+ ],
+ "Basketbal": [
+  "https://images.pexels.com/photos/34688570/pexels-photo-34688570.jpeg",
+  "https://images.pexels.com/photos/16599399/pexels-photo-16599399.jpeg"
+ ],
+ "Tenis": [
+  "https://images.pexels.com/photos/27151849/pexels-photo-27151849.jpeg",
+  "https://images.pexels.com/photos/36765778/pexels-photo-36765778.jpeg"
+ ],
+ "Maratóny a polmaratóny": [
+  "https://images.pexels.com/photos/10313668/pexels-photo-10313668.jpeg",
+  "https://images.pexels.com/photos/2654902/pexels-photo-2654902.jpeg"
+ ],
+ "Americký futbal": [
+  "https://images.pexels.com/photos/274517/pexels-photo-274517.jpeg",
+  "https://images.pexels.com/photos/274577/pexels-photo-274577.jpeg"
+ ],
+ "Moto GP": [
+  "https://images.pexels.com/photos/38374472/pexels-photo-38374472.jpeg",
+  "https://images.pexels.com/photos/5713150/pexels-photo-5713150.jpeg"
+ ],
+ "Šípky": [
+  "https://images.pexels.com/photos/226573/pexels-photo-226573.jpeg"
+ ],
+ "Box": [
+  "https://images.pexels.com/photos/28238742/pexels-photo-28238742.jpeg"
+ ],
+ "Ostatné": [
+  "https://images.pexels.com/photos/40317576/pexels-photo-40317576.jpeg",
+  "https://images.pexels.com/photos/35898730/pexels-photo-35898730.jpeg"
+ ]
+};
+const sportPhoto = (sport: string, id: string): string => {
+  const l = SPORT_PHOTOS[sport] ?? SPORT_PHOTOS['Ostatné']!;
+  let h = 0;
+  for (const c of id) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  return l[h % l.length]!;
+};
+
+/** FutbalTour.sk (Google Merchant RSS via Mergado, eHub deep links): tickets + travel to football, hockey, F1 … events. */
+function futbaltour(n: XmlNode): Item | null {
+  const id = txt(n, 'id');
+  const url = https(txt(n, 'link'));
+  const price = num(txt(n, 'price'));
+  const raw = txt(n, 'title');
+  const image = https(txt(n, 'image_link'));
+  if (!id || !raw || !okUrl(url) || !okUrl(image) || !(price > 0)) return null;
+  const [, league = ''] = txt(n, 'product_type').split(' - ').map((x) => x.trim());
+  // the feed files some NBA trips under "Hokej"
+  const sport = league === 'NBA' ? 'Basketbal' : txt(n, 'custom_label_0');
+  const ev = txt(n, 'event_date').match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);
+  const iso = ev ? `${ev[3]}-${ev[2]!.padStart(2, '0')}-${ev[1]!.padStart(2, '0')}` : '';
+  const place = txt(n, 'custom_label_1');
+  const city = place.split(',')[0]!.trim();
+  const desc = plain(txt(n, 'description')).split('\n').map((x) => x.trim()).filter((x) => x && !/^FutbalTour x|^Autorizovaný predajca vstupeniek/i.test(x));
+  const sub = sport === 'Futbal' ? 'zajazdy-na-futbal' : sport === 'Hokej' ? 'zajazdy-na-hokej' : sport === 'Formula 1' ? 'zajazdy-na-formulu-1' : 'dalsie-sportove-zajazdy';
+  const pa: Array<[string, string]> = [['Šport', sport], ...(league && league !== 'Ostatné ligy a zápasy' ? [['Súťaž', league] as [string, string]] : []), ...(iso ? [['Termín', skDate(iso)] as [string, string]] : []), ...(place ? [['Miesto', place] as [string, string]] : [])];
+  return {
+    ext: id,
+    name: sportTitle(raw, sport, league, iso),
+    target: affiliateUrl('futbaltour', id, url),
+    image: sportPhoto(sport, id),
+    images: [],
+    price,
+    priceOld: 0,
+    lok: citySlug(city),
+    city,
+    cats: ['@sportove-zajazdy', '@' + sub],
+    excerpt: '',
+    rating: 0,
+    reviews: 0,
+    info: { d: desc.join('\n') || undefined, pv: { t: 'FutbalTour' }, pa, tags: [sport, league].filter(Boolean), ...(iso ? { de: iso } : {}) },
+  };
+}
+
 export function parseItem(src: Source, n: XmlNode): Item | null {
-  const it = src === 'zlavomat' ? zlavomat(n) : adrop(n);
+  const it = src === 'zlavomat' ? zlavomat(n) : src === 'futbaltour' ? futbaltour(n) : adrop(n);
   if (!it || !it.name || !it.image) return null; // no photo = nothing to show
   // generic gift vouchers ("Darčekový poukaz na zážitok", "Univerzálny poukaz…") are not an offer — only services are listed
   if (src === 'adrop' && /^(univerz\w*|dárkov\w* (poukaz|voucher|certifik\w*)|darčekov\w* (poukaz|poukážk\w*|voucher|certifik\w*))/i.test(it.name.trim())) return null;

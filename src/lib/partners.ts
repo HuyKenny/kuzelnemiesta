@@ -25,6 +25,11 @@ const P: Record<string, Partner> = {
     perks: ['Platnosť poukazu 12 mesiacov od kúpy', 'E-poukaz hneď do e-mailu alebo v darčekovom balení', 'Termín si rezervujete online po zadaní poukazu', 'Poukaz môžete darovať – obdarovaný si vyberie deň'],
     trust: 'Platba cez Adrop.sk · cena je rovnaká ako u partnera',
   },
+  futbaltour: {
+    name: 'FutbalTour', color: '#0E7C3A', verb: 'Rezervovať zájazd', voucher: false,
+    perks: ['Zájazd so vstupenkou na zápas alebo podujatie', 'Autorizovaný predajca vstupeniek', 'Termín udáva dátum zápasu', 'Rezervácia priamo u FutbalTour'],
+    trust: 'Rezervácia u FutbalTour · cena je rovnaká ako u organizátora zájazdu',
+  },
 };
 const FALLBACK: Partner = { name: 'partnera', color: '#0c7f67', verb: 'Objednať', perks: ['Voucher príde e-mailom'], trust: 'Platba u partnera · cena je rovnaká' };
 export const partner = (slug: string | undefined): Partner => P[slug ?? ''] ?? FALLBACK;
