@@ -123,6 +123,7 @@ const GEO: Array<[RegExp, string]> = [
   [/\b(bulharsko|varna|carevo|primorsko|recko|kreta|kos|zakynthos|kefalonia|acharavi|paralia|hvd|hotel-[a-z]+|egypt|marsa-alam|tunisko\w*|djerba|turecko|spanelsko|katalansko|portugalsko|cerna-hora|albanie|francie|belgie|dansko|nizozemi|norsko|svycarsko|island|agia-napa|kypr|armenie|gruzie|indie|jordansko|oman|maroko|thajsko|vietnam|filipiny|indonesie|japonsko|kuba|mexiko|brazilie|peru|kostarika|tanzanie|uzbekistan|sri-lanka|spojene-staty|rumunsko|la-palma|male|sol-guadalupe|condesa|villa-ilex|koupani-v-mori|plavky-u-more)\b/, 'dovolenka-pri-mori'],
 ];
 const THEME: Array<[RegExp, string]> = [
+  [/tatrach|vysok\w*-tatr|tatransk|(^|-)v-tatr/, 'pobyty-vo-vysokych-tatrach'], // before the Tatra truck ride rule below
   // Slovak offer slugs of the old WordPress catalogue (audit 3. 11. 2026: 78 dead offer URLs had no match → now mapped)
   [/hurricane-factory|veterny-tunel|indoor-skydiving/, 'veterny-tunel-a-volny-pad'], [/lanoland|korun-stromov|lanovy-park/, 'lanove-centra'],
   [/prelet|lietadl|lietanie|pilotovan|vyhliadkov/, 'vyhliadkove-lety'], [/strelec|strelnic/, 'strelba-na-strelnici'],
@@ -146,7 +147,7 @@ const THEME: Array<[RegExp, string]> = [
   [/termaln\w*-kupalisk|kupalisko/, 'termalne-kupele'],
   [/v-oblacich|dinner-in-the-sky/, 'vecera-v-oblakoch'], [/preziti|survival/, 'kurzy-prezitia'], [/barist|latte-art/, 'baristicke-kurzy'], [/vrtulnik/, 'let-vrtulnikom'], [/letecky-simulator|boeing|airbus/, 'letecke-simulatory'],
   [/bungee|bunge-jump/, 'bungee-jumping'], [/skola-smyku|smyk/, 'skola-smyku'], [/l-39|albatros|stihack/, 'let-stihackou'], [/rybar|rybol/, 'rybolov'], [/rozluck/, 'rozlucka-so-slobodou'], [/romanticka-vecere|vecere-pro-dva/, 'romanticka-vecera'],
-  [/ferrari/, 'jazda-vo-ferrari'], [/lamborghini|lambo/, 'jazda-v-lamborghini'], [/porsche/, 'jazda-v-porsche'], [/mustang/, 'jazda-vo-forde-mustang'], [/dodge|challenger/, 'jazda-v-dodge'], [/tatra|tatrou/, 'jazda-tatrou'],
+  [/ferrari/, 'jazda-vo-ferrari'], [/lamborghini|lambo/, 'jazda-v-lamborghini'], [/porsche/, 'jazda-v-porsche'], [/mustang/, 'jazda-vo-forde-mustang'], [/dodge|challenger/, 'jazda-v-dodge'], [/(^|-)tatra(-|$)|tatrou/, 'jazda-tatrou'],
   [/seskok|skydiv/, 'tandemovy-zoskok'], [/paraglid/, 'paragliding'], [/vzducholod/, 'let-vzducholodou'], [/vetrny-tunel|volny-pad/, 'veterny-tunel-a-volny-pad'], [/ferrat/, 'via-ferrata'], [/jetpack|hoverboard|flyboard/, 'flyboarding-a-jetpack'],
   [/potap|freediving/, 'potapanie'], [/lukostrel/, 'lukostrelba'], [/minigolf/, 'minigolf'], [/kviz|quiz/, 'pub-kviz'], [/privatni-wellness|privatni-spa/, 'privatny-wellness'], [/tanecn|tanec-|salsa|bachata/, 'tanecne-kurzy'], [/koz[aeouy]?-|kozou|alpak/, 'prechadzka-s-alpakami'],
   [/pivni-lazne|pivni-koupel/, 'pivne-kupele'], [/bugin|buggy|ctyrkol|offroad|atv/, 'buginy-a-stvorkolky'],

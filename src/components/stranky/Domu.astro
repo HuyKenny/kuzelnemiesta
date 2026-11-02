@@ -25,7 +25,7 @@ const heroImgs = v.top.filter((p) => p.image).slice(0, 2).map((p) => card(p.imag
 	<section class="hero">
 		<div class="w hero__in">
 			<div>
-				<h1>Darujte zážitok, na ktorý sa <em>nezabúda</em></h1>
+				<h1>Zážitky, pobyty a zážitkové darčeky <em>so zľavou</em></h1>
 				<p class="hero__lead">Pobyty, wellness, adrenalín, degustácie aj kurzy s úsporou až 70 % od overených partnerov Zľavomat.sk a Adrop.sk. Vyberiete si u nás, kúpite u partnera za rovnakú cenu.</p>
 				<div class="pruvodce">
 					<img class="pruvodce__k" src="/a/kouzelnik-darek-256.webp" alt="" width="110" height="110" />
@@ -59,6 +59,7 @@ const heroImgs = v.top.filter((p) => p.image).slice(0, 2).map((p) => card(p.imag
 			<section class="sek">
 				<div class="sh"><h2><Ik n={v.season.icon} /> {v.season.h1.split(':')[0]}</h2><a href={`/${v.season.slug}/`}>Všetky tipy →</a></div>
 				<Mrizka items={v.seasonItems} t={v.tree} eager={false} ctx="home-sezona" />
+				{v.seasonLinks.length > 0 && <ul class="chips">{v.seasonLinks.map((g) => <li><a class="chip" href={`/${g.slug}/`}>{g.name}</a></li>)}</ul>}
 			</section>
 		)}
 		<section class="sek">

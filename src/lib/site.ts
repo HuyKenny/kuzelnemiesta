@@ -19,11 +19,17 @@ export const COMBO_MIN = 40;
 /** Smaller Slovak towns get their landings from fewer offers. */
 export const COMBO_MIN_EXTRA = 15;
 // smaller Slovak towns and the cities of FutbalTour's football trips
-const EXTRA = new Set(['trnava', 'trencin', 'nitra', 'banska-bystrica', 'presov', 'zilina', 'poprad', 'piestany', 'martin',
+const EXTRA = new Set(['bratislava', 'kosice', 'trnava', 'trencin', 'nitra', 'banska-bystrica', 'presov', 'zilina', 'poprad', 'piestany', 'martin',
   'london', 'manchester', 'liverpool', 'milano', 'roma', 'madrid', 'barcelona', 'munchen', 'dortmund', 'paris', 'napoli', 'turin']);
 export const comboMin = (city: string) => (EXTRA.has(city) ? COMBO_MIN_EXTRA : COMBO_MIN);
 /** A category with fewer active offers is thin: reachable, but noindex and out of the sitemap (SEO audit 2. 11. 2026). */
 export const THIN_CAT = 5;
+/** Categories with real search demand (Marketing Miner SK, 3. 11. 2026) stay indexable from the first offer: they carry
+ *  their own text, and a noindex would hand the query to adrop.sk / najzazitky.sk for good. */
+export const INDEX_DEMAND = new Set(['paragliding', 'bungee-jumping', 'skola-smyku', 'veterny-tunel-a-volny-pad', 'let-vrtulnikom', 'zimne-sporty',
+  'lety-balonom', 'jazda-v-lamborghini', 'tandemovy-zoskok', 'husacie-hody', 'ajurveda', 'wellness-pobyty-s-detmi', 'bardejovske-kupele',
+  'kupele-bojnice', 'kupele-rajecke-teplice', 'kupele-turcianske-teplice', 'kupele-trencianske-teplice']);
+export const isThin = (slug: string, count: number) => (INDEX_DEMAND.has(slug) ? count < 1 : count < THIN_CAT);
 /** Days an ended offer keeps its page ("Ponuka skončila", noindex) before it 301s to its category. */
 export const EXPIRED_KEEP_DAYS = 30;
 /** Operator (same as the legal pages). */

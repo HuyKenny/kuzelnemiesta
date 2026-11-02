@@ -1,7 +1,7 @@
 // Sitemaps with the Rank Math file names Google already knows (sitemap_index.xml, post-, page-, category-,
 // product-sitemapN, product_cat-sitemapN, store-, pa_lokalita-sitemap.xml; 200 URLs per file). Materialised into
 // site_cache by rebuildSitemaps() (import Worker, daily); the routes only read. Imported by both Workers.
-import { BASE, comboMin, isoPrague, THIN_CAT } from './site';
+import { BASE, comboMin, INDEX_DEMAND, isoPrague, THIN_CAT } from './site';
 import { CITY, CITY_INDEX_MIN, HOME_LOK } from './cities';
 
 const PER_FILE = 200;
@@ -24,7 +24,7 @@ export async function collect(db: D1Database): Promise<Record<string, U[]>> {
     all<R>("SELECT slug, modified_at AS m FROM posts WHERE type = 'page' AND status = 'publish' AND noindex = 0 AND slug <> 'blog' ORDER BY published_at DESC"),
     all<R & { image: string | null }>("SELECT slug, updated_at AS m, image FROM products WHERE active = 1 AND noindex = 0 ORDER BY updated_at DESC, id DESC"),
     all<R>(`SELECT c.slug, (SELECT MAX(x.created_at) FROM cat_products x WHERE x.cat_id = c.id) AS m FROM categories c
-       WHERE c.noindex = 0 AND c.canon_id = 0 AND c.count_total >= ${THIN_CAT} AND c.seo_robots NOT LIKE '%noindex%'
+       WHERE c.noindex = 0 AND c.canon_id = 0 AND (c.count_total >= ${THIN_CAT} OR (c.count_total >= 1 AND c.slug IN (${[...INDEX_DEMAND].map((x) => `'${x}'`).join(',')}))) AND c.seo_robots NOT LIKE '%noindex%'
          AND NOT EXISTS (SELECT 1 FROM redirects r WHERE r.from_path = '/' || c.slug || '/') ORDER BY c.count_total DESC`),
     all<R>("SELECT c.slug, (SELECT MAX(modified_at) FROM posts p WHERE p.cat_id = c.id AND p.type = 'post' AND p.status = 'publish') AS m FROM post_categories c WHERE c.count > 0"),
     all<R>(`SELECT l.slug, (SELECT MAX(p.updated_at) FROM products p WHERE p.lok_id = l.id AND p.active = 1) AS m FROM lokality l WHERE l.count >= ${CITY_INDEX_MIN} ORDER BY l.count DESC`),

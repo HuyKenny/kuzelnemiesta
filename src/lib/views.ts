@@ -6,7 +6,7 @@ import {
   type Card, type Cat, type PostCard, type Tree,
 } from './db';
 import { isFiltered, parseFilters, toListQuery, toQuery, type FilterState } from './filters';
-import { BASE, CURRENCY, HOST, LANG, SITE_NAME, comboMin, EXPIRED_KEEP_DAYS, OG_DEFAULT, PER_PAGE, POSTS_PER_PAGE, isoPrague, THIN_CAT } from './site';
+import { BASE, CURRENCY, HOST, LANG, SITE_NAME, comboMin, EXPIRED_KEEP_DAYS, OG_DEFAULT, PER_PAGE, POSTS_PER_PAGE, isoPrague, isThin } from './site';
 import {
   BLOG_DESC, BLOG_TITLE, postTitle, rmVars, categoryDesc, categoryTitle, cityDesc, cityTitle, clamp, comboDesc, comboTitle, productDesc, productTitle, paged, robots, withSite,
 } from './seo';
@@ -18,10 +18,15 @@ import { catIcon } from './ikony';
 import { partner as partnerOf, partnerName } from './partners';
 import darky from '../data/darky.json';
 
-export interface Gift { slug: string; name: string; h1: string; icon: string; il?: string; cats: string[]; max?: number; title: string; desc: string; intro: string; hub?: boolean; season?: string; body?: string; faq?: Array<{ q: string; a: string }> }
+export interface Gift { slug: string; name: string; h1: string; icon: string; il?: string; cats: string[]; max?: number; min?: number; title: string; desc: string; intro: string; hub?: boolean; season?: string; body?: string; faq?: Array<{ q: string; a: string }> }
 export const GIFTS = darky.items as Gift[];
 /** Only these gift landings are linked from the home page, menu and landing sidebars; the rest stays reachable through categories and the sitemap. */
 const TOP_GIFT_SLUGS = ['darcek-pre-muza', 'darcek-pre-zenu', 'darcek-pre-par', 'darcek-pre-deti', 'darcek-k-narodeninam', 'vianocne-darceky', 'darcek-pre-mamu', 'darcek-pre-otca', 'darcek-pre-manzela', 'darcek-pre-kamaratku', 'darcek-pre-priatelku', 'darcekovy-poukaz'];
+/** "11-12" = November–December (seasonal gift landings are only promoted in their months). */
+function inSeason(season: string): boolean {
+  const [a, b] = season.split('-').map(Number); const m = new Date().getMonth() + 1;
+  return a! <= b! ? m >= a! && m <= b! : m >= a! || m <= b!;
+}
 export const TOP_GIFTS = TOP_GIFT_SLUGS.map((s) => GIFTS.find((g) => g.slug === s)!).filter(Boolean);
 
 export interface Meta {
@@ -142,7 +147,7 @@ export async function categoryView(db: D1Database, catId: number, page: number, 
   const crumbs: Crumb[] = [{ name: HOME, url: '/' }, ...chain.map((c) => ({ name: decode(c.name), url: `/${c.slug}/` }))];
   const url = abs(pagePath(base, page));
   let title: string, description: string, canonical: string | undefined, h1: string, h2: string, intro: string, introTitle: string, trust = '';
-  let noindex = cat.noindex === 1 || cat.seo_robots.includes('noindex') || cat.count_total < THIN_CAT;
+  let noindex = cat.noindex === 1 || cat.seo_robots.includes('noindex') || isThin(cat.slug, cat.count_total);
   if (lok) {
     const cn = cityName(lok.slug);
     const n = cc[String(cat.id)]?.[lok.slug] ?? total;
@@ -185,7 +190,16 @@ export async function categoryView(db: D1Database, catId: number, page: number, 
     meta, crumbs, h1, h2, intro: cat.body_html && !lok ? '' : intro, introTitle, descriptionHtml: page === 1 && !lok && !filtered ? cat.description_html : '', bodyHtml: page === 1 && !lok && !filtered ? cat.body_html : '', items, total, page, pages, base,
     qs: toQuery(f), f, filtered, chipsTitle: 'Podľa mesta', chips: cityChips(cat, cc, lok?.slug), related: related(t, cat), subcats: lok ? [] : subcats(t, cat),
     faq, trust, tree: t, pageType: lok ? 'combo' : 'category', icon: catIcon(t, cat.id), section: chain[0]?.slug ?? '', side: sectionSide(t, cat, cc, lok?.slug),
-    gifts: chain[0] ? GIFTS.filter((g) => !g.hub && g.cats.some((s) => s === chain[0]!.slug || chain.some((c) => c.slug === s))).slice(0, 6) : [],
+    // gift landings of this branch, the most specific first: exact category > a child category > an ancestor (content gap 3. 11.)
+    gifts: chain[0] ? GIFTS.filter((g) => !g.hub && g.cats.length).map((g) => {
+      let score = 0;
+      for (const s of g.cats) {
+        if (s === cat.slug) score += 3;
+        else if (chain.some((c) => c.slug === s)) score += 1;
+        else { const gc = t.bySlug.get(s); if (gc && ancestry(t, gc.id).some((a) => a.id === cat.id)) score += 2; }
+      }
+      return [g, score - (g.season && !inSeason(g.season) ? 5 : 0)] as const;
+    }).filter(([, n]) => n > 0).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([g]) => g) : [],
   };
 }
 
@@ -271,7 +285,9 @@ export async function giftView(db: D1Database, idx: number, page: number, sp: UR
   const filtered = isFiltered(f);
   const store = f.partner ? [...t.stores.values()].find((s) => s.slug === f.partner) : undefined;
   const ids = g.cats.map((s) => t.bySlug.get(s)?.id).filter((x): x is number => !!x);
-  const { items, total } = await listGift(db, ids, { ...toListQuery(f, page, store?.id), cap: g.max });
+  const lq = toListQuery(f, page, store?.id);
+  if (g.min && lq.min === undefined) lq.min = g.min;
+  const { items, total } = await listGift(db, ids, { ...lq, cap: g.max });
   const pages = Math.max(1, Math.ceil(total / PER_PAGE));
   const base = `/${g.slug}/`;
   if (page > pages && page > 1) return { redirect: base };
@@ -279,6 +295,18 @@ export async function giftView(db: D1Database, idx: number, page: number, sp: UR
   const hub = GIFTS.find((x) => x.hub)!;
   const crumbs: Crumb[] = [{ name: HOME, url: '/' }, ...(g.hub ? [] : [{ name: hub.name, url: `/${hub.slug}/` }]), { name: g.name === hub.name ? g.name : g.h1.split(':')[0]!, url: base }];
   const faq = g.faq?.length ? g.faq : categoryFaq(g.name, 'zazitek');
+  // internal links (content gap 3. 11. 2026: 22 gift landings were orphans): the hub links every landing in groups,
+  // the Christmas hub its Christmas sub-pages, every other landing its closest relatives (shared categories)
+  const others = GIFTS.filter((x) => !x.hub && x.slug !== g.slug);
+  const related = g.hub ? others
+    : g.slug === 'vianocne-darceky' ? others.filter((x) => x.slug.startsWith('vianocne-'))
+    : others.map((x) => [x, x.cats.filter((c) => g.cats.includes(c)).length + (x.slug.startsWith(g.slug.split('-').slice(0, 3).join('-')) ? 1 : 0)] as const)
+        .filter(([, n]) => n > 0).sort((a, b) => b[1] - a[1]).slice(0, 8).map(([x]) => x);
+  const groupOf = (x: Gift) => x.slug.startsWith('vianocne-') ? 'Vianoce' : /^darceky-do-|^luxusne-|^lacne-/.test(x.slug) ? 'Podľa rozpočtu'
+    : /^(darcek-pre-|zazitky-pre-|wellness-pobyty-pre-)/.test(x.slug) ? 'Pre koho' : 'Príležitosť a typ';
+  const sideGroups = g.hub
+    ? ['Pre koho', 'Vianoce', 'Príležitosť a typ', 'Podľa rozpočtu'].map((name) => ({ g: name, items: others.filter((x) => groupOf(x) === name).map((x) => ({ name: x.name, url: `/${x.slug}/`, icon: x.icon, active: false })) }))
+    : [{ g: '', items: [...TOP_GIFTS, ...(TOP_GIFTS.includes(g) ? [] : [g])].map((x) => ({ name: x.name, url: `/${x.slug}/`, icon: x.icon, active: x.slug === g.slug })) }];
   return {
     meta: {
       title: paged(g.title, page), description: g.desc, robots: filtered ? ['noindex', 'follow'] : robots(false),
@@ -291,8 +319,8 @@ export async function giftView(db: D1Database, idx: number, page: number, sp: UR
     crumbs, h1: g.h1, h2: `${cislo(total)} ${tipov(total)} na darček`, intro: '', introTitle: '', descriptionHtml: page === 1 ? `<p>${g.intro}</p>` : '', bodyHtml: page === 1 && !filtered ? g.body ?? '' : '',
     items, total, page, pages, base, qs: toQuery(f), f, filtered, chipsTitle: 'Ďalšie tipy na darček',
     chips: [...TOP_GIFTS, ...(TOP_GIFTS.includes(g) || g.hub ? [] : [g])].map((x) => ({ name: x.name, url: `/${x.slug}/`, active: x.slug === g.slug, icon: x.icon })),
-    related: [], subcats: [], faq, trust: '', tree: t, pageType: 'gift', icon: g.icon, section: 'darky', gifts: [], ...(g.il ? { ill: g.il } : {}),
-    side: { title: 'Tipy na darček', url: `/${hub.slug}/`, icon: 'darek', groups: [{ g: '', items: [...TOP_GIFTS, ...(TOP_GIFTS.includes(g) || g.hub ? [] : [g])].map((x) => ({ name: x.name, url: `/${x.slug}/`, icon: x.icon, active: x.slug === g.slug })) }], cities: [] },
+    related: [], subcats: [], faq, trust: '', tree: t, pageType: 'gift', icon: g.icon, section: 'darky', gifts: page === 1 && !filtered ? related : [], ...(g.il ? { ill: g.il } : {}),
+    side: { title: 'Tipy na darček', url: `/${hub.slug}/`, icon: 'darek', groups: sideGroups, cities: [] },
   };
 }
 
@@ -490,12 +518,15 @@ export async function homeView(db: D1Database) {
   const month = new Date().getMonth() + 1;
   const season = month >= 11 ? GIFTS.find((g) => g.slug === 'vianocne-darceky') : month <= 2 ? GIFTS.find((g) => g.slug === 'darcek-na-valentina') : undefined;
   const seasonItems = season ? (await listGift(db, season.cats.map((s) => t.bySlug.get(s)?.id).filter((x): x is number => !!x), { page: 1, sort: 'pop' })).items.slice(0, 8) : [];
-  const title = `Zážitky a zážitkové darčeky online | ${SITE_NAME}`;
+  // home = brand + "zážitky a pobyty"; "zážitkové darčeky" belongs to the gift hub (no cannibalisation, content gap 3. 11.)
+  const title = `Zážitky a pobyty so zľavou – porovnanie ponúk | ${SITE_NAME}`;
   const meta: Meta = {
-    title, description: `Zážitky pre každého: wellness pobyty, glamping, masáže, jazdy v superšportoch, lety aj kurzy. ${cislo(total)} ${ponuk(total)} od overených partnerov, voucher hneď e-mailom.`,
+    title, description: `Zážitky a pobyty so zľavou na jednom mieste: wellness pobyty pre dvoch, masáže, adrenalín aj tipy na zážitkové darčeky. ${cislo(total)} ${ponuk(total)} od overených partnerov.`,
     canonical: BASE + '/', robots: robots(false), ogType: 'website', graph: [{ '@type': 'WebPage', '@id': BASE + '/#webpage', url: BASE + '/', name: title, isPartOf: { '@id': BASE + '/#website' }, inLanguage: LANG }], jsonLd: [],
   };
-  return { meta, sections, popularCats, top, posts, total, cities, ending, deals, season, seasonItems, gifts: TOP_GIFTS, tree: t };
+  // in season the sub-landings of the seasonal hub (Christmas × recipient) are linked right under its offers
+  const seasonLinks = season ? GIFTS.filter((g) => g !== season && g.slug.startsWith(season.slug.replace(/-darceky$/, '')) && !g.hub) : [];
+  return { meta, sections, popularCats, top, posts, total, cities, ending, deals, season, seasonItems, seasonLinks, gifts: TOP_GIFTS, tree: t };
 }
 
 export async function searchView(db: D1Database, q: string, page: number) {
