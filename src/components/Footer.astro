@@ -9,12 +9,12 @@ const CITIES: Array<[string, string]> = [['bratislava', 'Bratislava'], ['kosice'
 <footer class="ft">
 	<div class="w ft__in">
 		<div>
-			<a class="ft__logo" href="/"><img src="/a/logo-264.webp" alt={SITE_NAME} width="140" height="46" loading="lazy" /></a>
+			<a class="ft__logo" href="/"><img src="/a/logo-264.webp" alt={SITE_NAME} width="196" height="46" loading="lazy" /></a>
 			<p>Zážitky, pobyty a wellness na jednom mieste. Darujte zážitok namiesto vecí — voucher vám partner pošle hneď e-mailom.</p>
 		</div>
 		<div><h2>Kategórie</h2><ul>
 			<li><a href="/pobyty/">Pobyty a dovolenky</a></li><li><a href="/zazitky/">Zážitky</a></li><li><a href="/wellness-a-krasa/">Wellness a krása</a></li>
-			<li><a href="/jidlo-a-piti/">Jedlo a pitie</a></li><li><a href="/kurzy/">Kurzy a workshopy</a></li><li><a href="/wellness-pobyty/">Wellness pobyty</a></li><li><a href="/glamping/">Glamping</a></li>
+			<li><a href="/jedlo-a-pitie/">Jedlo a pitie</a></li><li><a href="/kurzy/">Kurzy a workshopy</a></li><li><a href="/wellness-pobyty/">Wellness pobyty</a></li><li><a href="/glamping/">Glamping</a></li>
 		</ul></div>
 		<div><h2>Darčeky</h2><ul>{TOP_GIFTS.slice(0, 8).map((g) => <li><a href={`/${g.slug}/`}>{g.h1.split(':')[0]}</a></li>)}</ul></div>
 		<div><h2>Mestá</h2><ul>{CITIES.map(([s, n]) => <li><a href={`/lokalita/${s}/`}>{n}</a></li>)}</ul></div>

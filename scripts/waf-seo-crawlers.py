@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Let AhrefsBot, SemrushBot and MJ12bot through the zone WAF of kouzelnydeda.cz (the "Shared BotGuard" rules block them).
+"""Let AhrefsBot, SemrushBot and MJ12bot through the zone WAF of kuzelnemiesta.sk (the "Shared BotGuard" rules block them).
 
 Why: partners who buy an article check their dofollow link with Ahrefs/Semrush/Majestic; WordPress blocked these
 crawlers (robots.txt + WAF), so the checks reported "no dofollow" (30. 10. 2026). Only these three tokens are removed
-from the two BotGuard rules; everything else stays. Backup first: backups/kouzelnydeda-cf-zone-<date>/waf-custom.json.
+from the two BotGuard rules; everything else stays. Backup first: backups/kuzelnemiesta-cf-zone-<date>/waf-custom.json.
 
-    python3 apps/kouzelnydeda/scripts/waf-seo-crawlers.py
+    python3 apps/kuzelnemiesta/scripts/waf-seo-crawlers.py
 """
 import datetime
 import json
@@ -13,7 +13,7 @@ import os
 import urllib.request
 
 c = {}
-for l in open('/home/kenny/ai/credentials/.kouzelnydeda-credentials.env'):
+for l in open('/home/kenny/ai/credentials/.kuzelnemiesta-credentials.env'):
     if '=' in l and not l.startswith('#'):
         k, v = l.strip().split('=', 1)
         c[k] = v.strip('"\'')
@@ -28,7 +28,7 @@ def api(method, path, body=None):
 
 
 rs = api('GET', '/rulesets/phases/http_request_firewall_custom/entrypoint')['result']
-d = f'/home/kenny/ai/backups/kouzelnydeda-cf-zone-{datetime.date.today().isoformat()}'
+d = f'/home/kenny/ai/backups/kuzelnemiesta-cf-zone-{datetime.date.today().isoformat()}'
 os.makedirs(d, exist_ok=True)
 json.dump(rs, open(f'{d}/waf-custom-pred-seo-crawlery.json', 'w'), ensure_ascii=False, indent=1)
 for r in rs['rules']:

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""kouzelnydeda.cz — WordPress export for the Astro migration (30. 10. 2026). Read-only.
+"""kuzelnemiesta.sk — WordPress export for the Astro migration (2. 11. 2026, from the kouzelnydeda.cz script). Read-only.
 
     python3 scripts/export-from-wp.py <out-dir> [--rest]   # --rest: only the REST part (article HTML)
 
-DB via the one-off PHP helper of scripts/kouzelnydeda/wp-db.py (uploaded, used, deleted), article HTML via the REST
+DB via the one-off PHP helper of scripts/kuzelnemiesta/wp-db.py (uploaded, used, deleted), article HTML via the REST
 API (content.rendered = wpautop + shortcodes, like the live page). Writes NDJSON/JSON files that
 scripts/migrate-from-wp.py turns into D1 SQL.
 """
@@ -17,11 +17,11 @@ import time
 from pathlib import Path
 
 AI = Path("/home/kenny/ai")
-spec = importlib.util.spec_from_file_location("wpdb", AI / "scripts/kouzelnydeda/wp-db.py")
+spec = importlib.util.spec_from_file_location("wpdb", AI / "scripts/kuzelnemiesta/wp-db.py")
 wpdb = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(wpdb)
 
-UA = "MalinaCron/1.0 (kouzelnydeda migrace)"
+UA = "MalinaCron/1.0 (kuzelnemiesta migrace)"
 
 Q = {
     # catalogue
@@ -36,9 +36,9 @@ Q = {
                       "JOIN {P}postmeta a ON a.post_id=t.meta_value AND a.meta_key='_wp_attached_file' WHERE p.post_type='product' AND p.post_status='publish'",
     "pmxi_posts": "SELECT post_id, import_id, unique_key, product_key FROM {P}pmxi_posts ORDER BY id",
     "terms": "SELECT t.term_id AS id, t.name, t.slug, tt.taxonomy, tt.parent, tt.description, tt.count FROM {P}terms t "
-             "JOIN {P}term_taxonomy tt ON tt.term_id=t.term_id WHERE tt.taxonomy IN ('product_cat','store','pa_lokalita','product_tag','category','post_tag','dealstore') ORDER BY t.term_id",
+             "JOIN {P}term_taxonomy tt ON tt.term_id=t.term_id WHERE tt.taxonomy IN ('product_cat','store','pa_lokalita','pa_strava','product_tag','category','post_tag','dealstore') ORDER BY t.term_id",
     "term_rel": "SELECT tr.object_id AS id, tt.term_id, tt.taxonomy FROM {P}term_relationships tr JOIN {P}term_taxonomy tt ON tt.term_taxonomy_id=tr.term_taxonomy_id "
-                "WHERE tt.taxonomy IN ('product_cat','store','pa_lokalita','category','post_tag')",
+                "WHERE tt.taxonomy IN ('product_cat','store','pa_lokalita','pa_strava','category','post_tag')",
     "termmeta": "SELECT term_id, meta_key, meta_value FROM {P}termmeta WHERE meta_key LIKE 'rank\\_math\\_%' OR meta_key IN ('thumbnail_id','order','display_type') ORDER BY meta_id",
     "term_thumbs": "SELECT m.term_id, a.meta_value AS file FROM {P}termmeta m JOIN {P}postmeta a ON a.post_id=m.meta_value AND a.meta_key='_wp_attached_file' WHERE m.meta_key='thumbnail_id'",
     # editorial
@@ -70,12 +70,12 @@ Q = {
 
 def rest(path):
     c = {}
-    for line in open(AI / "credentials/.kouzelnydeda-credentials.env"):
+    for line in open(AI / "credentials/.kuzelnemiesta-credentials.env"):
         if "=" in line and not line.startswith("#"):
             k, v = line.strip().split("=", 1)
             c[k] = v.strip().strip("\"'")
     for attempt in range(5):
-        r = subprocess.run(["curl", "-s", "-4", "-A", UA, "-u", f"{c['WP_USER']}:{c['WP_APP_PASSWORD']}", "-D", "-", f"https://kouzelnydeda.cz/wp-json/{path}"],
+        r = subprocess.run(["curl", "-s", "-4", "-A", UA, "-u", f"{c['WP_USER']}:{c['WP_APP_PASSWORD']}", "-D", "-", f"https://kuzelnemiesta.sk/wp-json/{path}"],
                            capture_output=True)
         head, _, body = r.stdout.partition(b"\r\n\r\n")
         while body.startswith(b"HTTP/"):
@@ -113,11 +113,15 @@ def db_part(out):
             print(f"{name}: {n}", flush=True)
     # the helper refuses bodies starting with "<" (PHP source) → plain FTP
     import io
-    f, buf = wpdb.ftp(), io.BytesIO()
-    f.retrbinary(f"RETR {wpdb.ROOT}/wp-content/mu-plugins/kd-redirects.php", buf.write)
+    f = wpdb.ftp()
+    mu = [n for n in f.nlst(f"{wpdb.ROOT}/wp-content/mu-plugins") if n.endswith(".php")]
+    print("mu-plugins:", [n.rsplit("/", 1)[-1] for n in mu])
+    for n in mu:
+        if "redirect" in n:
+            buf = io.BytesIO()
+            f.retrbinary(f"RETR {n}", buf.write)
+            (out / n.rsplit("/", 1)[-1]).write_bytes(buf.getvalue())
     f.quit()
-    (out / "kd-redirects.php").write_bytes(buf.getvalue())
-    print("kd-redirects.php ok")
 
 
 def rest_part(out):

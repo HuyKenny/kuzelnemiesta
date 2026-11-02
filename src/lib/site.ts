@@ -1,33 +1,38 @@
-// Site-wide constants and the JSON-LD base graph (Organization/WebSite as Rank Math printed them on kouzelnydeda.cz,
-// with the knowledge-graph name fixed to "Kouzelný děda" — WordPress once said "Kúzelné miesta").
-export const BASE = 'https://kouzelnydeda.cz';
-export const SITE_NAME = 'Kouzelný děda';
-export const SITE_DESC = 'Vyhledávač pobytů a dovolené';
-export const GA4_ID = 'G-6SEWKKB1YH';
-export const INDEXNOW_KEY = 'b44e9e81085a8e09ad851279ee1b8ce8';
+// Site-wide constants and the JSON-LD base graph. kuzelnemiesta.sk = fork of kouzelnydeda.cz (2. 11. 2026): every brand,
+// domain, language and currency value lives here — nothing else may hardcode them.
+export const BASE = 'https://kuzelnemiesta.sk';
+export const HOST = 'kuzelnemiesta.sk';
+export const SITE_NAME = 'Kúzelné miesta';
+export const SITE_DESC = 'Zážitky, pobyty a wellness so zľavou na jednom mieste';
+export const LANG = 'sk';
+export const LOCALE = 'sk-SK';
+export const OG_LOCALE = 'sk_SK';
+export const CURRENCY = 'EUR';
+export const GA4_ID = 'G-2LK65CD4WF';
+export const INDEXNOW_KEY = 'f194c6344953d22301e0f0eb78e1b88d';
 export const LOGO_URL = BASE + '/a/logo-512.png';
 export const OG_DEFAULT = BASE + '/a/og.jpg';
 export const PER_PAGE = 24;
 export const POSTS_PER_PAGE = 12;
 /** kd_combo: a category × city listing with at least this many offers is its own landing page (canonical to itself). */
 export const COMBO_MIN = 40;
-/** Smaller towns and football cities (FutbalTour trips) get their landings from fewer offers. */
+/** Smaller Slovak towns get their landings from fewer offers. */
 export const COMBO_MIN_EXTRA = 15;
-const EXTRA = new Set(['london', 'manchester', 'roma', 'madrid', 'barcelona', 'milano', 'liverpool', 'napoli', 'turin', 'most', 'decin', 'opava', 'cesky-krumlov', 'pribram']);
+const EXTRA = new Set(['trnava', 'trencin', 'nitra', 'banska-bystrica', 'presov', 'zilina', 'poprad', 'piestany', 'martin']);
 export const comboMin = (city: string) => (EXTRA.has(city) ? COMBO_MIN_EXTRA : COMBO_MIN);
-/** Days an ended offer keeps its page ("Nabídka skončila", noindex) before it 301s to its category. */
+/** Days an ended offer keeps its page ("Ponuka skončila", noindex) before it 301s to its category. */
 export const EXPIRED_KEEP_DAYS = 30;
 /** Operator (same as the legal pages). */
-export const OPERATOR = { name: 'Ha Duy Huy', ico: '07876823', ds: 'dxmsrdt', street: 'Bartáková 36', zip: '140 00', city: 'Praha', email: 'info@kouzelnydeda.cz' };
+export const OPERATOR = { name: 'Ha Duy Huy', ico: '07876823', ds: 'dxmsrdt', street: 'Bartáková 36', zip: '140 00', city: 'Praha', email: 'info@kuzelnemiesta.sk' };
 
 export function orgGraph(searchAction = false): unknown[] {
   return [
     {
       '@type': 'Organization', '@id': BASE + '/#organization', name: SITE_NAME, url: BASE,
-      logo: { '@type': 'ImageObject', '@id': BASE + '/#logo', url: LOGO_URL, contentUrl: LOGO_URL, caption: SITE_NAME, inLanguage: 'cs', width: '512', height: '168' },
+      logo: { '@type': 'ImageObject', '@id': BASE + '/#logo', url: LOGO_URL, contentUrl: LOGO_URL, caption: SITE_NAME, inLanguage: LANG, width: '715', height: '168' },
     },
     {
-      '@type': 'WebSite', '@id': BASE + '/#website', url: BASE, name: SITE_NAME, description: SITE_DESC, publisher: { '@id': BASE + '/#organization' }, inLanguage: 'cs',
+      '@type': 'WebSite', '@id': BASE + '/#website', url: BASE, name: SITE_NAME, description: SITE_DESC, publisher: { '@id': BASE + '/#organization' }, inLanguage: LANG,
       ...(searchAction ? { potentialAction: { '@type': 'SearchAction', target: BASE + '/?s={search_term_string}&post_type=product', 'query-input': 'required name=search_term_string' } } : {}),
     },
   ];

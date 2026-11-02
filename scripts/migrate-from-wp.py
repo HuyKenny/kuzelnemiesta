@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""kouzelnydeda.cz — WordPress export → SQL for D1 (30. 10. 2026, structure from the alkoholicky migration).
+"""kuzelnemiesta.sk — WordPress export → SQL for D1 (2. 11. 2026, from the kouzelnydeda.cz migration).
 
     migrate-from-wp.py <export-dir> <out-dir>
 
@@ -22,17 +22,18 @@ from pathlib import Path
 
 MAX_STMT = 90_000
 MAX_FILE = 3_500_000
-BASE = "https://kouzelnydeda.cz"
+BASE = "https://kuzelnemiesta.sk"
 # WP All Import import id → feed source
-IMPORT_SOURCE = {"25": "slevomat", "26": "slevomat", "27": "adrop", "28": "zazitky"}
-STORE_SOURCE = {"slevomat-cz": "slevomat", "adrop-cz": "adrop", "zazitky-cz": "zazitky"}
+IMPORT_SOURCE = {"7": "zlavomat", "8": "zlavomat", "9": "zlavadna", "10": "adrop"}
+STORE_SOURCE = {"zlavomat-sk": "zlavomat", "adrop-sk": "adrop", "zlavadna-sk": "zlavadna"}
+# sources without a feed any more (ZlavaDna ended its Dognet programme, 10/2026): their offers start as ended
+ENDED_SOURCES = {"zlavadna"}
+MIGRATED_AT = "2026-11-02 12:00:00"
 # kd_city_map(): slug → (nominative, locative)
 CITY = {
-    "cr": ("Česko", "v Česku"), "praha": ("Praha", "v Praze"), "brno": ("Brno", "v Brně"), "ostrava": ("Ostrava", "v Ostravě"),
-    "plzen": ("Plzeň", "v Plzni"), "ceske-budejovice": ("České Budějovice", "v Českých Budějovicích"),
-    "usti-nad-labem": ("Ústí nad Labem", "v Ústí nad Labem"), "hradec-kralove": ("Hradec Králové", "v Hradci Králové"),
-    "olomouc": ("Olomouc", "v Olomouci"), "liberec": ("Liberec", "v Liberci"), "pardubice": ("Pardubice", "v Pardubicích"),
-    "zlin": ("Zlín", "ve Zlíně"), "karlovy-vary": ("Karlovy Vary", "v Karlových Varech"), "jihlava": ("Jihlava", "v Jihlavě"),
+    "sr": ("Slovensko", "na Slovensku"), "bratislava": ("Bratislava", "v Bratislave"), "kosice": ("Košice", "v Košiciach"),
+    "presov": ("Prešov", "v Prešove"), "zilina": ("Žilina", "v Žiline"), "banska-bystrica": ("Banská Bystrica", "v Banskej Bystrici"),
+    "nitra": ("Nitra", "v Nitre"), "trnava": ("Trnava", "v Trnave"), "trencin": ("Trenčín", "v Trenčíne"),
 }
 
 
@@ -127,7 +128,7 @@ def emoji_back(h):
 
 
 def own(u):
-    return re.sub(r"^https?://(?:www\.)?kouzelnydeda\.cz(?=/)", "", u or "")
+    return re.sub(r"^https?://(?:www\.)?kuzelnemiesta\.sk(?=/)", "", u or "")
 
 
 def main():
@@ -199,8 +200,8 @@ def main():
             source = STORE_SOURCE.get(store_by_id[store_id]["slug"])
         if not source:
             rep["product_without_source"] += 1
-            source = "slevomat"
-        ext = (imp["unique_key"] if imp and str(imp["import_id"]) == "27" else m.get("_sku")) or (imp or {}).get("unique_key") or f"wp{pid}"
+            source = "zlavomat"
+        ext = (imp["unique_key"] if imp and str(imp["import_id"]) == "10" else m.get("_sku")) or (imp or {}).get("unique_key") or f"wp{pid}"
         if (source, ext) in ext_seen:
             rep["product_dup_ext"] += 1
             ext = f"{ext}#wp{pid}"
@@ -221,14 +222,20 @@ def main():
                    image=image, images="[]", lok_id=lok, city=city, excerpt=p["excerpt"] or "", info="{}",
                    legacy_html=emoji_back(p["content"] or ""), cat_ids=json.dumps(cids), primary_cat=primary,
                    rating=0.0, reviews=0, pop=int(num(m.get("total_sales"))), created_at=p["created_at"], updated_at=p["updated_at"],
-                   seen_at="", expired_at="", noindex=1 if "noindex" in robots else 0,
+                   seen_at="", expired_at=MIGRATED_AT if source in ENDED_SOURCES else "", noindex=1 if "noindex" in robots else 0,
                    seo_title=m.get("rank_math_title") or "", seo_desc=m.get("rank_math_description") or "", content_hash="")
+        if source in ENDED_SOURCES:
+            row["active"] = 0
+            rep["product_ended_" + source] += 1
         products.append(row)
         prow[pid] = row
         members = set()
         for c in cids:
             members.update(ancestors(c))
             direct_count[c] += 1
+        if not row["active"]:
+            fts.append((pid, row["name"], city))
+            continue
         for c in members:
             total_members[c].add(pid)
             cp_rows.append((c, p["created_at"], pid, 1 if c in cids else 0, price, disc, row["pop"], lok))
@@ -240,7 +247,7 @@ def main():
     for cid, c in sorted(cats.items()):
         tm = tmeta[cid]
         robots = rm_robots(tm.get("rank_math_robots"))
-        noindex = 1 if ("noindex" in robots or c["slug"] == "nezarazene") else 0
+        noindex = 1 if ("noindex" in robots or c["slug"] in ("nezarazene", "tovar")) else 0
         cat_rows.append((cid, c["slug"], html.unescape(c["name"]), c["parent"], c["description"] or "", direct_count[cid], len(total_members[cid]),
                          canon.get(cid, 0), noindex, tm.get("rank_math_title") or "", tm.get("rank_math_description") or "", robots, ""))
     W.table("categories", ["id", "slug", "name", "parent", "description_html", "count_direct", "count_total", "canon_id", "noindex",
@@ -276,16 +283,16 @@ def main():
             pcat[pid].append(t)
     uploads = set()
     post_rows = []
-    blog_id, front_id = 235, 3093
+    blog_id, front_id = 61064, 62
     for p in posts:
         pid = int(p["id"])
-        if p["status"] != "publish" or pid == front_id:
+        if p["status"] != "publish" or pid == front_id or p["slug"] == "zlavy":  # /zlavy/ = the WooCommerce shop page → 301 home
             continue
         h = phtml.get(str(pid)) or {}
         content = emoji_back(h.get("html", ""))
-        for u in re.findall(r'(?:https?://(?:www\.)?kouzelnydeda\.cz)?(/wp-content/uploads/[^"\'\s)>,]+)', content):
+        for u in re.findall(r'(?:https?://(?:www\.)?kuzelnemiesta\.sk)?(/wp-content/uploads/[^"\'\s)>,]+)', content):
             uploads.add(u)
-        content = re.sub(r'https?://(?:www\.)?kouzelnydeda\.cz(?=/wp-content/)', "", content)
+        content = re.sub(r'https?://(?:www\.)?kuzelnemiesta\.sk(?=/wp-content/)', "", content)
         pm = postmeta[pid]
         path = "/blog/" if pid == blog_id else f"/{p['slug']}/"
         lm = live_meta(path)
@@ -316,7 +323,7 @@ def main():
                     graph += [n for n in block["@graph"] if isinstance(n, dict) and n.get("@type") not in ("Organization", "WebSite")]
             ld = json.dumps({"graph": graph}, ensure_ascii=False) if graph else ""
         post_rows.append((pid, p["type"], "blog" if pid == blog_id else p["slug"], html.unescape(p["title"]), content, excerpt,
-                          p["published_at"], p["modified_at"], cats_[0], img, img_card, alt, w, hgt, authors.get(int(p["author_id"] or 0), "Kouzelný děda"),
+                          p["published_at"], p["modified_at"], cats_[0], img, img_card, alt, w, hgt, authors.get(int(p["author_id"] or 0), "Kúzelné miesta"),
                           noindex, lm.get("title") or pm.get("rank_math_title") or "", lm.get("desc") or pm.get("rank_math_description") or "",
                           robots, pm.get("rank_math_canonical_url") or "", pm.get("kd_offers_cat") or "", ld, "publish"))
     W.table("posts", ["id", "type", "slug", "title", "content_html", "excerpt", "published_at", "modified_at", "cat_id", "image", "image_card",
@@ -372,8 +379,12 @@ def main():
                 add(pat, r["url_to"], int(r["header_code"]) if r["header_code"] in ("301", "302", "307", "410") else 301, "rankmath")
             else:
                 rep["redirect_rankmath_skipped"] += 1
-    for frm, to in re.findall(r"""["'](/[^"']*)["']\s*=>\s*["']([^"']*)["']""", (exp / "kd-redirects.php").read_text()):
-        add(frm, to, 301, "kdmap")
+    # /brand/<store>/ and /lokalita/<city>/ exist in the new site; board-type archives (pa_strava) and the shop page do not
+    for t in terms.values():
+        if t["taxonomy"] == "pa_strava":
+            add(f"strava/{t['slug']}", "/pobyty/", 301, "strava")
+    add("zlavy", "/", 301, "shop")
+    add("shop", "/", 301, "shop")
     for r in nd(exp / "old_slugs.ndjson"):
         if r["old_slug"] and r["old_slug"] != r["slug"]:
             add(r["old_slug"], f"/{r['slug']}/", 301, "oldslug")

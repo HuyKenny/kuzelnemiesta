@@ -3,7 +3,7 @@
 
     python3 scripts/taxonomie-apply.py <local|staging|production> [--dry]   (production needs KD_PRODUCTION_APPROVED=yes)
 
-Needs migration 0002 applied. Reads the current D1 (categories, products, redirects, posts), writes SQL to tmp/kouzelnydeda/
+Needs migration 0002 applied. Reads the current D1 (categories, products, redirects, posts), writes SQL to tmp/kuzelnemiesta/
 and executes it file by file:
   * new categories (ids 300000+) with icon/group/short, SEO text carried over from the biggest old category with one
   * cat_alias: every old "<root name>|<child name>" → its new node (the importer resolves feed categories through it)
@@ -28,13 +28,13 @@ if env == 'production' and os.environ.get('KD_PRODUCTION_APPROVED') != 'yes':
     sys.exit('production needs KD_PRODUCTION_APPROVED=yes')
 DRY = '--dry' in sys.argv
 NODE = '/home/kenny/.nvm/versions/node/v22.23.1/bin'
-OUT = Path('/home/kenny/ai/tmp/kouzelnydeda/taxonomie-' + env)
+OUT = Path('/home/kenny/ai/tmp/kuzelnemiesta/taxonomie-' + env)
 OUT.mkdir(parents=True, exist_ok=True)
 
 
 def creds():
     c = {}
-    for f in ('.cloudflare-credentials.env', '.kouzelnydeda-credentials.env'):
+    for f in ('.cloudflare-credentials.env', '.kuzelnemiesta-credentials.env'):
         for line in open(f'/home/kenny/ai/credentials/{f}'):
             if '=' in line and not line.lstrip().startswith('#'):
                 k, v = line.strip().split('=', 1)
@@ -170,7 +170,8 @@ for i, g in enumerate(gifts):
 new_paths = {f"/{n['slug']}/" for n in nodes} | {f"/{g['slug']}/" for g in gifts}
 old_to = {f"/{c['slug']}/": f"/{target[c['id']]}/" for c in old}
 for frm, to in old_to.items():
-    if frm != to and frm not in new_paths:
+    # a live offer/post owns that URL (WordPress let the product win) — never 301 it away
+    if frm != to and frm not in new_paths and frm.strip('/') not in taken:
         stmts['42-redirects'].append(f"INSERT OR REPLACE INTO redirects (from_path, to_path, status) VALUES ({q(frm)}, {q(to)}, 301);")
 for r in query('SELECT from_path, to_path FROM redirects'):
     if r['from_path'] in new_paths:

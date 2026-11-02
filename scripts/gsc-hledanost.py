@@ -2,7 +2,7 @@
 """Search Console impressions (90 days) of every offer page → products.search_impr (the "searches" part of the ranking).
 
     python3 scripts/gsc-hledanost.py <staging|production>
-Weekly from cron (bin/kouzelnydeda-firmanazazitky.sh). The service account is the one of bin/gsc-hlidac.py.
+Weekly from cron (bin/kuzelnemiesta-tydne.sh). The service account is the one of bin/gsc-hlidac.py.
 """
 import datetime as dt
 import json
@@ -39,9 +39,9 @@ def api(path, body=None):
     return json.load(urllib.request.urlopen(req, timeout=120))
 
 
-sites = [s['siteUrl'] for s in api('sites').get('siteEntry', []) if 'kouzelnydeda' in s['siteUrl']]
+sites = [s['siteUrl'] for s in api('sites').get('siteEntry', []) if 'kuzelnemiesta' in s['siteUrl']]
 if not sites:
-    sys.exit('no Search Console property for kouzelnydeda.cz')
+    sys.exit('no Search Console property for kuzelnemiesta.sk')
 site = next((s for s in sites if s.startswith('sc-domain')), sites[0])
 end = dt.date.today() - dt.timedelta(days=3)
 start = end - dt.timedelta(days=89)
@@ -71,7 +71,7 @@ def creds(f, k):
 
 
 E = dict(os.environ, CLOUDFLARE_EMAIL=creds('.cloudflare-credentials.env', 'CF_EMAIL'), CLOUDFLARE_API_KEY=creds('.cloudflare-credentials.env', 'CF_GLOBAL_API_KEY'),
-         CLOUDFLARE_ACCOUNT_ID=creds('.kouzelnydeda-credentials.env', 'CF_ACCOUNT_ID'), PATH='/home/kenny/.nvm/versions/node/v22.23.1/bin:' + os.environ['PATH'])
+         CLOUDFLARE_ACCOUNT_ID=creds('.kuzelnemiesta-credentials.env', 'CF_ACCOUNT_ID'), PATH='/home/kenny/.nvm/versions/node/v22.23.1/bin:' + os.environ['PATH'])
 E.pop('CF_EMAIL', None)
 E.pop('CF_API_KEY', None)
 out = subprocess.run(['npx', 'wrangler', 'd1', 'execute', 'DB', '--env', env, '--remote', '--file', p, '-y'], cwd=ROOT, env=E, capture_output=True, text=True)

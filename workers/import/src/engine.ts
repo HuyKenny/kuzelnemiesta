@@ -189,7 +189,7 @@ export async function runFeed(env: Env, f: FeedDef, opts: { force?: boolean; ite
       const it = parseItem(f.key, node);
       if (!it) continue;
       const prev = items.get(it.ext);
-      // Adrop lists one row per variant (same ITEMGROUP_ID): the cheapest is the offer ("od X Kč"), all of them its variants
+      // Adrop lists one row per variant (same ITEMGROUP_ID): the cheapest is the offer ("od X €"), all of them its variants
       items.set(it.ext, prev ? mergeVariants(prev, it) : it);
     }
     for (const it of items.values()) finishVariants(it);
@@ -351,7 +351,7 @@ export async function computeRank(db: D1Database) {
               + MIN(0.25, conv_30d * 0.05),
       r_search = search_impr * 1.0 / (search_impr + 50.0),
       r_qual = 0.4 * (image <> '') + 0.2 * (json_array_length(images) >= 2) + 0.2 * (length(COALESCE(json_extract(info, '$.d'), '')) > 150) + 0.2 * (rating > 0),
-      r_new = MAX(CASE WHEN created_at > datetime('now', '-7 days') THEN 1.0 ELSE 0.0 END, CASE WHEN price BETWEEN 150 AND 6000 THEN 0.7 ELSE 0.4 END)
+      r_new = MAX(CASE WHEN created_at > datetime('now', '-7 days') THEN 1.0 ELSE 0.0 END, CASE WHEN price BETWEEN 6 AND 250 THEN 0.7 ELSE 0.4 END)
       WHERE active = 1`),
     db.prepare(`UPDATE products SET r_click = 0.5 * (1 - w.w) + w.w * MIN(1.0, ((w.k + 2.0) / (w.e + 100.0)) / 0.08)
       FROM (SELECT p.id AS id,

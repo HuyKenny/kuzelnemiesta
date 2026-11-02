@@ -26,7 +26,7 @@ def creds(f, k):
 
 
 E = dict(os.environ, CLOUDFLARE_EMAIL=creds('.cloudflare-credentials.env', 'CF_EMAIL'), CLOUDFLARE_API_KEY=creds('.cloudflare-credentials.env', 'CF_GLOBAL_API_KEY'),
-         CLOUDFLARE_ACCOUNT_ID=creds('.kouzelnydeda-credentials.env', 'CF_ACCOUNT_ID'),
+         CLOUDFLARE_ACCOUNT_ID=creds('.kuzelnemiesta-credentials.env', 'CF_ACCOUNT_ID'),
          PATH='/home/kenny/.nvm/versions/node/v22.23.1/bin:' + os.environ['PATH'])
 E.pop('CF_EMAIL', None)
 E.pop('CF_API_KEY', None)

@@ -16,7 +16,7 @@ export interface Partner {
 }
 const P: Record<string, Partner> = {
   'zlavomat-sk': {
-    name: 'Zlavomat.sk', color: '#E2001A', verb: 'Objednať voucher',
+    name: 'Zľavomat.sk', color: '#E2001A', verb: 'Objednať voucher',
     perks: ['Voucher príde hneď e-mailom', 'Hodí sa ako darček – termín si vyberie obdarovaný', 'Platnosť voucheru vidíte pri každej ponuke'],
     trust: 'Platba aj voucher cez Zlavomat.sk · cena je rovnaká ako u partnera',
   },
@@ -26,7 +26,7 @@ const P: Record<string, Partner> = {
     trust: 'Platba cez Adrop.sk · cena je rovnaká ako u partnera',
   },
 };
-const FALLBACK: Partner = { name: 'partnera', color: '#f0443a', verb: 'Objednať', perks: ['Voucher príde e-mailom'], trust: 'Platba u partnera · cena je rovnaká' };
+const FALLBACK: Partner = { name: 'partnera', color: '#0c7f67', verb: 'Objednať', perks: ['Voucher príde e-mailom'], trust: 'Platba u partnera · cena je rovnaká' };
 export const partner = (slug: string | undefined): Partner => P[slug ?? ''] ?? FALLBACK;
 export const partnerColor = (slug: string | undefined) => partner(slug).color;
 export const partnerName = (slug: string | undefined) => partner(slug).name;

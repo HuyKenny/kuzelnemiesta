@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Snapshot of the live WordPress <title>/description/robots/canonical/H1/JSON-LD of kouzelnydeda.cz (30. 10. 2026):
+"""Snapshot of the live WordPress <title>/description/robots/canonical/H1/JSON-LD of kuzelnemiesta.sk (30. 10. 2026):
 every post, page, product category, city (pa_lokalita) and store archive, the city × category combos, a sample of
 products and the top GSC URLs — the reference for the migration and for seo-parity.py.
 
@@ -18,17 +18,17 @@ from pathlib import Path
 
 import random
 
-UA = "MalinaCron/1.0 (kouzelnydeda migrace)"
+UA = "MalinaCron/1.0 (kuzelnemiesta migrace)"
 
 
 def get(path):
     for attempt in range(4):
-        r = subprocess.run(["curl", "-s", "-4", "-m", "90", "-A", UA, "-w", "\n%{http_code}|%{redirect_url}", f"https://kouzelnydeda.cz{path}"], capture_output=True)
+        r = subprocess.run(["curl", "-s", "-4", "-m", "90", "-A", UA, "-w", "\n%{http_code}|%{redirect_url}", f"https://kuzelnemiesta.sk{path}"], capture_output=True)
         body, _, tail = r.stdout.rpartition(b"\n")
         code, _, loc = tail.decode().partition("|")
         if code.strip().isdigit() and int(code) < 500:
             if 300 <= int(code) < 400:
-                return int(code), loc.replace("https://kouzelnydeda.cz", "")
+                return int(code), loc.replace("https://kuzelnemiesta.sk", "")
             return int(code), body.decode("utf-8", "replace")
         time.sleep(5 * (attempt + 1))
     return 0, ""
@@ -65,7 +65,7 @@ def main():
     for sm in ("post-sitemap.xml", "page-sitemap.xml", "category-sitemap.xml", "product_cat-sitemap1.xml", "product_cat-sitemap2.xml",
                "pa_lokalita-sitemap.xml", "store-sitemap.xml"):
         _, x = get("/" + sm)
-        paths += [u.replace("https://kouzelnydeda.cz", "") for u in re.findall(r"<loc>(https://kouzelnydeda\.cz/[^<]*)</loc>", x)]
+        paths += [u.replace("https://kuzelnemiesta.sk", "") for u in re.findall(r"<loc>(https://kuzelnemiesta\.sk/[^<]*)</loc>", x)]
     cats, cities = [], []
     for line in open(exp / "terms.ndjson"):
         t = json.loads(line)
@@ -87,7 +87,7 @@ def main():
     if gsc:
         rows = [l.rstrip("\n").split("\t") for l in open(gsc) if l.startswith("http")]
         rows.sort(key=lambda r: -float(r[1]))
-        paths += [r[0].replace("https://kouzelnydeda.cz", "") for r in rows[:300]]
+        paths += [r[0].replace("https://kuzelnemiesta.sk", "") for r in rows[:300]]
     paths = list(dict.fromkeys(paths))
     print(len(paths), "urls", flush=True)
     for i, p in enumerate(paths):

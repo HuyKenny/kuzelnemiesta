@@ -21,7 +21,7 @@ import darky from '../data/darky.json';
 export interface Gift { slug: string; name: string; h1: string; icon: string; il?: string; cats: string[]; max?: number; title: string; desc: string; intro: string; hub?: boolean; season?: string; body?: string; faq?: Array<{ q: string; a: string }> }
 export const GIFTS = darky.items as Gift[];
 /** Only these gift landings are linked from the home page, menu and landing sidebars; the rest stays reachable through categories and the sitemap. */
-const TOP_GIFT_SLUGS = ['darek-pro-muze', 'darek-pro-zenu', 'darek-pro-pary', 'darek-pro-deti', 'darek-k-narozeninam', 'vanocni-darek', 'darek-pro-maminku', 'darek-pro-tatu', 'darek-pro-manzela', 'darek-pro-kamaradku', 'darek-pro-pritelkyni', 'darkovy-poukaz'];
+const TOP_GIFT_SLUGS = ['darcek-pre-muza', 'darcek-pre-zenu', 'darcek-pre-par', 'darcek-pre-deti', 'darcek-k-narodeninam', 'vianocne-darceky', 'darcek-pre-mamu', 'darcek-pre-otca', 'darcek-pre-manzela', 'darcek-pre-kamaratku', 'darcek-pre-priatelku', 'darcekovy-poukaz'];
 export const TOP_GIFTS = TOP_GIFT_SLUGS.map((s) => GIFTS.find((g) => g.slug === s)!).filter(Boolean);
 
 export interface Meta {
@@ -344,15 +344,15 @@ export async function productView(db: D1Database, id: number) {
 const TAGS: Record<string, [string, string]> = {
   'víkendový pobyt': ['Víkendový pobyt', 'vikendove-pobyty'],
   'wellness pobyt': ['Wellness pobyt', 'wellness-pobyty'],
-  'rodinná dovolená': ['Rodinná dovolenka', 'rodinne-pobyty'], 'rodinná dovolenka': ['Rodinná dovolenka', 'rodinne-pobyty'],
-  'romantický pobyt': ['Romantický pobyt', 'pobyty-pro-dva'],
-  'aktivní dovolená': ['Aktívna dovolenka', 'aktivni-dovolena'], 'aktívna dovolenka': ['Aktívna dovolenka', 'aktivni-dovolena'],
-  'lyžařský pobyt': ['Lyžiarsky pobyt', 'lyzarske-pobyty'], 'lyžiarsky pobyt': ['Lyžiarsky pobyt', 'lyzarske-pobyty'],
-  'dovolená u moře': ['Dovolenka pri mori', 'dovolena-u-more'], 'dovolenka pri mori': ['Dovolenka pri mori', 'dovolena-u-more'],
-  'velikonoční pobyt': ['Veľkonočný pobyt', 'velikonocni-pobyty'], 'veľkonočný pobyt': ['Veľkonočný pobyt', 'velikonocni-pobyty'],
+  'rodinná dovolená': ['Rodinná dovolenka', 'pobyty-s-detmi'], 'rodinná dovolenka': ['Rodinná dovolenka', 'pobyty-s-detmi'],
+  'romantický pobyt': ['Romantický pobyt', 'pobyty-pre-dvoch'],
+  'aktivní dovolená': ['Aktívna dovolenka', 'aktivna-dovolenka-a-sport'], 'aktívna dovolenka': ['Aktívna dovolenka', 'aktivna-dovolenka-a-sport'],
+  'lyžařský pobyt': ['Lyžiarsky pobyt', 'lyziarske-pobyty'], 'lyžiarsky pobyt': ['Lyžiarsky pobyt', 'lyziarske-pobyty'],
+  'dovolená u moře': ['Dovolenka pri mori', 'dovolenka-pri-mori'], 'dovolenka pri mori': ['Dovolenka pri mori', 'dovolenka-pri-mori'],
+  'velikonoční pobyt': ['Veľkonočný pobyt', 'velkonocne-pobyty'], 'veľkonočný pobyt': ['Veľkonočný pobyt', 'velkonocne-pobyty'],
   'silvestrovský pobyt': ['Silvestrovský pobyt', 'silvestrovske-pobyty'],
-  'vánoční pobyt': ['Vianočný pobyt', 'vanocni-pobyty'], 'vianočný pobyt': ['Vianočný pobyt', 'vanocni-pobyty'],
-  'valentýnský pobyt': ['Valentínsky pobyt', 'valentynske-pobyty'], 'valentínsky pobyt': ['Valentínsky pobyt', 'valentynske-pobyty'],
+  'vánoční pobyt': ['Vianočný pobyt', 'vianocne-pobyty'], 'vianočný pobyt': ['Vianočný pobyt', 'vianocne-pobyty'],
+  'valentýnský pobyt': ['Valentínsky pobyt', 'valentinske-pobyty'], 'valentínsky pobyt': ['Valentínsky pobyt', 'valentinske-pobyty'],
   'dovolenka so zárukou': ['Dovolenka so zárukou', ''],
   'adventní zájezd': ['Adventný zájazd', ''], 'adventný zájazd': ['Adventný zájazd', ''],
   aquapark: ['Aquapark', ''],
@@ -463,7 +463,7 @@ export async function blogView(db: D1Database, page: number, catId = 0) {
 export async function homeView(db: D1Database) {
   const [t, top, posts, ending, deals] = await Promise.all([tree(db), popular(db, 8), latestPosts(db, 3), endingSoon(db, 8), biggestDiscounts(db, 8)]);
   const sec = (t.kids.get(0) ?? []).filter((c) => c.count_total > 0).sort((a, b) => a.sort - b.sort);
-  const POPULAR = ['wellness-pobyty', 'glamping', 'masaze', 'jizda-na-okruhu', 'unikove-hry', 'degustacni-menu'];
+  const POPULAR = ['wellness-pobyty', 'glamping', 'masaze', 'jazda-na-okruhu', 'escape-room', 'degustacne-menu'];
   const pop = POPULAR.map((s) => t.bySlug.get(s)).filter((c): c is Cat => !!c && c.count_total > 0);
   // every tile gets its own photo: the best offers of the category in the mixed order, the first photo nobody uses yet
   const used = new Set(top.slice(0, 2).map((x) => x.image));
@@ -481,7 +481,7 @@ export async function homeView(db: D1Database) {
   const total = [...t.stores.values()].reduce((n, s) => n + s.count, 0);
   const cities = [...t.loks.values()].filter((l) => l.slug !== HOME_LOK && l.count > 0 && cityName(l.slug).known).sort((a, b) => b.count - a.count).slice(0, 12);
   const month = new Date().getMonth() + 1;
-  const season = month >= 11 ? GIFTS.find((g) => g.slug === 'vanocni-darek') : month <= 2 ? GIFTS.find((g) => g.slug === 'darek-na-valentyna') : undefined;
+  const season = month >= 11 ? GIFTS.find((g) => g.slug === 'vianocne-darceky') : month <= 2 ? GIFTS.find((g) => g.slug === 'darcek-na-valentina') : undefined;
   const seasonItems = season ? (await listGift(db, season.cats.map((s) => t.bySlug.get(s)?.id).filter((x): x is number => !!x), { page: 1, sort: 'pop' })).items.slice(0, 8) : [];
   const title = `Zážitky a zážitkové darčeky online | ${SITE_NAME}`;
   const meta: Meta = {

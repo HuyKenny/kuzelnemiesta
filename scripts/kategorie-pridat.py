@@ -12,7 +12,7 @@ if env == 'production' and os.environ.get('KD_PRODUCTION_APPROVED') != 'yes':
     sys.exit('production needs KD_PRODUCTION_APPROVED=yes')
 NODE = '/home/kenny/.nvm/versions/node/v22.23.1/bin'
 c = {}
-for f in ('.cloudflare-credentials.env', '.kouzelnydeda-credentials.env'):
+for f in ('.cloudflare-credentials.env', '.kuzelnemiesta-credentials.env'):
     for line in open(f'/home/kenny/ai/credentials/{f}'):
         if '=' in line and not line.lstrip().startswith('#'):
             k, v = line.strip().split('=', 1); c.setdefault(k, v.strip('"\''))

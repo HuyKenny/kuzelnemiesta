@@ -1,13 +1,13 @@
 /**
  * Affiliate exit /go/<offer id>/ (WordPress linked the partner directly; the hop adds click counting and a host allow-list):
- *  - the target comes ONLY from D1 and is returned byte for byte (Slevomat UTM / eHub desturl must not be re-encoded);
+ *  - the target comes ONLY from D1 and is returned byte for byte (Zlavomat UTM / eHub desturl must not be re-encoded);
  *  - https only, host must be a partner or its network (no open redirect);
  *  - never shared-cached; crawlers/prefetch get 204 without a write; real clicks are logged in waitUntil (popularity).
  */
 import { sha256Hex } from './http';
 import { isLocal, type AppEnv } from './env';
 
-const ALLOWED = ['slevomat.cz', 'ehub.cz', 'adrop.cz', 'zazitky.cz', 'dognet.com', 'jdoqocy.com', 'anrdoezrs.net', 'kqzyfj.com', 'tkqlhce.com', 'dpbolvw.net', 'affiliateport.eu', 'radynacestu.cz', 'amazingplaces.cz'];
+const ALLOWED = ['zlavomat.sk', 'ehub.cz', 'adrop.sk', 'adrop.cz'];
 
 function isSafeTarget(url: unknown): url is string {
   if (typeof url !== 'string' || url.length === 0 || url.length > 8192) return false;
@@ -30,12 +30,12 @@ async function ipHash(ip: string, env: AppEnv): Promise<string> {
 const NO_STORE = { 'cache-control': 'private, no-store, max-age=0', 'x-robots-tag': 'noindex, nofollow', 'referrer-policy': 'strict-origin-when-cross-origin' };
 
 export async function handleGo(id: string | undefined, request: Request, env: AppEnv, waitUntil?: (p: Promise<unknown>) => void): Promise<Response> {
-  if (!id || !/^\d{1,9}$/.test(id)) return new Response('Nabídka neexistuje.', { status: 404, headers: { ...NO_STORE, 'content-type': 'text/plain; charset=utf-8' } });
+  if (!id || !/^\d{1,9}$/.test(id)) return new Response('Ponuka neexistuje.', { status: 404, headers: { ...NO_STORE, 'content-type': 'text/plain; charset=utf-8' } });
   const ua = request.headers.get('user-agent');
   if (!ua || CRAWLER.test(ua) || isPrefetch(request)) return new Response(null, { status: 204, headers: NO_STORE });
   const ip = request.headers.get('cf-connecting-ip') ?? '0.0.0.0';
   if (env.RL_GO && !(await env.RL_GO.limit({ key: ip })).success) {
-    return new Response('Příliš mnoho požadavků, zkuste to za chvíli.', { status: 429, headers: { ...NO_STORE, 'content-type': 'text/plain; charset=utf-8', 'retry-after': '60' } });
+    return new Response('Príliš veľa požiadaviek, skúste to o chvíľu.', { status: 429, headers: { ...NO_STORE, 'content-type': 'text/plain; charset=utf-8', 'retry-after': '60' } });
   }
   const row = await env.DB.prepare('SELECT id, slug, source, target_url, active FROM products WHERE id = ?').bind(Number(id))
     .first<{ id: number; slug: string; source: string; target_url: string; active: number }>();
@@ -45,8 +45,8 @@ export async function handleGo(id: string | undefined, request: Request, env: Ap
     return new Response(null, { status: 302, headers: { ...NO_STORE, location: `/${row.slug}/` } });
   }
   const ctx = (new URL(request.url).searchParams.get('ctx') ?? 'go').toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 48) || 'go';
-  // Slevomat reports utm_content per campaign ("Report kanálů") → the placement of the click; nothing else is touched
-  let target = row.source === 'slevomat' ? row.target_url.replace(/([?&]utm_content=)[^&]*/, `$1${ctx}`) : row.target_url;
+  // Zlavomat (Slevomat group) reports utm_content per campaign → the placement of the click; nothing else is touched
+  let target = row.source === 'zlavomat' ? row.target_url.replace(/([?&]utm_content=)[^&]*/, `$1${ctx}`) : row.target_url;
   // a chosen variant (Adrop: every variant has its own page and eHub data1) — the target is again read from D1 only
   const v = new URL(request.url).searchParams.get('v');
   if (v && /^\d{1,3}$/.test(v)) {

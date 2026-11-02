@@ -3,8 +3,8 @@
 
     python3 scripts/set-feed-secrets.py <staging|production>
 
-Reads credentials/.kouzelnydeda-feeds.json (slevomat carries an auth token) and IMPORT_SHARED_SECRET_<ENV> from
-credentials/.kouzelnydeda-credentials.env.
+Reads credentials/.kuzelnemiesta-feeds.json (zlavomat carries an auth token) and IMPORT_SHARED_SECRET_<ENV> from
+credentials/.kuzelnemiesta-credentials.env.
 """
 import json
 import os
@@ -16,13 +16,13 @@ if env not in ("staging", "production"):
     sys.exit(__doc__)
 CRED = "/home/kenny/ai/credentials"
 c = {}
-for f in (".cloudflare-credentials.env", ".kouzelnydeda-credentials.env"):
+for f in (".cloudflare-credentials.env", ".kuzelnemiesta-credentials.env"):
     for line in open(f"{CRED}/{f}"):
         if "=" in line and not line.lstrip().startswith("#"):
             k, v = line.strip().split("=", 1)
             c.setdefault(k, v.strip("\"'"))
-feeds = json.load(open(f"{CRED}/.kouzelnydeda-feeds.json"))
-secrets = {f"FEED_URL_{k.upper()}": feeds[k].replace("http://", "https://") for k in ("slevomat", "adrop", "zazitky", "skvelecesko", "kormidlo", "radynacestu", "futbaltour")}
+feeds = json.load(open(f"{CRED}/.kuzelnemiesta-feeds.json"))
+secrets = {f"FEED_URL_{k.upper()}": feeds[k].replace("http://", "https://") for k in ("zlavomat", "adrop")}
 secrets["IMPORT_SHARED_SECRET"] = c[f"IMPORT_SHARED_SECRET_{env.upper()}"]
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 node = "/home/kenny/.nvm/versions/node/v22.23.1/bin"

@@ -1,8 +1,8 @@
 /**
- * Deploy kouzelnydeda to STAGING (production is refused unless KD_PRODUCTION_APPROVED=yes).
+ * Deploy kuzelnemiesta to STAGING (production is refused unless KD_PRODUCTION_APPROVED=yes).
  *   tsx scripts/deploy.ts [--env staging|production] [--secrets] [--skip-build] [--no-import]
  * 1) D1 restore point (Time Travel bookmark → backups/, gitignored)  2) migrations  3) import Worker  4) web Worker (+ --secrets)  5) smoke test
- * Routes kouzelnydeda.cz/* are NOT managed here (cutover step, CF API). Rollback: `wrangler rollback --env <env>`.
+ * Routes kuzelnemiesta.sk/* are NOT managed here (cutover step, CF API). Rollback: `wrangler rollback --env <env>`.
  */
 import { execFileSync } from 'node:child_process';
 import { appendFileSync, mkdirSync, readFileSync } from 'node:fs';
@@ -26,7 +26,7 @@ function readEnv(file: string): Record<string, string> {
   return out;
 }
 const cf = readEnv('.cloudflare-credentials.env');
-const er = readEnv('.kouzelnydeda-credentials.env');
+const er = readEnv('.kuzelnemiesta-credentials.env');
 const childEnv = { ...process.env, PATH: `${NODE}:${process.env.PATH}`, CLOUDFLARE_EMAIL: cf.CF_EMAIL, CLOUDFLARE_API_KEY: cf.CF_GLOBAL_API_KEY || cf.CF_API_KEY, CLOUDFLARE_ACCOUNT_ID: er.CF_ACCOUNT_ID };
 function run(cmd: string, args: string[], opts: { input?: string; env?: Record<string, string | undefined>; quiet?: boolean } = {}): string {
   if (!opts.quiet) console.log(`$ ${cmd} ${args.join(' ')}`);
@@ -35,8 +35,8 @@ function run(cmd: string, args: string[], opts: { input?: string; env?: Record<s
 const wr = (args: string[], opts: Parameters<typeof run>[2] = {}) => run(join(NODE, 'node'), [join(ROOT, 'node_modules/wrangler/bin/wrangler.js'), ...args], opts);
 const sfx = envName === 'staging' ? '_STAGING' : '_PRODUCTION';
 const sha = run('git', ['rev-parse', '--short', 'HEAD'], { quiet: true }).trim();
-const siteBase = envName === 'staging' ? 'https://kouzelnydeda-staging.huy-kenny.workers.dev' : 'https://kouzelnydeda.cz';
-const base = process.env.SMOKE_BASE ?? (envName === 'staging' ? siteBase : 'https://kouzelnydeda.huy-kenny.workers.dev');
+const siteBase = envName === 'staging' ? 'https://kuzelnemiesta-staging.huy-kenny.workers.dev' : 'https://kuzelnemiesta.sk';
+const base = process.env.SMOKE_BASE ?? (envName === 'staging' ? siteBase : 'https://kuzelnemiesta.huy-kenny.workers.dev');
 
 // D1 backup point: `d1 export` refuses databases with virtual tables (FTS5 product_fts), so the deploy records a
 // Time Travel bookmark instead (restore: wrangler d1 time-travel restore DB --env <env> --bookmark <b>, 30 days back).

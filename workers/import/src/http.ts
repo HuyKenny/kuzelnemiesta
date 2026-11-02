@@ -37,7 +37,7 @@ async function once(start: string, allowed: string | undefined, cond: { etag?: s
   let u: URL;
   try { u = new URL(start); } catch { throw new FeedFetchError('feed URL is invalid', false); }
   if (u.protocol === 'http:') u.protocol = 'https:';
-  const headers: Record<string, string> = { 'User-Agent': 'KouzelnyDedaFeedImporter/1.0 (+https://kouzelnydeda.cz)', 'Accept-Encoding': 'gzip' };
+  const headers: Record<string, string> = { 'User-Agent': 'KuzelneMiestaFeedImporter/1.0 (+https://kuzelnemiesta.sk)', 'Accept-Encoding': 'gzip' };
   if (cond.etag) headers['If-None-Match'] = cond.etag;
   if (cond.lastModified) headers['If-Modified-Since'] = cond.lastModified;
   const signal = AbortSignal.timeout(240_000);

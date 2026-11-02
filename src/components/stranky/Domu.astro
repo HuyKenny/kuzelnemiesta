@@ -13,8 +13,8 @@ import type { HomeView } from '../../lib/views';
 import { partner } from '../../lib/partners';
 interface Props { v: HomeView }
 const { v } = Astro.props;
-const forWhom = v.gifts.filter((g) => ['darek-pro-zenu', 'darek-pro-muze', 'darek-pro-pary', 'darek-pro-deti', 'darek-pro-rodice', 'darek-k-narozeninam'].includes(g.slug));
-const budget = v.gifts.filter((g) => g.slug.startsWith('darky-do-'));
+const forWhom = v.gifts.filter((g) => ['darcek-pre-zenu', 'darcek-pre-muza', 'darcek-pre-par', 'darcek-pre-deti', 'darcek-pre-rodicov', 'darcek-k-narodeninam'].includes(g.slug));
+const budget = v.gifts.filter((g) => g.slug.startsWith('darceky-do-'));
 // partners with live offers, the biggest first (strip, stats)
 const partners = [...v.tree.stores.values()].filter((s) => s.count > 0).sort((a, b) => b.count - a.count);
 /** "2 overení partneri", "5 overených partnerov" */
@@ -32,7 +32,7 @@ const heroImgs = v.top.filter((p) => p.image).slice(0, 2).map((p) => card(p.imag
 					<h2><Ik n="darek" />Komu chcete urobiť radosť?</h2>
 					<ul class="chips">{forWhom.map((g) => <li><a class="chip" href={`/${g.slug}/`}><Ik n={g.icon} />{g.name}</a></li>)}</ul>
 					<h2><Ik n="cena" />Koľko chcete dať?</h2>
-					<ul class="chips">{budget.map((g) => <li><a class="chip" href={`/${g.slug}/`}>{g.name}</a></li>)}<li><a class="chip" href="/zazitkove-darky/">Na cene nezáleží</a></li></ul>
+					<ul class="chips">{budget.map((g) => <li><a class="chip" href={`/${g.slug}/`}>{g.name}</a></li>)}<li><a class="chip" href="/zazitkove-darceky/">Na cene nezáleží</a></li></ul>
 					<p>Každá ponuka je voucher s dlhou platnosťou — obdarovaný si termín vyberie sám.</p>
 				</div>
 				<ul class="cisla"><li><b>{cislo(v.total)}</b> {ponuk(v.total)}</li><li><b>{partners.length}</b> {partneri(partners.length)}</li><li><b>denne</b> nové ponuky</li></ul>
@@ -62,7 +62,7 @@ const heroImgs = v.top.filter((p) => p.image).slice(0, 2).map((p) => card(p.imag
 			</section>
 		)}
 		<section class="sek">
-			<div class="sh"><h2>Najpredávanejšie teraz</h2><a href="/zazitkove-darky/">Ďalšie tipy →</a></div>
+			<div class="sh"><h2>Najpredávanejšie teraz</h2><a href="/zazitkove-darceky/">Ďalšie tipy →</a></div>
 			<Mrizka items={v.top} t={v.tree} eager={false} ctx="home-top" />
 		</section>
 		<section class="sek">
@@ -78,7 +78,7 @@ const heroImgs = v.top.filter((p) => p.image).slice(0, 2).map((p) => card(p.imag
 			</section>
 		)}
 		<section class="sek">
-			<div class="sh"><h2>Tipy na darček</h2><a href="/zazitkove-darky/">Všetky darčeky →</a></div>
+			<div class="sh"><h2>Tipy na darček</h2><a href="/zazitkove-darceky/">Všetky darčeky →</a></div>
 			<DarkyMrizka items={v.gifts} />
 		</section>
 		{v.deals.length > 0 && (
@@ -119,7 +119,7 @@ const heroImgs = v.top.filter((p) => p.image).slice(0, 2).map((p) => card(p.imag
 			</section>
 		)}
 		<section class="sek">
-			<div class="pas"><div><h2>Neviete, čo darovať?</h2><p>Darčekový poukaz na zážitok poteší každého — obdarovaný si termín vyberie sám.</p></div><a class="btn" href="/darkovy-poukaz/">Vybrať poukaz <Ik n="sipka" /></a></div>
+			<div class="pas"><div><h2>Neviete, čo darovať?</h2><p>Darčekový poukaz na zážitok poteší každého — obdarovaný si termín vyberie sám.</p></div><a class="btn" href="/darcekovy-poukaz/">Vybrať poukaz <Ik n="sipka" /></a></div>
 		</section>
 		<section class="sek txt">
 			<h2>Zážitky, pobyty a darčeky</h2>

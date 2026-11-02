@@ -8,7 +8,7 @@ import { join } from 'node:path';
 
 const ROOT = new URL('../', import.meta.url).pathname;
 const CRED_DIR = '/home/kenny/ai/credentials';
-const FILES = ['.kouzelnydeda-credentials.env', '.cloudflare-credentials.env', '.kuponmat-sk-credentials.env'];
+const FILES = ['.kuzelnemiesta-credentials.env', '.cloudflare-credentials.env', '.kuponmat-sk-credentials.env'];
 const NON_SECRET = new Set(['INDEXNOW_KEY', 'CJ_CID', 'CJ_CAMPAIGN_ID', 'FTP_ROOT', 'OLD_FTP_HOST', 'OLD_FTP_USER', 'CEDOK_SFTP_HOST', 'CEDOK_SFTP_USER', 'CF_ACCOUNT_ID', 'CF_ZONE_ID', 'CF_EMAIL', 'CF_WORKERS_SUBDOMAIN', 'D1_STAGING_NAME', 'D1_STAGING_ID', 'R2_STAGING_BUCKET', 'ACCESS_TEAM_DOMAIN', 'WP_URL', 'WP_USER', 'FTP_HOST', 'FTP_PORT', 'FTP_USER', 'KM_IMPORT_URL', 'AFFIAL_SHEET_ID', 'EHUB_PUBLISHER_ID', 'CJ_WEBSITE_ID', 'CJ_WEBSITE_ID_SK', 'ESPOLUPRACE_NETWORK_ID', 'D1_PRODUCTION_ID']);
 
 const secrets: Array<{ name: string; value: string }> = [];
@@ -23,10 +23,10 @@ for (const f of FILES) {
   }
 }
 // feed URLs carry tokens (import Worker secrets) — they must never reach the web bundle
-const feedsPath = join(CRED_DIR, '.kouzelnydeda-feeds.json');
+const feedsPath = join(CRED_DIR, '.kuzelnemiesta-feeds.json');
 if (existsSync(feedsPath)) {
   const feeds = JSON.parse(readFileSync(feedsPath, 'utf8')) as Record<string, string>;
-  for (const [k, u] of Object.entries(feeds)) if (!k.startsWith('_') && u.includes('auth=')) secrets.push({ name: `.kouzelnydeda-feeds.json:${k}`, value: u.split('auth=')[1]! });
+  for (const [k, u] of Object.entries(feeds)) if (!k.startsWith('_') && u.includes('auth=')) secrets.push({ name: `.kuzelnemiesta-feeds.json:${k}`, value: u.split('auth=')[1]! });
 }
 const PATTERNS: Array<[string, RegExp]> = [
   ['private key', /-----BEGIN [A-Z ]*PRIVATE KEY-----/],

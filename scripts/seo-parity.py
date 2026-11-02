@@ -35,7 +35,7 @@ sk = creds('.kuponmat-sk-credentials.env')
 
 
 def fetch(path):
-    cmd = ['curl', '-s', '-m', '60', '-4', '-A', 'MalinaCron/1.0 (kouzelnydeda parity)', '-o', '-', '-w', '\n__STATUS__%{http_code} %{redirect_url}', base + path]
+    cmd = ['curl', '-s', '-m', '60', '-4', '-A', 'MalinaCron/1.0 (kuzelnemiesta parity)', '-o', '-', '-w', '\n__STATUS__%{http_code} %{redirect_url}', base + path]
     if base.endswith('workers.dev'):
         cmd[1:1] = ['-H', 'CF-Access-Client-Id: ' + sk['ACCESS_CLIENT_ID_STAGING'], '-H', 'CF-Access-Client-Secret: ' + sk['ACCESS_CLIENT_SECRET_STAGING']]
     r = subprocess.run(cmd, capture_output=True, text=True, errors='replace').stdout

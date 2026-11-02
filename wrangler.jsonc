@@ -1,35 +1,35 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   // Top level = local development only (miniflare, local D1).
-  "name": "kouzelnydeda-local",
+  "name": "kuzelnemiesta-local",
   "compatibility_date": "2026-10-01",
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": false,
   "preview_urls": false,
   "assets": { "binding": "ASSETS", "directory": "./dist/client", "html_handling": "auto-trailing-slash", "not_found_handling": "none" },
-  "d1_databases": [{ "binding": "DB", "database_name": "kouzelnydeda-local", "database_id": "00000000-0000-0000-0000-000000000000", "migrations_dir": "migrations" }],
+  "d1_databases": [{ "binding": "DB", "database_name": "kuzelnemiesta-local", "database_id": "00000000-0000-0000-0000-000000000000", "migrations_dir": "migrations" }],
   "ratelimits": [
-    { "name": "RL_GO", "namespace_id": "76001", "simple": { "limit": 40, "period": 60 } },
-    { "name": "RL_SEARCH", "namespace_id": "76003", "simple": { "limit": 90, "period": 60 } }
+    { "name": "RL_GO", "namespace_id": "77001", "simple": { "limit": 40, "period": 60 } },
+    { "name": "RL_SEARCH", "namespace_id": "77003", "simple": { "limit": 90, "period": 60 } }
   ],
-  "vars": { "ENVIRONMENT": "local", "SITE_URL": "http://localhost:8797", "ALLOWED_HOSTS": "localhost,127.0.0.1" },
+  "vars": { "ENVIRONMENT": "local", "SITE_URL": "http://localhost:8798", "ALLOWED_HOSTS": "localhost,127.0.0.1" },
   "observability": { "enabled": true, "head_sampling_rate": 1 },
 
   "env": {
     "staging": {
-      "name": "kouzelnydeda-staging",
-      // kouzelnydeda-staging.huy-kenny.workers.dev behind Cloudflare Access (whole host); the Worker re-checks the JWT.
+      "name": "kuzelnemiesta-staging",
+      // kuzelnemiesta-staging.huy-kenny.workers.dev behind Cloudflare Access (whole host); the Worker re-checks the JWT.
       "workers_dev": true,
       "preview_urls": false,
-      "d1_databases": [{ "binding": "DB", "database_name": "kouzelnydeda-staging", "database_id": "f8ddc3d1-1107-4581-92d3-4c15ceb4da85", "migrations_dir": "migrations" }],
+      "d1_databases": [{ "binding": "DB", "database_name": "kuzelnemiesta-staging", "database_id": "a0b2c9da-760d-41bf-a52e-49823732cf66", "migrations_dir": "migrations" }],
       "ratelimits": [
-        { "name": "RL_GO", "namespace_id": "76011", "simple": { "limit": 40, "period": 60 } },
-        { "name": "RL_SEARCH", "namespace_id": "76013", "simple": { "limit": 90, "period": 60 } }
+        { "name": "RL_GO", "namespace_id": "77011", "simple": { "limit": 40, "period": 60 } },
+        { "name": "RL_SEARCH", "namespace_id": "77013", "simple": { "limit": 90, "period": 60 } }
       ],
       "vars": {
         "ENVIRONMENT": "staging",
-        "SITE_URL": "https://kouzelnydeda-staging.huy-kenny.workers.dev",
-        "ALLOWED_HOSTS": "kouzelnydeda-staging.huy-kenny.workers.dev",
+        "SITE_URL": "https://kuzelnemiesta-staging.huy-kenny.workers.dev",
+        "ALLOWED_HOSTS": "kuzelnemiesta-staging.huy-kenny.workers.dev",
         "REQUIRE_ACCESS_EVERYWHERE": "1",
         "ANALYTICS_ENABLED": "0",
         "ACCESS_TEAM_DOMAIN": "proud-pine-5d46.cloudflareaccess.com"
@@ -37,19 +37,19 @@
       // secrets: ACCESS_AUD, IP_HASH_SALT
     },
     "production": {
-      "name": "kouzelnydeda",
-      // Routes kouzelnydeda.cz/* + www.kouzelnydeda.cz/* are added at the cutover via the CF API (deleting them = instant rollback).
+      "name": "kuzelnemiesta",
+      // Routes kuzelnemiesta.sk/* + www.kuzelnemiesta.sk/* are added at the cutover via the CF API (deleting them = instant rollback).
       "workers_dev": true,
       "preview_urls": false,
-      "d1_databases": [{ "binding": "DB", "database_name": "kouzelnydeda-production", "database_id": "87b9cf42-57ee-4800-afa2-9134b8f857eb", "migrations_dir": "migrations" }],
+      "d1_databases": [{ "binding": "DB", "database_name": "kuzelnemiesta-production", "database_id": "acc5cf80-fa65-4c97-bc44-2ad7d91cf4d9", "migrations_dir": "migrations" }],
       "ratelimits": [
-        { "name": "RL_GO", "namespace_id": "76021", "simple": { "limit": 40, "period": 60 } },
-        { "name": "RL_SEARCH", "namespace_id": "76023", "simple": { "limit": 90, "period": 60 } }
+        { "name": "RL_GO", "namespace_id": "77021", "simple": { "limit": 40, "period": 60 } },
+        { "name": "RL_SEARCH", "namespace_id": "77023", "simple": { "limit": 90, "period": 60 } }
       ],
       "vars": {
         "ENVIRONMENT": "production",
-        "SITE_URL": "https://kouzelnydeda.cz",
-        "ALLOWED_HOSTS": "kouzelnydeda.cz,www.kouzelnydeda.cz,kouzelnydeda.huy-kenny.workers.dev",
+        "SITE_URL": "https://kuzelnemiesta.sk",
+        "ALLOWED_HOSTS": "kuzelnemiesta.sk,www.kuzelnemiesta.sk,kuzelnemiesta.huy-kenny.workers.dev",
         "REQUIRE_ACCESS_EVERYWHERE": "0",
         "ANALYTICS_ENABLED": "1"
       }

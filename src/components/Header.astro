@@ -28,7 +28,7 @@ const allOffers = (n: number) => (n >= 2 && n <= 4 ? `Všetky ${n} ponuky` : n =
 </ul></div>
 <header class="hd">
 	<div class="w hd__in">
-		<a class="logo" href="/" aria-label={`${SITE_NAME} – úvod`}><img src="/a/logo-264.webp" srcset="/a/logo-264.webp 1x, /a/logo-528.webp 2x" alt={SITE_NAME} width="148" height="48" /></a>
+		<a class="logo" href="/" aria-label={`${SITE_NAME} – úvod`}><img src="/a/logo-264.webp" srcset="/a/logo-264.webp 1x, /a/logo-528.webp 2x" alt={SITE_NAME} width="204" height="48" /></a>
 		<div class="hl">
 			<form action="/" method="get" role="search">
 				<Ik n="hledat" />
@@ -39,17 +39,17 @@ const allOffers = (n: number) => (n >= 2 && n <= 4 ? `Všetky ${n} ponuky` : n =
 			</form>
 			<div class="hl__s" role="listbox" hidden></div>
 		</div>
-		<a class="hd__dar" href="/zazitkove-darky/"><Ik n="darek" /><span>Tipy na darček</span></a>
+		<a class="hd__dar" href="/zazitkove-darceky/"><Ik n="darek" /><span>Tipy na darček</span></a>
 		<details class="nav">
 			<summary><Ik n="menu" /> Menu</summary>
 			<div class="nav__p">
-				<div class="nav__x"><img src="/a/logo-264.webp" alt={SITE_NAME} width="132" height="43" /><button type="button" data-zavrit aria-label="Zavrieť menu"><Ik n="zavrit" /></button></div>
+				<div class="nav__x"><img src="/a/logo-264.webp" alt={SITE_NAME} width="183" height="43" /><button type="button" data-zavrit aria-label="Zavrieť menu"><Ik n="zavrit" /></button></div>
 				<ul>
 					{sections.map((s) => (
 						<li><a class="nps" href={`/${s.slug}/`}><Ik n={s.icon} />{s.name}</a>
 							<ul>{s.groups.flatMap((g) => g.ks).slice(0, 10).map((k) => <li><a href={`/${k.slug}/`}>{k.name}</a></li>)}</ul></li>
 					))}
-					<li><a class="nps" href="/zazitkove-darky/"><Ik n="darek" />Darčeky</a>
+					<li><a class="nps" href="/zazitkove-darceky/"><Ik n="darek" />Darčeky</a>
 						<ul>{gifts.map((g) => <li><a href={`/${g.slug}/`}>{g.name}</a></li>)}</ul></li>
 					<li><a class="nps" href="/blog/"><Ik n="jazyk" />Blog a tipy</a></li>
 				</ul>
@@ -72,11 +72,11 @@ const allOffers = (n: number) => (n >= 2 && n <= 4 ? `Všetky ${n} ponuky` : n =
 				</li>
 			))}
 			<li>
-				<a class="sn" href="/zazitkove-darky/" aria-current={path === '/zazitkove-darky/' ? 'page' : undefined}><Ik n="darek" />Darčeky</a>
+				<a class="sn" href="/zazitkove-darceky/" aria-current={path === '/zazitkove-darceky/' ? 'page' : undefined}><Ik n="darek" />Darčeky</a>
 				<div class="mega">
-					<div class="mega__g"><h3>Pre koho</h3><ul>{gifts.filter((g) => g.slug.startsWith('darek-pro')).map((g) => <li><a href={`/${g.slug}/`}><Ik n={g.icon} />{g.name}</a></li>)}</ul></div>
-					<div class="mega__g"><h3>Príležitosť a rozpočet</h3><ul>{gifts.filter((g) => !g.slug.startsWith('darek-pro')).map((g) => <li><a href={`/${g.slug}/`}><Ik n={g.icon} />{g.name}</a></li>)}</ul></div>
-					<div class="mega__side"><img src="/a/il/kouzelnik-darek.webp" alt="" width="84" height="84" loading="lazy" /><b>Neviete, čo darovať?</b><a class="btn btn--c" href="/zazitkove-darky/">Všetky tipy na darček</a></div>
+					<div class="mega__g"><h3>Pre koho</h3><ul>{gifts.filter((g) => g.slug.startsWith('darcek-pre')).map((g) => <li><a href={`/${g.slug}/`}><Ik n={g.icon} />{g.name}</a></li>)}</ul></div>
+					<div class="mega__g"><h3>Príležitosť a rozpočet</h3><ul>{gifts.filter((g) => !g.slug.startsWith('darcek-pre')).map((g) => <li><a href={`/${g.slug}/`}><Ik n={g.icon} />{g.name}</a></li>)}</ul></div>
+					<div class="mega__side"><img src="/a/il/kouzelnik-darek.webp" alt="" width="84" height="84" loading="lazy" /><b>Neviete, čo darovať?</b><a class="btn btn--c" href="/zazitkove-darceky/">Všetky tipy na darček</a></div>
 				</div>
 			</li>
 			<li><a class="sn" href="/blog/" aria-current={path.startsWith('/blog/') ? 'page' : undefined}><Ik n="jazyk" />Blog</a></li>
