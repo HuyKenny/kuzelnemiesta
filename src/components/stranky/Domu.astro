@@ -9,12 +9,12 @@ import Ik from '../Ik.astro';
 import { cislo, datum, decode, excerpt, ponuk } from '../../lib/format';
 import { SITE_NAME } from '../../lib/site';
 import { card, crop } from '../../lib/img';
-import type { HomeView } from '../../lib/views';
+import { GIFTS, type HomeView } from '../../lib/views';
 import { partner } from '../../lib/partners';
 interface Props { v: HomeView }
 const { v } = Astro.props;
-const forWhom = v.gifts.filter((g) => ['darcek-pre-zenu', 'darcek-pre-muza', 'darcek-pre-par', 'darcek-pre-deti', 'darcek-pre-rodicov', 'darcek-k-narodeninam'].includes(g.slug));
-const budget = v.gifts.filter((g) => g.slug.startsWith('darceky-do-'));
+const forWhom = GIFTS.filter((g) => ['darcek-pre-zenu', 'darcek-pre-muza', 'darcek-pre-par', 'darcek-pre-deti', 'darcek-pre-rodicov', 'darcek-k-narodeninam'].includes(g.slug));
+const budget = GIFTS.filter((g) => g.slug.startsWith('darceky-do-'));
 // partners with live offers, the biggest first (strip, stats)
 const partners = [...v.tree.stores.values()].filter((s) => s.count > 0).sort((a, b) => b.count - a.count);
 /** "2 overení partneri", "5 overených partnerov" */
@@ -26,7 +26,7 @@ const heroImgs = v.top.filter((p) => p.image).slice(0, 2).map((p) => card(p.imag
 		<div class="w hero__in">
 			<div>
 				<h1>Darujte zážitok, na ktorý sa <em>nezabúda</em></h1>
-				<p class="hero__lead">Pobyty, wellness, adrenalín, degustácie aj kurzy s úsporou až 70 % od overených partnerov Zlavomat.sk a Adrop.sk. Vyberiete si u nás, kúpite u partnera za rovnakú cenu.</p>
+				<p class="hero__lead">Pobyty, wellness, adrenalín, degustácie aj kurzy s úsporou až 70 % od overených partnerov Zľavomat.sk a Adrop.sk. Vyberiete si u nás, kúpite u partnera za rovnakú cenu.</p>
 				<div class="pruvodce">
 					<img class="pruvodce__k" src="/a/kouzelnik-darek-256.webp" alt="" width="110" height="110" />
 					<h2><Ik n="darek" />Komu chcete urobiť radosť?</h2>
@@ -91,7 +91,7 @@ const heroImgs = v.top.filter((p) => p.image).slice(0, 2).map((p) => card(p.imag
 			<div class="sh"><h2>Ako to funguje</h2></div>
 			<ol class="jak">
 				<li><Ik n="hledat" /><b>Vyberiete si zážitok</b><span>Pobyty, zážitky a služby za aktuálne ceny na jednom mieste.</span></li>
-				<li><Ik n="stit" /><b>Kúpite u partnera</b><span>Nákup dokončíte bezpečne u partnera – na Zlavomat.sk alebo Adrop.sk. Za rovnakú cenu.</span></li>
+				<li><Ik n="stit" /><b>Kúpite u partnera</b><span>Nákup dokončíte bezpečne u partnera – na Zľavomat.sk alebo Adrop.sk. Za rovnakú cenu.</span></li>
 				<li><Ik n="mail" /><b>Voucher príde e-mailom</b><span>Vytlačíte ho, darujete alebo si rovno zarezervujete termín.</span></li>
 			</ol>
 		</section>
@@ -123,7 +123,7 @@ const heroImgs = v.top.filter((p) => p.image).slice(0, 2).map((p) => card(p.imag
 		</section>
 		<section class="sek txt">
 			<h2>Zážitky, pobyty a darčeky</h2>
-			<p>{SITE_NAME} je vyhľadávač zvýhodnených ponúk na zážitky, pobyty a wellness. Nájdete tu wellness pobyty pre dvoch, glamping a tiny housy, kúpele, masáže a kozmetiku, jazdy v športových autách, únikové hry, degustačné menu aj kurzy varenia. Ponuky preberáme priamo od partnerov Zlavomat.sk a Adrop.sk a aktualizujeme ich niekoľkokrát denne, takže vidíte aktuálne ceny aj výšku úspory. Väčšinu z nich kúpite ako darčekový voucher — ideálny darček k narodeninám, na Vianoce alebo len tak.</p>
+			<p>{SITE_NAME} je vyhľadávač zvýhodnených ponúk na zážitky, pobyty a wellness. Nájdete tu wellness pobyty pre dvoch, glamping a tiny housy, kúpele, masáže a kozmetiku, jazdy v športových autách, únikové hry, degustačné menu aj kurzy varenia. Ponuky preberáme priamo od partnerov Zľavomat.sk a Adrop.sk a aktualizujeme ich niekoľkokrát denne, takže vidíte aktuálne ceny aj výšku úspory. Väčšinu z nich kúpite ako darčekový voucher — ideálny darček k narodeninám, na Vianoce alebo len tak.</p>
 		</section>
 	</div>
 </Base>

@@ -1,6 +1,6 @@
 // Partners: colour, name and what the detail page promises for each of them. The perks are facts from the partner's own
 // pages (taken over from the Czech sister site on 2. 11. 2026, Adrop.sk = same terms as Adrop.cz) — the offer box lists
-// them under the price, the CTA names the outcome, not the shop. Only Zlavomat.sk and Adrop.sk feed this site.
+// them under the price, the CTA names the outcome, not the shop. Only Zľavomat.sk and Adrop.sk feed this site.
 export interface Partner {
   name: string; color: string;
   /** what the buyer gets (box under the CTA) */
@@ -18,7 +18,7 @@ const P: Record<string, Partner> = {
   'zlavomat-sk': {
     name: 'Zľavomat.sk', color: '#E2001A', verb: 'Objednať voucher',
     perks: ['Voucher príde hneď e-mailom', 'Hodí sa ako darček – termín si vyberie obdarovaný', 'Platnosť voucheru vidíte pri každej ponuke'],
-    trust: 'Platba aj voucher cez Zlavomat.sk · cena je rovnaká ako u partnera',
+    trust: 'Platba aj voucher cez Zľavomat.sk · cena je rovnaká ako u partnera',
   },
   'adrop-sk': {
     name: 'Adrop.sk', color: '#FF6A00', verb: 'Objednať poukaz',
