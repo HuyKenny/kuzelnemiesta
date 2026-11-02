@@ -123,6 +123,22 @@ const GEO: Array<[RegExp, string]> = [
   [/\b(bulharsko|varna|carevo|primorsko|recko|kreta|kos|zakynthos|kefalonia|acharavi|paralia|hvd|hotel-[a-z]+|egypt|marsa-alam|tunisko\w*|djerba|turecko|spanelsko|katalansko|portugalsko|cerna-hora|albanie|francie|belgie|dansko|nizozemi|norsko|svycarsko|island|agia-napa|kypr|armenie|gruzie|indie|jordansko|oman|maroko|thajsko|vietnam|filipiny|indonesie|japonsko|kuba|mexiko|brazilie|peru|kostarika|tanzanie|uzbekistan|sri-lanka|spojene-staty|rumunsko|la-palma|male|sol-guadalupe|condesa|villa-ilex|koupani-v-mori|plavky-u-more)\b/, 'dovolenka-pri-mori'],
 ];
 const THEME: Array<[RegExp, string]> = [
+  // Slovak offer slugs of the old WordPress catalogue (audit 3. 11. 2026: 78 dead offer URLs had no match → now mapped)
+  [/hurricane-factory|veterny-tunel|indoor-skydiving/, 'veterny-tunel-a-volny-pad'], [/lanoland|korun-stromov|lanovy-park/, 'lanove-centra'],
+  [/prelet|lietadl|vyhliadkov/, 'vyhliadkove-lety'], [/strelec|strelnic/, 'strelba-na-strelnici'],
+  [/lymfodrenaz|lymfatick/, 'lymfodrenaz'],
+  [/chudnut|tuk-nema|zostihl|formovan|tvarovan|body-scu?l?pt|hifem|emslim|ems-trening|kryo|lipolaser|plochebrucho|ploche-brucho/, 'zostihlujuce-procedury'],
+  [/epilac|laser(?!-?game|-?tag)|obocia|obocie|lash|mihalnic|tetovan|\bpmu\b|nastrek|solari|plazm|radiofrekv|salmon|esteti|beauty|pier\b|bradavic|omladen|lifting|skraslujuc|dotyky-krasy/, 'kozmeticke-sluzby'],
+  [/vysetren|diagnostik|fyziodiagnost|optik|dioptri|refrakci|proktolog|inkontinen|potenia|znamienok|plodu|ajurved|ayurved|moxovan|cinske-terap/, 'starostlivost-o-zdravie'],
+  [/pilates|trening|padel|bedminton|racket|tenis|fitness|horske-vystupy|stitoch/, 'sport-a-pohyb'],
+  [/fotograf|fotky|lightroom|fotoate/, 'fotenie'],
+  [/zoo|zookontakt|krokodil|zvieratk/, 'za-zvieratkami'],
+  [/expozici|galeri|multium|festival|vstupenky|lumina/, 'kultura-a-vylety'],
+  [/espresso|cookies|latte|waffle|torta|torty|cukrar|kaviaren/, 'kaviarne-a-torty'],
+  [/tapas|rebierk|koleno|pub\b|gulicky|bomballs|bistro|steak/, 'otvorene-vouchery-do-restauracii'],
+  [/uvolnenie-od-hlavy|telove-ritualy|kralovsky-oddych|andulacn/, 'masaze'],
+  [/villa-|vila-|izby-a-studia|apartman/, 'pobyty'],
+  [/termaln\w*-kupalisk|kupalisko/, 'termalne-kupele'],
   [/v-oblacich|dinner-in-the-sky/, 'vecera-v-oblakoch'], [/preziti|survival/, 'kurzy-prezitia'], [/barist|latte-art/, 'baristicke-kurzy'], [/vrtulnik/, 'let-vrtulnikom'], [/letecky-simulator|boeing|airbus/, 'letecke-simulatory'],
   [/bungee|bunge-jump/, 'bungee-jumping'], [/skola-smyku|smyk/, 'skola-smyku'], [/l-39|albatros|stihack/, 'let-stihackou'], [/rybar|rybol/, 'rybolov'], [/rozluck/, 'rozlucka-so-slobodou'], [/romanticka-vecere|vecere-pro-dva/, 'romanticka-vecera'],
   [/ferrari/, 'jazda-vo-ferrari'], [/lamborghini|lambo/, 'jazda-v-lamborghini'], [/porsche/, 'jazda-v-porsche'], [/mustang/, 'jazda-vo-forde-mustang'], [/dodge|challenger/, 'jazda-v-dodge'], [/tatra|tatrou/, 'jazda-tatrou'],
