@@ -35,11 +35,15 @@ export const EXPIRED_KEEP_DAYS = 30;
 /** Operator (same as the legal pages). */
 export const OPERATOR = { name: 'Ha Duy Huy', ico: '07876823', ds: 'dxmsrdt', street: 'Bartáková 36', zip: '140 00', city: 'Praha', email: 'info@kuzelnemiesta.sk' };
 
+/** Founder (Kenny's personal site huy.cz is the Person entity; same node on all his projects). */
+export const FOUNDER = { '@type': 'Person', '@id': 'https://huy.cz/#kenny', name: 'Ha Duy Huy', alternateName: 'Kenny', url: 'https://huy.cz/', jobTitle: 'SEO konzultant' };
+
 export function orgGraph(searchAction = false): unknown[] {
   return [
     {
       '@type': 'Organization', '@id': BASE + '/#organization', name: SITE_NAME, url: BASE,
       logo: { '@type': 'ImageObject', '@id': BASE + '/#logo', url: LOGO_URL, contentUrl: LOGO_URL, caption: SITE_NAME, inLanguage: LANG, width: '715', height: '168' },
+      founder: FOUNDER,
     },
     {
       '@type': 'WebSite', '@id': BASE + '/#website', url: BASE, name: SITE_NAME, description: SITE_DESC, publisher: { '@id': BASE + '/#organization' }, inLanguage: LANG,
