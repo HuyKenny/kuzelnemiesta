@@ -19,7 +19,7 @@ const CITIES: Array<[string, string]> = [['bratislava', 'Bratislava'], ['kosice'
 		<div><h2>Darčeky</h2><ul>{TOP_GIFTS.slice(0, 8).map((g) => <li><a href={`/${g.slug}/`}>{g.h1.split(':')[0]}</a></li>)}</ul></div>
 		<div><h2>Mestá</h2><ul>{CITIES.map(([s, n]) => <li><a href={`/lokalita/${s}/`}>{n}</a></li>)}</ul></div>
 		<div><h2>Informácie</h2><ul>
-			<li><a href="/o-nas/">O nás</a></li><li><a href="/blog/">Blog</a></li><li><a href="/vseobecne-podmienky/">Všeobecné podmienky</a></li>
+			<li><a href="/o-nas/">O nás</a></li><li><a href="/blog/">Blog</a></li><li><a href="https://kuponmat.sk/">Zľavové kódy e-shopov</a></li><li><a href="/vseobecne-podmienky/">Všeobecné podmienky</a></li>
 			<li><a href="/spracovani-osobnych-udajov/">Spracovanie osobných údajov</a></li><li><a href="/spracovani-osobnych-udajov/#cookies">Cookies</a></li>
 			<li><a href="#" data-kd-consent-open>Nastavenia cookies</a></li>
 		</ul></div>
