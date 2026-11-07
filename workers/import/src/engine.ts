@@ -275,10 +275,13 @@ export async function runFeed(env: Env, f: FeedDef, opts: { force?: boolean; ite
 /** Offer counts of categories, cities and stores (drive titles, H2, tiles and the noindex of thin listings). */
 export async function recount(db: D1Database) {
   await db.batch([
+    // only rows whose count changes are written (D1 bills every row an UPDATE touches)
     db.prepare(`UPDATE categories SET count_total = (SELECT COUNT(*) FROM cat_products x WHERE x.cat_id = categories.id),
-        count_direct = (SELECT COUNT(*) FROM cat_products x WHERE x.cat_id = categories.id AND x.direct = 1)`),
-    db.prepare('UPDATE lokality SET count = (SELECT COUNT(*) FROM products p WHERE p.lok_id = lokality.id AND p.active = 1)'),
-    db.prepare('UPDATE stores SET count = (SELECT COUNT(*) FROM products p WHERE p.store_id = stores.id AND p.active = 1)'),
+        count_direct = (SELECT COUNT(*) FROM cat_products x WHERE x.cat_id = categories.id AND x.direct = 1)
+      WHERE count_total IS NOT (SELECT COUNT(*) FROM cat_products x WHERE x.cat_id = categories.id)
+         OR count_direct IS NOT (SELECT COUNT(*) FROM cat_products x WHERE x.cat_id = categories.id AND x.direct = 1)`),
+    db.prepare('UPDATE lokality SET count = (SELECT COUNT(*) FROM products p WHERE p.lok_id = lokality.id AND p.active = 1) WHERE count IS NOT (SELECT COUNT(*) FROM products p WHERE p.lok_id = lokality.id AND p.active = 1)'),
+    db.prepare('UPDATE stores SET count = (SELECT COUNT(*) FROM products p WHERE p.store_id = stores.id AND p.active = 1) WHERE count IS NOT (SELECT COUNT(*) FROM products p WHERE p.store_id = stores.id AND p.active = 1)'),
   ]);
 }
 
@@ -310,12 +313,13 @@ export async function remix(db: D1Database) {
   // by how many better offers of the same partner there are: key = k / (1 + 0.1 · n). No photo → key halved.
   await db.batch([
     db.prepare(`UPDATE products SET mix = CAST(r.k * 1000000 AS INTEGER) FROM (SELECT t.id AS id, t.k0 / (1 + 0.1 * ROW_NUMBER() OVER (PARTITION BY t.st ORDER BY t.k0 DESC)) AS k FROM
-        (SELECT p.id AS id, p.store_id AS st, p.rank_score * (CASE WHEN p.image <> '' THEN 1.0 ELSE 0.5 END) AS k0 FROM products p WHERE p.active = 1) t) r WHERE products.id = r.id`),
+        (SELECT p.id AS id, p.store_id AS st, p.rank_score * (CASE WHEN p.image <> '' THEN 1.0 ELSE 0.5 END) AS k0 FROM products p WHERE p.active = 1) t) r
+        WHERE products.id = r.id AND products.mix IS NOT CAST(r.k * 1000000 AS INTEGER)`),
     db.prepare(`UPDATE cat_products SET mix = CAST(r.k * 1000000 AS INTEGER) FROM (SELECT t.c AS c, t.t AS t, t.i AS i, t.k0 / (1 + 0.1 * ROW_NUMBER() OVER (PARTITION BY t.c, t.st ORDER BY t.k0 DESC)) AS k FROM
         (SELECT x.cat_id AS c, x.created_at AS t, x.product_id AS i, p.store_id AS st,
            (0.5 * x.rank + 0.5 * PERCENT_RANK() OVER (PARTITION BY x.cat_id, p.store_id ORDER BY x.rank)) * (CASE WHEN p.image <> '' THEN 1.0 ELSE 0.5 END) AS k0
          FROM cat_products x JOIN products p ON p.id = x.product_id) t) r
-        WHERE cat_products.cat_id = r.c AND cat_products.created_at = r.t AND cat_products.product_id = r.i`),
+        WHERE cat_products.cat_id = r.c AND cat_products.created_at = r.t AND cat_products.product_id = r.i AND cat_products.mix IS NOT CAST(r.k * 1000000 AS INTEGER)`),
   ]);
 }
 
@@ -345,27 +349,29 @@ export async function computeRank(db: D1Database) {
   await addImpressions(db);
   const since = new Date(Date.now() - 30 * 86400_000).toISOString();
   await db.batch([
-    db.prepare(`UPDATE products SET
-      r_sales = 0.5 * (CASE WHEN rating > 0 THEN ((rating * reviews + 4.3 * 20) / (reviews + 20)) / 5.0 ELSE 0.5 END)
+    // UPDATE … FROM with a change check: only products whose score moves are written (D1 bills every touched row)
+    db.prepare(`UPDATE products SET r_sales = v.r_sales, r_search = v.r_search, r_qual = v.r_qual, r_new = v.r_new
+      FROM (SELECT id,
+          0.5 * (CASE WHEN rating > 0 THEN ((rating * reviews + 4.3 * 20) / (reviews + 20)) / 5.0 ELSE 0.5 END)
               + 0.5 * (CASE WHEN CAST(json_extract(info, '$.cu') AS REAL) > 0 THEN CAST(json_extract(info, '$.cu') AS REAL) / (CAST(json_extract(info, '$.cu') AS REAL) + 300.0) ELSE 0.4 END)
-              + MIN(0.25, conv_30d * 0.05),
-      r_search = search_impr * 1.0 / (search_impr + 50.0),
-      r_qual = 0.4 * (image <> '') + 0.2 * (json_array_length(images) >= 2) + 0.2 * (length(COALESCE(json_extract(info, '$.d'), '')) > 150) + 0.2 * (rating > 0),
-      r_new = MAX(CASE WHEN created_at > datetime('now', '-7 days') THEN 1.0 ELSE 0.0 END, CASE WHEN price BETWEEN 6 AND 250 THEN 0.7 ELSE 0.4 END)
-      WHERE active = 1`),
-    db.prepare(`UPDATE products SET r_click = 0.5 * (1 - w.w) + w.w * MIN(1.0, ((w.k + 2.0) / (w.e + 100.0)) / 0.08)
-      FROM (SELECT p.id AS id,
+              + MIN(0.25, conv_30d * 0.05) AS r_sales,
+          search_impr * 1.0 / (search_impr + 50.0) AS r_search,
+          0.4 * (image <> '') + 0.2 * (json_array_length(images) >= 2) + 0.2 * (length(COALESCE(json_extract(info, '$.d'), '')) > 150) + 0.2 * (rating > 0) AS r_qual,
+          MAX(CASE WHEN created_at > datetime('now', '-7 days') THEN 1.0 ELSE 0.0 END, CASE WHEN price BETWEEN 6 AND 250 THEN 0.7 ELSE 0.4 END) AS r_new
+        FROM products WHERE active = 1) v
+      WHERE products.id = v.id AND (products.r_sales IS NOT v.r_sales OR products.r_search IS NOT v.r_search OR products.r_qual IS NOT v.r_qual OR products.r_new IS NOT v.r_new)`),
+    db.prepare(`UPDATE products SET r_click = w.v FROM (SELECT id, 0.5 * (1 - w) + w * MIN(1.0, ((k + 2.0) / (e + 100.0)) / 0.08) AS v FROM (SELECT p.id AS id,
               COALESCE((SELECT SUM(n) FROM impr_daily d WHERE d.product_id = p.id AND d.day > date('now', '-30 days')), 0) AS imp,
               COALESCE((SELECT SUM(n * 1.0 / (1 + pos / 6.0)) FROM impr_daily d WHERE d.product_id = p.id AND d.day > date('now', '-30 days')), 0) AS e,
               (SELECT COUNT(*) FROM clicks c WHERE c.product_id = p.id AND c.clicked_at > ?) AS k,
               MIN(1.0, MAX(0.0, ((SELECT COALESCE(SUM(n), 0) FROM impr_daily d WHERE d.product_id = p.id AND d.day > date('now', '-30 days')) - 30) / 270.0)) AS w
-            FROM products p WHERE p.active = 1) w WHERE products.id = w.id`).bind(since),
-    db.prepare('UPDATE products SET rank_score = 0.35 * r_sales + 0.30 * r_click + 0.15 * r_search + 0.10 * r_qual + 0.10 * r_new WHERE active = 1'),
+            FROM products p WHERE p.active = 1)) w WHERE products.id = w.id AND products.r_click IS NOT w.v`).bind(since),
+    db.prepare('UPDATE products SET rank_score = 0.35 * r_sales + 0.30 * r_click + 0.15 * r_search + 0.10 * r_qual + 0.10 * r_new WHERE active = 1 AND rank_score IS NOT (0.35 * r_sales + 0.30 * r_click + 0.15 * r_search + 0.10 * r_qual + 0.10 * r_new)'),
     db.prepare(`UPDATE cat_products SET rank = r.v FROM (SELECT x.cat_id AS c, x.created_at AS t, x.product_id AS i,
         0.35 * PERCENT_RANK() OVER (PARTITION BY x.cat_id ORDER BY p.r_sales) + 0.30 * PERCENT_RANK() OVER (PARTITION BY x.cat_id ORDER BY p.r_click)
         + 0.15 * PERCENT_RANK() OVER (PARTITION BY x.cat_id ORDER BY p.r_search) + 0.10 * PERCENT_RANK() OVER (PARTITION BY x.cat_id ORDER BY p.r_qual)
         + 0.10 * PERCENT_RANK() OVER (PARTITION BY x.cat_id ORDER BY p.r_new) AS v
-        FROM cat_products x JOIN products p ON p.id = x.product_id) r WHERE cat_products.cat_id = r.c AND cat_products.created_at = r.t AND cat_products.product_id = r.i`),
+        FROM cat_products x JOIN products p ON p.id = x.product_id) r WHERE cat_products.cat_id = r.c AND cat_products.created_at = r.t AND cat_products.product_id = r.i AND cat_products.rank IS NOT r.v`),
   ]);
 }
 
@@ -378,9 +384,11 @@ export async function finalizeDay(env: Env, force = false): Promise<Record<strin
   const since = new Date(Date.now() - 30 * 86400_000).toISOString();
   // popularity = real clicks of the last 30 days (×50) + how many people bought it at the partner (capped)
   await db.batch([
-    db.prepare(`UPDATE products SET pop = COALESCE((SELECT COUNT(*) FROM clicks c WHERE c.product_id = products.id AND c.clicked_at > ?), 0) * 50
-        + MIN(COALESCE(CAST(json_extract(info, '$.cu') AS INTEGER), 0), 5000) / 10 + COALESCE(CAST(json_extract(info, '$.pr') AS INTEGER), 0) WHERE active = 1`).bind(since),
-    db.prepare('UPDATE cat_products SET pop = (SELECT p.pop FROM products p WHERE p.id = cat_products.product_id)'),
+    // every UPDATE skips rows whose value does not change: D1 bills each row an UPDATE touches (Kenny 3. 11.: stay in the plan)
+    db.prepare(`UPDATE products SET pop = COALESCE((SELECT COUNT(*) FROM clicks c WHERE c.product_id = products.id AND c.clicked_at > ?1), 0) * 50
+        + MIN(COALESCE(CAST(json_extract(info, '$.cu') AS INTEGER), 0), 5000) / 10 + COALESCE(CAST(json_extract(info, '$.pr') AS INTEGER), 0) WHERE active = 1 AND pop IS NOT (COALESCE((SELECT COUNT(*) FROM clicks c WHERE c.product_id = products.id AND c.clicked_at > ?1), 0) * 50
+        + MIN(COALESCE(CAST(json_extract(info, '$.cu') AS INTEGER), 0), 5000) / 10 + COALESCE(CAST(json_extract(info, '$.pr') AS INTEGER), 0))`).bind(since),
+    db.prepare('UPDATE cat_products SET pop = (SELECT p.pop FROM products p WHERE p.id = cat_products.product_id) WHERE pop IS NOT (SELECT p.pop FROM products p WHERE p.id = cat_products.product_id)'),
     // click log retention promised in the privacy policy (/ochrana-osobnich-udaju/): 24 months
     db.prepare("DELETE FROM clicks WHERE clicked_at < datetime('now', '-24 months')"),
   ]);
