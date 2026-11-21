@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Featured images of blog posts from Pexels → public/wp-content/uploads/2026/11/ (1200×675 + 768×432 webp) + D1 posts.image*.
 
-    python3 scripts/pexels-clanky.py <staging|production> [--dry]     (production needs KD_PRODUCTION_APPROVED=yes)
+    python3 scripts/pexels-clanky.py <staging|production> [--dry] [--queries FILE]     (production needs KD_PRODUCTION_APPROVED=yes)
+--queries FILE: JSON list of articles; their slug → image_query extend the built-in table below.
 Key: PEXELS_API_KEY in credentials/.alkoholicky-credentials.env. The photographer is stored in image_alt's sibling (credit in alt text).
 """
 import io, json, os, subprocess, sys, tempfile, urllib.parse, urllib.request
@@ -33,6 +34,8 @@ Q = {
  'zazitkove-darceky-darcekove-poukazy': 'gift box experience present', 'wellness-pobyty-pre-dvoch-ako-vybrat': 'couple spa wellness',
  'albansko-europsky-karibik-za-polovicne-ceny-kam-ist-a-kde-sa-ubytovat': 'albania beach turquoise sea',
 }
+if '--queries' in sys.argv:
+    Q.update({a['slug']: a['image_query'] for a in json.load(open(sys.argv[sys.argv.index('--queries') + 1])) if a.get('image_query')})
 key = C['PEXELS_API_KEY']
 posts = json.loads(wr(['d1', 'execute', 'DB', '--env', env, '--remote', '--json', '--command', "SELECT id, slug, title FROM posts WHERE type='post' AND status='publish' AND image = ''"]))[0]['results']
 out = ROOT / 'public/wp-content/uploads/2026/11'; out.mkdir(parents=True, exist_ok=True)
