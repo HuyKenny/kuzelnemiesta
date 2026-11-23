@@ -137,12 +137,32 @@ class Server:
         self.stop()
 
 
-def crawl(limit):
+def extra_paths(db, queries):
+    """site.json crawl.extra_paths_sql: SQL over the local D1 file returning paths (1st column) to crawl besides the sitemap,
+    e.g. offers that expired < 30 days ago: the SSR still rendered them (200), older ones 301 to their category.
+    Without this the frozen site answered 404 for them (audit 24. 11. 2026: ~300 GSC URLs on kouzelnydeda/kuzelnemiesta)."""
+    import sqlite3
+    out = []
+    con = sqlite3.connect(f'file:{db}?mode=ro', uri=True)
+    try:
+        for q in queries:
+            out += [r[0] for r in con.execute(q) if r and isinstance(r[0], str) and r[0].startswith('/')]
+    finally:
+        con.close()
+    f = WORK / 'extra-paths.txt'
+    f.write_text('\n'.join(dict.fromkeys(out)) + '\n', encoding='utf-8')
+    log(f'extra paths: {len(out)}')
+    return f
+
+
+def crawl(limit, db=None):
     if OUT.exists():
         shutil.rmtree(OUT)
     c = SITE.get('crawl', {})
     argv = [sys.executable, '-u', str(HERE / 'zmraz.py'), 'crawl', DOMAIN, '--out', str(OUT), '--base', ORIGIN,
             '--workers', str(c.get('workers', 4)), '--extra-until', str(c.get('extra_until', 0)), '--exits', c.get('exits', '/go/')]
+    if c.get('extra_paths_sql') and db:
+        argv += ['--extra-paths', str(extra_paths(db, c['extra_paths_sql']))]
     if c.get('no_go', True):
         argv.append('--no-go')
     for s in c.get('skip', []):
@@ -219,7 +239,7 @@ def main():
         imported = run_imports(db)
     group('render + crawl')
     with Server():
-        meta = crawl(a.limit)
+        meta = crawl(a.limit, db)
     for cmd in SITE.get('post_crawl', []):   # e.g. eroka: thumbnails -> R2 img.eroka.cz + URL rewrite
         argv = [x.replace('{out}', str(OUT)).replace('{data}', str(DATA)) for x in cmd]
         r = subprocess.run(argv, cwd=APP)

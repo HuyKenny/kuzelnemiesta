@@ -447,6 +447,8 @@ def main():
                     help="extra path prefix not to fetch, repeatable (e.g. --skip /img/ when thumbnails live on R2)")
     ap.add_argument("--base", help="origin to fetch from instead of https://<domain> (e.g. http://127.0.0.1:8787)")
     ap.add_argument("--exits", default="/go/", help="comma list of exit prefixes fetched beyond --extra-until (e.g. /go/,/akce/)")
+    ap.add_argument("--extra-paths", help="file with extra paths (one per line) crawled like sitemap URLs, e.g. recently "
+                    "expired offers the SSR still rendered (200) or redirected (301); audit 24. 11.: they answered 404 when frozen")
     a = ap.parse_args()
     out = Path(a.out)
 
@@ -470,6 +472,10 @@ def main():
         fz.trailing = slash > len(paths) / 2
         start = ["/", "/robots.txt", "/favicon.ico", "/favicon.svg", "/manifest.webmanifest", "/ads.txt"]
         start += [urllib.parse.urlsplit(s).path for s in sms] + paths
+        if a.extra_paths:
+            extra = [fz.norm(l.strip(), fz.base + "/") for l in open(a.extra_paths, encoding="utf-8") if l.strip().startswith("/")]
+            start += [x for x in extra if x]
+            print(f"{a.domain}: +{sum(1 for x in extra if x)} extra paths ({a.extra_paths})", flush=True)
         t0 = time.time()
         print(f"{a.domain}: {len(paths)} URL ze sitemap, trailing slash: {fz.trailing}", flush=True)
         fz.crawl(start, a.limit)
