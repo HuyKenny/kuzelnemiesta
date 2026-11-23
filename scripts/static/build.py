@@ -153,6 +153,8 @@ def crawl(limit):
     if r.returncode:
         sys.exit('crawl failed')
     meta = json.loads((WORK / 'out.meta.json').read_text())
+    if meta.get('error_prefixes'):
+        log('crawl errors by prefix:', json.dumps(meta['error_prefixes']))
     # every file of the client build (public/ + /_astro): the crawl only finds what pages reference
     n = 0
     client = DIST / 'client'
@@ -249,6 +251,10 @@ def main():
     import deploy
     deploy.deploy(SITE, OUT, DATA / 'shards.json')
     META.write_text(json.dumps(stats, indent=1))
+    for cmd in SITE.get('post_deploy', []):   # e.g. kakapo: IndexNow only once the pages are live
+        argv = [x.replace('{db}', str(STATE_DB)).replace('{data}', str(DATA)) for x in cmd]
+        r = subprocess.run(argv, cwd=APP)
+        log(f'post-deploy {argv[1] if len(argv) > 1 else argv[0]}: exit {r.returncode}')
     if not a.keep:
         shutil.rmtree(OUT, ignore_errors=True)
     group('smoke')

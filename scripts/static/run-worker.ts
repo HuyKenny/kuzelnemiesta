@@ -81,6 +81,20 @@ if (process.env.FEED_URLS_JSON) {
   catch { console.log('FEED_URLS_JSON is not valid JSON - ignored'); }
 }
 for (const [k, v] of Object.entries(process.env)) if (v && /^(FEED_URL_[A-Z0-9_]+|CJ_[A-Z_]+|EHUB_[A-Z_]+|DOGNET_[A-Z_]+)$/.test(k) && !(k in env)) env[k] = v;
+// feeds mirrored on Malina (hosts that refuse datacenter IPs, e.g. Affiliateport 403): $MIRROR_DIR/feed-<n>.xml -> the
+// FEED_MIRROR bucket on disk, FEED_URL_<n> = r2:feed-<n>.xml (the engine's openMirror path, as on Cloudflare)
+const mirrorBucket = [...(cfg.r2_buckets ?? []), ...(cfg.env?.production?.r2_buckets ?? [])].find((b: { binding: string }) => b.binding === 'FEED_MIRROR');
+if (process.env.MIRROR_DIR && existsSync(process.env.MIRROR_DIR) && mirrorBucket) {
+  for (const f of readdirSync(process.env.MIRROR_DIR)) {
+    const m = /^feed-(\d+)\.xml$/.exec(f);
+    if (!m) continue;
+    const dst = join(dirname(file), 'r2', mirrorBucket.bucket_name, f);
+    mkdirSync(dirname(dst), { recursive: true });
+    writeFileSync(dst, readFileSync(join(process.env.MIRROR_DIR, f)));
+    env[`FEED_URL_${m[1]}`] = `r2:${f}`;
+    console.log(`feed ${m[1]}: Malina mirror (${Math.round(statSync(dst).size / 1e6)} MB)`);
+  }
+}
 console.log(`env: ${nFeeds} feed URLs, vars ${Object.keys(vars).join(',')}`);
 
 const worker = await import(join(APP, 'workers/import/src/index.ts'));

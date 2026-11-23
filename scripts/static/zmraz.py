@@ -174,10 +174,11 @@ class Freezer:
             self.files[rel] = path
         if is_html or "text/css" in ctype:
             text = body.decode("utf-8", "replace")
-            refs = re.findall(r'''(?:href|src|poster|data-src)\s*=\s*["']([^"']+)["']''', text)
+            # (?<![:@.\w-]): not Alpine/Vue bindings like :href="o.go_url" (kakapo 23. 11.: 17 k bogus 404s per crawl)
+            refs = re.findall(r'''(?<![:@.\w-])(?:href|src|poster|data-src)\s*=\s*["']([^"']+)["']''', text)
             # meta content= only when it is a URL (og:image etc.), never descriptions
             refs += [x for x in re.findall(r'''content\s*=\s*["']([^"']+)["']''', text) if x.startswith(("/", "http"))]
-            for s in re.findall(r'''srcset\s*=\s*["']([^"']+)["']''', text):
+            for s in re.findall(r'''(?<![:@.\w-])srcset\s*=\s*["']([^"']+)["']''', text):
                 refs += [x.strip().split(" ")[0] for x in s.split(",")]
             refs += re.findall(r'''url\(\s*["']?([^"')]+)["']?\s*\)''', text)
             refs += re.findall(r'''["'](/_astro/[^"']+)["']''', text)
@@ -298,10 +299,10 @@ def current_routes(worker):
     acc = account_id()
     out = []
     for z in cf_api("/zones?per_page=100")["result"]:
-        for r in cf_api(f"/zones/{z['id']}/workers/routes")["result"]:
+        for r in cf_api(f"/zones/{z['id']}/workers/routes").get("result") or []:   # a scoped token sees only its own zone
             if r.get("script") == worker:
                 out.append({"pattern": r["pattern"], "zone_name": z["name"]})
-    for d in cf_api(f"/accounts/{acc}/workers/domains")["result"]:
+    for d in cf_api(f"/accounts/{acc}/workers/domains").get("result") or []:
         if d.get("service") == worker:
             out.append({"pattern": d["hostname"], "custom_domain": True})
     return out
@@ -480,6 +481,7 @@ def main():
         nred = fz.write_redirects()
         meta = {"domain": a.domain, "files": len(fz.files) + 2, "go": len(fz.go), "redirects": nred,
                 "errors": len(fz.errors), "error_sample": dict(list(fz.errors.items())[:20]),
+                "error_prefixes": dict(__import__("collections").Counter("/".join(p.split("/")[:2]) + f" {s}" for p, s in fz.errors.items()).most_common(15)),
                 "trailing_slash": fz.trailing, "seconds": round(time.time() - t0)}
         (out.parent / (out.name + ".meta.json")).write_text(json.dumps(meta, ensure_ascii=False, indent=1))
         print(json.dumps(meta, ensure_ascii=False))
@@ -537,7 +539,7 @@ def main():
         # (pokector 23. 11.: stale -z02 kept /cards/c* and /cards/compare 404ed) -> delete them
         keep = {n for n, *_ in jobs}
         acc = account_id()
-        for sc in cf_api(f"/accounts/{acc}/workers/scripts")["result"]:
+        for sc in cf_api(f"/accounts/{acc}/workers/scripts").get("result") or []:
             if re.fullmatch(re.escape(a.worker) + r"-z\d\d", sc["id"]) and sc["id"] not in keep:
                 r = cf_api(f"/accounts/{acc}/workers/scripts/{sc['id']}?force=true", "DELETE")
                 print(f"starý shard {sc['id']} smazán" if r.get("success") else f"starý shard {sc['id']}: {r.get('errors')}")

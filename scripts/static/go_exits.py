@@ -92,6 +92,35 @@ def write(site, out_dir, db_path):
         (d / "index.html").write_text(page(t), encoding="utf-8")
         n += 1
     print(f"exits: {n} pages ({bad} inactive/outside the allow-list -> offer page)", flush=True)
+    if site.get("redirect_pages"):
+        print(f"redirect pages: {redirect_pages(site, out_dir, db_path)}", flush=True)
+    return n
+
+
+def redirect_page(site, target):
+    a = html.escape(target, quote=True)
+    canon = html.escape("https://" + site["domain"] + target, quote=True)
+    return ('<!doctype html><meta charset="utf-8"><title>Přesměrování…</title>'
+            f'<link rel="canonical" href="{canon}"><meta http-equiv="refresh" content="0;url={a}">'
+            f'<script>location.replace({json.dumps(target)})</script><a href="{a}">Pokračovat</a>')
+
+
+def redirect_pages(site, out_dir, db_path):
+    """Rows of the D1 `redirects` table (kakapo: retired + merged hotels, 301 in the SSR middleware) as instant-refresh pages
+    with a canonical to the target, where the crawl wrote no page. Without them the retired hotel URLs would 404."""
+    con = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
+    rows = con.execute("SELECT from_path, to_path FROM redirects").fetchall()
+    con.close()
+    n = 0
+    for frm, to in rows:
+        if not re.fullmatch(r"/[a-z0-9-]+(/[a-z0-9-]+)*/", frm or "") or not re.fullmatch(r"/[a-z0-9/-]*", to or "") or frm == to:
+            continue
+        d = Path(out_dir) / frm.strip("/")
+        if (d / "index.html").exists() or (Path(out_dir) / (frm.strip("/") + ".html")).exists():
+            continue
+        d.mkdir(parents=True, exist_ok=True)
+        (d / "index.html").write_text(redirect_page(site, to), encoding="utf-8")
+        n += 1
     return n
 
 
