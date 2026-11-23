@@ -147,8 +147,8 @@ def crawl(limit):
         argv.append('--no-go')
     for s in c.get('skip', []):
         argv += ['--skip', s]
-    if limit:
-        argv += ['--limit', str(limit)]
+    # zmraz.py stops at 19 500 files by default (one Worker); here the deploy shards, so no cap unless testing
+    argv += ['--limit', str(limit or 1_000_000)]
     r = subprocess.run(argv, cwd=APP)
     if r.returncode:
         sys.exit('crawl failed')
