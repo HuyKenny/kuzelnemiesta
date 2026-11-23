@@ -15,3 +15,7 @@ test-results/
 backups/
 reports/*.local.json
 worker-configuration.d.ts
+# static build (scripts/static): state and work files never go to git
+/data/
+/.static-work/
+__pycache__/

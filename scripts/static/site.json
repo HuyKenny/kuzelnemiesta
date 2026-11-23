@@ -1,0 +1,15 @@
+{
+ "domain": "kuzelnemiesta.sk",
+ "worker": "kuzelnemiesta",
+ "port": 8841,
+ "cron": "50 1 * * *",
+ "go": "products",
+ "import": [["pnpm", "exec", "tsx", "scripts/static/run-worker.ts", "--db", "{db}", "--tick", "--finalize"]],
+ "crawl": {"workers": 4, "extra_until": 0, "no_go": true, "skip": [], "exits": "/go/"},
+ "fts": ["INSERT INTO product_fts (rowid, name, city) SELECT id, name, city FROM products"],
+ "min_pages": 1000,
+ "smoke_paths": [],
+ "actions": {"repo": "HuyKenny/kuzelnemiesta", "cred": ".kuzelnemiesta-credentials.env", "zone": "kuzelnemiesta.sk", "secrets": {},
+             "feed_urls": {"FEED_URL_ZLAVOMAT": ".kuzelnemiesta-feeds.json#zlavomat", "FEED_URL_ADROP": ".kuzelnemiesta-feeds.json#adrop",
+                           "FEED_URL_FUTBALTOUR": ".kuzelnemiesta-feeds.json#futbaltour"}}
+}

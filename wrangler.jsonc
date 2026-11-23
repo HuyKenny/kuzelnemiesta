@@ -16,6 +16,16 @@
   "observability": { "enabled": true, "head_sampling_rate": 1 },
 
   "env": {
+    // Static build (Cloudflare Workers Free, 2026-11): rendered locally under `wrangler dev --local` over the SQLite state and
+    // frozen into static files (scripts/static/build.py). Never deployed itself. Same vars as production so the HTML is identical;
+    // no host allow-list, rate limits or services (local crawl).
+    "render": {
+      "name": "kuzelnemiesta-render",
+      "workers_dev": false,
+      "preview_urls": false,
+      "d1_databases": [{ "binding": "DB", "database_name": "kuzelnemiesta-render", "database_id": "00000000-0000-0000-0000-000000000001", "migrations_dir": "migrations" }],
+      "vars": {"ENVIRONMENT": "production", "SITE_URL": "https://kuzelnemiesta.sk", "ALLOWED_HOSTS": "", "REQUIRE_ACCESS_EVERYWHERE": "0", "ANALYTICS_ENABLED": "1"}
+    },
     "staging": {
       "name": "kuzelnemiesta-staging",
       // kuzelnemiesta-staging.huy-kenny.workers.dev behind Cloudflare Access (whole host); the Worker re-checks the JWT.

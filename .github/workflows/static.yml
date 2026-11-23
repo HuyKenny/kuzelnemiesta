@@ -1,0 +1,81 @@
+name: static
+# kuzelnemiesta.sk is served as static files by assets-only Workers (Cloudflare Workers Free, 2026-11): `kuzelnemiesta` (zone route
+# kuzelnemiesta.sk/*) + prefix shards `kuzelnemiesta-zNN`. Every night: import into the SQLite state (code of the deleted import Worker,
+# workers/import, plus the Malina catalogue scripts), render the SSR app locally, freeze, deploy the changed files.
+# See scripts/static/build.py. PUBLIC repo: logs are public — scripts print only counts and HTTP statuses; credentials come
+# from secrets (masked by GitHub); the state is an encrypted release asset (scripts/static/state.sh, STATE_KEY).
+# Quick path for CSS/JS/template/text fixes: Actions -> static -> Run workflow -> mode "quick" (no feeds, no import, minutes).
+on:
+  schedule:
+    - cron: "50 1 * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "quick = render + deploy from the saved state (fixes); full = import + render + deploy"
+        type: choice
+        options: [quick, full]
+        default: quick
+      katalog_guard:
+        description: "full only: allow more new catalogue products in one run (default 500; after a long pause)"
+        type: string
+        default: ""
+concurrency:
+  group: static
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    permissions:
+      contents: write          # release asset with the encrypted state
+    env:
+      MODE: ${{ github.event_name == 'schedule' && 'full' || inputs.mode }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: "Cost guard - the repo must stay public (private repos burn the shared 2 000 free minutes)"
+        run: |
+          [ "$(gh api repos/${{ github.repository }} --jq .private)" = "false" ] || { echo "repo is private - stopping to protect free minutes"; exit 1; }
+          [ -n "$STATE_KEY" ] && [ -n "$CLOUDFLARE_API_TOKEN" ] || { echo "secrets STATE_KEY / CLOUDFLARE_API_TOKEN not set yet (scripts/static/setup-actions.py)"; exit 1; }
+        env:
+          GH_TOKEN: ${{ github.token }}
+          STATE_KEY: ${{ secrets.STATE_KEY }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Install
+        run: pnpm install --frozen-lockfile
+      - name: Build the SSR app (render env)
+        run: |
+          pnpm exec astro build > /tmp/astro-build.log 2>&1 || { tail -40 /tmp/astro-build.log; exit 1; }
+          tail -2 /tmp/astro-build.log
+        env:
+          CLOUDFLARE_ENV: render
+          SITE_URL: https://kuzelnemiesta.sk
+          BUILD_ID: ${{ github.sha }}
+      - name: Restore state (encrypted)
+        run: |
+          scripts/static/state.sh pull
+          echo "STATE_OK=1" >> "$GITHUB_ENV"
+        env:
+          STATE_KEY: ${{ secrets.STATE_KEY }}
+          GH_TOKEN: ${{ github.token }}
+      - name: Import + render + deploy
+        run: python3 -u scripts/static/build.py run --mode "$MODE"
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          FEED_URLS_JSON: ${{ secrets.FEED_URLS_JSON }}
+          KATALOG_GUARD: ${{ inputs.katalog_guard }}
+      - name: Save state (encrypted)
+        if: always() && env.STATE_OK == '1'
+        run: scripts/static/state.sh push
+        env:
+          STATE_KEY: ${{ secrets.STATE_KEY }}
+          GH_TOKEN: ${{ github.token }}
