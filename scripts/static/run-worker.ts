@@ -10,7 +10,8 @@
  * --run     a shell command (in the app dir), repeatable, run in order; STATIC_DB points at the SQLite file (scripts that wrote
  *           D1 through `wrangler d1 execute --remote` write it directly, see scripts/static/d1local.py).
  * --tick    the cron tick until every due feed ran (tick() of workers/import/src/index.ts).
- * --finalize  finalizeDay() afterwards even if the tick said "idle" (some ticks finalise only after 03:00 UTC).
+ * --finalize  finalizeDay() afterwards, forced (even if the tick said "idle" or the day was already finalised).
+ * --all-due   every feed is due this run (feed_state.last_attempt_at reset; alkoholicky/eroka engines).
  * Feed URLs: secret FEED_URLS_JSON {"FEED_URL_<n>": "https://…"}; the vars come from workers/import/wrangler.jsonc (production).
  * Prints counts only (public Actions logs).
  */
@@ -136,6 +137,12 @@ for (const cmd of all('--run')) {
   }
 }
 
+const cols = (t: string) => (raw.prepare(`PRAGMA table_info(${t})`).all() as Array<{ name: string }>).map((c) => c.name);
+if (argv.includes('--all-due') && cols('feed_state').includes('last_attempt_at')) {
+  // nightly run: every feed is due (the engine's 20 h rule assumed several cron ticks a night; a catch-up run the same
+  // evening otherwise left new catalogue products without offers until the night after)
+  raw.exec('UPDATE feed_state SET last_attempt_at = NULL');
+}
 if (argv.includes('--tick')) {
   for (let i = 0; i < 80; i++) {
     const r = await worker.tick(env) as Record<string, unknown>;
@@ -144,6 +151,8 @@ if (argv.includes('--tick')) {
   }
 }
 if (argv.includes('--finalize') && typeof engine.finalizeDay === 'function') {
+  // like POST /finalize?force=1: a second run on the same day must still rebuild sitemaps/facets from its own data
+  try { raw.exec("DELETE FROM site_cache WHERE key = 'import:finalized'"); } catch { /* no such table/key on this site */ }
   const r = await (engine.finalizeDay as (e: unknown, f?: boolean) => Promise<unknown>)(env, true);
   console.log('finalize:', summarize(r));
 }
