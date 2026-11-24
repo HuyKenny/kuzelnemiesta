@@ -33,7 +33,7 @@ const count = `${cislo(v.total)} ${ponuk(v.total)}`;
 <Base meta={v.meta} pageType={v.pageType} preloadImg={lcp}>
 	<div class="w">
 		<Drobky items={v.crumbs} />
-		<div class="vy">
+		<div class="vy" data-src={`/data/l${v.base.replace(/\/$/, '')}.json`} data-base={v.base} data-sec={sec}>
 			<Sidebar side={v.side} base={v.base} f={v.f} t={v.tree} partners={v.pageType !== 'store'} pageUrl={v.base} />
 			<div class="vy__m">
 				<header class="vh">
@@ -50,7 +50,7 @@ const count = `${cislo(v.total)} ${ponuk(v.total)}`;
 					</nav>
 				)}
 				<form class="tb" action={v.base} method="get">
-					<h2>{v.h2 || count}</h2>
+					<h2 data-n={v.h2 ? undefined : ''}>{v.h2 || count}</h2>
 					{active.length > 0 && <ul class="tb__a">{active.map((a) => <li><a href={a.url} rel="nofollow" aria-label={`Zrušiť filter ${a.l}`}>{a.l} <Ik n="zavrit" /></a></li>)}</ul>}
 					<div class="tb__f">
 						<a class="tb__fl" href="#filtry" data-filtry><Ik n="filtr" />Filtre</a>

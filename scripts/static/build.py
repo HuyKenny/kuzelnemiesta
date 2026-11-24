@@ -8,6 +8,8 @@ site specifics in scripts/static/site.json). One run (GitHub Actions, .github/wo
   2. full mode: the site's import commands (site.json "import") run over that file (the code of the deleted import Worker),
   3. the SSR app (dist/, built with CLOUDFLARE_ENV=render) runs under `wrangler dev --local`; zmraz.py crawls it into
      .static-work/out (production URLs, sitemap pages + assets), plus every file of dist/client,
+     The app's static data files (/data/l/*.json listing filters, /data/search.json) are crawled through data-src attributes;
+     search.json is split into prefix buckets /data/s/<xx>.json (search_buckets, client: src/scripts/staticky.ts),
   4. /go/ (and kakapo /akce/) exits are written straight from the SQLite file (go_exits.py),
   5. a size guard compares with the previous run, deploy.py uploads the changed files to the same Workers (<worker> +
      prefix shards <worker>-zNN, zone routes kept in sync), the state is copied back to data/state.db,
@@ -195,6 +197,34 @@ def crawl(limit, db=None):
     return meta
 
 
+def search_buckets(cap):
+    """Client-side search index (24. 11. 2026). The app renders /data/search.json (crawled through data-src on its search page):
+    {"meta": {...}, "rows": [[folded text, ...payload], ...]} in ranking order (popularity). Split here into
+    /data/s/<xx>.json = the rows having a word that starts with <xx> (first `cap` of them) + /data/s/index.json = meta + bucket
+    sizes; the browser loads the index and the smallest bucket of the typed words (src/scripts/staticky.ts). The corpus itself
+    is not deployed."""
+    src = OUT / 'data' / 'search.json'
+    if not src.exists():
+        return None
+    d = json.loads(src.read_text(encoding='utf-8'))
+    buckets = {}
+    for row in d.get('rows', []):
+        for k in {w[:2] for w in re.findall(r'[a-z0-9]+', str(row[0])) if len(w) >= 2}:
+            buckets.setdefault(k, []).append(row)
+    dst = OUT / 'data' / 's'
+    if dst.exists():
+        shutil.rmtree(dst)
+    dst.mkdir(parents=True)
+    n = {}
+    for k, rows in sorted(buckets.items()):
+        n[k] = len(rows[:cap])
+        (dst / f'{k}.json').write_text(json.dumps(rows[:cap], ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+    (dst / 'index.json').write_text(json.dumps({'meta': d.get('meta', {}), 'n': n}, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+    src.unlink()
+    log(f'search index: {len(d.get("rows", []))} rows -> {len(n)} buckets (largest {max(n.values(), default=0)})')
+    return len(n)
+
+
 def html_count():
     return sum(1 for p in OUT.rglob('*.html') if not p.relative_to(OUT).as_posix().startswith(('go/', 'akce/')))
 
@@ -255,6 +285,7 @@ def main():
         log(f'post-crawl {argv[1] if len(argv) > 1 else argv[0]}: exit {r.returncode}')
         if r.returncode:
             sys.exit('post-crawl step failed')
+    search_buckets(SITE.get('search_cap', 2500))
     group('exits')
     sys.path.insert(0, str(HERE))
     import go_exits

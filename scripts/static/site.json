@@ -5,7 +5,7 @@
  "cron": "50 1 * * *",
  "go": "products",
  "import": [["pnpm", "exec", "tsx", "scripts/static/run-worker.ts", "--db", "{db}", "--tick", "--finalize"]],
- "crawl": {"workers": 4, "extra_until": 30000, "extra_paths_sql": ["SELECT '/' || slug || '/' FROM products WHERE active = 0 ORDER BY expired_at DESC", "SELECT from_path FROM redirects"], "no_go": true, "skip": [], "exits": "/go/"},
+ "crawl": {"workers": 4, "extra_until": 30000, "extra_paths_sql": ["SELECT '/hladat/'", "SELECT '/' || slug || '/' FROM products WHERE active = 0 ORDER BY expired_at DESC", "SELECT from_path FROM redirects"], "no_go": true, "skip": [], "exits": "/go/"},
  "fts": ["INSERT INTO product_fts (rowid, name, city) SELECT id, name, city FROM products"],
  "min_pages": 1000,
  "smoke_paths": [],

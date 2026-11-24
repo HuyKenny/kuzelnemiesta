@@ -30,7 +30,7 @@ const allOffers = (n: number) => (n >= 2 && n <= 4 ? `Všetky ${n} ponuky` : n =
 	<div class="w hd__in">
 		<a class="logo" href="/" aria-label={`${SITE_NAME} – úvod`}><img src="/a/logo-264.webp" srcset="/a/logo-264.webp 1x, /a/logo-528.webp 2x" alt={SITE_NAME} width="204" height="48" /></a>
 		<div class="hl">
-			<form action="/" method="get" role="search">
+			<form action="/hladat/" method="get" role="search">
 				<Ik n="hledat" />
 				<label class="sr" for="q">Hľadať zážitky, pobyty a darčeky</label>
 				<input id="q" type="search" name="s" placeholder="Masáž, glamping, wellness…" autocomplete="off" data-suggest />

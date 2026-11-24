@@ -28,7 +28,7 @@ export type PostCard = Pick<Post, 'id' | 'slug' | 'title' | 'excerpt' | 'publish
 export interface Lok { id: number; slug: string; name: string; count: number }
 export interface Store { id: number; slug: string; name: string; description_html: string; count: number }
 
-const CARD = "p.id, p.slug, p.name, p.image, p.price, p.price_old, p.disc_pct, p.store_id, p.city, p.rating, p.reviews, json_extract(p.info, '$.de') AS deal_end, json_extract(p.info, '$.cu') AS bought, p.created_at, json_extract(p.info, '$.cc') AS cc, json_array_length(p.info, '$.va') AS nv";
+export const CARD = "p.id, p.slug, p.name, p.image, p.price, p.price_old, p.disc_pct, p.store_id, p.city, p.rating, p.reviews, json_extract(p.info, '$.de') AS deal_end, json_extract(p.info, '$.cu') AS bought, p.created_at, json_extract(p.info, '$.cc') AS cc, json_array_length(p.info, '$.va') AS nv";
 
 let memo: { at: number; byId: Map<number, Cat>; bySlug: Map<string, Cat>; kids: Map<number, Cat[]>; loks: Map<number, Lok>; lokBySlug: Map<string, Lok>; stores: Map<number, Store> } | null = null;
 export async function tree(db: D1Database) {
@@ -72,7 +72,7 @@ export async function guessSlug(db: D1Database, slug: string): Promise<string | 
 }
 
 export type Sort = 'pop' | 'price' | 'price-desc' | 'date' | 'disc';
-export interface ListQuery { page: number; sort: Sort; min?: number | undefined; max?: number | undefined; store?: number | undefined; lok?: number | undefined }
+export interface ListQuery { page: number; sort: Sort; min?: number | undefined; max?: number | undefined; store?: number | undefined; lok?: number | undefined; /** every row, no LIMIT (static data files, lib/staticdata.ts) */ all?: boolean | undefined }
 
 function order(s: Sort, t: string): string {
   switch (s) {
@@ -95,7 +95,7 @@ export async function listCategory(db: D1Database, catId: number, q: ListQuery):
   const where = w.join(' AND ');
   const join = q.store ? 'JOIN products p ON p.id = x.product_id' : '';
   const [a, c] = await db.batch([
-    db.prepare(`SELECT ${CARD} FROM cat_products x JOIN products p ON p.id = x.product_id WHERE ${where} ORDER BY ${order(q.sort, 'x')} LIMIT ${PER_PAGE} OFFSET ${(q.page - 1) * PER_PAGE}`).bind(...b),
+    db.prepare(`SELECT ${CARD} FROM cat_products x JOIN products p ON p.id = x.product_id WHERE ${where} ORDER BY ${order(q.sort, 'x')}${q.all ? '' : ` LIMIT ${PER_PAGE} OFFSET ${(q.page - 1) * PER_PAGE}`}`).bind(...b),
     db.prepare(`SELECT COUNT(*) AS n FROM cat_products x ${join} WHERE ${where}`).bind(...b),
   ]);
   return { items: a!.results as Card[], total: Number((c!.results[0] as { n: number }).n) };
@@ -112,7 +112,7 @@ export async function listBy(db: D1Database, by: { lok?: number; store?: number 
   const where = w.join(' AND ');
   const ord = q.sort === 'price' ? 'p.price ASC' : q.sort === 'price-desc' ? 'p.price DESC' : q.sort === 'disc' ? 'p.disc_pct DESC, p.pop DESC' : q.sort === 'pop' ? 'p.mix DESC, p.pop DESC, p.created_at DESC' : 'p.created_at DESC';
   const [a, c] = await db.batch([
-    db.prepare(`SELECT ${CARD} FROM products p WHERE ${where} ORDER BY ${ord}, p.id DESC LIMIT ${PER_PAGE} OFFSET ${(q.page - 1) * PER_PAGE}`).bind(...b),
+    db.prepare(`SELECT ${CARD} FROM products p WHERE ${where} ORDER BY ${ord}, p.id DESC${q.all ? '' : ` LIMIT ${PER_PAGE} OFFSET ${(q.page - 1) * PER_PAGE}`}`).bind(...b),
     db.prepare(`SELECT COUNT(*) AS n FROM products p WHERE ${where}`).bind(...b),
   ]);
   return { items: a!.results as Card[], total: Number((c!.results[0] as { n: number }).n) };
@@ -131,7 +131,7 @@ export async function listGift(db: D1Database, catIds: number[], q: ListQuery & 
   const where = w.join(' AND ');
   const ord = q.sort === 'price' ? 'p.price ASC' : q.sort === 'price-desc' ? 'p.price DESC' : q.sort === 'disc' ? 'p.disc_pct DESC, p.pop DESC' : q.sort === 'date' ? 'p.created_at DESC' : 'p.mix DESC, p.pop DESC';
   const [a, c] = await db.batch([
-    db.prepare(`SELECT ${CARD} FROM products p WHERE ${where} ORDER BY ${ord}, p.id DESC LIMIT ${PER_PAGE} OFFSET ${(q.page - 1) * PER_PAGE}`).bind(...b),
+    db.prepare(`SELECT ${CARD} FROM products p WHERE ${where} ORDER BY ${ord}, p.id DESC${q.all ? '' : ` LIMIT ${PER_PAGE} OFFSET ${(q.page - 1) * PER_PAGE}`}`).bind(...b),
     db.prepare(`SELECT COUNT(*) AS n FROM products p WHERE ${where}`).bind(...b),
   ]);
   return { items: a!.results as Card[], total: Number((c!.results[0] as { n: number }).n) };

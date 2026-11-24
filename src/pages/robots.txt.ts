@@ -9,6 +9,7 @@ export const prerender = false;
 const PROD = `User-agent: *
 Disallow: /go/
 Disallow: /api/
+Disallow: /data/
 Disallow: /*?*orderby=
 Disallow: /*?*min_price=
 Disallow: /*?*max_price=

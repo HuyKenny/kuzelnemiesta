@@ -116,7 +116,7 @@ for (const input of $$<HTMLInputElement>('input[data-suggest]')) {
     if (d.cats.length) h += '<div class="hl__h">Kategórie</div>' + d.cats.map((c) => `<a href="${esc(c.u)}" role="option"><span>${esc(c.n)}</span><span class="hl__c">${c.c}</span></a>`).join('');
     if (d.offers.length) h += '<div class="hl__h">Ponuky</div>' + d.offers.map((p) => `<a href="${esc(p.u)}" role="option"><span>${esc(p.n)}</span><span class="hl__c">${esc(p.p)}</span></a>`).join('');
     if (!h) { hide(); return; }
-    h += `<a href="/?s=${encodeURIComponent(q)}&amp;post_type=product" role="option"><b>Všetky výsledky pre „${esc(q)}“</b></a>`;
+    h += `<a href="/hladat/?s=${encodeURIComponent(q)}" role="option"><b>Všetky výsledky pre „${esc(q)}“</b></a>`;
     box.innerHTML = h; box.hidden = false; idx = -1;
   };
   input.addEventListener('input', () => {
@@ -126,8 +126,9 @@ for (const input of $$<HTMLInputElement>('input[data-suggest]')) {
     timer = window.setTimeout(async () => {
       const my = ++seq;
       try {
-        const r = await fetch('/api/suggest?q=' + encodeURIComponent(q));
-        if (r.ok && my === seq) render(await r.json() as Sug, q);
+        // static site: suggestions from the prefix index /data/s/* (staticky.ts), loaded on the first keystrokes only
+        const d = await (await import('./staticky')).suggest(q);
+        if (my === seq) render(d as Sug, q);
       } catch { /* offline */ }
     }, 160);
   });
@@ -143,3 +144,9 @@ for (const input of $$<HTMLInputElement>('input[data-suggest]')) {
   });
   document.addEventListener('click', (e) => { if (!(e.target as Element).closest('.hl')) hide(); });
 }
+
+// static site (Cloudflare Workers Free): sorted/filtered listings and the search page are computed in the browser
+const vyp = $('.vy[data-src]');
+if (vyp && /[?&](orderby|min_price|max_price|partner|strana)=/.test(location.search)) void import('./staticky').then((m) => m.vypis(vyp));
+const hl = $('[data-hledani]');
+if (hl) void import('./staticky').then((m) => m.hledani(hl));
