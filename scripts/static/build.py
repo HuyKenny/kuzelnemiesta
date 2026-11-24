@@ -205,9 +205,14 @@ def guard(meta, stats):
             bad.append(f'{k} {stats[k]} < {floor:.0%} of {prev[k]}')
     if stats['pages'] < SITE.get('min_pages', 100):
         bad.append(f'pages {stats["pages"]} < min {SITE.get("min_pages", 100)}')
+    # page 404s/5xx mean broken rendering; dead images/CSS links (often already 404 on the live site, e.g. WP-era
+    # uploads in old offer texts) are only fatal when they explode
     errs = meta.get('errors', 0)
-    if errs > max(100, stats["pages"] * 0.05):
-        bad.append(f'{errs} crawl errors {meta.get("error_sample")}')
+    page_errs = meta.get('page_errors', errs)
+    if page_errs > max(100, stats["pages"] * 0.05):
+        bad.append(f'{page_errs} page crawl errors {meta.get("error_sample")}')
+    if errs - page_errs > max(1000, stats["pages"] * 0.5):
+        bad.append(f'{errs - page_errs} asset crawl errors {meta.get("error_prefixes")}')
     return bad
 
 

@@ -487,6 +487,7 @@ def main():
         nred = fz.write_redirects()
         meta = {"domain": a.domain, "files": len(fz.files) + 2, "go": len(fz.go), "redirects": nred,
                 "errors": len(fz.errors), "error_sample": dict(list(fz.errors.items())[:20]),
+                "page_errors": sum(1 for p in fz.errors if not ASSET_RE.search(p.split("?")[0])),   # HTML pages only; dead images/CSS are counted apart
                 "error_prefixes": dict(__import__("collections").Counter("/".join(p.split("/")[:2]) + f" {s}" for p, s in fz.errors.items()).most_common(15)),
                 "trailing_slash": fz.trailing, "seconds": round(time.time() - t0)}
         (out.parent / (out.name + ".meta.json")).write_text(json.dumps(meta, ensure_ascii=False, indent=1))
