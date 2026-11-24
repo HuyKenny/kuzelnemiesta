@@ -107,6 +107,8 @@ export async function vypis(vy: HTMLElement): Promise<void> {
   const qs = toQuery(f);
   // texts shown only on the plain first page
   if (qs) document.querySelectorAll<HTMLElement>('.vh .lead, .vh .vice, .kat-text').forEach((e) => { e.hidden = true; });
+  // as the old SSR (lib/filters.ts): a filtered / re-sorted state is noindex, follow; the static canonical stays the clean URL
+  if (qs) document.querySelector('meta[name="robots"]')?.setAttribute('content', 'noindex, follow');
   const h2 = main.querySelector<HTMLElement>('form.tb h2[data-n]');
   if (h2) h2.textContent = nabidek(total);
   // toolbar: sort select + hidden filters (ui.ts submits the form on change), active filter chips
