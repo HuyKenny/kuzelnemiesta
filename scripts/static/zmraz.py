@@ -103,6 +103,7 @@ class Freezer:
         self.skip = SKIP_PREFIX
         self.fetch_base = self.base   # --base: crawl another origin (local dev server), files keep the production domain
         self.exits = ("/go/",)        # exit pages: fetched even beyond --extra-until (/akce/ on kakapo)
+        self.extra = set()            # --extra-paths (legacy URLs): a 404 there is the SSR's own answer, not a render error
 
     # -- path helpers -------------------------------------------------------
     def norm(self, href, page_url):
@@ -264,7 +265,36 @@ class Freezer:
                     continue   # trailing-slash normalisation is handled by html_handling
                 lines.append(f"{p} {tgt} {301 if st in (301, 308) else 302}")
         (self.out / "_redirects").write_text("\n".join(lines[:2000]) + "\n", encoding="utf-8")
+        self.stubs = self.write_redirect_pages(set(l.split(" ", 1)[0] for l in lines[:2000]))
         return len(lines)
+
+    def write_redirect_pages(self, done):
+        """SSR 301s that did not fit into _redirects (2 000 static rules; non-ASCII paths are skipped there) become instant
+        meta-refresh pages with a canonical to the target, like kakapo's retired hotels (go_exits.redirect_pages).
+        Audit 24. 11. 2026: expired offers, old category slugs and the D1 `redirects` table answered 404 when frozen."""
+        n = 0
+        for p, (st, loc) in sorted(self.redirects.items()):
+            if p in done or st not in (301, 302, 307, 308) or not loc or p.startswith(("/go/", "/akce/")):
+                continue
+            pu = urllib.parse.urlsplit(loc)
+            if pu.hostname and pu.hostname not in self.hosts:
+                continue
+            tgt = (pu.path or "/") + (("?" + pu.query) if pu.query else "")
+            if tgt.rstrip("/") == p.rstrip("/") or not p.endswith("/"):
+                continue
+            d = self.out / self.rel_for(p, True)
+            if d.exists():
+                continue
+            a = html.escape(tgt, quote=True)
+            canon = html.escape(self.base + urllib.parse.quote(tgt, safe="/?=&%"), quote=True)
+            d.parent.mkdir(parents=True, exist_ok=True)
+            d.write_text('<!doctype html><meta charset="utf-8"><title>Přesměrování…</title>'
+                         f'<link rel="canonical" href="{canon}"><meta http-equiv="refresh" content="0;url={a}">'
+                         f'<script>location.replace({json.dumps(tgt)})</script><a href="{a}">Pokračovat</a>', encoding="utf-8")
+            with self.lock:
+                self.files[self.rel_for(p, True)] = p
+            n += 1
+        return n
 
 
 def cf_creds():
@@ -475,6 +505,7 @@ def main():
         if a.extra_paths:
             extra = [fz.norm(l.strip(), fz.base + "/") for l in open(a.extra_paths, encoding="utf-8") if l.strip().startswith("/")]
             start += [x for x in extra if x]
+            fz.extra = set(x for x in extra if x)
             print(f"{a.domain}: +{sum(1 for x in extra if x)} extra paths ({a.extra_paths})", flush=True)
         t0 = time.time()
         print(f"{a.domain}: {len(paths)} URL ze sitemap, trailing slash: {fz.trailing}", flush=True)
@@ -486,8 +517,9 @@ def main():
         fz.write_go()
         nred = fz.write_redirects()
         meta = {"domain": a.domain, "files": len(fz.files) + 2, "go": len(fz.go), "redirects": nred,
+                "redirect_pages": getattr(fz, "stubs", 0), "extra_errors": sum(1 for p in fz.errors if p in fz.extra),
                 "errors": len(fz.errors), "error_sample": dict(list(fz.errors.items())[:20]),
-                "page_errors": sum(1 for p in fz.errors if not ASSET_RE.search(p.split("?")[0])),   # HTML pages only; dead images/CSS are counted apart
+                "page_errors": sum(1 for p in fz.errors if p not in fz.extra and not ASSET_RE.search(p.split("?")[0])),   # HTML pages only; dead images/CSS are counted apart
                 "error_prefixes": dict(__import__("collections").Counter("/".join(p.split("/")[:2]) + f" {s}" for p, s in fz.errors.items()).most_common(15)),
                 "trailing_slash": fz.trailing, "seconds": round(time.time() - t0)}
         (out.parent / (out.name + ".meta.json")).write_text(json.dumps(meta, ensure_ascii=False, indent=1))

@@ -149,6 +149,10 @@ def extra_paths(db, queries):
             out += [r[0] for r in con.execute(q) if r and isinstance(r[0], str) and r[0].startswith('/')]
     finally:
         con.close()
+    # legacy URLs (scripts/static/legacy-paths.txt: Search Console pages of the SSR era): the SSR decides each one (200, 301 or 404)
+    legacy = APP / 'scripts' / 'static' / 'legacy-paths.txt'
+    if legacy.exists():
+        out += [l.strip() for l in legacy.read_text(encoding='utf-8').splitlines() if l.strip().startswith('/')]
     f = WORK / 'extra-paths.txt'
     f.write_text('\n'.join(dict.fromkeys(out)) + '\n', encoding='utf-8')
     log(f'extra paths: {len(out)}')
@@ -161,8 +165,8 @@ def crawl(limit, db=None):
     c = SITE.get('crawl', {})
     argv = [sys.executable, '-u', str(HERE / 'zmraz.py'), 'crawl', DOMAIN, '--out', str(OUT), '--base', ORIGIN,
             '--workers', str(c.get('workers', 4)), '--extra-until', str(c.get('extra_until', 0)), '--exits', c.get('exits', '/go/')]
-    if c.get('extra_paths_sql') and db:
-        argv += ['--extra-paths', str(extra_paths(db, c['extra_paths_sql']))]
+    if (c.get('extra_paths_sql') or (APP / 'scripts' / 'static' / 'legacy-paths.txt').exists()) and db:
+        argv += ['--extra-paths', str(extra_paths(db, c.get('extra_paths_sql', [])))]
     if c.get('no_go', True):
         argv.append('--no-go')
     for s in c.get('skip', []):
