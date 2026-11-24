@@ -514,11 +514,17 @@ def main():
         print(f"{a.domain}: {len(paths)} URL ze sitemap, trailing slash: {fz.trailing}", flush=True)
         fz.crawl(start, a.limit)
         # 404 page
-        # trailing-slash sites: the SSR 301s /zz-neexistuje-N to /zz-neexistuje-N/ first (no body) -> ask for the canonical
-        # form, else no 404.html is written and the Workers answer an empty 404 (audit 25. 11. 2026: all 5 shops)
-        st, _, body = fetch(fz.fetch_base + "/zz-neexistuje-" + str(int(t0)) + ("/" if fz.trailing else ""))
-        if body and st == 404:
-            (out / "404.html").write_bytes(body)
+        # Probe for the SSR's own 404 page. Without a 404.html the Workers answer an empty 404 (audit 25. 11. 2026: all 5
+        # shops). Trailing-slash sites 301 the bare form first (no body), and alkoholicky 302s unknown slugs to the
+        # nearest brand/category/home (deadUrlTarget skips /wp-…), so try the canonical form, then a /wp- path.
+        sl = "/" if fz.trailing else ""
+        for probe in (f"/zz-neexistuje-{int(t0)}{sl}", f"/wp-zz-neexistuje-{int(t0)}{sl}"):
+            st, _, body = fetch(fz.fetch_base + probe)
+            if body and st == 404 and b"<html" in body[:4000].lower():
+                (out / "404.html").write_bytes(body)
+                break
+        else:
+            print(f"{a.domain}: no HTML 404 page from the SSR (last probe {st}) - live 404s will have an empty body", flush=True)
         fz.write_go()
         nred = fz.write_redirects()
         meta = {"domain": a.domain, "files": len(fz.files) + 2, "go": len(fz.go), "redirects": nred,
