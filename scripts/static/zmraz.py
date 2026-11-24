@@ -514,7 +514,9 @@ def main():
         print(f"{a.domain}: {len(paths)} URL ze sitemap, trailing slash: {fz.trailing}", flush=True)
         fz.crawl(start, a.limit)
         # 404 page
-        st, _, body = fetch(fz.fetch_base + "/zz-neexistuje-" + str(int(t0)))
+        # trailing-slash sites: the SSR 301s /zz-neexistuje-N to /zz-neexistuje-N/ first (no body) -> ask for the canonical
+        # form, else no 404.html is written and the Workers answer an empty 404 (audit 25. 11. 2026: all 5 shops)
+        st, _, body = fetch(fz.fetch_base + "/zz-neexistuje-" + str(int(t0)) + ("/" if fz.trailing else ""))
         if body and st == 404:
             (out / "404.html").write_bytes(body)
         fz.write_go()
